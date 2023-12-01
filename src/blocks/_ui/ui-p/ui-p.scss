@@ -21,6 +21,11 @@
       }
     }
   }
+  &--p-mt-xs {
+    + .ui-p1 {
+      margin-top: 10px;
+    }
+  }
 }
 .ui-p2 {
   font: 16px/1.4 $font;

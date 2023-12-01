@@ -65,11 +65,6 @@
         font-size: 16px;
       }
     }
-    &--ui-ul {
-      .ui-ul {
-        margin: 10px 0;
-      }
-    }
   }
   &__btns {
     display: flex;
@@ -314,7 +309,7 @@
     }
   }
   &--arrests {
-    background: linear-gradient(90deg, #FFF8F2 0%, #FFEEDB 100%);
+    background: linear-gradient(90deg, #fff8f2 0%, #ffeedb 100%);
     @include media-tablet {
       padding-bottom: 200px;
     }

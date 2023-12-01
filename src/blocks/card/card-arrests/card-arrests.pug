@@ -11,12 +11,12 @@ mixin card-arrests(arrestsData, mods)
     }
 
   .card-arrests(class=allMods)&attributes(attributes)
-    if arrestsData.title 
+    if arrestsData.title
       .card-arrests__title
         if arrestsData.title.h4
           +ui-h4(arrestsData.title.h4, "--bold")
     if arrestsData.descr
-      .card-arrests__descr !{arrestsData.descr}
+      .card-arrests__descr(class = arrestsData.descrMods && `card-arrests__descr--${arrestsData.descrMods}`) !{arrestsData.descr}
     if arrestsData.img
       .card-arrests__img
         img(src=arrestsData.img, alt='cardImg')
@@ -34,5 +34,5 @@ mixin card-arrests-wrapper(mods)
       allMods = allMods.trim()
     }
 
-  .card-arrests__wrapper(class=allMods)&attributes(attributes)
+  .card-arrests-wrapper(class=allMods)&attributes(attributes)
     block

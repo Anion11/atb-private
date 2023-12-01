@@ -18,6 +18,12 @@
       color: $orange;
     }
   }
+  &--mt10 {
+    margin-top: 10px;
+  }
+  &--mb10 {
+    margin-bottom: 10px !important;
+  }
   &--li-mb25 {
     li {
       margin-bottom: 25px;
