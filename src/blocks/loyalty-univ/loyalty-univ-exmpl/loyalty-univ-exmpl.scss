@@ -1,0 +1,98 @@
+.loyalty-univ-exmpl {
+  max-width: 730px;
+  &__ui {
+    &-table {
+      table {
+        background: transparent;
+        th {
+          padding: 0 10px 15px;
+          font-size: 16px;
+          color: $grey80;
+          vertical-align: bottom;
+          @include media-tablet {
+            font-size: 14px;
+          }
+          &:first-child {
+            padding-left: 0;
+          }
+          &:last-child {
+            padding-right: 0;
+          }
+        }
+        tr {
+          vertical-align: baseline;
+          &:first-child {
+            td {
+              border-top: 0;
+            }
+          }
+          &:last-child {
+            td {
+              border-bottom: 0;
+            }
+          }
+        }
+        td {
+          padding: 10px;
+          &:first-child {
+            padding-left: 0;
+            @include media-tablet {
+              width: 39%;
+            }
+          }
+          &:last-child {
+            width: 29%;
+            padding-right: 0;
+            @include media-tablet {
+              width: 36%;
+            }
+          }
+        }
+        td,
+        th {
+          &:not(:first-child) {
+            text-align: right;
+          }
+        }
+      }
+    }
+    &-h4 {
+      margin-top: 30px;
+      @include media-tablet {
+        margin-top: 20px;
+      }
+    }
+    &-p1 {
+      margin-top: 15px;
+      @include media-tablet {
+        margin-top: 10px;
+      }
+    }
+  }
+  &__cashback {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font: 700 18px/1.3 $font;
+    @include media-tablet {
+      margin-top: 20px;
+      margin-bottom: 15px;
+    }
+  }
+  &__total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 15px;
+    padding: 17px 25px;
+    background: #fff;
+    border: 1px solid #e4e4e4;
+    border-radius: 8px;
+    @include media-tablet {
+      padding: 15px;
+    }
+    .ui-p1 {
+      margin-top: 0;
+    }
+  }
+}

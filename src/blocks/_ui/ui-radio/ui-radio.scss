@@ -1,0 +1,114 @@
+.ui-radio {
+  input {
+    display: none;
+    &:checked ~ label {
+      &::before {
+        color: var(--bvi-contrast-color, $orange);
+      }
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+  label {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    padding-left: 35px;
+    font: 400 16px/1.5 $font;
+    transition: color 0.2s ease-in;
+    cursor: pointer;
+    @include media-laptop {
+      font-size: 14px;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 22px;
+      height: 22px;
+      border: 1px solid currentcolor;
+      color: $grey40;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: color 0.2s ease-in;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 14px;
+      height: 14px;
+      background-color: var(--bvi-contrast-color, $orange);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+    }
+    &:hover {
+      &::before {
+        color: var(--bvi-contrast-color, $orange);
+      }
+    }
+  }
+  &--radio-dark {
+    input {
+      &:checked ~ label {
+        color: $black;
+        &::before {
+          color: var(--bvi-contrast-color, $black);
+        }
+      }
+    }
+    label {
+      color: $grey50;
+      &::after {
+        background-color: var(--bvi-contrast-color, $black);
+      }
+      &:hover {
+        &::before {
+          color: var(--bvi-contrast-color, $black);
+        }
+      }
+    }
+  }
+  &--h3 {
+    label {
+      font: 700 36px/1.2 $font;
+      @include media-laptop {
+        font-size: 26px;
+      }
+      @include media-tablet {
+        font-size: 22px;
+      }
+      &::before {
+        top: 10px;
+        @include media-laptop {
+          top: 4px;
+        }
+        @include media-tablet {
+          top: 2px;
+        }
+      }
+      &::after {
+        top: 14px;
+        @include media-laptop {
+          top: 8px;
+        }
+        @include media-tablet {
+          top: 6px;
+        }
+      }
+    }
+  }
+}
+.ui-radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  @include media-tablet {
+    flex-flow: column nowrap;
+    gap: 8px;
+  }
+}

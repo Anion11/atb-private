@@ -1,0 +1,58 @@
+.p-credit-promo {
+  padding: 10px 0;
+  &:hover {
+    text-decoration: none;
+  }
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 335px;
+    @include media-tablet {
+      max-width: 215px;
+    }
+  }
+  &__title {
+    font: 700 38px/1.2 $font;
+    @include media-laptop {
+      font-size: 30px;
+    }
+    @include media-tablet {
+      font-size: 24px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 20px;
+      @include media-tablet {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  &__list {
+    li {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+        @include media-tablet {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    &:not(:last-child) {
+      margin-bottom: 25px;
+      @include media-tablet {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  &__img {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    max-width: 300px;
+    @include media-laptop {
+      max-width: 220px;
+    }
+    @include media-tablet {
+      max-width: 180px;
+    }
+  }
+}

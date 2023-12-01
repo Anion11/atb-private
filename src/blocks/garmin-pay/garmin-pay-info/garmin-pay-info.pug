@@ -1,0 +1,22 @@
+mixin garmin-pay-info(mods)
+  -
+    const baseName = 'garmin-pay-info'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .garmin-pay-info(class=allMods)&attributes(attributes)
+    .garmin-pay-info__logo
+      +icon('icon_garmin-pay')
+    .garmin-pay-info__text
+      b  Garmin Pay
+      |  - это беспроводной способ оплаты через терминал в магазине, специально разработанный для людей в постоянном движении, для которых важно экономить время и делать все максимально удобно. Оплатить чашку кофе по пути на работу или купить воду после занятия в спортклубе, все это Garmin Pay сделает быстро и без лишних движений, используя только сами часы.
+      br
+      |
+      b  Без кошелька! Без телефона! Без проблем!
+    block

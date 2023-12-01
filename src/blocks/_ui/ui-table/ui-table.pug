@@ -1,0 +1,81 @@
+mixin ui-table(tableItems, mods, type)
+  -
+    const baseName = 'ui-table'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  case type
+    when 'accordions'
+      .ui-table.ui-table--accordions(class=allMods)&attributes(attributes)
+        table
+          if tableItems.thead
+            thead
+              each itemTr in tableItems.thead
+                tr
+                  each itemTh in itemTr.th
+                    th(colspan = itemTh.colspan rowspan = itemTh.rowspan class = itemTh.mods) !{itemTh.text}
+          tbody
+            each itemTr in tableItems.tbody
+              tr(class=itemTr.title ? 'ui-table__tr-title' : '')
+                each itemTd, index in itemTr.td
+                  if index !== 0
+                    td(colspan = itemTd.colspan rowspan = itemTd.rowspan  class = itemTd.mods)
+                      .ui-table__td-name !{tableItems.thead[0].th[index].text}
+                        if tableItems.thead[0].th[index].tooltip
+                          +ui-tooltip(tableItems.thead[0].th[index].tooltip)
+                      .ui-table__td-val !{itemTd.text}
+                        if itemTd.tooltip
+                          +ui-tooltip(itemTd.tooltip)
+                  else
+                    td(colspan = itemTd.colspan rowspan = itemTd.rowspan  class = itemTd.mods) !{itemTd.text}
+                      if itemTd.tooltip
+                        +ui-tooltip(itemTd.tooltip)
+        block
+
+    default
+      .ui-table(class=allMods)&attributes(attributes)
+        table(style=tableItems.style)
+          if tableItems.thead
+            thead
+              each itemTr in tableItems.thead
+                tr
+                  each itemTh in itemTr.th
+                    th(colspan = itemTh.colspan rowspan = itemTh.rowspan class = itemTh.mods) !{itemTh.text}
+          tbody
+            each itemTr in tableItems.tbody
+              tr(class=itemTr.title ? 'ui-table__tr-title' : '')
+                each itemTd in itemTr.td
+                  td(width = itemTd.width colspan = itemTd.colspan rowspan = itemTd.rowspan class = itemTd.mods style=itemTd.style) !{itemTd.text}
+                    if itemTd.plus
+                      .ui-table__plus
+                    if itemTd.minus
+                      .ui-table__minus
+                    if itemTd.tooltip
+                      +ui-tooltip(itemTd.tooltip)
+                    if itemTd.botDescr
+                      br
+                      span.ui-p2.text-grey80 !{itemTd.botDescr}
+                      if itemTd.tooltipBotDescr
+                        +ui-tooltip(itemTd.tooltipBotDescr)
+        block
+
+mixin ui-table-wrapper(mods)
+  -
+    const baseName = 'ui-table-wrapper'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .ui-table-wrapper(class=allMods)&attributes(attributes)
+    block

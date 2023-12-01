@@ -1,0 +1,37 @@
+mixin useful-goods(usefulGoods, mods)
+  -
+    const baseName = 'useful-goods'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .useful-goods(class=allMods)&attributes(attributes)
+    .useful-goods__slider
+      .swiper
+        .swiper-wrapper
+          each item in usefulGoods
+            .useful-goods__item.swiper-slide(class=item.mod ? `useful-goods__item--${item.mod}` : '')
+              .useful-goods__content
+                .useful-goods__title !{item.title}
+                if item.p2
+                  +ui-p2(item.p2, 'useful-goods')
+                    if item.p2Tooltip
+                      +ui-tooltip(item.p2Tooltip)
+                if item.list
+                  .ui-ul.useful-goods__ui-ul
+                    each itemLi in item.list
+                      li
+                        .useful-goods__ui-ul-title !{itemLi.title}
+                        .useful-goods__ui-ul-descr !{itemLi.descr}
+                +ui-button(item.btn, `useful-goods, --white ${item.btnMods ? item.btnMods : ''}`)(href = (item.btnHref ? item.btnHref : '#'))&attributes({[`data-select-change`]: item.btnDataSelectChange,  [`data-select-value`]: item.btnDataSelectValue})
+              .useful-goods__img
+                img(src=`img/${item.img}` alt='')
+      .swiper-btn-prev
+      .swiper-btn-next
+    .swiper-pagination
+    block

@@ -1,0 +1,124 @@
+.multiservice-contacts {
+  display: flex;
+  @include media-laptop {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @include media-tablet {
+    display: block;
+  }
+  &__box {
+    width: calc((100% - 80px) / 3);
+    margin-right: 40px;
+    padding: 40px 25px 25px 30px;
+    background: #fff;
+    box-shadow: $bigShadow;
+    border-radius: 8px;
+    @include media-laptop {
+      width: calc((100% - 40px) / 2);
+      margin-right: 40px;
+      padding: 25px 20px 40px;
+    }
+    @include media-tablet {
+      width: auto;
+      margin-right: 0;
+      margin-bottom: 15px;
+      padding: 20px 15px;
+    }
+    &:last-child {
+      margin-right: 0;
+      @include media-tablet {
+        margin-bottom: 0;
+      }
+    }
+    &:nth-child(2n) {
+      @include media-laptop {
+        margin-right: 0;
+      }
+    }
+    &:nth-child(n+3) {
+      @include media-laptop {
+        margin-top: 40px;
+      }
+      @include media-tablet {
+        margin-top: 0;
+      }
+    }
+    &-title {
+      min-height: 55px;
+      margin-bottom: 25px;
+      font: 700 24px/1.1 $font;
+      @include media-laptop {
+        margin-bottom: 17px;
+        min-height: 64px;
+      }
+      @include media-tablet {
+        min-height: auto;
+        margin-bottom: 15px;
+        font-size: 18px;
+        line-height: 1.44;
+      }
+    }
+    &-list {
+      max-width: 410px;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      @include media-tablet {
+        max-width: none;
+      }
+      li {
+        position: relative;
+        margin-bottom: 15px;
+        padding-left: 20px;
+        font: 400 18px/1.44 $font;
+        @include media-tablet {
+          font-size: 16px;
+          line-height: 1.37;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+        &::before {
+          position: absolute;
+          top: calc((1.4em - 8px) / 2);
+          left: 0;
+          width: 6px;
+          height: 6px;
+          background: $orange;
+          border-radius: 50%;
+          content: '';
+          @include media-tablet {
+            top: 7px;
+          }
+        }
+      }
+    }
+    &-mobile {
+      display: flex;
+      margin: 10px 0;
+      line-height: 1;
+      &-item {
+        margin-right: 20px;
+        @include media-tablet {
+          margin-right: 10px;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+.bvi-body {
+  .multiservice-contacts {
+    display: block;
+    &__box {
+      width: auto;
+      margin: 0;
+      &-list {
+        max-width: none;
+      }
+    }
+  }
+}

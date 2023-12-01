@@ -1,0 +1,37 @@
+mixin notifications-router(tableData, mods)
+  -
+    const baseName = 'notifications-router'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .notifications-router.js-table(class=allMods data-media='767')&attributes(attributes)
+    .notifications-router__names.js-column
+      .notifications-router__names-ceil.js-ceil
+      each item in tableData.names
+        .notifications-router__names-ceil.js-ceil !{item}
+    .notifications-router__columns
+      each col in tableData.columns
+        .notifications-router__col.js-column
+          .notifications-router__head.js-ceil.js-accordion-head(class=(col.headMods ? `notifications-router__head--${col.headMods}` : ''))
+            .notifications-router__head-text
+              .notifications-router__head-name !{col.name}
+              .notifications-router__head-descr !{col.descr}
+            .notifications-router__head-img
+              img(src=col.img, alt='')
+          .notifications-router__main
+            each row, index in col.rows
+              .notifications-router__ceil.js-ceil
+                .notifications-router__title !{tableData.names[index]}
+                if row.icon
+                  .notifications-router__icon(class=`notifications-router__icon--${row.icon}`)
+                    +icon(`icon_${row.icon}`)
+                if row.text
+                  +ui-p2(row.text, row.textMods)
+
+    block

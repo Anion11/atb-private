@@ -1,0 +1,121 @@
+mixin calc-credit(type, calcCreditData, mods)
+  -
+    const baseName = 'calc-credit'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -const dataCalcName = `data-credit_${type}`
+
+  -
+    const calcCreditTabs =[
+      { text: 'Новый'},
+      { text: 'С пробегом'},
+    ]
+
+  -
+    const calcCreditTabsRadio =[
+      { text: 'Новый', isRadio: true, radioId: 'auto_privilege_dealer_new', radioName: 'auto_privilege_dealer', isChecked: true },
+      { text: 'С пробегом', isRadio: true, radioId: 'auto_privilege_dealer_used', radioName: 'auto_privilege_dealer', },
+    ]
+
+  -
+    const calcCreditTabs2 =[
+      { text: 'С пробегом'},
+    ]
+
+  -
+    const calcCreditTabs2Radio =[
+      { text: 'С пробегом', isRadio: true, radioId: 'auto_privilege_individual_used', radioName: 'auto_privilege_dealer_individual', isChecked: true },
+    ]
+
+  -
+    const calcCreditC2CTabs =[
+      { text: 'В автосалоне'},
+      { text: 'У физлица'},
+    ]
+
+  -
+    const calcCreditTabsNoBets =[
+      { text: '10 мес.', isRadio: true, radioId: 'no-bets-terms-1', radioName: 'calc-no-bets-terms', isChecked: true },
+      { text: '20 мес.', isRadio: true, radioId: 'no-bets-terms-2', radioName: 'calc-no-bets-terms', },
+    ]
+
+  .calc-credit(class=allMods)&attributes(attributes)
+    .calc-credit__content
+      .calc-credit__left
+        .calc-credit__params
+          .calc-credit__head
+            if type === 'auto_privilege_c2c'
+              +tabs-head(calcCreditC2CTabs, true, 'calc-credit, --buttons')
+              +tabs-main('--pt0')
+                +tabs-main__item(true)
+                  +tabs-head(calcCreditTabsRadio, true, 'calc-credit, --buttons')
+                +tabs-main__item()
+                  +tabs-head(calcCreditTabs2Radio, true, 'calc-credit, --buttons')
+            if type === 'easy_start_c2c' || type === 'auto_privilege' || type === 'easy_start'
+              +tabs-head(calcCreditTabs, true, 'calc-credit, --buttons')
+            if type === 'auto_decision_c2c'
+              +tabs-head(calcCreditTabs2, true, 'calc-credit, --buttons')
+            if type === 'no-bets'
+              +tabs-head(calcCreditTabsNoBets, true, 'calc-credit, --buttons')
+
+          each item in calcCreditData.ranges
+            .calc-credit__line
+              +ui-range(item.title, item.inpDescr)(data-min=item.min data-max=item.max)&attributes({[`${dataCalcName}-range-${item.dataName}`]: ''})
+                if item.tooltip
+                  +ui-tooltip(item.tooltip)
+
+          if type === 'refinancing'
+            .calc-credit__line
+              +ui-checkbox(`${type}-additional-amount`, 'Добавить дополнительную сумму')&attributes({[`${dataCalcName}-checkbox-options`]: ''}).js-checkbox-expand(data-expand='additional-amount')
+            .calc-credit__line(style='display: none;' data-expand-container='additional-amount')
+              +ui-range('Дополнительная сумма', ' ₽')(data-min='30000' data-max='3000000')&attributes({[`${dataCalcName}-range-additional-amount`]: ''})
+
+      .calc-credit__right
+        .calc-credit__result
+          .calc-credit__result-main
+            .calc-credit__result-line
+              .calc-credit__result-box
+                .calc-credit__result-name
+                  =calcCreditData.numAccentName ? calcCreditData.numAccentName :  'СТАВКА по кредиту*'
+                .calc-credit__result-num.calc-credit__result-num--big.calc-credit__result-num--accent&attributes({[`${dataCalcName}-text-rate`]: ''})  !{calcCreditData.numAccent ? calcCreditData.numAccent :  '4 %'}
+              .calc-credit__result-box
+                .calc-credit__result-name Ежемесячный платеж
+                .calc-credit__result-num.calc-credit__result-num--big&attributes({[`${dataCalcName}-text-monthly_pay`]: ''}) 2 536 ₽
+                if calcCreditData.paymentDescr
+                  .calc-credit__result-descr !{calcCreditData.paymentDescr}
+            if calcCreditData.resultLine2
+              .calc-credit__result-line
+                each itemBox in calcCreditData.resultLine2
+                  .calc-credit__result-box
+                    .calc-credit__result-name !{itemBox.name}
+                    .calc-credit__result-num&attributes({[`${dataCalcName}-${itemBox.data}`]: ''}) !{itemBox.num}
+                      if itemBox.numNowrap
+                        =' '
+                        span.text-nowrap !{itemBox.numNowrap}
+                          if itemBox.numTooltip
+                            +ui-tooltip(itemBox.numTooltip, '--va-top')
+                      else if itemBox.numTooltip
+                        +ui-tooltip(itemBox.numTooltip, '--va-top')
+                    if itemBox.descr
+                      .calc-credit__result-descr !{itemBox.descr}
+
+          if calcCreditData.button
+            .calc-credit__result-btns
+              +ui-button(calcCreditData.button)(href='#')
+              if calcCreditData.buttonLink
+                +ui-button(calcCreditData.buttonLink, '--link-next')(href='#')
+          if calcCreditData.psText
+            .calc-credit__result-ps
+              each item in calcCreditData.psText
+                p !{item}
+          if calcCreditData.foot
+            .calc-credit__result-foot
+              each item in calcCreditData.foot
+                p !{item}

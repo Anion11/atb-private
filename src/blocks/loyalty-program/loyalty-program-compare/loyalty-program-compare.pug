@@ -1,0 +1,85 @@
+mixin loyalty-program-compare(mods)
+  -
+    const baseName = 'loyalty-program-compare'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const programCompare = [
+      {
+        top: {
+          mod: 'old',
+          title: 'Старая программа лояльности',
+        },
+        list: [
+          {
+            txt: 'Небольшое количество категорий одной направленности',
+            desc: '(например, авто или дом-ремонт)',
+          },
+          {
+            txt: 'Меньше возможностей',
+            desc: 'Кэшбэк 10% в выбранной категории при сумме покупок в ней от&nbsp15&nbsp;000&nbsp₽',
+          },
+          {
+            txt: 'Максимальный кэшбэк',
+            desc: '2 000 ₽/мес.',
+          },
+          {
+            txt: 'Максимальная сумма покупки для начисления кэшбэка',
+            desc: '20 000 ₽',
+          },
+        ]
+      },
+      {
+        top: {
+          mod: 'new',
+          title: 'Новая программа лояльности',
+          label: 'new!',
+        },
+        list: [
+          {
+            txt: 'Большое количество востребованных категорий',
+            button: {
+              txt: 'Категории',
+              link: '#bonus_operations',
+              class: 'js-popup-open'
+            }
+          },
+          {
+            txt: 'Получить повышенный кэшбэк проще',
+            desc: '10% на все категории при сумме любых покупок по карте на&nbsp20&nbsp000&nbsp₽',
+          },
+          {
+            txt: 'Максимальный кэшбэк',
+            desc: '4 000 ₽/мес.',
+          },
+          {
+            txt: 'Максимальная сумма покупки для начисления кэшбэка',
+            desc: 'Не ограничена!',
+          },
+        ]
+      },
+    ]
+
+  .loyalty-program-compare(class=allMods)&attributes(attributes)
+    each block in programCompare
+      .loyalty-program-compare__block
+        .loyalty-program-compare__top(class=block.top.mod ? `loyalty-program-compare__top--${block.top.mod}` : '')
+          h3.loyalty-program-compare__title !{block.top.title}
+          if block.top.label
+            span.loyalty-program-compare__label !{block.top.label}
+        ol.loyalty-program-compare__content
+          each point in block.list
+            li.loyalty-program-compare__item
+              .loyalty-program-compare__name !{point.txt}
+              if point.desc
+                .loyalty-program-compare__desc !{point.desc}
+              if point.button
+                +ui-button(point.button.txt, 'loyalty-program-compare, --link-next').text-orange(href=point.button.link class=point.button.class)
+    block

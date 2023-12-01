@@ -1,0 +1,26 @@
+mixin main-attention(data, mods)
+  -
+    const baseName = 'main-attention'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .main-attention(class=allMods)&attributes(attributes)
+    .main-attention__text
+      if data.title
+        .main-attention__title !{data.title}
+      if data.descr
+        .main-attention__descr !{data.descr}
+      if data.p2
+        +ui-p2(data.p2, 'main-attention')
+      if data.list
+        +ui-p1('', '--lignt')
+          +ui-ul(data.list, '--li-mb0')
+    if data.btn
+      +ui-button(data.btn, 'main-attention')(href = data.btnLink ? data.btnLink : '#' class=data.btnClass)
+    block

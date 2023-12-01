@@ -1,0 +1,40 @@
+.mortgage-evaluation {
+  padding: 50px 50px 50px 610px;
+  background: #f6f6f6 url('img/software.png') no-repeat left;
+  background-size: auto 100%;
+  @include media-laptop {
+    padding: 25px 30px 25px 310px;
+    background-position-x: -340px;
+  }
+  @include media-tablet {
+    padding: 30px 25px 195px;
+    background-size: 580px auto;
+    background-position: -72px bottom;
+  }
+  &__txt {
+    font: 400 20px/1.3 $font;
+    @include media-laptop {
+      font-size: 18px;
+    }
+  }
+  &__btns {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+    @include media-laptop {
+      display: grid;
+    }
+  }
+  &__ui-button {
+    padding: 12px 22px;
+    font-size: 16px;
+    text-transform: none;
+    @include media-laptop {
+      width: 100%;
+      margin: 0 0 15px;
+    }
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

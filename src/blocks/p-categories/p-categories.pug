@@ -1,0 +1,17 @@
+mixin p-categories(mods)
+  -
+    const baseName = 'p-categories'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .p-categories(class=allMods)&attributes(attributes)
+    .p-categories__head
+      .p-categories__title Выберите новую&nbsp;категорию
+      .p-categories__descr (применимо для договоров оформленных до 05.09.2021 (включительно))
+    block

@@ -1,0 +1,34 @@
+mixin ui-swiper-pagination(mods)
+  -
+    const baseName = 'ui-swiper-pagination'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .ui-swiper-pagination(class=allMods)&attributes(attributes)
+    .swiper-pagination.bvi-no-styles
+    block
+
+mixin ui-swiper-button(prev, mods)
+  -
+    const baseName = 'ui-swiper-button'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  if prev === true
+    .ui-swiper-button.swiper-button-prev.bvi-no-styles(class=allMods)&attributes(attributes)
+      block
+  else
+    .ui-swiper-button.swiper-button-next.bvi-no-styles(class=allMods)&attributes(attributes)
+      block

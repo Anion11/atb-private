@@ -1,0 +1,237 @@
+mixin ways(tab, mods)
+  -
+    const baseName = 'ways'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const waysFree = [
+      { icon: 'icon_termital',
+        title: 'Терминалы самообслуживания',
+        text: 'Зачислите наличные через терминал <br><a class="text-orange" href="#">в&nbsp;любом отделении&nbsp;АТБ.</a>',
+        info: [
+          { name: 'Зачисление:',
+            value: 'Моментально'
+          }
+        ]
+      },
+      { icon: 'icon_doc',
+        title: 'Длительное поручение',
+        text: 'Откройте счет в&nbsp;АТБ и&nbsp;оформите длительное поручение на&nbsp;перечисление денежных средств. В&nbsp;дату платежа мы&nbsp;автоматически спишем фиксированную сумму  на&nbsp;погашение кредита.',
+        info: [
+          { name: 'Зачисление:',
+            value: 'В дату платежа'
+          }
+        ]
+      },
+      { icon: 'icon_smart',
+        title: `<a class="text-orange" href="#">Интернет-банк</a> или
+          <br><a class="text-orange" href="#">Мобильное приложение</a>`,
+        text: 'Воспользуйтесь онлайн -сервисами АТБ для моментальной оплаты.',
+        info: [
+          { name: 'Зачисление:',
+            value: 'Моментально'
+          }
+        ]
+      },
+      { icon: 'icon_cash',
+        title: 'Перечисление части заработной платы',
+        text: 'Напишите заявление и&nbsp;передайте в&nbsp;бухгалтерию работодателя.',
+        info: [
+          { name: 'Зачисление:',
+            value: 'В течение 5&nbsp;рабочих дней'
+          }
+        ]
+      },
+    ]
+
+  -
+    const waysPay =[
+      { icon: 'icon_building',
+        title: 'Со счета другого банка',
+        text: 'Для перевода вам понадобятся реквизиты кредитного счета в&nbsp;АТБ. Реквизиты вы&nbsp;можете получить:',
+        ul: [
+          { text: '<a class="text-orange text-underline" href="#">в Интернет-банке</a>' },
+          { text: '<a class="text-orange text-underline" href="#">в Мобильном приложении</a>' },
+          { text: '<a class="text-orange text-underline" href="#">в любом отделении АТБ</a>' },
+        ],
+        info: [
+          { name: 'Зачисление:',
+            value: '3-5 рабочих дней',
+            descr: 'учитывайте время зачисления при погашении кредита во&nbsp;избежание просрочки платежа',
+          },
+          { name: 'Комиссия:',
+            value: 'Зависит от&nbsp;кредитной организации',
+          }
+        ]
+      },
+      { icon: 'icon_person',
+        title: 'Со счета юридического лица',
+        text: 'В платежном поручении:',
+        order: [
+          { title: 'Получатель средств',
+            descr: `номер счета кредита в формате:
+              <span class="text-orange">40817________4444444</span>`,
+          },
+          { title: 'Назначение платежа',
+            descr: `текущий банковский счет кредита`,
+          },
+        ],
+        info: [
+          { name: 'Зачисление:',
+            value: '3-5 рабочих дней',
+            descr: 'учитывайте время зачисления при погашении кредита во&nbsp;избежание просрочки платежа',
+          },
+          { name: 'Комиссия:',
+            value: 'Зависит от&nbsp;кредитной организации',
+          }
+        ]
+      },
+      { icon: 'icon_sending_bank',
+        title: 'Перевод через другой банк <br>без открытия счета',
+        text: 'Возьмите с&nbsp;собой паспорт и&nbsp;реквизиты для оплаты кредита. Реквизиты вы&nbsp;можете получить:',
+        ul: [
+          { text: '<a class="text-orange text-underline" href="#">в Интернет-банке</a>' },
+          { text: '<a class="text-orange text-underline" href="#">в Мобильном приложении</a>' },
+          { text: '<a class="text-orange text-underline" href="#">в любом отделении АТБ</a>' },
+        ],
+        info: [
+          { name: 'Зачисление:',
+            value: '3-5 рабочих дней',
+          },
+          { name: 'Комиссия:',
+            value: 'Зависит от&nbsp;кредитной организации',
+          }
+        ]
+      },
+      { icon: 'icon_sending_partner',
+        title: 'Партнерские сети и&nbsp;система переводов',
+        logos: [
+          'mts.svg',
+          'beeline.svg',
+          'know_how.png',
+          'kari.svg',
+          'koronapay.svg',
+        ],
+        info: [
+          { name: 'Зачисление:',
+            value: '3-5 рабочих дней',
+          },
+          { name: 'Комиссия:' }
+        ],
+        commission: [
+          { name: '<a class="text-underline" href="#">В любом из пунктов обслуживания сети</a>',
+            valueMain: '1%',
+            valueDescr: 'минимум 100₽',
+          },
+          { name: 'В офисах Мегафон',
+            valueMain: '1%',
+            valueDescr: 'минимум 50₽',
+          },
+          { name: 'В сети магазинов Kari',
+            valueMain: '30 ₽',
+            valueDescr: 'независимо от суммы платежа',
+          },
+        ],
+        hidden: {
+          ul: [
+            { text: 'Обязательно предъявлять паспорт при каждом обращении' },
+            { text: 'Первое обращение&nbsp;&mdash; предоставить номер счета, ФИО получателя' },
+            { text: 'При последующих обращениях&nbsp;&mdash; достаточно сообщить номер мобильного телефона и/&nbsp;или карту-идентификатор, выданную при первом обращении' },
+            { text: 'Погашение кредита возможно третьими лицами (например, супругом) с паспортом плательщика' },
+          ]
+        }
+      },
+      { icon: 'icon_qiwi',
+        title: 'Сеть терминалов Qiwi',
+        info: [
+          { name: 'Зачисление:',
+            value: 'До 3 рабочих дней',
+          },
+        ],
+        commission: [
+          { name: 'Комиссия:',
+            valueMain: '1.8%',
+            valueDescr: 'минимум 120&nbsp;₽',
+          },
+        ],
+      },
+      { icon: 'icon_partnership',
+        title: 'Онлайн погашение кредита АТБ через партнеров',
+        logos: [
+          'koronapay.svg',
+          'sistemagorod.png',
+          'qiwi.svg'
+        ],
+      },
+    ]
+
+  .ways(class=allMods)&attributes(attributes)
+    case tab
+      when 'free'
+        each item in waysFree
+          +ways-item(item, '--foot-mt-auto')
+      when 'pay'
+        each item in waysPay
+          +ways-item(item)
+
+mixin ways-item(waysBoxData, mods)
+  -
+    const baseName = 'ways-item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .ways-item(class=allMods)&attributes(attributes)
+    .ways-item__icon
+      img(src=`./img/${waysBoxData.icon}.svg` alt='')
+    .ways-item__title !{waysBoxData.title}
+    .ways-item__main
+      if waysBoxData.text
+        | !{waysBoxData.text}
+      if waysBoxData.ul
+        +ui-ul(waysBoxData.ul, 'ways-item, --li-mb10')
+      if waysBoxData.logos
+        .ways-item__logos
+          each itemLogo in waysBoxData.logos
+            img.bvi-img.bvi-bg-white.bvi-not-hide(src=`img/ways_item_logo_${itemLogo}`, alt='')
+      if waysBoxData.order
+        .ways-item__order
+          each itemOrder in waysBoxData.order
+            .ways-item__order-row
+              .ways-item__order-title !{itemOrder.title}
+              .ways-item__order-descr !{itemOrder.descr}
+    if waysBoxData.info
+      .ways-item__foot
+        each itemInfo in waysBoxData.info
+          .ways-item__info
+            .ways-item__info-head=itemInfo.name
+              if itemInfo.value
+                =' '
+                b !{itemInfo.value}
+            if itemInfo.descr
+              .ways-item__info-descr !{itemInfo.descr}
+        if waysBoxData.commission
+          .ways-item__commission
+            each itemCommission in waysBoxData.commission
+              .ways-item__commission-row
+                .ways-item__commission-name !{itemCommission.name}
+                .ways-item__commission-info
+                  .ways-item__commission-value !{itemCommission.valueMain}
+                  .ways-item__commission-descr !{itemCommission.valueDescr}
+    if waysBoxData.hidden
+      .ways-item__hidden
+        if waysBoxData.hidden.ul
+          +ui-ul(waysBoxData.hidden.ul, '--li-mb10')
+      +ui-button('Важно', 'ways-item, --expand').text-orange(data-start-text='Важно' data-end-text='свернуть')

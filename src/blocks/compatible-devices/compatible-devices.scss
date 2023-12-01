@@ -1,0 +1,59 @@
+.compatible-devices {
+  padding: 55px 50px 55px 80px;
+  background: $grey20;
+  border-radius: 8px;
+  @include media-laptop {
+    padding: 45px 30px;
+  }
+  @include media-tablet {
+    padding: 40px 20px;
+  }
+  &__logo {
+    width: 233px;
+    margin-bottom: 12px;
+    @include media-tablet {
+      width: 160px;
+      margin-bottom: 10px;
+    }
+  }
+  &__ui-h3 {
+    margin-bottom: 30px;
+    @include media-laptop {
+      margin-bottom: 25px;
+    }
+    @include media-tablet {
+      margin-bottom: 20px;
+    }
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 45px;
+    @include media-tablet {
+      flex-direction: column;
+      align-items: unset;
+      gap: 20px;
+    }
+  }
+  &__text {
+    max-width: 810px;
+    font-size: 20px;
+    line-height: 1.3;
+    @include media-laptop {
+      font-size: 18px;
+    }
+    @include media-tablet {
+      font-size: 16px;
+    }
+  }
+  &__service {
+    width: 93px;
+    @include media-laptop {
+      width: 80px;
+    }
+    @include media-tablet {
+      width: 70px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+mixin promo-loan(mods)
+  -
+    const baseName = 'promo-loan'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .promo-loan(class=allMods)&attributes(attributes)
+    .promo-loan__inner
+      .promo-loan__img.promo-loan__img--scene: img(src='/img/promo-loan_scene.png' alt='')
+      .promo-loan__img.promo-loan__img--sky1: img(src='/img/promo-loan_sky1.png' alt='')
+      .promo-loan__img.promo-loan__img--sky2: img(src='/img/promo-loan_sky2.png' alt='')
+      .promo-loan__content
+        +ui-h3('Кредит наличными', 'promo-loan, --xl')
+          =' '
+          span.text-orange #Ставок.нет!
+        +ui-button('Подробнее', 'promo-loan, --size-s')(href='#')
+      button.promo-loan__close
+        +icon('icon_close')
+    block

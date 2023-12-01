@@ -1,0 +1,24 @@
+mixin pension-plans-calculate(mods)
+  -
+    const baseName = 'pension-plans-calculate'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .pension-plans-calculate(class=allMods)&attributes(attributes)
+    .pension-plans-calculate__wrapper
+      .pension-plans-calculate__content
+        .pension-plans-calculate__text Рассчитайте,
+          =' '
+          span.text-orange сколько
+          |  необходимо откладывать сейчас, чтобы получать желаемую пенсию
+        .pension-plans-calculate__link
+          +ui-button('Рассчитать')(href='http://gazfond-pn.ru/gazfond-play-atb/' target='_blank')
+      .pension-plans-calculate__image
+        img(src='img/man.png' alt='')
+    block

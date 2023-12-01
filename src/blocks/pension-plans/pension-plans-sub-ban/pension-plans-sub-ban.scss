@@ -1,0 +1,73 @@
+.pension-plans-sub-ban {
+  display: flex;
+  justify-content: space-between;
+  @include media-tablet {
+    display: block;
+  }
+  &__item {
+    position: relative;
+    display: block;
+    width: calc((100% - 40px) / 2);
+    padding: 55px 30px 64px;
+    background: $greyBlueGradient;
+    border-radius: 6px;
+    overflow: hidden;
+    @include media-laptop {
+      width: calc((100% - 30px) / 2);
+      padding: 25px 20px;
+    }
+    @include media-tablet {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+    &-text {
+      max-width: 365px;
+      font: 700 18px/1.4 $font;
+      @include media-laptop {
+        max-width: 270px;
+      }
+      @include media-tablet {
+        font-size: 16px;
+        max-width: none;
+      }
+    }
+    &-img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      @include media-laptop {
+        right: -37px;
+        width: 500px;
+      }
+      @include media-tablet {
+        right: -147px;
+        width: 700px;
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+      @include media-tablet {
+        margin-bottom: 0;
+      }
+    }
+    .ui-ul li:not(:last-child) {
+      margin-bottom: 25px;
+      @include media-laptop {
+        margin-bottom: 20px;
+      }
+      @include media-tablet {
+        margin-bottom: 15px;
+      }
+    }
+    &--right {
+      background: $grey20;
+      @include media-laptop {
+        min-height: 329px;
+      }
+      @include media-tablet {
+        min-height: 329px;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+mixin coins-item(coinData, mods)
+  -
+    const baseName = 'coins-item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  a.coins-item.swiper-slide(class=allMods)&attributes(attributes)
+    .coins-item__img
+      img(src=coinData.img, alt='')
+      if coinData.label
+        .coins-item__label=coinData.label
+    .coins-item__info
+      .coins-item__top
+        .coins-item__name !{coinData.name}
+        .coins-item__price !{coinData.price}
+      .coins-item__purchase
+        span Стоимость покупки
+        span.coins-item__cost 3 000 ₽
+      .coins-item__charact
+        each point in coinData.characteristics
+          .coins-item__line
+            span.coins-item__txt !{point.name}
+            span.coins-item__txt !{point.info}
+    block

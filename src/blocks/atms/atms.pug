@@ -1,0 +1,98 @@
+mixin atms(mods)
+  -
+    const baseName = 'atms'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .atms(class=allMods)&attributes(attributes)
+    .atms-options
+      .atms-main
+        .inner
+          .atms-main__wrapper
+            .atms-search
+              +ui-input('club-geo_search', '', 'atms-search').js-atms-search-result
+              button.atms-search__submit(type='submit')
+                +icon('icon_search')
+              ul.atms-search__results
+                li
+                  a(href='#') Calle Ff, Куэнка, автономное сообщество Кастилия-Ла-Манча, Испания
+                li
+                  a(href='#') Стацьоне-ФФ.СС.-Кава-Манара, Сан-Мартино-Сиккомарио, провинция Павия, Ломбардия, Италия
+                li
+                  a(href='#') Fylkesvei 8530, Мольселль, Тромс и Финнмарк, Норвегия
+                li
+                  a(href='#') FV-101, Лас-Пальмас, Канарские острова, Испания
+                li
+                  a(href='#') дорога ФФ 11, Мадинат эль Матар, Мадинат эль Мактум, эмират Дубай, Объединенные Арабские Эмираты
+            .atms-type
+              .atms-type__item.js-atms-type.active(data-atms-type='branches') Отделения
+              .atms-type__item.js-atms-type(data-atms-type='atms') Банкоматы
+              .atms-type__item.js-atms-type  Терминалы
+            .atms-filter__btn.js-atms-filter-btn Фильтр
+            .atms-view
+              .atms-view__item.js-atms-view.active
+                +icon('icon_atms_map')
+                | на карте
+              .atms-view__item.js-atms-view
+                +icon('icon_atms_list')
+                | списком
+      .atms-filter
+        .inner
+          .atms-filter__section.active(data-atms-type='branches')
+            .atms-checks
+              .atms-checks__col
+                +ui-checkbox('atmsWeekend', 'Работает в выходной', 'atms-checks')
+              .atms-checks__col
+                +ui-checkbox('atmsBiometric', 'Регистрация в единой биометрической системе ', 'atms-checks')
+                  a.text-orange(href='#') Подробнее
+          .atms-filter__section(data-atms-type='atms')
+            .atms-checks
+              .atms-checks__col
+                +ui-checkbox('atmsAroundClock', 'Круглосуточно', 'atms-checks')
+              .atms-checks__col
+                +ui-checkbox('atmsCashDeposit', 'Взнос наличных', 'atms-checks')
+                +ui-checkbox('atmsCashWithdrawal', 'Снятие наличных', 'atms-checks')
+                +ui-checkbox('atmsPayments', 'Платежи', 'atms-checks')
+
+    .atms-tabs
+      .atms-tabs__item.active
+        .inner
+          a.js-popup-open.text-orange(href='#p-atms') попап Отделение
+        .atms-map
+          | тут карта
+          .inner
+            .atms-print Распечатать список отделений
+      .atms-tabs__item.bg-grey
+        .inner
+          .atms-list
+            .atms-list__error В данном населенном пункте отсутствуют отделения
+            -for (newsItems = 0; newsItems < 3; newsItems++)
+              .atms-list__item
+                .atms-list__text
+                  .atms-list__name БАНКОМАТ АТБ (АО) <br>Г МОСКВА
+                  .atms-list__contacts
+                    a.atms-list__address.js-open-list-map(href='#') г Москва, Лубянский проезд, д 15 стр 2 <br>(ДЦ Лубянский)
+                    .atms-list__phone
+                      b 8-800-775-88-88
+                  .atms-list__working
+                    .atms-list__working-title Режим работы
+                    .atms-list__working-text Пн-Пт: 09:00-19:00,
+                      <br> Сб: 10:00-17:00
+                  .atms-list__services
+                    p Внесение наличных
+                    p Снятие наличных
+                    p Внесение - Рубли
+                    p Внесение - Доллары
+                    p Внесение - Евро
+                    p Выдача - Рубли
+                .atms-list__map
+                  .atms-list__map-container
+                    .atms-list__map-close.js-atms-list-map-close Закрыть карту
+                    p тут карта
+    block

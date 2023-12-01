@@ -1,0 +1,129 @@
+mixin coins-inner(mods)
+  -
+    const baseName = 'coins-inner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const tabsHeadItems =[
+      { text: 'Описание' },
+      { text: 'Характеристики' },
+    ]
+
+  -
+    const tableItems1 ={
+      tbody: [
+        {
+          td: [
+            { text: 'Номинал' },
+            { text: '500 Франков КФА' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Качество' },
+            { text: 'пруф' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Металл, проба' },
+            { text: 'серебро 999 пробы' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Масса общая, г' },
+            { text: '10,00' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Содержание химически чистого металла не менее' },
+            { text: '9,99' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItems2 ={
+      tbody: [
+        {
+          td: [
+            { text: 'Диаметр, мм' },
+            { text: '13,00 ˣ 30,00 мм' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Тираж, шт.' },
+            { text: '500' },
+          ]
+        },
+      ]
+    }
+
+  .coins-inner(class=allMods)&attributes(attributes)
+    .coins-inner__photo
+      .coins-inner__photo-big
+        .swiper
+          .swiper-wrapper
+            .swiper-slide
+              img(src='img/coin1.jpg', alt='')
+            .swiper-slide
+              img(src='img/coin2.jpg', alt='')
+            .swiper-slide
+              img(src='img/coin3.jpg', alt='')
+          +ui-swiper-pagination('coins-inner')
+      .coins-inner__photo-nav
+        .coins-inner__photo-small.active
+          img(src='img/coin1.jpg', alt='')
+        .coins-inner__photo-small
+          img(src='img/coin2.jpg', alt='')
+        .coins-inner__photo-small
+          img(src='img/coin3.jpg', alt='')
+    .coins-inner__content
+      .coins-inner__head
+        h1.coins-inner__h1 Монета «Год Тигра-22» (Страна - Камерун. Тираж - 500 шт.)
+        .coins-inner__price 6 300₽
+        .coins-inner__purchase
+          span.coins-inner__purchase-text Стоимость покупки
+          span.coins-inner__purchase-cost 3 000 ₽
+        .coins-inner__detail
+          .coins-inner__detail-item
+            span.coins-inner__detail-name Категория —
+            span.coins-inner__detail-text  Иностранные
+          .coins-inner__detail-item
+            span.coins-inner__detail-name Страна —
+            span.coins-inner__detail-text  Камерун
+      +tabs-head(tabsHeadItems, true, 'coins-inner')
+      +tabs-main
+        +tabs-main__item(true)
+          +ui-p1
+            +ui-h3('Аверс', 'coins-inner, --normal')
+            p на зеркальном поле диска — рельефное изображение Государственного герба Российской Федерации, над ним вдоль канта — надпись полукругом: «РОССИЙСКАЯ ФЕДЕРАЦИЯ», обрамленная с обеих сторон сдвоенными ромбами, внизу под гербом: слева — обозначения драгоценного металла и пробы сплава, справа — содержание химически чистого металла и товарный знак монетного двора, внизу в центре в три строки — надпись: «БАНК РОССИИ», номинал монеты: «3 РУБЛЯ», год: «2022 г.».
+            +ui-h3('Реверс', 'coins-inner, --normal')
+            p на зеркальном поле диска — рельефное изображение стелы «Дружба народов Карачаево-Черкесии» на фоне стилизованного изображения вершин Эльбруса; справа — герб Карачаево-Черкесской Республики; вверху вдоль канта — надпись: «КАРАЧАЕВО-ЧЕРКЕССКАЯ РЕСПУБЛИКА», слева — надпись: «100 ЛЕТ».
+            p <b>Реверс:</b> Внизу - стилизованное изображение открытого яйца «Весенние цветы» с миниатюрной корзиночкой с букетом анемонов. Над ним - портрет Её Величества Королевы Елизаветы II и надпись «ELIZABETH II» (Елизаветы II), под портретом фирменный знак монетного двора (m/w). Вокруг головы королевы - декоративный орнамент в стиле неорококо. Вверху - NIUE ISLAND (Остров Ниуэ). С левой стороны - номинал: 1 DOLLAR (1 доллар). С правой - год выпуска: 2012. В самом низу - Ag 925 (серебро 925 пробы).
+        +tabs-main__item()
+          .coins-inner__tables
+            +ui-table(tableItems1, 'coins-inner')
+            +ui-table(tableItems2, 'coins-inner')
+          +section-footnote
+            p  *Анциркулейтед — монетa обычного качества.
+            p *Бриллиант-анциркулейтед - монеты улучшенного качества, имеющие ровную блестящую поверхность поля и рельефа, чёткие ясные линии рисунков. Они не имеют мелких насечек, царапин и других повреждений.
+            p *Пруф — монета высшего качества, имеющие ровную зеркальную поверхность поля и контрастирующий с ней матированный рисунок рельефа.
+            p *Пруф-лайк — монета подобная пруфу. Монеты качества пруф-лайк, так же, как и пруф, обычно упаковываются в защитную капсулу или плёнку.
+
+      .coins-inner__availability
+        .coins-inner__availability-text Узнать о наличии по телефону
+        .coins-inner__availability-phone
+          a(href='tel:88007758888') 8-800-775-88-88
+    block

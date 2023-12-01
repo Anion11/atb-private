@@ -1,0 +1,34 @@
+.info-page-nav {
+  display: flex;
+  align-items: center;
+  @include media-laptop {
+    display: block;
+  }
+  &__info-page-sort {
+    margin-right: 20px;
+    @include media-tablet {
+      margin-right: 0;
+    }
+  }
+  &__ui {
+    &-select {
+      max-width: 165px;
+      margin-right: 40px;
+      @include media-laptop {
+        margin: 0 0 20px;
+      }
+      @include media-tablet {
+        max-width: 100%;
+      }
+    }
+    &-pagination {
+      margin-top: 0;
+      margin-left: auto;
+      @include media-laptop {
+        margin-top: 20px;
+        margin-left: 0;
+        justify-content: flex-start;
+      }
+    }
+  }
+}

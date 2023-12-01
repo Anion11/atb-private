@@ -1,0 +1,17 @@
+mixin exchange-ban(mods)
+  -
+    const baseName = 'exchange-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .exchange-ban(class=allMods)&attributes(attributes)
+    .exchange-ban__text
+      +ui-h3('Узнайте актуальный курс и&nbsp;обменивайте валюту в&nbsp;мобильном приложении или интернет-банке', 'exchange-ban, --xs')
+    .exchange-ban__img: img(src='img/exchange-ban.png' alt='')
+    block

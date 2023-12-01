@@ -1,0 +1,18 @@
+mixin ui-tooltip(text, mods)
+  -
+    const baseName = 'ui-tooltip'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  span.ui-tooltip(class=allMods)&attributes(attributes)
+    span.ui-tooltip__btn
+      +icon('icon_tooltip')
+    if text
+      span.ui-tooltip__content(style='display: none;') !{text}
+        block

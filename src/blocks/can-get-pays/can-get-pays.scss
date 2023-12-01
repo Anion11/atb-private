@@ -1,0 +1,105 @@
+.can-get-pays {
+  display: flex;
+  @include media-laptop {
+    display: block;
+  }
+  &__box {
+    position: relative;
+    width: calc((100% - 40px) / 2);
+    margin-right: 40px;
+    background: linear-gradient(90deg, $grey20 0%, #ebf8ff 100%);
+    border-radius: 8px;
+    overflow: hidden;
+    @include media-laptop {
+      width: auto;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+    @include media-tablet {
+      margin-bottom: 30px;
+    }
+    &:nth-child(2n),
+    &:last-child {
+      margin-right: 0;
+    }
+    &:last-child {
+      @include media-laptop {
+        margin-bottom: 0;
+      }
+    }
+    &--family {
+      background: linear-gradient(90deg, #fff8f2 0%, #ffeedb 100%);
+      .can-get-pays__box-img {
+        right: -20px;
+        @include media-laptop {
+          right: 0;
+        }
+      }
+    }
+    &-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 340px;
+      padding: 40px 220px 30px 40px;
+      @include media-laptop {
+        min-height: 320px;
+        padding: 40px 294px 30px 40px;
+      }
+      @include media-tablet {
+        min-height: auto;
+        padding: 30px 22px;
+      }
+    }
+    &-title {
+      margin-bottom: 10px;
+      font: 700 24px/1.4 $font;
+      @include media-tablet {
+        max-width: none;
+        font-size: 18px;
+      }
+    }
+    &-desc {
+      max-width: 300px;
+      margin-bottom: 30px;
+      font: 400 16px/1.5 $font;
+      @include media-laptop {
+        max-width: 430px;
+        margin-bottom: 35px;
+      }
+      @include media-tablet {
+        max-width: none;
+        margin-bottom: 30px;
+      }
+    }
+    &-btn {
+      width: fit-content;
+      margin-top: auto;
+    }
+    &-img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 325px;
+      @include media-tablet {
+        display: none;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+}
+.bvi-active {
+  .bvi-body {
+    .can-get-pays {
+      &__box {
+        .can-get-pays__box-content {
+          background-color: transparent !important;
+        }
+      }
+    }
+  }
+}

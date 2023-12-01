@@ -1,0 +1,29 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+
+block content
+  main
+    +banner()
+      +banner-item('--class')
+        +banner-wrapper('/img/banner_gradient.jpg')
+          +banner-h1('h1')
+          +banner-descr('descr mobile none').text-orange.banner-item-dn
+          +banner-descr('descr --fw400 ', '--fw400').banner-item-dn
+          .banner-item-foot.banner-item-foot--mob-stretch
+            .banner-item-foot-item
+              +ui-button('button', 'banner')(href='#')
+            .banner-item-foot-item
+              +ui-button('banner-item-foot--mob-stretch', 'banner')(href='#')
+        +banner-mobile
+          p text
+            span.banner-mobile__text-xxl  text xxl

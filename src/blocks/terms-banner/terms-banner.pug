@@ -1,0 +1,35 @@
+mixin terms-banner(data, mods)
+  -
+    const baseName = 'terms-banner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .terms-banner(class=allMods)&attributes(attributes)
+    .terms-banner__content
+      +ui-h3(data.h3, 'terms-banner, --xs')
+      if data.list
+        .terms-banner__list
+          each item, index in data.list
+            .terms-banner__item
+              .terms-banner__num: span !{index+1}
+              +ui-p1(item.text)
+                if item.nowrap
+                  =' '
+                  span.text-nowrap !{item.nowrap}
+                    if item.tooltip
+                      +ui-tooltip(item.tooltip)
+      if data.fn
+        .terms-banner__fn(class=data.fnMods) !{data.fn}
+          if data.fnNowrapTooltip
+            =' '
+            span.text-nowrap.text-va-text-bot !{data.fnNowrapTooltip}
+              +ui-tooltip(data.fnTooltip, '--va-bottom')
+    .terms-banner__img
+      img(src=data.img)
+    block

@@ -1,0 +1,58 @@
+mixin calc-i-deposits(type, mods)
+  -
+    const baseName = 'calc-i-deposits'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -const dataCalcName = `data-deposit_${type}`
+
+  .calc-i-deposits(class=allMods)&attributes(attributes)
+    .calc-i-deposits__params
+      .calc-i-deposits__params-line
+        +ui-form-name('Валюта')
+        +ui-select('', 'Рубли', 'Доллары', 'Юань')&attributes({[`${dataCalcName}-select-currency`]: ''})
+      .calc-i-deposits__params-line
+        +ui-range('Сумма вклада', ' ₽', '', '', 'calc-i-deposits')(data-min='5000' data-max='100000000')&attributes({[`${dataCalcName}-range-amount`]: ''})
+      .calc-i-deposits__params-line
+        +ui-range('Cрок вклада', ' дня', '', '', 'calc-i-deposits, --steps')(data-steps='92,122,182,243,367')&attributes({[`${dataCalcName}-range-term`]: ''})
+      if type === 'atb_without' || type === 'atb_with'
+        .calc-i-deposits__params-line
+          +ui-checkbox(`${type}-is-benefit`, 'Льготная категория/Статус', 'calc-i-deposits')&attributes({[`${dataCalcName}-checkbox-options`]: ''})
+            +ui-tooltip('Льготная категория – Клиент является держателем платежной (банковской) карты "Особый статус"/ участником зарплатного проекта Банка (т.е. получает заработную плату на платежную (банковскую) карту Банка/ Сотрудником бюджетной организации. Минимальная сумма вклада 5 000 рублей. <br> Статус - Клиент с наличием подключенной программы "Статус". Минимальная сумма вклада 3 000 000 рублей.')
+          +ui-checkbox(`${type}-is-internet-mobile`, 'Открыть в Интернет-банке/Мобильном банке', 'calc-i-deposits')&attributes({[`${dataCalcName}-checkbox-options`]: ''})
+
+    .calc-i-deposits__info
+      .calc-i-deposits__result
+        .calc-i-deposits__result-main
+          .calc-i-deposits__result-line
+            .calc-i-deposits__result-item
+              .calc-i-deposits__result-name за 182 дня я&nbsp;накоплю
+              .calc-i-deposits__result-val.calc-i-deposits__result-val--big.text-orange&attributes({[`${dataCalcName}-text-total_amount`]: ''}) 5 116 022 ₽
+          .calc-i-deposits__result-line
+            .calc-i-deposits__result-item
+              .calc-i-deposits__result-name доход
+              .calc-i-deposits__result-val&attributes({[`${dataCalcName}-text-income`]: ''}) 356 022 ₽
+            .calc-i-deposits__result-item
+              .calc-i-deposits__result-name ставка
+              .calc-i-deposits__result-val&attributes({[`${dataCalcName}-text-rate`]: ''}) 8,2%
+                span.calc-i-deposits__result-descr  годовых
+        .calc-i-deposits__result-btns
+          +ui-button('Оформить вклад', 'calc-i-deposits')(href='#')
+        .calc-i-deposits__result-foot
+          p Все расчеты приблизительные, для более точной информации обращайтесь в любое отделение банка АТБ по телефону
+            span.text-nowrap  8-800-775-88-88
+
+      .calc-i-deposits__adv
+        .calc-i-deposits__adv-content
+          .calc-i-deposits__adv-title  Оформи вклад и выиграй повышенную ставку
+          +ui-button('Подробности здесь', '--link-next').text-orange(href='#')
+        .calc-i-deposits__adv-img
+          img(src='img/calc_i_deposits_adv_img.jpg' alt='')
+
+    block

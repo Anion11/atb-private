@@ -1,0 +1,30 @@
+mixin news-main(mods)
+  -
+    const baseName = 'news-main'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .news-main(class=allMods)&attributes(attributes)
+    .news-main__head
+      +ui-h1('Новости', 'news-main')
+    .news-main__content
+      +useful-articles('news', 'news-main, --grid-cols-1')
+      form.news-main__filter
+        +ui-input('news-search', '', 'news-main, --grey')(placeholder='Что вы ищете?')
+          button.news-main__submit(type='submit'): +icon('icon_search')
+        +ui-select('news-main')
+          option(data-hide-target='datepicker' value='all-time') За все время
+          option(data-show-target='datepicker' value='period') Выбрать период
+        .news-main__filter-item(data-toggle-element='datepicker' style='display: none;')
+          +ui-datepicker('news-filter, --range', false)(data-max-date='today' data-range-start='20.09.2023' data-range-end='today' data-allow-input='true' data-mask='date-range')
+          //- +ui-datepicker('news-filter, --single', false)(data-max-date='today' data-default-date='20.09.2023' data-allow-input='true' data-mask='date-max-today')
+          //- +ui-datepicker('news-filter, --single', false)(data-max-date='today' data-default-date='today' data-allow-input='true' data-mask='date-max-today')
+        button.news-main__reset.news-main__reset--hidden(type='button') Сбросить фильтр
+          +icon('icon_cross')
+    block

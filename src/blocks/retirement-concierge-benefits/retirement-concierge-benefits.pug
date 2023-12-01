@@ -1,0 +1,32 @@
+mixin retirement-concierge-benefits(mods)
+  -
+    const baseName = 'retirement-concierge-benefits'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const retirementConciergeBenefits =[
+      { title: 'Просто', descr: 'Клиент может находиться дома, на даче, в аэропорту…  <br> Нужно только набрать номер <b>круглосуточной юридической линии</b>' },
+      { title: 'Доступно', descr: 'Круглосуточно, Клиент получает консультации on-line в <b>режиме 24 х 7</b>, Из любой точки России' },
+      { title: 'Удобно', descr: '<b>Все в одном месте</b> –  Дистанционные консультации по телефону или Skype – ничем не хуже очных.' },
+      { title: 'Эффективно', descr: '<b>Своевременная</b> помощь позволяет эффективно повлиять на ситуацию Клиента: Изменить  ход ситуации, Минимизировать возможные риски' },
+      { title: 'Оперативно', descr: 'Клиент получает медицинскую и юридическую помощь в кратчайшие сроки' },
+      { title: 'Выгодно',
+        descr: `Время: Нет необходимости специально искать специалиста, сидеть в очереди, тратить время
+          Бесплатный Звонок: Клиент пользуется бесплатной телефонной линией, время его консультации не ограничено
+          Очевидная Финансовая Выгода: Стоимость Сертификата в разы меньше, чем его реальное наполнение.`,
+      },
+    ]
+
+  .retirement-concierge-benefits(class=allMods)&attributes(attributes)
+    each item in retirementConciergeBenefits
+      .retirement-concierge-benefits__item
+        .retirement-concierge-benefits__title=item.title
+        .retirement-concierge-benefits__descr !{item.descr}
+    block

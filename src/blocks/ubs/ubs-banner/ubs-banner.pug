@@ -1,0 +1,21 @@
+mixin ubs-banner(ubsBannerData, mods)
+  -
+    const baseName = 'ubs-banner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .ubs-banner(class=allMods)&attributes(attributes)
+    .ubs-banner__text
+      .ubs-banner__title !{ubsBannerData.title}
+      if ubsBannerData.descr
+        .ubs-banner__descr !{ubsBannerData.descr}
+      +ui-button(ubsBannerData.button, 'ubs-banner')(href='#')
+    .ubs-banner__img
+      img(src=ubsBannerData.img, alt='')
+    block

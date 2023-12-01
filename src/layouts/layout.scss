@@ -1,0 +1,282 @@
+:root {
+  --inner-pd: 10px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+*:focus {
+  outline: none;
+}
+html {
+  box-sizing: border-box;
+  line-height: 1;
+  scroll-behavior: smooth;
+  text-rendering: unset;
+  -webkit-font-smoothing: unset;
+  &.no-scroll {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    body {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+  &.with-fancybox {
+    @include media-tablet {
+      overflow: hidden;
+    }
+    body {
+      @include media-tablet {
+        overflow: hidden;
+      }
+    }
+  }
+}
+body {
+  margin: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: ease 0.3s;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+span,
+ul,
+li,
+tr,
+td,
+th,
+table,
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+ol {
+  margin: 0;
+}
+p,
+.ui-ul,
+.ui-ol {
+  &:not(:last-child) {
+    margin-bottom: 1em;
+  }
+}
+
+// defaults
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0 auto;
+  font-family: $font;
+  color: $black;
+  .inner {
+    position: relative;
+    width: 100%;
+    max-width: 1220px;
+    min-width: 320px;
+    margin: 0 auto;
+    @include media-laptop {
+      max-width: 980px;
+      padding: 0 var(--inner-pd);
+    }
+    @include media-tablet {
+      max-width: 100%;
+    }
+    &--size-xl {
+      max-width: 1920px;
+    }
+  }
+  .page-content {
+    padding: 60px 0 100px;
+    @include media-tablet {
+      padding: 22px 0 80px;
+    }
+    &--pt0 {
+      padding-top: 0;
+    }
+    &--pt-s {
+      padding-top: 40px;
+      @include media-tablet {
+        padding-top: 30px;
+      }
+    }
+    &--pb0 {
+      padding-bottom: 0;
+    }
+    &--pd0 {
+      padding: 0;
+    }
+    &--mob-pt0 {
+      @include media-tablet {
+        padding-top: 0;
+      }
+    }
+    &--mob-pt-l {
+      @include media-tablet {
+        padding-top: 40px;
+      }
+    }
+  }
+  main {
+    flex: 1 0;
+  }
+  .main--page-404 {
+    background: $grey30;
+  }
+  .text {
+    &-t-none {
+      @include media-laptop {
+        display: none;
+      }
+    }
+    &-mob-none {
+      @include media-tablet {
+        display: none;
+      }
+    }
+    &-mob-only {
+      display: none;
+      @include media-tablet {
+        display: block;
+      }
+    }
+    &-inline {
+      display: inline;
+    }
+    &-inline-flex {
+      display: inline-flex;
+      align-items: center;
+    }
+    &-link-underline {
+      display: inline;
+      text-decoration: underline;
+    }
+    &-underline {
+      text-decoration: underline;
+      text-underline-position: under;
+    }
+    &-decoration-none {
+      text-decoration: none;
+    }
+    &-light {
+      font-weight: 300;
+    }
+    &-uppercase {
+      text-transform: uppercase;
+    }
+    &-normal {
+      font-weight: 400;
+    }
+    &-bold {
+      font-weight: 700;
+    }
+    &-nowrap {
+      white-space: nowrap;
+    }
+    &-break-all {
+      word-break: break-all;
+    }
+    &-center {
+      text-align: center;
+      &--laptop-left {
+        @include media-laptop {
+          text-align: left;
+        }
+      }
+      &--mob-left {
+        @include media-tablet {
+          text-align: left;
+        }
+      }
+    }
+    &-laptop-center {
+      @include media-laptop {
+        text-align: center;
+      }
+    }
+    &-tablet-center {
+      @include media-tablet {
+        text-align: center;
+      }
+    }
+    &-right {
+      text-align: right;
+    }
+    &-black {
+      color: $black;
+    }
+    &-orange {
+      color: $orange;
+    }
+    &-white {
+      color: #fff;
+    }
+    &-grey60 {
+      color: $grey60;
+    }
+    &-grey80 {
+      color: $grey80;
+    }
+    &-grey90 {
+      color: $grey90;
+    }
+    &-red {
+      color: $error;
+    }
+    &-light-green {
+      color: $lightGreen;
+    }
+    &-infinity-icon {
+      font-size: 1.3em;
+    }
+    &-inside-d-link {
+      a {
+        color: $orange;
+      }
+    }
+    &-inside-link-underline {
+      a {
+        color: $orange;
+        text-decoration: underline;
+      }
+    }
+    &-fadein {
+      animation: fade-in 0.3s;
+    }
+  }
+  &.no-scroll {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+img[src*='px.adhigh.net'] {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}

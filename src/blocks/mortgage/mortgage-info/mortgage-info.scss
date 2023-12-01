@@ -1,0 +1,49 @@
+.mortgage-info {
+  padding-top: 15px;
+  @include media-tablet {
+    padding-top: 0;
+  }
+  &__wrapper {
+    position: relative;
+    padding: 20px 490px 20px 90px;
+    background: $grey30;
+    border-radius: 8px;
+    @include media-laptop {
+      padding: 20px 340px 20px 40px;
+    }
+    @include media-tablet {
+      min-height: 150px;
+      padding: 15px 120px 15px 20px;
+    }
+  }
+  &__text {
+    font: 400 18px/1.44 $font;
+    @include media-laptop {
+      font-size: 16px;
+    }
+    @include media-tablet {
+      font-size: 14px;
+    }
+  }
+  &__img {
+    position: absolute;
+    right: 105px;
+    bottom: 0;
+    width: 268px;
+    height: 110px;
+    overflow: hidden;
+    @include media-laptop {
+      right: 0;
+    }
+    @include media-tablet {
+      width: 120px;
+      height: 120px;
+    }
+    img {
+      @include media-tablet {
+        width: 170px;
+        max-width: unset;
+      }
+    }
+  }
+}

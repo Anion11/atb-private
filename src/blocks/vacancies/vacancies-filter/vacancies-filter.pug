@@ -1,0 +1,22 @@
+mixin vacancies-filter(mods)
+  -
+    const baseName = 'vacancies-filter'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  form.vacancies-filter(class=allMods)&attributes(attributes)
+    +ui-input('vacancies-search', '', 'vacancies-filter, --search-icon')(placeholder='Поиск...')
+    +ui-select('vacancies-filter, --input', '', 'Россия', 'Лаос', 'Острова Ниуэ', 'Ниуэ', 'Республика Камерун')(data-placeholder='Регион')
+    +ui-select('vacancies-filter', '', 'ИТ', 'Маркетинг', '1С')(data-placeholder='Сфера деятельности:')
+    .vacancies-filter__checkboxes
+      +ui-checkbox('vacancies-remote', 'Удаленно', 'vacancies-filter')
+      +ui-checkbox('vacancies-internship', 'Стажировка', 'vacancies-filter')(data-filter='internship')
+    +ui-button('Сбросить фильтр', '--text')(type='reset' disabled)
+      +icon('icon_cross')
+    block

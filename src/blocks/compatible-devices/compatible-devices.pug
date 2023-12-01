@@ -1,0 +1,23 @@
+mixin compatible-devices(data, mods)
+  -
+    const baseName = 'compatible-devices'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .compatible-devices(class=allMods)&attributes(attributes)
+    .compatible-devices__logo
+      img(src=data.logo, alt='')
+    +ui-h3(data.h3, 'compatible-devices, --xl')
+    .compatible-devices__content
+      .compatible-devices__text !{data.text}
+      .compatible-devices__services
+        each service in data.services
+          .compatible-devices__service
+            img(src=service, alt='')
+    block

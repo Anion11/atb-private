@@ -1,0 +1,41 @@
+mixin smart-medicine-service(smartMedServices1, type, mods)
+  -
+    const baseName = 'smart-medicine-service'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+  
+  .smart-medicine-service(class=allMods)&attributes(attributes)
+    case type
+      when 'type1'
+        each item in smartMedServices1
+          .smart-medicine-service__item
+            if item.title
+              .smart-medicine-service__title !{item.title}
+            if item.txt
+              .smart-medicine-service__txt !{item.txt}
+            .smart-medicine-service__img
+              img(src=item.icon, alt='')
+          
+      when 'type2'
+        .smart-medicine-service__item.smart-medicine-service__item--yellow
+          .smart-medicine-service__title.smart-medicine-service__title--xs Сервис позволяет:
+          ul.ui-ul
+            li Получить срочные и плановые консультации врачей
+            li Загружать и хранить медицинскую документацию
+            li Просматривать историю консультаций и рекомендаций врачей
+          .smart-medicine-service__img
+            img(src='img/laptop.png' alt='')
+        .smart-medicine-service__item.smart-medicine-service__item--blue.smart-medicine-service__item--long
+          .smart-medicine-service__title.smart-medicine-service__title--xs График работы:
+          ul.ui-ul
+            li Дежурные врачи – терапевты/ педиатры (ежедневно/ круглосуточно)
+            li Узкие медицинские специалисты – 18 специализаций (по записи, в рабочие часы)
+            li Психологи – по записи, в рабочие часы
+          .smart-medicine-service__img
+            img(src='img/tablet.png', alt='') 

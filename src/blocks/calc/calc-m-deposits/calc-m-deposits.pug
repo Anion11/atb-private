@@ -1,0 +1,30 @@
+mixin calc-m-deposits(mods)
+  -
+    const baseName = 'calc-m-deposits'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -const dataCalcName = `data-deposits`
+
+  .calc-m-deposits(class=allMods)&attributes(attributes)
+    +ui-range('Хочу разместить сумму, 1&nbsp;000 — 100&nbsp;000&nbsp;000&nbsp;₽', ' ₽', '', '', 'calc-m-deposits')(data-min='1000' data-max='100000000')&attributes({[`${dataCalcName}-range-amount`]: ''})
+    +ui-range('Cрок вклада, 92 — 1098 дней ', ' дня', '', '', 'calc-m-deposits')(data-min='92' data-max='1098')&attributes({[`${dataCalcName}-range-term`]: ''})
+    .calc-m-deposits__col
+      .calc-m-deposits__facilities
+        +ui-checkbox('calcFacilities1', 'Пополнять счет')&attributes({[`${dataCalcName}-checkbox-facilities`]: ''})
+        +ui-checkbox('calcFacilities2', 'Выплата процентов ежемесячно')&attributes({[`${dataCalcName}-checkbox-facilities`]: ''})
+        +ui-checkbox('calcFacilities3', 'Частичное снятие')&attributes({[`${dataCalcName}-checkbox-facilities`]: ''})
+      .calc-m-deposits__best
+        +ui-checkbox('calcBest', 'Лучшая ставка ', '--switch')&attributes({[`${dataCalcName}-checkbox-best_bet`]: ''})
+    .calc-m-deposits__col
+      .calc-m-deposits__curr
+        +ui-form-name('Валюта')
+        +ui-select('', 'Рубли', 'Доллары', 'Юань')&attributes({[`${dataCalcName}-select-currency`]: ''})
+      +ui-button('показать все', 'calc-m-deposits')
+    block

@@ -1,0 +1,99 @@
+mixin investment-insurance-programs(mods)
+  -
+    const baseName = 'investment-insurance-programs'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const investmentInsurancePrograms = [
+      {
+        title: 'ООО «АльфаСтрахование-Жизнь»',
+        content: [
+          {
+            prop: 'Страхователь',
+            val: 'Физ. Лицо',
+          },
+          {
+            prop: 'срок страхования',
+            val: '3, 4, 5 лет',
+          },
+          {
+            prop: 'мин. страховой взнос',
+            val: '30 000 руб.',
+          },
+          {
+            prop: 'валюта',
+            val: 'рубли',
+          },
+        ]
+      },
+      {
+        title: 'ООО «МАКС-Жизнь»',
+        content: [
+          {
+            prop: 'Страхователь',
+            val: 'Физ. Лицо',
+          },
+          {
+            prop: 'срок страхования',
+            val: '3, 4, 5 лет',
+          },
+          {
+            prop: 'мин. страховой взнос',
+            val: '50 000 руб.',
+          },
+          {
+            prop: 'валюта',
+            val: 'рубли',
+          },
+        ]
+      },
+      {
+        title: 'ООО СК «Росгосстрах Жизнь»',
+        content: [
+          {
+            prop: 'Страхователь',
+            val: 'Физ. Лицо',
+          },
+          {
+            prop: 'срок страхования',
+            val: 'от 5 лет',
+          },
+          {
+            prop: 'мин. страховой взнос',
+            val: '25 000 руб.',
+          },
+          {
+            prop: 'валюта',
+            val: 'рубли',
+          },
+        ]
+      }
+    ]
+
+  .investment-insurance-programs(class=allMods)&attributes(attributes)
+    .swiper
+      .swiper-wrapper
+        each item in investmentInsurancePrograms
+          .investment-insurance-programs__box.swiper-slide
+            .investment-insurance-programs__front
+              .investment-insurance-programs__top !{item.title}
+              .investment-insurance-programs__bot
+                each row in item.content
+                  .investment-insurance-programs__row
+                    .investment-insurance-programs__prop !{row.prop}
+                    .investment-insurance-programs__val !{row.val}
+                .investment-insurance-programs__to-docs Условия
+            .investment-insurance-programs__back
+              .investment-insurance-programs__close.bvi-no-styles
+              .investment-insurance-programs__title Условия
+              .investment-insurance-programs__docs-wrapper
+                +documents('', 'investment-insurance-programs')
+      +ui-swiper-pagination('investment-insurance-programs, --blue')
+    block

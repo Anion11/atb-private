@@ -1,0 +1,20 @@
+mixin multi-insuranse-contact(mods)
+  -
+    const baseName = 'multi-insuranse-contact'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .multi-insuranse-contact(class=allMods)&attributes(attributes)
+    .multi-insuranse-contact__title Есть вопросы? Позвоните нам!
+    .multi-insuranse-contact__desc Круглосуточно, звонки по России бесплатно
+    .multi-insuranse-contact__nums
+      a.multi-insuranse-contact__nums-item(href='tel:88007757751') 8 (800) 775-775-1
+      span.multi-insuranse-contact__nums-sp  или
+      a.multi-insuranse-contact__nums-item(href='tel:88001000050') 8 (800) 100-00-50
+    block

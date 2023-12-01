@@ -1,0 +1,21 @@
+mixin card-extends(mods)
+  -
+    const baseName = 'card-extends'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-extends(class=allMods)&attributes(attributes)
+    .card-extends__wrapper
+      .card-extends__text Банк продлевает срок действия карт до&nbsp;апреля
+        span.text-nowrap
+          |  2024&nbsp;года
+          +ui-tooltip('Продление срока действия запущено с апреля 2022 карт и произойдет автоматически.  Дополнительных действий или посещения офисов банка для замены карты не требуется. Распространяется на все карты АТБ платежных систем Visa, Mastercard, МИР.')
+      .card-extends__img
+        img(src='img/extends_cards_img.svg' alt='')
+    block

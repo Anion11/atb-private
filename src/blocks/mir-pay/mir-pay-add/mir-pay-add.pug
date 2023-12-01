@@ -1,0 +1,24 @@
+mixin mir-pay-add(mirPayAddData, mods)
+  -
+    const baseName = 'mir-pay-add'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .mir-pay-add(class=allMods)&attributes(attributes)
+    .mir-pay-add__img
+      img(src='img/mir-pay-mob.png', alt='')
+    .mir-pay-add__steps
+      .swiper-wrapper
+        each step, index in mirPayAddData
+          .mir-pay-add__step.swiper-slide
+            .mir-pay-add__num
+              span=index+1
+            .mir-pay-add__txt !{step.txt}
+    +ui-swiper-pagination('mir-pay-add')
+    block

@@ -1,0 +1,17 @@
+mixin info-page-nav(mods)
+  -
+    const baseName = 'info-page-nav'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .info-page-nav(class=allMods)&attributes(attributes)
+    +ui-select('info-page-nav', 'По дате', 'По назанию')
+    +info-page-sort('info-page-nav')
+    +ui-pagination('info-page-nav')
+    block

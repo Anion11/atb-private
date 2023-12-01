@@ -1,0 +1,19 @@
+mixin caution(data, mods)
+  -
+    const baseName = 'caution'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .caution(class=allMods)&attributes(attributes)
+    .caution__img
+      img(src=data.img, alt='')
+    .caution__text
+      +ui-h3(data.h3, 'caution, --xs')(class=data.h3Mods)
+      .caution__p1 !{data.text}
+    block

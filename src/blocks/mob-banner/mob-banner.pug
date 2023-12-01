@@ -1,0 +1,35 @@
+mixin mob-banner(data, mods)
+  -
+    const baseName = 'mob-banner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .mob-banner(class=allMods)&attributes(attributes)
+    .mob-banner__wrapper
+      .mob-banner__text
+        if data.title
+          if fileName === 'discounts-and-promotions'
+            .mob-banner__title !{data.title}
+          else
+            +ui-h3(data.title, 'mob-banner, --xs')
+        if data.descr
+          .mob-banner__descr !{data.descr}
+        .mob-banner__links
+          if data.apps
+            each itemApp in data.apps
+              a.mob-banner__app-item.mob-banner__app-item--app-link(href='#' target='_blank')
+                img.bvi-not-hide(src=`/img/svgs/${itemApp.icon}.svg`, alt='')
+          if data.qrSrc
+            .mob-banner__app-item.mob-banner__app-item--qr-code
+              img.bvi-not-hide(src=data.qrSrc, alt='')
+          if data.button
+            +ui-button(data.button)(href='#')
+      .mob-banner__img
+        img(src=data.img, alt='')
+    block

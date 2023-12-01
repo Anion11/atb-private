@@ -1,0 +1,30 @@
+.deposit-serv-info {
+  &__contact {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    text-align: center;
+    background: #fff;
+    box-shadow: $lightBigShadow;
+    border-radius: 8px;
+    @include media-tablet {
+      padding: 20px;
+    }
+  }
+  &__title {
+    margin-bottom: 5px;
+    font: 400 20px/1.5 $font;
+    @include media-tablet {
+      font-size: 18px;
+    }
+  }
+  &__desc {
+    margin-bottom: 15px;
+    font: 400 14px/1.4 $font;
+    color: $grey60;
+  }
+  &__tel {
+    font: 700 16px/1.4 $font;
+    white-space: nowrap;
+  }
+}

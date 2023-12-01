@@ -1,0 +1,19 @@
+mixin blockquote(mods)
+  -
+    const baseName = 'blockquote'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  blockquote.blockquote(class=allMods)&attributes(attributes)
+    .blockquote__text Равным образом постоянный количественный рост и сфера нашей активности позволяет оценить значение направлений прогрессивного развития. Задача организации, в особенности же дальнейшее развитие различных форм деятельности способствует подготовки и реализации направлений прогрессивного развития.
+    .blockquote__author
+      .blockquote__info
+        .blockquote__name Жарикова Н. В.
+        .blockquote__post региональный директор АТБ
+    block

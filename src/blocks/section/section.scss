@@ -1,0 +1,219 @@
+.section {
+  margin-top: 80px;
+  @include media-laptop {
+    margin-top: 60px;
+  }
+  &--mt0 {
+    margin-top: 0;
+  }
+  &--mt-s {
+    margin-top: 60px;
+    @include media-laptop {
+      margin-top: 40px;
+    }
+  }
+  &--mt-xs {
+    margin-top: 40px;
+    @include media-laptop {
+      margin-top: 30px;
+    }
+  }
+  &--mt-xxs {
+    margin-top: 20px;
+    @include media-laptop {
+      margin-top: 15px;
+    }
+  }
+  &--bg-grey {
+    padding: 50px 0 60px;
+    background: $grey20;
+    @include media-tablet {
+      padding: 55px 0 40px;
+    }
+    &-pb0 {
+      padding-bottom: 0;
+    }
+  }
+  &--ov-hidden {
+    overflow: hidden;
+  }
+  &--mob-ov-hidden {
+    @include media-tablet {
+      overflow: hidden;
+    }
+  }
+  &-head {
+    margin-bottom: 40px;
+    @include media-laptop {
+      margin-bottom: 30px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &__ui {
+      &-h1 {
+        &:not(:last-child) {
+          margin-bottom: 20px;
+          @include media-tablet {
+            margin-bottom: 15px;
+          }
+        }
+      }
+      &-h2 {
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+      &-h3 {
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+      &-h4 {
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+    }
+    &__descr {
+      margin-bottom: 30px;
+      font: 20px/1.4 $font;
+      @include media-tablet {
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &--max-w630 {
+        max-width: 630px;
+      }
+      &--bold {
+        font-weight: 700;
+      }
+    }
+    &--flex {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    &--mb-size-s {
+      margin-bottom: 30px;
+      @include media-tablet {
+        margin-bottom: 15px;
+      }
+    }
+    &--mb-size-xs {
+      margin-bottom: 25px;
+      @include media-tablet {
+        margin-bottom: 20px;
+      }
+    }
+    &--mb-size-xxs {
+      margin-bottom: 15px;
+    }
+    &--max-w {
+      max-width: 1080px;
+      &900 {
+        max-width: 900px;
+      }
+      &700 {
+        max-width: 700px;
+      }
+    }
+    &--center {
+      margin-right: auto;
+      margin-left: auto;
+    }
+    &--calc-for-auto {
+      max-width: 570px;
+      @include media-laptop {
+        max-width: unset;
+      }
+    }
+  }
+  &-box {
+    &:not(:first-child) {
+      margin-top: 40px;
+      @include media-tablet {
+        margin-top: 30px;
+      }
+    }
+    &__inner {
+      max-width: 800px;
+    }
+    &--max-w700 {
+      max-width: 700px;
+    }
+    &--hr {
+      &:not(:first-child) {
+        padding-top: 40px;
+        border-top: 1px solid $grey40;
+        @include media-tablet {
+          padding-top: 30px;
+        }
+      }
+      &.section-box--mt30 {
+        &:not(:first-child) {
+          padding-top: 30px;
+          @include media-tablet {
+            padding-top: 20px;
+          }
+        }
+      }
+    }
+    &--mb10 {
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+    }
+    &--mt30 {
+      &:not(:first-child) {
+        margin-top: 30px;
+        @include media-tablet {
+          margin-top: 20px;
+        }
+      }
+    }
+    &--mt50 {
+      &:not(:first-child) {
+        margin-top: 50px;
+        @include media-tablet {
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+  &-footnote {
+    margin-top: 25px;
+    font: 300 14px/1.28 $font;
+    &--mt0 {
+      margin-top: 0;
+    }
+    &--mt-l {
+      margin-top: 40px;
+      @include media-tablet {
+        margin-top: 30px;
+      }
+    }
+    &--mt-xxs {
+      margin-top: 10px;
+    }
+    &--max-w870 {
+      max-width: 870px;
+    }
+    &--fz16 {
+      font-size: 16px;
+      @include media-tablet {
+        font-size: 14px;
+      }
+    }
+    &--fw-normal {
+      font-weight: 400;
+    }
+    &--grey60 {
+      color: $grey60;
+    }
+  }
+}

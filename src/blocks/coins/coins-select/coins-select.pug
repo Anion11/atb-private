@@ -1,0 +1,72 @@
+mixin coins-select(mods)
+  -
+    const baseName = 'coins-select'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const coinData = {
+      label: 'new',
+      img: 'img/coin_1.jpg',
+      name: 'Кабардино-Балкарская-22',
+      price: '5 100 ₽',
+      characteristics: [
+        {
+          name: 'Категория ',
+          info: 'Памятные'
+        },
+        {
+          name: 'Страна',
+          info: 'Россия'
+        },
+        {
+          name: 'Номинал',
+          info: '3 рябля'
+        },
+        {
+          name: 'Иеталл, проба',
+          info: 'Серебро 925/1000 пробы'
+        },
+        {
+          name: 'Диаметр, мм',
+          info: '39,00 (± 0,30)'
+        },
+      ]
+    }
+
+  .coins-select(class=allMods)&attributes(attributes)
+    form.coins-select__choose(action='#')
+      .coins-select__top
+        +ui-select('', 'Категория', 'Коллекция АТБ', 'Инвестиционные', 'Памятные', 'Иностранные')
+        .coins-select__btns
+          button.coins-select__button.coins-select__button--active Монеты
+          button.coins-select__button Наборы
+        .coins-select__open
+          +icon('icon_filter')
+          +icon('icon_close')
+      .coins-select__drop
+        +ui-input('coins-name', '', 'coins-select, --search-icon')(placeholder='Введите название или номер')
+        .coins-select__params
+          +ui-select('', 'Страна', 'Россия', 'Лаос', 'Острова Ниуэ', 'Ниуэ', 'Республика Камерун')
+          +ui-select('', 'Металл', 'Серебро', 'Золото', 'Медно-никелевый сплав', 'Палладий', 'Платина')
+          +ui-select('', 'Проба')(disabled)
+          +ui-select('', 'Номинал', '3 рубля', '25 рублей', '50 рублей', '', '', '', '', '', '', '',)
+          +ui-select('', 'Год', '2022', '2021', '2020', '2019')
+      .coins-select__bot
+        label.coins-select__show(for='coins-show') Показывать:
+        +ui-select('coins-select', 'по 20', 'по 50', 'по 100', 'все',)#coins-show
+    .coins-select__result
+      .coins-select__grid
+        -for(let i = 0; i < 10; i++)
+          +coins-item(coinData)(href='#')
+      .coins-select__more
+        +ui-button('Показать ещё', 'coins-select, --empty')
+    .coins-select__no-result
+      span По вашему запросу ничего не найдено
+    block

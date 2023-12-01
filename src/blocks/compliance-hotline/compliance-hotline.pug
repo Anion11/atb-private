@@ -1,0 +1,16 @@
+mixin compliance-hotline(mods)
+  -
+    const baseName = 'compliance-hotline'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .compliance-hotline(class=allMods)&attributes(attributes)
+    .compliance-hotline__title Горячая линия комплаенс
+    +ui-button('перейти', 'compliance-hotline, --link-next').text-orange(href='#')
+    block

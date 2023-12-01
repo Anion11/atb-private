@@ -1,0 +1,54 @@
+mixin sel-prop-search(mods)
+  -
+    const baseName = 'sel-prop-search'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  form.sel-prop-search(class=allMods)&attributes(attributes)
+    .sel-prop-search__line
+      .sel-prop-search__item
+        +ui-form-name('Имущество', 'sel-prop-search')
+        +ui-select('sel-prop-search')
+          option Не выбрано
+          option(selected) Недвижимое
+          option Оборудование
+          option Спецтехника
+          option Товары в обороте
+          option Транспорт
+      .sel-prop-search__item
+        +ui-form-name('Категория', 'sel-prop-search')
+        +ui-select('sel-prop-search', 'Не выбрано', 'Залоговое имущество', 'Залоговое имущество для юридических лиц', 'Собственное имущество банка')
+    .sel-prop-search__line
+      .sel-prop-search__item
+        +ui-form-name('Регион', 'sel-prop-search')
+        +ui-select('sel-prop-search', 'Не выбрано','Амурская область', 'Еврейская автономная область', 'Забайкальская область')
+      .sel-prop-search__item
+        +ui-form-name('Населенный пункт', 'sel-prop-search')
+        +ui-select('sel-prop-search', 'Не выбрано', 'г. Воронеж')(disabled)
+      .sel-prop-search__item
+        +ui-form-name('Цена', 'sel-prop-search')
+        .sel-prop-search__inputs
+          +ui-input('price_min', '', 'sel-prop-search', 'number')(placeholder='От, руб.')
+          +ui-input('price_max', '', 'sel-prop-search', 'number')(placeholder='До, руб.')
+    .sel-prop-search__line
+      .sel-prop-search__item
+        +ui-form-name('Тип помещения', 'sel-prop-search')
+        +ui-select('sel-prop-search', 'Не выбрано','Здание')
+      .sel-prop-search__item
+        +ui-form-name('Назначение', 'sel-prop-search')
+        +ui-select('sel-prop-search', 'Не выбрано')
+      .sel-prop-search__item
+        +ui-form-name('Общая площадь', 'sel-prop-search')
+        .sel-prop-search__inputs
+          +ui-input('area_min', '', 'sel-prop-search', 'number')(placeholder='От')
+          +ui-input('area_max', '', 'sel-prop-search', 'number')(placeholder='До')
+    .sel-prop-search__btns
+      +ui-button('Применить', 'sel-prop-search, --outline', true)
+      a.sel-prop-search__reset(href='#') очистить
+    block

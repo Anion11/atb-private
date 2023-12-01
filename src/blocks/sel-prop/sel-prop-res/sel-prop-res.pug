@@ -1,0 +1,52 @@
+mixin sel-prop-res(mods)
+  -
+    const baseName = 'sel-prop-res'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .sel-prop-res(class=allMods)&attributes(attributes)
+    .sel-prop-res__title Найдено 66 объектов
+    .sel-prop-res__settings
+      +ui-select('sel-prop-res', 'Сортировать по:', 'Цене (дешевые)', 'Цене (дорогие)', 'Дате (новые)', 'Дате (старые)')
+      .sel-prop-res__show
+        span.sel-prop-res__count Показать по
+        a.sel-prop-res__count.sel-prop-res__count--active(href='#') 20
+        a.sel-prop-res__count(href='#') 40
+        a.sel-prop-res__count(href='#') 60
+        a.sel-prop-res__count(href='#') все
+      +ui-pagination('sel-prop-res')
+    .sel-prop-res__main
+      -for(let i = 0; i < 4; i++)
+        a.sel-prop-res__item(href='#')
+          .sel-prop-res__img
+            img(src='img/sel-prop-res_1.png', alt='')
+          .sel-prop-res__price
+            .sel-prop-res__price-current 9 630 900  ₽
+            .sel-prop-res__price-old 1 618 000 ₽
+          .sel-prop-res__desc 2-х комнатная квартира, общая площадь 43,3 кв.м.
+          .sel-prop-res__date 22.03.2022
+          .sel-prop-res__details
+            .sel-prop-res__geo Красноярский край, г. Канский, Эйдемана, дом  22
+            .sel-prop-res__stage Имущество Банка
+          +ui-button('ПОДРОБНЕЕ', 'sel-prop-res, --empty')
+        a.sel-prop-res__item(href='#')
+          .sel-prop-res__img
+            img(src='img/sel-prop-res_2.jpg', alt='')
+          .sel-prop-res__price
+            .sel-prop-res__price-current 9 630 900  ₽
+            .sel-prop-res__price-old 1 618 000 ₽
+          .sel-prop-res__desc Дача, баня и летняя кухня на земельном участке 1312 кв.м.
+          .sel-prop-res__date 30.01.2020
+          .sel-prop-res__details
+            .sel-prop-res__geo Республика Саха (Якутия), г Якутск, Хатынг-Юряхское шоссе 7 км, дом  1а
+            .sel-prop-res__stage Исполнительное производство
+          +ui-button('ПОДРОБНЕЕ', 'sel-prop-res, --empty')
+    .sel-prop-res__bot
+      +ui-pagination('sel-prop-res')
+    block

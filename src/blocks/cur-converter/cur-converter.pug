@@ -1,0 +1,67 @@
+mixin cur-converter(mods)
+  -
+    const baseName = 'cur-converter'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const сurrency = [
+      {
+        img: 'cur-converter_cny.png',
+        txt: 'CNY'
+      },
+      {
+        img: 'cur-converter_ru.png',
+        txt: 'RUB'
+      },
+      {
+        img: 'cur-converter_usd.png',
+        txt: 'USD'
+      },
+      {
+        img: 'cur-converter_eur.png',
+        txt: 'EUR'
+      },
+      {
+        img: 'cur-converter_gbp.png',
+        txt: 'GBP'
+      },
+      {
+        img: 'cur-converter_chf.png',
+        txt: 'CHF'
+      },
+    ]
+
+  .cur-converter(class=allMods)&attributes(attributes)
+    .cur-converter__body
+      .cur-converter__item
+        +ui-form-name('Сумма продажи', 'cur-converter')
+        .cur-converter__wrapper
+          .cur-converter__input
+            input(type='text')
+          .cur-converter__select
+            select
+              each option in сurrency
+                option(data-image=`img/${option.img}` value=option.txt)=option.txt
+      .cur-converter__icon
+        +icon('icon_exchange')
+      .cur-converter__item
+        +ui-form-name('Сумма покупки', 'cur-converter')
+        .cur-converter__wrapper
+          .cur-converter__input
+            input(type='text')
+          .cur-converter__select
+            select
+              each option, index in сurrency
+                if index === 1
+                  option(data-image=`img/${option.img}` selected)=option.txt
+                else
+                  option(data-image=`img/${option.img}`)=option.txt
+    .cur-converter__footnote 9,88&nbsp;₽ за&nbsp;1&nbsp;¥
+    block

@@ -1,0 +1,89 @@
+mixin cashback-scheme(type, mods)
+  -
+    const baseName = 'cashback-scheme'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const uiH4Mods = type === 'loyalty-univ' ? 'cashback-scheme' : 'cashback-scheme, --bold'
+
+  .cashback-scheme(class=allMods)&attributes(attributes)
+    if type === '180days'
+      .cashback-scheme__container
+        .cashback-scheme__item.cashback-scheme__item--purchase.cashback-scheme__item--purchase1
+          .cashback-scheme__date 5 сентября
+          .cashback-scheme__date-mob
+            span 5 сен
+          .cashback-scheme__descr Покупка
+            =' '
+            span.cashback-scheme__amount 15 250 ₽
+        .cashback-scheme__item.cashback-scheme__item--purchase.cashback-scheme__item--purchase2
+          .cashback-scheme__date 15 сентября
+          .cashback-scheme__date-mob
+            span 15 сен
+          .cashback-scheme__descr Покупка
+            =' '
+            span.cashback-scheme__amount 5 420 ₽
+        .cashback-scheme__item.cashback-scheme__item--purchase.cashback-scheme__item--purchase3
+          .cashback-scheme__date 25 сентября
+          .cashback-scheme__date-mob
+            span 25 сен
+          .cashback-scheme__descr Покупка
+            =' '
+            span.cashback-scheme__amount 15 250 ₽
+        .cashback-scheme__item.cashback-scheme__item--accrual
+          .cashback-scheme__total 537 ₽
+          .cashback-scheme__descr Начисление кэшбэка не позднее десятого рабочего дня
+        .cashback-scheme__timeline
+          .cashback-scheme__period сентябрь
+          .cashback-scheme__period октябрь
+    else
+      +ui-h4('Кэшбэк начисляется на&nbsp;сумму покупки кратную 100&nbsp;₽', uiH4Mods)
+      .cashback-scheme__container
+        .cashback-scheme__item.cashback-scheme__item--purchase.cashback-scheme__item--purchase1
+          .cashback-scheme__date 14 октября
+          .cashback-scheme__date-mob
+            span 14 окт
+          .cashback-scheme__descr Покупка
+            =' '
+            span.cashback-scheme__amount 15 520 ₽
+          .cashback-scheme__fn 228 баллов
+            +ui-tooltip('1,5% от покупки', '--va-top').text-t-none
+            .cashback-scheme__tooltip-mob 1,5% от покупки
+        .cashback-scheme__item.cashback-scheme__item--purchase.cashback-scheme__item--purchase2
+          .cashback-scheme__date 17 октября
+          .cashback-scheme__date-mob
+            span 17 окт
+          .cashback-scheme__descr Покупка
+            =' '
+            span.cashback-scheme__amount 5 420 ₽
+          .cashback-scheme__fn 81 балл
+            +ui-tooltip('1,5% от покупки', '--va-top').text-t-none
+            .cashback-scheme__tooltip-mob 1,5% от покупки
+        .cashback-scheme__item.cashback-scheme__item--purchase.cashback-scheme__item--purchase3
+          .cashback-scheme__date 25 октября
+          .cashback-scheme__date-mob
+            span 25 окт
+          .cashback-scheme__descr Покупка
+            =' '
+            span.cashback-scheme__amount 7 858 ₽
+          .cashback-scheme__fn 117 баллов
+            +ui-tooltip('1,5% от покупки', '--va-top').text-t-none
+            .cashback-scheme__tooltip-mob 1,5% от покупки
+        .cashback-scheme__item.cashback-scheme__item--accrual.cashback-scheme__item--pt-s.cashback-scheme__item--icon-star
+          .cashback-scheme__descr Зачисление баллов не позднее десятого рабочего
+            =' '
+            span.text-nowrap дня
+              +ui-tooltip('<p>Накопленные балы доступны для&nbsp;обмена в&nbsp;течении 6&nbsp;месяцев</p> <p>Затем баллы сгорают</p>')
+          .cashback-scheme__fn в мобильном приложении
+            =' '
+            a.text-orange(href='#' target='_blank')  АТБ Банк
+        .cashback-scheme__timeline
+          .cashback-scheme__period октябрь
+          .cashback-scheme__period ноябрь
+    block

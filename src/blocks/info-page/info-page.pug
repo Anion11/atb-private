@@ -1,0 +1,42 @@
+mixin info-page(infoPageAsideList, title, mods)
+  -
+    const baseName = 'info-page'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .info-page(class=allMods)&attributes(attributes)
+    .info-page__head
+      if title
+        .info-page__title !{title}
+    .info-page__content
+      block
+    .info-page-aside
+      .info-page-aside__btn
+        span
+        span
+        span
+      ul.info-page-aside__ul
+        each item in infoPageAsideList
+          li.info-page-aside__li(class=item.isActive ? 'info-page-aside__li--active' : '')
+            a.info-page-aside__link(href='#') !{item.text}
+
+mixin info-page-section(mods)
+  -
+    const baseName = 'info-page-section'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .info-page-section(class=allMods)&attributes(attributes)
+    block

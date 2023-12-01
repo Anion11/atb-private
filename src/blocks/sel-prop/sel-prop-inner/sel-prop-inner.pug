@@ -1,0 +1,69 @@
+mixin sel-prop-inner(mods)
+  -
+    const baseName = 'sel-prop-inner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const photos = [
+      'img/sel-prop-inner_1.jpg',
+      'img/sel-prop-inner_2.jpg',
+      'img/sel-prop-inner_3.jpg',
+      'img/sel-prop-inner_4.jpg',
+      'img/sel-prop-inner_5.jpg',
+      'img/sel-prop-inner_6.jpg',
+    ]
+
+  .sel-prop-inner(class=allMods)&attributes(attributes)
+    .sel-prop-inner__main
+      .sel-prop-inner__gallery
+        .sel-prop-inner__slider
+          .swiper-wrapper
+            each img in photos
+              .sel-prop-inner__slide.swiper-slide
+                img(src=img, alt='')
+          .sel-prop-inner__btn.sel-prop-inner__btn--prev
+          .sel-prop-inner__btn.sel-prop-inner__btn--next
+        .sel-prop-inner__thumbs
+          .swiper-wrapper
+            each img in photos
+              .sel-prop-inner__slide.swiper-slide
+                img(src=img, alt='')
+          .sel-prop-inner__btn.sel-prop-inner__btn--prev
+          .sel-prop-inner__btn.sel-prop-inner__btn--next
+      .sel-prop-inner__info
+        h1.sel-prop-inner__title Жилой дом с участком
+        .sel-prop-inner__about
+          .sel-prop-inner__date 08.02.2021
+          .sel-prop-inner__views 797
+        .sel-prop-inner__props.sel-prop-inner__props--info Этаж 3 /4 | 43,3 м2 | комнат 2 смежные изолированные | Балкон/Лоджия балкон
+        .sel-prop-inner__props.sel-prop-inner__props--status Имущество Банка
+        .sel-prop-inner__price
+          .sel-prop-inner__price-current 7 245 360 ₽
+          .sel-prop-inner__price-old 7 245 360 ₽
+        .sel-prop-inner__bot
+          .sel-prop-inner__props.sel-prop-inner__props--geo Республика Саха (Якутия) , г. Якутск , ул. Дальняя , дом 37
+          .sel-prop-inner__props.sel-prop-inner__props--author Евгений
+          .sel-prop-inner__props.sel-prop-inner__props--tel 8 (4162) 222 354
+          .sel-prop-inner__props.sel-prop-inner__props--mail tikhonova_ip@krsk.atb.su
+        +ui-button('Задать вопрос', 'sel-prop-inner, --empty').js-popup-open(href='#ask-question')
+    .sel-prop-inner__desc
+      .sel-prop-inner__txt
+        p 1/3 доли в праве собственности на нежилое помещение
+        p Общей площадью 149 кв.м. <br> Развитая инфраструктура.
+      .sel-prop-inner__txt.sel-prop-inner__txt--attention
+        p ОБЪЕКТ БУДЕТ РЕАЛИЗОВАН НА ТОРГАХ!
+          br
+          | ТОРГИ НАЗНАЧЕНЫ НА 31.01.2022 г.
+          br
+          | ОБМЕНЫ НЕ ИНТЕРЕСУЮТ! ТОЛЬКО ПРОДАЖА!
+          br
+          | ВСЕ ДОПОЛНИТЕЛЬНЫЕ ВОПРОСЫ ПО ТЕЛЕФОНУ!
+    .sel-prop-inner__map
+    block

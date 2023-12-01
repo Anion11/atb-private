@@ -1,0 +1,232 @@
+mixin cards-table(mods)
+  -
+    const baseName = 'cards-table'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const tableData = {
+      names: [
+        'Валюта',
+        'Выпуск',
+        'Обслуживание',
+        'Бесплатные дополнительные карты',
+        'Кэшбэк',
+        'Процент на&nbsp;остаток по&nbsp;счёту банковской карты',
+        'Выдача наличных',
+        '<a class="text-orange" href="#">Цифровая карта</a>',
+      ],
+      columns: [
+        {
+          head: {
+            img: 'img/cards_table_union_pay.png',
+            name: 'UnionPay',
+            mods: 'cards-table__head--r-span2'
+          },
+          rows: [
+            { text: 'Рубли' },
+            { text: '5 000 ₽' },
+            { text: 'Бесплатно',
+              tooltip: `
+                Бесплатно при:
+                <ul class="ui-ul ui-ul--mt5 ui-ul--li-mb5">
+                  <li>поступлении зарплаты на&nbsp;счет карты;</li>
+                  <li>ежемесячном поступлении процентов по&nbsp;вкладу АТБ; </li>
+                  <li>безналичных покупках в&nbsp;торговосервисных предприятиях на&nbsp;сумму от&nbsp;30&nbsp;000&nbsp;₽ в&nbsp;мес.</li>
+                </ul>
+                <p>Иначе&nbsp;&mdash; 399&nbsp;₽ в&nbsp;месяц.</p>
+              `
+            },
+            { icon: 'no' },
+            { text: 'До 7% за покупки по всему миру', mods: 'cards-table__ceil--r-span4',
+              tooltip: `
+                7% в выбранной категории
+                <br>1% на все остальные покупки`
+            },
+            { text: 'До 5%',
+              tooltip: `
+                Ежемесячно при:
+                <ul class="ui-ul ui-ul--mt5 ui-ul--li-mb5">
+                  <li>&mdash;&nbsp;поступлении зарплаты на&nbsp;счет карты;</li>
+                  <li>ежемесячном поступлении процентов по&nbsp;вкладу АТБ;</li>
+                  <li>безналичных покупках в&nbsp;торговосервисных предприятиях на&nbsp;сумму от&nbsp;30&nbsp;000&nbsp;₽ в&nbsp;мес.</li>
+                </ul>
+                <p>Иначе&nbsp;&mdash; 2%</p>
+              `
+            },
+            {
+              paragraphs: [
+                { text: '400 000 ₽ / день' },
+                { text: '1 000 000 ₽ / мес.',
+                  tooltip: `Бесплатно в&nbsp;банкоматах любых российских
+                  и&nbsp;иностранных банков до&nbsp;100&nbsp;000&nbsp;₽ в&nbsp;месяц`
+                },
+              ]
+            },
+            { icon: 'no' },
+          ],
+        },
+        {
+          head: {
+            img: 'img/cards_table_union_pay.png',
+            name: 'UnionPay',
+            mods: 'cards-table__head--d-hidden'
+          },
+          rows: [
+            { text: 'Юани' },
+            { text: '450 ¥' },
+            { text: 'Бесплатно',
+              tooltip: `
+                Бесплатно при:
+                <ul class="ui-ul ui-ul--mt5 ui-ul--li-mb5">
+                  <li>поступлении зарплаты на&nbsp;счет карты;</li>
+                  <li>ежемесячном поступлении процентов по&nbsp;вкладу АТБ;</li>
+                  <li>безналичных покупках в&nbsp;торговосервисных предприятиях на&nbsp;сумму от&nbsp;2&nbsp;800&nbsp;&yen; в&nbsp;мес.</li>
+                </ul>
+                <p>Иначе&nbsp;&mdash; 38&nbsp;&yen;.</p>
+                `
+            },
+            { icon: 'no' },
+            { text: 'До 7% за покупки по всему миру', mods: 'cards-table__ceil--d-hidden',
+              tooltip: `
+                7% в выбранной категории
+                <br>1% на все остальные покупки`
+            },
+            { icon: 'no' },
+            {
+              paragraphs: [
+                { text: '38 000 ¥ / день' },
+                { text: '95 000 ¥ / мес.',
+                  tooltip: `
+                    <ul class="ui-ul ui-ul--li-mb5">
+                      <li>Бесплатно до&nbsp;9 500&yen; в&nbsp;месяц в&nbsp;банкоматах любых банков России.</li>
+                      <li> 0,7% от&nbsp;суммы в&nbsp;банкоматах любых <b>иностранных банков</b> до&nbsp;9 500&yen; в&nbsp;месяц,</li>
+                      <li>свыше&nbsp;&mdash; 1%&nbsp;от&nbsp;суммы (минимум 15&yen;).</li>
+                    </ul>`
+                },
+              ]
+            },
+            { icon: 'no' },
+          ],
+        },
+        {
+          head: {
+            img: 'img/cards_table_mir.png',
+            name: 'Мир',
+          },
+          rows: [
+            { text: 'Рубли' },
+            { text: 'Бесплатно' },
+            { text: 'Бесплатно' },
+            { text: 'До 2 карт' },
+            { text: 'До 7% за покупки по всему миру', mods: 'cards-table__ceil--d-hidden',
+              tooltip: `
+                7% в выбранной категории
+                <br>1% на все остальные покупки`
+            },
+            { text: 'До 5%',
+              tooltip: `
+                Ежемесячно при:
+                <ul class="ui-ul ui-ul--mt5 ui-ul--li-mb5">
+                  <li>поступлении зарплаты на&nbsp;счет карты;</li>
+                  <li>ежемесячном поступлении процентов по&nbsp;вкладу&nbsp;АТБ;</li>
+                  <li>безналичных покупках в&nbsp;торгово-сервисных предприятиях на&nbsp;сумму от&nbsp;15&nbsp;000&nbsp;₽ в&nbsp;мес.</li>
+                </ul>
+                <p>Иначе – 2%</p>`
+            },
+            {
+             paragraphs: [
+                { text: '200 000 ₽ / день' },
+                { text: '400 000 ₽ / мес.',
+                  tooltip: 'Бесплатно в&nbsp;банкоматах любых банков России до&nbsp;100&nbsp;000&nbsp;₽/месяц'
+                },
+             ]
+            },
+            { icon: 'yes' },
+          ],
+        },
+        {
+          head: {
+            img: 'img/cards_table_visa.png',
+            name: 'Visa',
+          },
+          rows: [
+            { text: 'Рубли' },
+            { text: 'Бесплатно' },
+            { text: 'Бесплатно',
+              tooltip: `
+              Бесплатно при:
+              <ul class="ui-ul ui-ul--mt5 ui-ul--li-mb5">
+                <li>поступлении зарплаты на&nbsp;счет карты;</li>
+                <li>ежемесячном поступлении процентов по&nbsp;вкладу АТБ;</li>
+                <li>безналичных покупках в&nbsp;торговосервисных предприятиях на&nbsp;сумму от&nbsp;15&nbsp;000&nbsp;₽ в&nbsp;мес.</li>
+              </ul>
+              <p>Иначе&nbsp;&mdash; 169&nbsp;₽ в&nbsp;месяц</p>
+              `
+            },
+            { text: 'До 2 карт' },
+            { text: 'До 7% за покупки по всему миру', mods: 'cards-table__ceil--d-hidden',
+              tooltip: `
+                7% в выбранной категории
+                <br>1% на все остальные покупки`
+            },
+            { text: 'До 5%',
+              tooltip: `
+                Ежемесячно при:
+                <ul class="ui-ul ui-ul--mt5 ui-ul--li-mb5">
+                  <li>поступлении зарплаты на&nbsp;счет  карты;</li>
+                  <li>ежемесячном поступлении процентов по&nbsp;вкладу АТБ;</li>
+                  <li>безналичных покупках в&nbsp;торговосервисных предприятиях на&nbsp;сумму от&nbsp;15&nbsp;000&nbsp;₽ в&nbsp;мес.</li>
+                </ul>
+                <p>Иначе&nbsp;&mdash; 2%</p>
+              `
+            },
+            {
+              paragraphs: [
+                { text: '200 000 ₽ / день' },
+                { text: '400 000 ₽ / мес.',
+                  tooltip: `Бесплатно в&nbsp;банкоматах любых банков России до&nbsp;100&nbsp;000&nbsp;₽ в&nbsp;месяц`
+                },
+              ]
+            },
+            { icon: 'yes' },
+          ],
+        },
+      ]
+    }
+
+  .cards-table.js-table(class=allMods data-media='')&attributes(attributes)
+    .cards-table__wrapper
+      .cards-table__names.js-column
+        .cards-table__names-ceil.js-ceil
+        each item in tableData.names
+          .cards-table__names-ceil.js-ceil
+            .cards-table__txt !{item}
+      .cards-table__columns
+        each col in tableData.columns
+          .cards-table__col.js-column
+            .cards-table__head.js-ceil.js-accordion-head(class=col.head.mods)
+              .cards-table__img
+                img(src=col.head.img, alt='')
+              .cards-table__title !{col.head.name}
+            .cards-table__main
+              each row, index in col.rows
+                .cards-table__ceil.js-ceil(class=row.mods)
+                  //- .cards-table__txt !{tableData.names[index]}
+                  .cards-table__txt !{row.text}
+                    if row.tooltip
+                      +ui-tooltip(row.tooltip)
+                    if row.paragraphs
+                      each paragraph in row.paragraphs
+                        .cards-table__txt-p !{paragraph.text}
+                          if paragraph.tooltip
+                            +ui-tooltip(paragraph.tooltip)
+                    if row.icon
+                      .cards-table__icon(class=`cards-table__icon--${row.icon}`)
+                        +icon(`icon_${row.icon}`)
+    block

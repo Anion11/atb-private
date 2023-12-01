@@ -1,0 +1,498 @@
+mixin care-inner(title, icon, type, subtitle, mods)
+  -
+    const baseName = 'care-inner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const tableCard = {
+      head: [
+        { width: '31%', text: 'Причина блокировки', },
+        { width: '23%', text: '<p>8-800-775-88-88</p><small>нужно кодовое слово</small>', },
+        { width: '23%', text: '<p>Чат-банка</p><small>в Мобильном приложении или&nbsp;Интернет-банке</small>', },
+        { width: '23%', text: '<p>Отделения банка</p><small>нужен паспорт</small>', }
+      ]
+    }
+
+    const tableExamples = {
+      head: [
+        { width: '70%', text: 'Описание ситуации', },
+        { width: '15%', text: 'Баланс карты', },
+        { width: '15%', text: 'Баланс счета' }
+      ]
+    }
+
+    const tableLoans = {
+      head: [
+        { width: '60%', text: '', },
+        { width: '20%', text: 'Онлайн', },
+        { width: '20%', text: 'В&nbsp;отделении банка' }
+      ]
+    }
+
+    const tableData = {
+      names: [
+        { text: 'Как выглядит карта', },
+        { text: 'Программа лояльности', },
+        { text: 'Параметры', },
+        { text: 'Тарифные планы, по&nbsp;которым действует программа лояльности', },
+        { text: '' },
+      ],
+      columns: [
+        {
+          isActive: true,
+          img: 'img/card_router_img_standard_bonus.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Стандарт-бонус</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '1% на все покупки',
+                    '7% в выбранных категориях',
+                  ],
+                  textTooltips: [
+                    '',
+                    '&mdash;&nbsp;Развлечения и&nbsp;отдых <br> &mdash;&nbsp;Семья <br> &mdash;&nbsp;Красота и&nbsp;спорт <br> &mdash;&nbsp;Дом и&nbsp;ремонт <br> &mdash;&nbsp;Шоппинг <br> (* Категории подключаются в&nbsp;АТБ-клуб по&nbsp;<a class="text-orange" href="https://bonus.atb.su" target="_blank">ссылке</a>)'
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  label: 'Карта АТБ 2.0',
+                  descr: `Подключается при выдаче`,
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кошелек</a>',
+                  ],
+                  descr: `Подключение через колл-центр`,
+                }
+              ]
+            },
+            { },
+          ],
+        },
+        {
+          img: 'img/card_router_img_standard_direct.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Стандарт-директ</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '1% на все покупки',
+                    '5% в выбранных категориях',
+                  ],
+                  textTooltips: [
+                    '',
+                    '&mdash;&nbsp;Аптеки (ТП&nbsp;Приморец/ Особый статус/ Единая карта сахалинца) <br> &mdash;&nbsp;Активная жизнь (для ТП&nbsp;Кампус) <br> &mdash;&nbsp;Счастливое детство (для ТП&nbsp;Детская карта) <br> (* Категории подключаются в&nbsp;отделении банка)'
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Особый статус</a>',
+                  ],
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Приморец</a>',
+                  ],
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Единая карта сахалинца</a>',
+                  ],
+                }
+              ]
+            },
+            {
+              sections: [
+                {
+                  subtitle: 'Архив',
+                  text: [
+                    '<a href="#" class="text-underline">Большой кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Валютный кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Детская карта</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кампус</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+              ]
+            },
+          ],
+        },
+        {
+          img: 'img/card_router_img_cash_back_direct.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кэш-Бэк Директ</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '2% на все покупки',
+                    'до 10% в выбранных категориях',
+                  ],
+                  textTooltips: [
+                    '',
+                    '&mdash;&nbsp;Дом и&nbsp;ремонт <br> &mdash;&nbsp;Автокарта <br> &mdash;&nbsp;Развлечения <br> (* Категории подключаются в&nbsp;отделении банка)'
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            { },
+            {
+              sections: [
+                {
+                  subtitle: 'Архив',
+                  text: [
+                    '<a href="#" class="text-underline">Карта Кэш-бэк</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+              ]
+            },
+          ],
+        },
+      ]
+    }
+
+  .care-inner(class=allMods)&attributes(attributes)
+    .care-inner__head
+      .care-inner__title
+        .care-inner__icon
+          img(src=icon alt='')
+        +ui-h1(title, 'care-inner')
+      if subtitle
+        +ui-h4(subtitle, 'care-inner')
+      else
+        +ui-h4('Выберите тему вопроса или&nbsp;воспользуйтесь поиском', 'care-inner')
+    form.care-inner__search
+      +ui-input('search', '', 'care-inner')(placeholder='Что вы ищете?')
+        button.care-inner__search-btn
+          +icon('customer-care-service--icon_search')
+    case type
+      when 'all-questions'
+        +accordion('care-inner')
+          +accordion-item('Для любого типа карты')
+            ul.care-inner__links
+              -for(let i=0; i<10; i++)
+                li
+                  a.care-inner__link(href='#') Блокировка карты
+                li
+                  a.care-inner__link(href='#') Остаток на&nbsp;карте, отрицательный баланс карты, анализ остатков по&nbsp;счету карты
+                li
+                  a.care-inner__link(href='#') Бесконтактные платежи телефоном (подключение к&nbsp;Мир Pay, Wallet, Google Pay)
+          +accordion-item('Дебетовые карты')
+            ul.care-inner__links
+              -for(let i=0; i<5; i++)
+                li
+                  a.care-inner__link(href='#') Установка и&nbsp;изменение ПИН-кода
+          +accordion-item('Кредитные карты')
+            ul.care-inner__links
+              -for(let i=0; i<5; i++)
+                li
+                  a.care-inner__link(href='#') Операции по&nbsp;счету (зачисления, списания)
+      when 'cards'
+        +ui-button('Назад к&nbsp;вопросам', 'care-inner, --link-prev').text-orange(href='#')
+        .care-inner__info
+          .care-inner__text-inner
+            .care-inner__name Бесконтактные платежи телефоном (подключение к&nbsp;Мир Pay, Wallet, Google Pay)
+            .care-inner__descr Подключение к&nbsp;Wallet и&nbsp;Google Pay на&nbsp;данный момент невозможно в&nbsp;связи с&nbsp;уходом платежных систем Visa и&nbsp;Mastercard из&nbsp;России.
+        // --------
+        .care-inner__info
+          .care-inner__text-inner
+            .care-inner__name Разблокировка карты
+            .care-inner__descr Способ разблокировки зависит от причины блокировки:
+          .care-inner__content
+            +care-table('care-inner')(style='min-width: 800px;')
+              thead
+                tr
+                  each item in tableCard.head
+                    th(width=item.width) !{item.text}
+              tbody
+                tr
+                  td Личное желание
+                  td
+                    +care-table__plus
+                  td
+                    +care-table__plus
+                  td
+                    +care-table__plus
+                tr
+                  td Утеря
+                  td
+                    +care-table__minus
+                  td
+                    +care-table__plus
+                  td
+                    +care-table__plus
+                tr
+                  td Подозрительные операции
+                  td
+                    +care-table__plus
+                  td
+                    +care-table__minus
+                  td
+                    +care-table__plus
+                tr
+                  td Кража
+                  td(colspan='3' rowspan='4')
+                    p
+                      b Разблокировка невозможна
+                    small Обратитесь в&nbsp;отделение банка для перевыпуска карты
+                tr
+                  td Карта найдена третьим лицом
+                tr
+                  td Мошеннические действия
+                tr
+                  td Блокировка по&nbsp;ФЗ № 115 — без&nbsp;документального подтверждения
+        // --------
+        .care-inner__info
+          .care-inner__text-inner
+            .care-inner__name Операции по&nbsp;счету (зачисления, списания)
+            .care-inner__descr Посмотреть историю операций удобнее всего в&nbsp;
+              a.text-orange(href='#') Мобильном приложении
+              |  или
+              =' '
+              a.text-orange.text-nowrap(href='#') Интернет-банке
+          .care-inner__content
+            +care-steps
+        // --------
+        .care-inner__info
+          .care-inner__text-inner
+            .care-inner__name Остаток на&nbsp;карте, отрицательный баланс карты, анализ остатков по&nbsp;счету карты
+            .care-inner__descr Отрицательный баланс по&nbsp;карте может образоваться по&nbsp;двум причинам. Объясним на&nbsp;примерах:
+          .care-inner__content
+            .care-inner__section
+              +ui-h4('', '--bold, --mb')
+                span.text-orange Причина 1.
+                |  Операции, выполненные по&nbsp;карте, еще не&nbsp;прошли по&nbsp;счету
+              +care-table('care-inner, --account-balance')(style='min-width: 700px;')
+                thead
+                  tr
+                    each item in tableExamples.head
+                      th(width=item.width) !{item.text}
+                tbody
+                  tr
+                    td
+                      p Со&nbsp;стороннего банка на&nbsp;карту была перечислена 1000. <br> Средства поступили на&nbsp;карту. <br> Но, при межбанковском переводе средства на&nbsp;карточный счет могут поступать до&nbsp;3&nbsp;рабочих дней, средства с&nbsp;карты на&nbsp;счет зачисляются в&nbsp;пределах указанного срока.
+                      p
+                        b В результате:
+                      ul
+                        li баланс карты составляет 1000&nbsp;рублей.
+                        li баланс счета составляет 0&nbsp;рублей.
+                    td 1000
+                    td 0
+                  tr
+                    td
+                      p Допустим эти средства вы&nbsp;сразу&nbsp;же сняли в&nbsp;нашем банкомате. <br> Внутрибанковская операция проходит в&nbsp;течение 1&nbsp;рабочего дня. <br> Операция о&nbsp;списании поступила сразу на&nbsp;счет.
+                      p
+                        b В результате:
+                      ul
+                        li баланс карты составляет 0&nbsp;рублей.
+                        li баланс счета составляет -1000&nbsp;рублей (образовался перерасход).
+                    td 0
+                    td
+                      span.text-red -1000
+                  tr
+                    td
+                      p Через 2&nbsp;дня поступает межбанковский перевод на&nbsp;счет (который был в&nbsp;первой строке)
+                      p
+                        b В результате:
+                      ul
+                        li баланс карты составляет 0&nbsp;рублей.
+                        li баланс счета составляет 0&nbsp;рублей.
+                    td 0
+                    td 0
+            .care-inner__section
+              +ui-h4('', '--bold, --mb')
+                span.text-orange Причина 2.
+                |  Наложение ареста на&nbsp;счет
+              +care-table('care-inner, --account-balance')(style='min-width: 700px;')
+                thead
+                  tr
+                    each item in tableExamples.head
+                      th(width=item.width) !{item.text}
+                tbody
+                  tr
+                    td Со&nbsp;стороннего банка на&nbsp;карту была перечислена 1000. <br> Средства поступили на&nbsp;карту. <br> Но, при межбанковском переводе средства <b>на&nbsp;карточный</b> счет могут поступать до&nbsp;3&nbsp;рабочих дней, средства с&nbsp;карты на&nbsp;счет зачисляются в&nbsp;пределах указанного срока.
+                    td 1000
+                    td 0
+                  tr
+                    td Допустим эти средства вы&nbsp;сразу&nbsp;же сняли в&nbsp;нашем банкомате. <br> Внутрибанковская операция проходит в&nbsp;течение 1&nbsp;рабочего дня. <br> Операция о&nbsp;списании поступила сразу на&nbsp;счет.
+                    td 0
+                    td
+                      span.text-red -1000
+                  tr
+                    td В&nbsp;этот&nbsp;же день на&nbsp;счет накладывается арест на&nbsp;1000&nbsp;рублей.
+                    td 0
+                    td
+                      span.text-red -1000
+                  tr
+                    td Через 2&nbsp;дня поступает межбанковский перевод на&nbsp;счет (который был в&nbsp;первой строке). Средства были арестованы и&nbsp;направлены приставу.
+                    td
+                      span.text-red -1000
+                    td
+                      span.text-red -1000
+        // --------
+        .care-inner__info
+          .care-inner__text-inner
+            .care-inner__name Маршрутизатор программ лояльности по дебетовым картам
+            .care-inner__descr Чтобы узнать какая программа лояльности действует по&nbsp;вашей карте, вам нужно узнать свой тарифный план, он&nbsp;указан в&nbsp;названии карты (в&nbsp;договоре, а&nbsp;также в&nbsp;мобильном и&nbsp;интернет-банке, если вы&nbsp;не&nbsp;переименовывали карту).
+          .care-inner__content
+            +card-router(tableData)
+        // --------
+        .care-inner__info
+          .care-inner__name Информация по&nbsp;действующему кредиту (дата и&nbsp;сумма платежа)
+          .care-inner__content
+            .care-inner__section
+              +ui-h4('В&nbsp;Мобильном приложении или Интернет-банке:', '--bold, --mb')
+              +ui-p1('')
+                +ui-ol('')
+                  li Выберите действующий кредит
+                  li На&nbsp;странице кредита будут отражены:
+                    +ui-ul('', '--child')
+                      li дата следующего платежа по&nbsp;кредиту,
+                      li «актуальный платеж» для&nbsp;внесения.
+                p
+                  b Если сумма актуального платежа 0&nbsp;&mdash; платеж уплачен. В&nbsp;иных случаях необходимо внести указанную сумму.
+            .care-inner__section
+              +ui-h4('По&nbsp;телефону 8-800-775-88-88', '--bold, --mb')
+              +ui-p1('')
+                p При прослушивании голосового меню
+                +ui-ol('')
+                  li Нажмите цифру «3»
+                  li Сервис может запросить последние 4 цифры номера счета кредита.
+                p
+                  b Сервис может предоставить информацию:
+                +ui-ul('')
+                  li о дате и сумме платежа по кредиту;
+                  li о сумме для полного погашения;
+                  li о последних операциях по договору.
+        // --------
+        .care-inner__info
+          .care-inner__text-inner
+            .care-inner__name Реструктуризация (изменение условий кредитного договора)
+            .care-inner__descr АТБ предоставляет следующие услуги:
+          .care-inner__content
+            .care-inner__section.care-inner__section--bg
+              +ui-h4('Кредитные каникулы', '--bold, --mb')
+              +ui-p1('')
+                p Отсрочка по&nbsp;погашению основного долга, или суммы платежа (стоимость услуги зависит от&nbsp;вида отсрочки).
+              +ui-p1('')
+                p К&nbsp;оформлению доступны тарифные планы:
+                +ui-ul('')
+                  li «90 даром»,
+                  li «Ставка 19»,
+                  li «Универсальная карта»;
+              +ui-p1('')
+                p Для оформления кредитных каникул необходим документ подтверждающий ухудшение финансового положения:
+                +ui-ul('')
+                  li справка с&nbsp;места работы о&nbsp;нахождении в&nbsp;отпуске по&nbsp;уходу за&nbsp;ребенком&nbsp;/ свидетельство о&nbsp;рождении ребенка;
+                  li справка о&nbsp;снижении доходов по&nbsp;форме работодателя/ Справка о&nbsp;доходах и&nbsp;суммах налога физического лица, в&nbsp;которой отражено снижение доходов, справка о&nbsp;нахождении в&nbsp;отпуске без содержания&nbsp;&mdash; по&nbsp;Заёмщику либо его супругу;
+                  li копия уведомления о&nbsp;предстоящем сокращении, заверенная работодателем;
+                  li трудовая книжка (оригинал/электронная трудовая книжка); приказ об&nbsp;увольнении; справка из&nbsp;центра занятости о&nbsp;статусе безработного;
+                  li справка из&nbsp;медицинского учреждения, подтверждающая диагноз (эпикриз) /нахождение на&nbsp;длительном стационарном лечении/операции (в&nbsp;т.ч. ребенка, супруга), листок нетрудоспособности (больничный лист);
+                  li свидетельство о&nbsp;смерти супруга/ребенка;
+                  li документ/акт осмотра, подтверждающий возникновение чрезвычайной ситуации (полного или частичного затопления/подтопления квартиры/дома, частичного или полного обрушения дома/квартиры не&nbsp;пригодного для проживания, пожара, возникшего в&nbsp;квартире/доме) по&nbsp;месту прописки Заёмщика, либо по&nbsp;недвижимости, принадлежащей Заёмщику на&nbsp;праве собственности. Оформить заявку на&nbsp;предоставления кредитных каникул вы&nbsp;можете заполнить форму обратной связи и&nbsp;прикрепить документы.
+            .care-inner__section.care-inner__section--bg
+              +ui-h4('Пролонгация', '--bold, --mb')
+              +ui-p1('')
+                p Пролонгация кредитного договора (платная услуга).
+      when 'documents-tariffs'
+        +ui-button('Назад к разделам', 'care-inner, --link-prev').text-orange(href='#')
+      when 'loans'
+        +ui-button('Назад к&nbsp;вопросам', 'care-inner, --link-prev').text-orange(href='#')
+        .care-inner__info
+          .care-inner__name Регистрация заявок на частичное или полное погашение кредита
+          .care-inner__content
+            .care-inner__section
+              +ui-h4('Частичное досрочное погашение можно:', '--bold, --mb')
+              +care-table('care-inner')(style='min-width: 470px;')
+                thead
+                  tr
+                    each item in tableLoans.head
+                      th(width=item.width) !{item.text}
+                tbody
+                  tr
+                    td С сокращением срока
+                    td
+                      +care-table__plus
+                    td
+                      +care-table__minus
+                  tr
+                    td С уменьшением платежа (платно)
+                    td
+                      +care-table__minus
+                    td
+                      +care-table__plus
+            .care-inner__section
+              +ui-h4('Полное погашение кредита:', '--bold, --mb')
+              +ui-p1('Онлайн и в отделении банка')
+    block

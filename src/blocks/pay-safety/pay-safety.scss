@@ -1,0 +1,45 @@
+.pay-safety {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  @include media-laptop {
+    grid-template-columns: 1fr;
+  }
+  @include media-tablet {
+    gap: 20px;
+  }
+  &__item {
+    padding: 35px 30px 40px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 30px 0 rgb(135 151 155 / 0.15);
+    @include media-tablet {
+      padding: 20px 20px 30px;
+    }
+  }
+  &__head {
+    margin-bottom: 10px;
+    @include media-laptop {
+      position: relative;
+      margin-bottom: 8px;
+      padding-top: 40px;
+      padding-right: 105px;
+    }
+  }
+  &__img {
+    width: 134px;
+    margin-bottom: 10px;
+    @include media-laptop {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 90px;
+      margin-bottom: 0;
+    }
+  }
+}
+.bvi-body {
+  .pay-safety {
+    grid-template-columns: 1fr;
+  }
+}

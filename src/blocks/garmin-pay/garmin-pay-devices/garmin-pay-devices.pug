@@ -1,0 +1,43 @@
+mixin garmin-pay-devices(mods)
+  -
+    const baseName = 'garmin-pay-devices'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const garminDevicesItem = [
+      {
+        img: 'img/device1.png',
+        txt1: 'Garmin Vivoactive® 3',
+        txt2: 'Garmin Vivoactive® 3 Music '
+      },
+      {
+        img: 'img/device2.png',
+        txt1: 'Garmin Forerunner® 645 ',
+        txt2: 'Garmin Forerunner® 645 Music '
+      },
+      {
+        img: 'img/device3.png',
+        txt1: 'Garmin Fenix® 5 Plus ',
+        txt2: 'Garmin Fenix® 5S Plus ',
+        txt3: 'Garmin Fenix® 5X Plus '
+      },
+    ]
+
+  .garmin-pay-devices(class=allMods)&attributes(attributes)
+    each item in garminDevicesItem
+      .garmin-pay-devices__item
+        .garmin-pay-devices__img
+          img(src=item.img, alt='')
+        ul.ui-ul.garmin-pay-devices__ui-ul
+          li !{item.txt1} 
+          li !{item.txt2}
+          if item.txt3
+            li !{item.txt3}
+    block

@@ -1,0 +1,208 @@
+mixin multi-insuranse-tabs(mods)
+  -
+    const baseName = 'multi-insuranse-tabs'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const multiInsuranseTabs = {
+      head: [
+        {
+          mod: 'premises',
+          name: 'Защита жилого помещения',
+        },
+        {
+          mod: 'liability',
+          name: 'Страхование гражданской ответственности',
+        },
+        {
+          mod: 'cards',
+          name: 'Страхование банковских&nbsp;карт',
+        },
+        {
+          mod: 'personal',
+          name: 'Страхование личных&nbsp;вещей',
+        },
+      ]
+    }
+
+  -
+    const listTab_1 = [
+      {
+        title: 'Внутренняя отделка:',
+        list: [
+          { text: 'дверные и оконные блоки' },
+          { text: 'легкие внутренние перегородки' },
+          { text: 'слой отделочных материалов' },
+          { text: 'сантехническое и инженерное оборудование' },
+          { text: 'электропроводка, электрические счетчики' },
+          { text: 'электроустановочные и иные изделия' },
+        ],
+      },
+      {
+        title: 'Движимое имущество:',
+        list: [
+          { text: 'мебель (встроенная, корпусная)' },
+          { text: 'бытовая техника, вычислительная техника' },
+          { text: 'оргтехника, периферийные устройства' },
+          { text: 'телевизоры, радио-, аудио-, видеотехника и т.д.' },
+          { text: 'одежда, обувь, спортивно-туристический инвентарь' },
+          { text: 'постельные принадлежности, предметы интерьера, личные вещи' },
+        ],
+      },
+      {
+        title: 'Покрываемые страховые риски:',
+        list: [
+          { text: 'Пожар, удар молнии, взрыв бытового газа' },
+          { text: 'Стихийные бедствия' },
+          { text: 'Падение на застрахованное имущество летающих объектови/или их обломков, деревьеви/или их частей, линий электропередач' },
+          { text: 'Наезд транспортного средства' },
+          { text: 'Противоправные действия третьих лиц (кража со взломом, разбой, грабеж, умышленное повреждение или уничтожение имущества третьими лицами)' },
+        ],
+      },
+      {
+        title: 'Особенности:',
+        list: [
+          { text: 'По полису может быть застрахована одна квартира или одно жилое строение на территории РФ' },
+          { text: 'Застрахованным может быть как собственная, так и арендованная недвижимость (необходимо иметь регистрацию по адресу жилого помещения)' },
+          { text: 'Полис действует 24 часа в сутки' },
+        ],
+      },
+    ]
+
+  -
+    const listTab_2 = [
+      { text: 'дверные и оконные блоки' },
+      { text: 'легкие внутренние перегородки' },
+      { text: 'слой отделочных материалов' },
+      { text: 'сантехническое и инженерное оборудование' },
+      { text: 'электропроводка, электрические счетчики' },
+      { text: 'электроустановочные и иные изделия' },
+    ]
+
+  -
+    const listTab_3 = [
+      { text: 'Несанкционированное снятие денежных средств 3-ми лицами со счета Держателя Банковской карты.' },
+      { text: 'Утрата Банковской карты. (кража, грабеж, разбой), случайных механических, термических повреждений, неисправной работы банкомата.' },
+      { text: 'Хищение у Держателя Банковской карты наличных денежных средств, полученных в банкомате, путем разбойного нападения или грабежа не позднее 2 часов после снятия.' },
+    ]
+
+  -
+    const tableTab_4 = {
+      head: {
+        name: 'Наименование группы',
+        val: {
+          title: 'Лимит страховой суммы по страхованию личных вещей, руб. *',
+          tr: [
+            'Вариант 1',
+            'Вариант 2',
+            'Вариант 3',
+            'Вариант 4',
+            'Вариант 5',
+            'Вариант 6',
+          ],
+        },
+      },
+      main: [
+        {
+          name: 'Паспорт Страхователя, водительское удостоверение, регистрационные документы транспортного средства, принадлежащего Страхователю**',
+          tr: [
+            '1 500',
+            '2 500',
+            '5 000',
+            '7 500',
+            '10 000',
+          ],
+        },
+        {
+          name: 'Ключи от квартиры / жилогостроения или автомобиля***',
+          tr: [
+            '1 500',
+            '2 500',
+            '5 000',
+            '7 500',
+            '10 000',
+          ],
+        },
+        {
+          name: 'Мобильный телефон / смартфон, гарнитура и аксессуары к нему, портативная фото- и видеотехника (фотоаппарат с аксессуарами, видеокамера)',
+          tr: [
+            '6 000',
+            '10 000',
+            '20 000',
+            '25 000',
+            '25 000',
+          ],
+        },
+        {
+          name: 'Сумки, портфели, портпледы, папки, портмоне, кошелек, косметичка, ключница, визитница и т.д.',
+          tr: [
+            '6 000',
+            '15 000',
+            '20 000',
+            '25 000',
+            '25 000',
+          ],
+        },
+      ]
+    }
+
+  .multi-insuranse-tabs(class=allMods)&attributes(attributes)
+    .multi-insuranse-tabs__head
+      each item, index in multiInsuranseTabs.head
+        .multi-insuranse-tabs__head-item(class=`multi-insuranse-tabs__head-item--${item.mod}` class=index===0 ? 'multi-insuranse-tabs__head-item--active ' : '') !{item.name}
+    .multi-insuranse-tabs__main
+      .multi-insuranse-tabs__main-item.multi-insuranse-tabs__main-item--active(class=`multi-insuranse-tabs__main-item--${multiInsuranseTabs.head[0].mod}`)
+        .multi-insuranse-tabs__main-item-btn !{multiInsuranseTabs.head[0].name}
+        .multi-insuranse-tabs__main-item-content
+          .multi-insuranse-tabs__list
+            each item in listTab_1
+              .multi-insuranse-tabs__list-item
+                .multi-insuranse-tabs__list-title !{item.title}
+                .multi-insuranse-tabs__list-main
+                  +ui-p1('', '--light')
+                    +ui-ul(item.list)
+      .multi-insuranse-tabs__main-item(class=`multi-insuranse-tabs__main-item--${multiInsuranseTabs.head[1].mod}`)
+        .multi-insuranse-tabs__main-item-btn !{multiInsuranseTabs.head[1].name}
+        .multi-insuranse-tabs__main-item-content
+          .multi-insuranse-tabs__title Застрахована гражданская ответственность Страхователя, а так же членов семьи, проживающих со Страхователем при эксплуатации квартиры на случаи:
+          +ui-p1('', '--light')
+            +ui-ul(listTab_2)
+      .multi-insuranse-tabs__main-item(class=`multi-insuranse-tabs__main-item--${multiInsuranseTabs.head[2].mod}`)
+        .multi-insuranse-tabs__main-item-btn !{multiInsuranseTabs.head[2].name}
+        .multi-insuranse-tabs__main-item-content
+          +ui-p1('', '--light')
+            +ui-ul(listTab_3)
+      .multi-insuranse-tabs__main-item(class=`multi-insuranse-tabs__main-item--${multiInsuranseTabs.head[3].mod}`)
+        .multi-insuranse-tabs__main-item-btn !{multiInsuranseTabs.head[3].name}
+        .multi-insuranse-tabs__main-item-content
+          .multi-insuranse-tabs__table-deskt
+            .multi-insuranse-tabs__table
+              .multi-insuranse-tabs__table-head
+                .multi-insuranse-tabs__table-head-name !{tableTab_4.head.name}
+                .multi-insuranse-tabs__table-head-val
+                  .multi-insuranse-tabs__table-head-val-title !{tableTab_4.head.val.title}
+                  .multi-insuranse-tabs__table-head-val-tr
+                    each td in tableTab_4.head.val.tr
+                      .multi-insuranse-tabs__table-head-val-td !{td}
+              .multi-insuranse-tabs__table-main
+                each row in tableTab_4.main
+                  .multi-insuranse-tabs__table-main-tr
+                    .multi-insuranse-tabs__table-main-tr-name !{row.name}
+                    each td in row.tr
+                      .multi-insuranse-tabs__table-main-tr-td !{td}
+            .multi-insuranse-tabs__table-footnote
+              | * Максимальный размер выплаты по имуществу, относящемуся к одной группе имущества, по каждому страховому случаю.
+              br
+              | ** Покрываются расходы на восстановление документов по действующим расценкам организаций, которыми данные документы были выданы, подтвержденные квитанциями об уплате.
+              br
+              | *** Покрываются расходы на замену замков, ключи к которым были утрачены, или изготовление дубликатов утраченных ключей, замена ключей от автомобиля и/или перекодировка замка автомобиля.
+          .multi-insuranse-tabs__table-mobile
+            +documents-item('Страхование личных вещей')(href='#')
+    block

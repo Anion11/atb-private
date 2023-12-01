@@ -1,0 +1,46 @@
+mixin card-terms(data, mods)
+  -
+    const baseName = 'card-terms'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-terms(class=allMods)&attributes(attributes)
+    if data.picture
+      .card-terms-picture
+        img(src=data.picture, alt='')
+    .card-terms-table(class=data.termsTableMods)
+      each item in data.termsTable
+        .card-terms-table-tr
+          .card-terms-table-td !{item.name}
+            if (item.nameTooltip)
+              +ui-tooltip(item.nameTooltip)
+          .card-terms-table-td !{item.descr}
+            if item.logos
+              .card-terms-table__logos
+                each logo in item.logos
+                  .card-terms-table__logo
+                    img(src=logo.icon, alt='')
+            if (item.descrTooltip)
+              +ui-tooltip(item.descrTooltip)
+    if data.termsList || data.termsPayment || data.support
+      .card-terms-txt
+        if data.termsList
+          +ui-p1('', '--light')
+            +ui-ul(data.termsList, 'card-terms')
+        if data.termsPayment
+          .card-terms-payment
+            each item in data.termsPayment
+              a.card-terms-payment-item(href='#' target='_blank')
+                img.bvi-not-hide(src=item.img alt='')
+        if data.support === true
+          .card-terms-support
+            .card-terms-support__phone
+              a(href='tel:8(800)7758889') 8 (800) 775-88-89
+            .card-terms-support__text поддержка клиентов по проекту
+    block

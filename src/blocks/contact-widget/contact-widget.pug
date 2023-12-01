@@ -1,0 +1,66 @@
+mixin contact-widget(mods)
+  -
+    const baseName = 'contact-widget'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const links = [
+      {
+        mod: '--orange',
+        icon: 'contact-widget--icon_tel',
+        text: 'Звонок',
+      },
+      {
+        mod: '--orange',
+        icon: 'contact-widget--icon_chat',
+        text: 'Сообщение',
+      },
+      {
+        mod: '--tg',
+        icon: 'contact-widget--icon_tg',
+        text: 'АТБ Telegram',
+      },
+      {
+        mod: '--wa',
+        icon: 'contact-widget--icon_wa',
+        text: 'АТБ WhatsApp',
+      },
+      {
+        mod: '--imess',
+        icon: 'contact-widget--icon_imess',
+        text: 'АТБ iMessage',
+      },
+    ]
+
+  .contact-widget(class=allMods)&attributes(attributes)
+    button.contact-widget__button.contact-widget__button--main
+      +icon('contact-widget--icon_chat')
+      +icon('contact-widget--icon_close')
+    ul.contact-widget__list
+      each item in links
+        .contact-widget__item
+          +contact-widget__button(item.icon, item.mod)(href='#')
+          .contact-widget__text !{item.text}
+    block
+
+mixin contact-widget__button(icon, mods)
+  -
+    const baseName = 'contact-widget__button'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  a.contact-widget__button(class=allMods)&attributes(attributes)
+    +icon(icon)
+    block

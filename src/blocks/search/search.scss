@@ -1,0 +1,226 @@
+.search {
+  &__filter {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    @include media-laptop {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__ui-input {
+    max-width: 630px;
+    @include media-laptop {
+      max-width: 100%;
+    }
+    input {
+      padding-right: 50px;
+    }
+  }
+  &__submit {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    background: transparent url('img/search-arrow.png') center/20px no-repeat;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+  }
+  &__settings {
+    @include media-laptop {
+      margin-left: auto;
+    }
+  }
+  &__dates {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 10px;
+    font: 16px/1.3 $font;
+  }
+  &__dates-btn {
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px dashed;
+    border-radius: 0;
+    color: $orange;
+    cursor: pointer;
+  }
+  &__period {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    z-index: 1;
+    width: 410px;
+    padding: 15px;
+    background: $grey30;
+    border: 1px solid $grey50;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -22px;
+      right: 30px;
+      display: block;
+      border: 11px solid transparent;
+      border-bottom: 11px solid $grey50;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: 31px;
+      display: block;
+      border: 10px solid transparent;
+      border-bottom: 10px solid $grey30;
+    }
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &__period-title {
+    margin-bottom: 5px;
+  }
+  &__range {
+    display: flex;
+    align-items: center;
+  }
+  &__ui-datepicker {
+    max-width: 150px;
+    margin-right: 16px;
+    flex-shrink: 0;
+    input {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    &:first-child {
+      &::before {
+        content: '—';
+        position: absolute;
+        top: 50%;
+        right: -8px;
+        transform: translate(50%, -50%);
+      }
+    }
+  }
+  &__ui-button {
+    flex-shrink: 0;
+    padding: 10px;
+  }
+  &__example {
+    margin-top: 5px;
+    font-size: 13px;
+    color: $grey60;
+  }
+  &__shortcuts {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__shortcut {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px dashed;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover {
+      border-bottom-style: solid;
+    }
+  }
+  &__ui-pagination {
+    margin-top: 10px;
+    justify-content: flex-end;
+    @include media-tablet {
+      justify-content: center;
+    }
+  }
+  &__results {
+    margin-top: 25px;
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+  }
+  &__result {
+    padding-bottom: 30px;
+    border-bottom: 1px solid $grey40;
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+  }
+  &__name {
+    font: 21px/1.3 $font;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &__preview {
+    margin-top: 10px;
+    font: 300 17px/1.3 $font;
+  }
+  &__breadcrumbs {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 5px;
+    align-items: center;
+    margin-top: 15px;
+    &-item {
+      font: 300 11px/1.3 $font;
+      text-transform: uppercase;
+      color: $grey60;
+      &:hover {
+        color: $darkBlue;
+      }
+      &:not(:last-child) {
+        &::after {
+          content: '/';
+          margin: 0 5px;
+        }
+      }
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+  &__notice {
+    &--no-result {
+      color: $green;
+    }
+  }
+  &__notice-section {
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+  }
+  &__notice-table {
+    td {
+      padding: 5px;
+    }
+    tr {
+      &:not(:first-child) {
+        td {
+          &:not(:last-child) {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

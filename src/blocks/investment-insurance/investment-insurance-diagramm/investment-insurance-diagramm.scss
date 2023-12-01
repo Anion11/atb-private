@@ -1,0 +1,515 @@
+.investment-insurance-diagramm {
+  text-align: center;
+  @include media-laptop {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  @include media-tablet {
+    max-width: 300px;
+  }
+  &__box {
+    position: relative;
+    display: inline-block;
+    width: 26%;
+    vertical-align: top;
+    background: transparent;
+    font: 400 18px/1.2 $font;
+    @include media-laptop {
+      display: block;
+      padding-right: 170px;
+      width: 100%;
+      height: 140px;
+    }
+    @include media-tablet {
+      height: auto;
+      margin-top: 30px;
+      padding: 0 15px 0 10px;
+    }
+    &::before {
+      position: absolute;
+      bottom: 178px;
+      left: 0;
+      width: 2px;
+      height: 100px;
+      content: '';
+      background: url('img/diagramm_vertical-line.png') no-repeat;
+      background-size: contain;
+      @include media-laptop {
+        top: 0;
+        left: 20px;
+        width: 330px;
+        height: 2px;
+        background: url('img/diagramm_horizontal-line.png') no-repeat;
+      }
+      @include media-tablet {
+        top: -30px;
+        left: 0;
+        width: 300px;
+      }
+    }
+    &:nth-last-child(1) {
+      padding-bottom: 30px;
+      padding-left: 30px;
+      background: #fff;
+      @include media-laptop {
+        height: 170px;
+        padding-bottom: 0;
+        padding-right: 170px;
+        padding-left: 0;
+      }
+      @include media-tablet {
+        height: 290px;
+        padding-right: 0;
+        padding-left: 15px;
+      }
+      &::before {
+        bottom: 245px;
+        left: 30px;
+        height: 150px;
+        @include media-laptop {
+          display: none;
+        }
+      }
+      .investment-insurance-diagramm {
+        &__top {
+          padding-top: 30px;
+          @include media-tablet {
+            padding-top: 30px;
+          }
+        }
+        &__bot {
+          @include media-tablet {
+            padding-top: 30px;
+          }
+        }
+        &__rectangle {
+          @include media-laptop {
+            margin-top: 30px;
+          }
+          @include media-tablet {
+            margin-top: 0;
+          }
+        }
+        &__box-title {
+          @include media-laptop {
+            top: 35px;
+          }
+          @include media-tablet {
+            top: 152px;
+            right: -42px;
+          }
+        }
+      }
+    }
+    &:nth-child(1) {
+      @include media-tablet {
+        margin-top: 0;
+      }
+      &::before {
+        @include media-tablet {
+          display: none;
+        }
+      }
+    }
+    &:nth-child(2) {
+      &::before {
+        height: 145px;
+      }
+      .investment-insurance-diagramm {
+        &__top {
+          padding-top: 75px;
+          @include media-laptop {
+            padding-top: 20px;
+          }
+          @include media-tablet {
+            margin-top: 0;
+            padding-top: 0;
+          }
+        }
+        &__box-title {
+          @include media-tablet {
+            top: 69px;
+          }
+        }
+      }
+    }
+    &-title {
+      margin-top: 20px;
+      font: 300 12px/1.5 $font;
+      color: #818181;
+      text-transform: uppercase;
+      text-align: left;
+      @include media-laptop {
+        position: absolute;
+        margin-top: 0;
+        top: 5px;
+        right: 23px;
+        width: 120px;
+      }
+      @include media-tablet {
+        top: 90px;
+        right: 2px;
+        font-size: 10px;
+      }
+    }
+  }
+  &__rectangle {
+    display: inline-block;
+    width: 40px;
+    height: 140px;
+    @include media-laptop {
+      position: relative;
+      display: block;
+      width: 160px;
+      height: 40px;
+      font-size: 0;
+    }
+    @include media-tablet {
+      width: 150px;
+    }
+  }
+  &__turquoise {
+    height: 100%;
+    background: #479098;
+    @include media-laptop {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+    &-blue {
+      height: 33%;
+      background: #38777f;
+      @include media-laptop {
+        position: absolute;
+        right: 0;
+        display: inline-block;
+        width: 33%;
+        height: 100%;
+      }
+    }
+  }
+  &__orange {
+    height: 33%;
+    background: $orange;
+    @include media-laptop {
+      display: inline-block;
+      width: 33%;
+      height: 100%;
+    }
+  }
+  &__title {
+    display: inline-block;
+    position: relative;
+    width: 75%;
+    height: 140px;
+    padding-left: 25px;
+    text-align: left;
+    font: 300 16px/1.2 $font;
+    @include media-laptop {
+      display: block;
+      width: 100%;
+      height: 140px;
+      padding-left: 0;
+    }
+    @include media-tablet {
+      height: 75px;
+      font-size: 15px;
+    }
+    &-top {
+      position: absolute;
+      top: 11px;
+      @include media-laptop {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+      }
+    }
+    &-bottom {
+      position: absolute;
+      bottom: 8px;
+      @include media-laptop {
+        position: absolute;
+        top: 11px;
+        bottom: auto;
+        display: inline-block;
+      }
+    }
+  }
+  &__top {
+    height: 220px;
+    padding-top: 125px;
+    padding-left: 10px;
+    text-align: left;
+    @include media-laptop {
+      float: left;
+      display: inline-block;
+      width: 275px;
+      height: auto;
+      padding-top: 10px;
+      padding-left: 20px;
+      vertical-align: top;
+      padding-right: 0;
+    }
+    @include media-tablet {
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+    ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+  }
+  &__bot {
+    text-align: left;
+    height: 140px;
+    @include media-laptop {
+      display: inline-block;
+      height: auto;
+    }
+    @include media-tablet {
+      width: 100%;
+      padding-top: 20px;
+    }
+    &--text1 {
+      .investment-insurance-diagramm {
+        &__rectangle {
+          position: relative;
+          &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 315px;
+            height: 1px;
+            background: url('img/diagramm_line-dashed.png') no-repeat;
+            background-size: cover;
+            @include media-laptop {
+              top: 0;
+              right: 0;
+              left: auto;
+              width: 1px;
+              height: 178px;
+              background: url('img/diagramm_line-dashed-vertical.png') no-repeat;
+              background-size: cover;
+            }
+            @include media-tablet {
+              top: 0;
+              right: 0;
+              left: auto;
+              z-index: 10;
+              width: 1px;
+              height: 132px;
+            }
+          }
+          &::after {
+            position: absolute;
+            content: '';
+            bottom: -4px;
+            left: 0;
+            width: 310px;
+            height: 11px;
+            background: url('img/diagramm_line-bot.png') no-repeat;
+            background-size: cover;
+            @include media-laptop {
+              top: 90px;
+              left: -5px;
+              width: 11px;
+              height: 49px;
+              background: url('img/diagramm_line_bot-vertical-t3.png') no-repeat;
+              background-size: contain;
+            }
+            @include media-tablet {
+              top: 97px;
+              left: 0;
+              z-index: 10;
+              width: 11px;
+              height: 42px;
+              background: url('img/diagramm_line_bot-vertical-t1.png') no-repeat;
+              background-size: contain;
+            }
+          }
+        }
+      }
+    }
+    &--text2 {
+      .investment-insurance-diagramm {
+        &__turquoise {
+          height: 67%;
+          @include media-laptop {
+            width: 67%;
+            height: 100%;
+          }
+        }
+        &__title {
+          &-top {
+            @include media-laptop {
+              width: 95px;
+            }
+          }
+          &-bottom {
+            @include media-laptop {
+              top: 11px;
+              left: 110px;
+              width: 130px;
+            }
+          }
+        }
+      }
+    }
+    &--text3 {
+      .investment-insurance-diagramm {
+        &__rectangle {
+          position: relative;
+          @include media-laptop {
+            position: relative;
+          }
+          &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: -315px;
+            width: 315px;
+            height: 1px;
+            background: url('img/diagramm_line-dashed.png') no-repeat;
+            background-size: cover;
+            @include media-laptop {
+              top: auto;
+              right: 0;
+              bottom: 0;
+              left: auto;
+              width: 1px;
+              height: 95px;
+              background: url('img/diagramm_line-dashed-vertical.png') no-repeat;
+              background-size: cover;
+            }
+            @include media-tablet {
+              top: -195px;
+              right: 5px;
+              bottom: auto;
+              width: 1px;
+              height: 50px;
+            }
+          }
+          &::after {
+            position: absolute;
+            content: '';
+            bottom: -4px;
+            left: -315px;
+            width: 305px;
+            height: 11px;
+            background: url('img/diagramm_line-bot.png') no-repeat;
+            background-size: cover;
+            @include media-laptop {
+              bottom: 45px;
+              left: -5px;
+              width: 11px;
+              height: 49px;
+              background: url('img/diagramm_line_bot-vertical-t3.png') no-repeat;
+              background-size: contain;
+            }
+            @include media-tablet {
+              top: -193px;
+              bottom: auto;
+              width: 11px;
+              height: 50px;
+            }
+          }
+        }
+        &__orange {
+          margin-top: -46px;
+          @include media-laptop {
+            position: absolute;
+            margin-top: 0;
+            margin-right: -52px;
+            right: 0;
+          }
+          @include media-tablet {
+            margin-right: -48px;
+          }
+        }
+        &__title {
+          &-top {
+            top: -35px;
+            @include media-laptop {
+              top: 11px;
+              left: 158px;
+            }
+          }
+          &-bottom {
+            @include media-laptop {
+              top: 11px;
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.bvi-body {
+  .investment-insurance-diagramm {
+    text-align: left;
+    &__box {
+      display: block;
+      width: auto;
+      margin-bottom: 30px;
+      &::before {
+        display: none;
+      }
+      &:nth-last-child(1) {
+        height: auto;
+        margin-bottom: 0;
+        padding: 0;
+        background: transparent;
+        .investment-insurance-diagramm {
+          &__top {
+            padding-top: 0;
+          }
+        }
+      }
+      &:nth-child(2) {
+        &::before {
+          height: 145px;
+        }
+        .investment-insurance-diagramm {
+          &__top {
+            padding-top: 0;
+          }
+        }
+      }
+      &-title {
+        position: static;
+        width: auto;
+      }
+    }
+    &__rectangle {
+      display: none;
+    }
+    &__turquoise {
+      display: none;
+    }
+    &__orange {
+      display: none;
+    }
+    &__title {
+      width: auto;
+      height: auto;
+      padding-left: 0;
+      &-top {
+        position: static;
+      }
+      &-bottom {
+        position: static;
+      }
+    }
+    &__top {
+      width: auto;
+      height: auto;
+      padding: 0;
+    }
+    &__bot {
+      height: auto;
+    }
+  }
+}

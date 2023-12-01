@@ -1,0 +1,48 @@
+mixin how-get(title, howGetItems, btn, mods)
+  -
+    const baseName = 'how-get'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .how-get(class=allMods)&attributes(attributes)
+    if title
+      +ui-h2(title, 'how-get')
+    .how-get__wrapper
+      each item, index in howGetItems
+        .how-get__box(class="step"+(index+1))
+          .how-get__box-head
+            if (!mods || !mods.includes('--static'))
+              .how-get__box-img
+                svg.how-get__progress(width='125' height='125' viewbox='0 0 125 125')
+                  circle(cx='62' cy='62' r='60' fill='none' stroke='#e0e0e0' stroke-width='4')
+                  circle.how-get__progress-circle(cx='62' cy='62' r='60' fill='none' stroke='#fe5000' stroke-width='4')
+                .how-get__box-icon
+                  img(src=item.icon alt='')
+            .how-get__box-decor
+              .how-get__box-count=(index+1)
+              if !(index === howGetItems.length - 1)
+                .how-get__box-line
+          .how-get__box-text
+            .how-get__box-title !{item.title}
+            if item.descr
+              .how-get__box-descr !{item.descr}
+                if item.descrTooltips
+                  each itemTooltip in item.descrTooltips
+                    +ui-tooltip(itemTooltip.text)
+                if item.descrNowrap
+                  =' '
+                  span.text-nowrap !{item.descrNowrap}
+                    if item.descrTooltip
+                      +ui-tooltip(item.descrTooltip)
+            if item.p4
+              +ui-p4(item.p4, '--light').text-grey90
+    if btn
+      .how-get__btn
+        +ui-button(btn)(href='#')
+    block

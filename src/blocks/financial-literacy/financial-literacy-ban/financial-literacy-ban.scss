@@ -1,0 +1,57 @@
+.financial-literacy-ban {
+  position: relative;
+  padding: 30px 290px 30px 40px;
+  background: $grey20;
+  border-radius: 8px;
+  @include media-laptop {
+    padding: 20px 150px 20px 30px;
+  }
+  @include media-tablet {
+    padding: 20px 20px 25px;
+    text-align: center;
+  }
+  &__img {
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    transform: translateY(-50%);
+    max-width: 150px;
+    @include media-laptop {
+      max-width: 100px;
+      right: 20px;
+    }
+    @include media-tablet {
+      position: relative;
+      top: unset;
+      right: unset;
+      transform: unset;
+      max-width: 65px;
+      margin: 0 auto 5px;
+    }
+  }
+  &__ui-h4 {
+    max-width: 375px;
+    &:not(:last-child) {
+      margin-bottom: 15px;
+      @include media-tablet {
+        margin: 0 auto 20px;
+      }
+    }
+  }
+  &__btns {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    @include media-laptop {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    @include media-tablet {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+}

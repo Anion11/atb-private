@@ -1,0 +1,30 @@
+mixin tags(tagsItems, mods, type)
+  -
+    const baseName = 'tags'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  case type
+    when 'checkboxes'
+      form.tags.tags--checkboxes(class=allMods)&attributes(attributes)
+        .tags__wrapper
+          each item in tagsItems
+            -let randomId = Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 7);
+            .tags__option
+              input(id=randomId name=randomId type='checkbox')
+              label.tags__item(for=randomId class=item.mods) !{item.text}
+        button.tags__item.tags__item--reset(type='reset' disabled) Сбросить
+          +icon('icon_cross')
+        block
+    default
+      .tags(class=allMods)&attributes(attributes)
+        .tags__wrapper
+          each item in tagsItems
+            a.tags__item(href='#') !{item.text}
+        block

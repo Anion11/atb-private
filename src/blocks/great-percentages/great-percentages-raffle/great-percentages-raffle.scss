@@ -1,0 +1,129 @@
+.great-percentages-raffle {
+  &__win {
+    display: flex;
+    padding: 17px;
+    background: #fff3ee;
+    border-radius: 8px;
+    color: $orange;
+    font: 18px/1.4 $font;
+    text-transform: uppercase;
+    @include media-tablet {
+      font-size: 12px;
+    }
+    span {
+      display: flex;
+      margin: auto;
+      &::before {
+        content: '';
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        margin-right: 6px;
+        background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.0009 0L13.3452 7.215H20.9315L14.7941 11.6741L17.1383 18.8891L11.0009 14.43L4.86346 18.8891L7.20776 11.6741L1.07031 7.215H8.65661L11.0009 0ZM11.0009 3.88328L9.52846 8.415H4.76353L8.61844 11.2158L7.146 15.7475L11.0009 12.9467L14.8558 15.7475L13.3834 11.2158L17.2383 8.415H12.4733L11.0009 3.88328Z' fill='%23FE5000'/%3E%3C/svg%3E%0A");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+    &--tt-no {
+      text-transform: unset;
+      @include media-tablet {
+        font-size: 16px;
+      }
+    }
+  }
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: start;
+    gap: 25px;
+    margin-top: 25px;
+    @include media-laptop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include media-tablet {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-top: 15px;
+    }
+  }
+  &__item {
+    padding: 25px 30px 40px;
+    box-shadow: $lightBigShadow;
+    border-radius: 8px;
+    @include media-laptop {
+      padding: 20px 20px 45px;
+    }
+    &--winners {
+      padding-bottom: 30px;
+      @include media-tablet {
+        padding-bottom: 25px;
+      }
+    }
+  }
+  &__range {
+    margin-bottom: 20px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid $grey40;
+    font: 16px/1.6 $font;
+    color: $grey90;
+    @include media-tablet {
+      padding-bottom: 20px;
+    }
+  }
+  &__txt {
+    font: 20px/1.2 $font;
+    @include media-tablet {
+      display: inline;
+      font-size: 18px;
+    }
+    &--xl {
+      font-weight: inherit;
+      font-size: 28px;
+      @include media-tablet {
+        font-size: 24px;
+      }
+    }
+  }
+  &__winners {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+    &--more {
+      display: none;
+      animation: fade-in 0.3s;
+    }
+  }
+  &__winner {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+  &__name {
+    font: 18px/1.4 $font;
+  }
+  &__city {
+    font: 14px/1.4 $font;
+    color: $grey60;
+  }
+  &__more {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font: 18px/1.4 $font;
+    color: $orange;
+    cursor: pointer;
+  }
+}
+.bvi-body {
+  .great-percentages-raffle {
+    &__wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 45px;
+    }
+    &__item {
+      width: auto;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+mixin ingots(mods)
+  -
+    const baseName = 'ingots'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .ingots(class=allMods)&attributes(attributes)
+    -for(let i = 0; i < 7; i++)
+      a.ingots__item(href='#')
+        .ingots__img
+          img(src='img/ingot.jpg', alt='')
+        .ingots__info
+          .ingots__head
+            .ingots__name Мерный слиток 100 г.
+            .ingots__price 6 200,00 ₽
+            .ingots__fn Мерный слиток изготовлен на&nbsp;Российском аффинажном заводе в&nbsp;соответствии с&nbsp;действующими в&nbsp;Российской Федерации государственными и&nbsp;отраслевыми стандартами.
+          .ingots__details
+            .ingots__line
+              .ingots__descr.ingots__descr--name Категория
+              .ingots__descr Мерный слиток
+            .ingots__line
+              .ingots__descr.ingots__descr--name Масса металла, г.
+              .ingots__descr 100 г.
+            .ingots__line
+              .ingots__descr.ingots__descr--name Металл
+              .ingots__descr Золото
+            .ingots__line
+              .ingots__descr.ingots__descr--name Проба
+              .ingots__descr 999
+          .ingots__address Адрес: г. Москва, пер. Вознесенский, д. 11, стр. 1
+    block

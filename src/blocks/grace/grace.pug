@@ -1,0 +1,91 @@
+mixin grace(mods)
+  -
+    const baseName = 'grace'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const graceOperations = [
+      { icon: 'grace__operation1.png', text: 'Оплата покупок' },
+      { icon: 'grace__operation2.png', text: 'Перевести деньги на&nbsp;подарок' },
+      { icon: 'grace__operation3.png', text: 'Купить билеты' },
+      { icon: 'grace__operation4.png', text: 'Купить игрушки' },
+      { icon: 'grace__operation1.png', text: 'Снять наличные' },
+    ]
+
+  -
+    const gracePay =[
+      { icon: 'grace__pay1.svg', title: 'Ежемесячный платеж&nbsp;3%', descr: 'от задолженности', date: 'до 25 числа'},
+      { icon: 'grace__pay2.svg', title: 'Полное погашение задолженности', descr: 'не позднее последнего дня льготного периода', },
+    ]
+
+  .grace(class=allMods)&attributes(attributes)
+    .grace__wrapper
+      .grace__head
+        +ui-h4('Льготный период на&nbsp;покупки, снятие наличных и&nbsp;переводы', 'grace, --bold')
+        +ui-p2('длительность льготного периода определяется условиями заключенного договора')
+      .grace__scheme
+        .grace__braces
+        .grace__mob-bg.grace__mob-bg--1
+        .grace__mob-bg.grace__mob-bg--2
+        .grace__mob-range.grace__mob-range--1
+        .grace__mob-range.grace__mob-range--2
+        .grace__mob-separate
+        .grace__period.grace__period--1 месяц открытия льготного периода
+        .grace__period.grace__period--2 месяцы, следующие за&nbsp;месяцем открытия льготного периода
+        .grace__start
+          .grace__start-icon
+            img(src='img/grace-start-icon.svg', alt='')
+          .grace__start-text Первая расходная операция открывает льготный период
+        each item, index in graceOperations
+          .grace__operation(class= `grace__operation--${index+1}`)
+            .grace__operation-line
+            .grace__operation-icon
+              img(src=`img/${item.icon}`, alt='')
+            .grace__operation-text !{item.text}
+        each item, index in gracePay
+          .grace__pay(class= `grace__pay--${index+1}`)
+            .grace__pay-line
+            .grace__pay-icon
+              img(src=`img/${item.icon}`, alt='')
+            .grace__pay-content
+              .grace__pay-title !{item.title}
+              .grace__pay-descr !{item.descr}
+              if item.date
+                .grace__pay-date !{item.date}
+    .grace-aside
+      .grace-aside__box
+        .grace-aside__title Дата окончания льготного периода
+        .grace-aside__text
+          +ui-p3('', '--light')
+            +ui-ul('', '--li-mb10')
+              li в мобильном приложении
+                =' '
+                a.text-orange.text-nowrap(href='#') АТБ банк:
+                br
+                | в&nbsp;блоке «Информация»
+                br
+                | в&nbsp;разделе «О&nbsp;кредитной карте»
+              li по телефону
+                =' '
+                a.text-orange.text-nowrap(href='tel: 88007758888') 8 800 775-88-88
+      .grace-aside__box
+        .grace-aside__title Выполните условия льготного периода
+        .grace-aside__text
+          +ui-p3('', '--light')
+            | Если не&nbsp;успеете полностью погасить задолженности до&nbsp;последнего дня льготного периода, то&nbsp;проценты за&nbsp;весь период будут начислены в&nbsp;следующем
+            =' '
+            span.text-nowrap ОМЕП
+              +ui-tooltip('обязательный минимальный ежемесячный платеж')
+      .grace-aside__box
+        .grace-aside__title Льготный период
+        .grace-aside__text
+          +ui-p3('', '--light')
+            | Новый льготный период начнется с&nbsp;первой расходной операции по&nbsp;пкарте после полного погашения задолженности
+    block

@@ -1,0 +1,35 @@
+.smart-medicine-doctors {
+  &__title {
+    margin-bottom: 20px;
+    font: 700 22px/1.2 $font;
+    @include media-laptop {
+      font-size: 20px;
+    }
+    @include media-tablet {
+      font-size: 18px;
+    }
+  }
+  &__ui-ul {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    justify-content: space-between;
+    column-gap: 20px;
+    font-size: 18px;
+    @include media-laptop {
+      grid-template-columns: repeat(3, auto);
+    }
+    @include media-tablet {
+      grid-template-columns: repeat(2, auto);
+    }
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}
+.bvi-body {
+  .smart-medicine-doctors {
+    &__ui-ul {
+      grid-template-columns: 1fr;
+    }
+  }
+}

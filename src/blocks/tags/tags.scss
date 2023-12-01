@@ -1,0 +1,119 @@
+.tags {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 11px;
+    background: transparent;
+    border: 1px solid #dfdfdf;
+    border-radius: 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $grey60;
+    transition: 0.3s;
+    animation: fade-in 0.3s;
+    cursor: pointer;
+    @media (any-hover: hover) {
+      &:hover {
+        color: $orange;
+        border-color: $orange;
+        text-decoration: none;
+      }
+    }
+    &[disabled] {
+      pointer-events: none;
+    }
+    &--more {
+      display: none;
+      @include media-laptop {
+        display: inline-flex;
+      }
+      .svg-icon {
+        width: 24px;
+        height: 24px;
+        transition: 0.3s;
+      }
+      &.tags__item--active {
+        .svg-icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+  &--short {
+    .tags__item,
+    .tags__option {
+      &:nth-child(n+14):not(.tags__item--more) {
+        @include media-laptop {
+          display: none;
+        }
+      }
+    }
+  }
+  &--checkboxes {
+    text-align: center;
+    .tags {
+      &__wrapper {
+        justify-content: center;
+        @include media-tablet {
+          justify-content: flex-start;
+        }
+      }
+      &__option {
+        position: relative;
+        input {
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          pointer-events: none;
+          &:checked + .tags__item {
+            color: $orange;
+            border-color: $orange;
+          }
+        }
+      }
+      &__item {
+        padding: 6px 15px;
+        @include media-tablet {
+          padding: 4px 12px;
+        }
+        &:hover {
+          color: $grey80;
+          border-color: $grey50;
+        }
+        &--reset {
+          margin-top: 40px;
+          color: $grey90;
+          border-color: $grey60;
+          @include media-tablet {
+            margin-top: 25px;
+          }
+          @media (any-hover: hover) {
+            &:hover {
+              color: $orange;
+              border-color: $orange;
+            }
+          }
+          &:active {
+            color: $orange;
+            border-color: $orange;
+          }
+          &[disabled] {
+            border-color: #dfdfdf;
+            color: $grey60;
+          }
+          .svg-icon {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+}

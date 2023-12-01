@@ -1,0 +1,83 @@
+.antivirus-actions {
+  &-title {
+    margin-bottom: 40px;
+    font: 400 32px/1.5 $font;
+    text-align: center;
+    @include media-laptop {
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    @include media-tablet {
+      font-size: 24px;
+    }
+  }
+  &-steps {
+    &-item {
+      display: flex;
+      margin-bottom: 40px;
+      font-size: 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &-num {
+        display: inline-block;
+        vertical-align: top;
+        width: 50px;
+        height: 50px;
+        margin-right: 25px;
+        border: 1px solid $blue;
+        font: 400 24px/48px $font;
+        text-align: center;
+        color: $blue;
+        border-radius: 50%;
+        @include media-tablet {
+          width: 40px;
+          height: 40px;
+          margin-right: 15px;
+          font-size: 20px;
+          line-height: 38px;
+        }
+      }
+      &-txt {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% - 75px);
+        @include media-tablet {
+          width: calc(100% - 55px);
+        }
+        &-head {
+          font: 700 18px/1.5 $font;
+          @include media-tablet {
+            font-size: 16px;
+          }
+        }
+        &-main {
+          margin-top: 15px;
+          font: 400 16px/1.5 $font;
+          @include media-tablet {
+            margin-top: 10px;
+            font-size: 14px;
+          }
+          ul {
+            margin: 0;
+            padding: 0 0 0 20px;
+            list-style-type: disc;
+            li {
+              margin-bottom: 10px;
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &-btns {
+    margin-top: 40px;
+    text-align: center;
+    @include media-tablet {
+      margin-top: 30px;
+    }
+  }
+}

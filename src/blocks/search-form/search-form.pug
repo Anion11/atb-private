@@ -1,0 +1,18 @@
+mixin search-form(mods)
+  -
+    const baseName = 'search-form'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  form.search-form(class=allMods)&attributes(attributes)
+    +ui-input('search-form', '', 'search-form, --input-l, --input-light, --grey')(placeholder='Что вы ищете?')
+    .search-form__controls
+      button.search-form__button.search-form__button--submit
+        +icon('icon_search')
+    block

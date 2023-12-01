@@ -1,0 +1,51 @@
+.confirm-income {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  @include media-laptop {
+    grid-template-columns: 1fr;
+  }
+  @include media-tablet {
+    gap: 15px;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 30px;
+    background: #eef0f5;
+    border-radius: 8px;
+    @include media-tablet {
+      padding: 30px 20px 25px;
+    }
+  }
+  &__ui {
+    &-h4 {
+      margin-bottom: 10px;
+    }
+    &-p2 {
+      margin-bottom: 10px;
+      p {
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+  &__imgs {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: auto;
+  }
+  &__logo {
+    width: 64px;
+    @include media-tablet {
+      width: 60px;
+    }
+  }
+}
+.bvi-body {
+  .confirm-income {
+    grid-template-columns: 1fr;
+  }
+}

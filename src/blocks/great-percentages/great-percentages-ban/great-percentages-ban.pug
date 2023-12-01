@@ -1,0 +1,35 @@
+mixin great-percentages-ban(data, mods)
+  -
+    const baseName = 'great-percentages-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .great-percentages-ban(class=allMods)&attributes(attributes)
+    .great-percentages-ban__text
+      if data.h3
+        h3.great-percentages-ban__h3 !{data.h3}
+      if data.h4Ui
+        +ui-h4(data.h4Ui, 'great-percentages-ban, --bold')
+      if data.h4
+        h4.great-percentages-ban__title !{data.h4}
+      if data.desc
+        .great-percentages-ban__descr !{data.descr}
+      if data.p1Ui
+        +ui-p1(data.p1Ui, 'great-percentages-ban, --p-mb-xs')
+      if data.button || data.buttonText || data.fn
+        .great-percentages-ban__foot
+          if data.button
+            +ui-button(data.button, 'great-percentages-ban, --empty')(href='#')
+          if data.buttonText
+            +ui-button(data.buttonText, 'great-percentages-ban, --link-next')(href=data.buttonTextHref)
+          if data.fn
+            .great-percentages-ban__fn !{data.fn}
+    .great-percentages-ban__img
+      img(src=data.img, alt)
+    block

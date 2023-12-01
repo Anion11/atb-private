@@ -1,0 +1,30 @@
+mixin mortgage-slider(mortgageSliderItems, mods)
+  -
+    const baseName = 'mortgage-slider'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .mortgage-slider(class=allMods)&attributes(attributes)
+    .swiper
+      .swiper-wrapper
+        each item in mortgageSliderItems
+          a.mortgage-slider__item.swiper-slide(href='#')
+            .mortgage-slider__icon
+              img(src=item.icon, alt='')
+            .mortgage-slider__name !{item.name}
+            .mortgage-slider__foot
+              .mortgage-slider__features
+                each itemFeature in item.feature
+                  .mortgage-slider__feature
+                    .mortgage-slider__subtitle !{itemFeature.subtitle}
+                    .mortgage-slider__value !{itemFeature.value}
+              .mortgage-slider__btn
+                +ui-button('Рассчитать ипотеку', 'mortgage-slider, --empty')
+      +ui-swiper-pagination('mortgage-slider')
+    block

@@ -1,0 +1,172 @@
+.calc-credit {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    @include media-laptop {
+      display: block;
+    }
+  }
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    @include media-tablet {
+      flex-direction: column;
+    }
+  }
+  &__choises {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 30px;
+  }
+  &__left {
+    width: 570px;
+    margin-right: 40px;
+    @include media-laptop {
+      width: auto;
+      padding: 0 25px;
+      margin-right: 0;
+      margin-bottom: 40px;
+    }
+    @include media-tablet {
+      padding: 0 15px;
+    }
+  }
+  &__right {
+    width: 520px;
+    @include media-laptop {
+      width: auto;
+    }
+  }
+  &__line {
+    margin-top: 40px;
+    @include media-tablet {
+      margin-top: 30px;
+    }
+    &.line_option {
+      margin-top: 20px;
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  &__result {
+    padding: 40px 40px 40px 50px;
+    background: #fff;
+    box-shadow: 10px 15px 60px rgb(0 0 0 / 0.08);
+    border-radius: 7px;
+    @include media-laptop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @include media-tablet {
+      padding: 20px;
+    }
+    &-main {
+      &:not(:last-child) {
+        margin-bottom: 45px;
+        @include media-tablet {
+          margin-bottom: 25px;
+        }
+      }
+    }
+    &-line {
+      display: flex;
+      margin-bottom: 35px;
+      @include media-tablet {
+        margin-bottom: 30px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &-box {
+      &:nth-child(1) {
+        width: 190px;
+        @include media-tablet {
+          width: 144px;
+        }
+      }
+    }
+    &-name {
+      margin-bottom: 20px;
+      font: 300 12px/1 $font;
+      text-transform: uppercase;
+      color: $grey80;
+    }
+    &-num {
+      font: 300 24px/1 $font;
+      color: $black;
+      @include media-tablet {
+        font-size: 18px;
+      }
+      &--big {
+        font-size: 48px;
+        @include media-tablet {
+          font-size: 40px;
+        }
+      }
+      &--accent {
+        font-weight: 400;
+        color: $orange;
+      }
+    }
+    &-descr {
+      margin-top: 5px;
+      font-size: 12px;
+    }
+    &-btns {
+      display: flex;
+      align-items: center;
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+      @include media-tablet {
+        flex-direction: column;
+      }
+      .ui-button--link-next {
+        margin-left: 30px;
+        @include media-tablet {
+          margin: 20px 0 0;
+        }
+      }
+    }
+    &-ps {
+      margin-bottom: 15px;
+      font: 300 12px/1.4 $font;
+      color: $grey60;
+      @include media-laptop {
+        text-align: center;
+      }
+    }
+    &-foot {
+      margin-top: 20px;
+      font: 300 12px/1.4 $font;
+      @include media-tablet {
+        margin-top: 13px;
+        text-align: center;
+      }
+    }
+  }
+}
+.bvi-active {
+  .bvi-body {
+    .calc-credit__result {
+      &-line {
+        display: block;
+      }
+      &-box {
+        &:nth-child(1) {
+          width: auto;
+          margin: 0 0 30px;
+        }
+      }
+      &-btns {
+        flex-direction: column;
+        gap: 25px;
+      }
+    }
+  }
+}

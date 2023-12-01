@@ -1,0 +1,155 @@
+.care-inner {
+  &__head {
+    margin-bottom: 40px;
+    text-align: center;
+    @include media-laptop {
+      margin-bottom: 30px;
+    }
+    @include media-tablet {
+      margin-bottom: 25px;
+      text-align: left;
+    }
+  }
+  &__title {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+      @include media-laptop {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  &__ui-h1 {
+    display: inline;
+  }
+  &__icon {
+    display: inline-block;
+    vertical-align: text-bottom;
+    width: 56px;
+    height: 56px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    @include media-tablet {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      margin-bottom: -2px;
+    }
+  }
+  &__ui-input {
+    position: relative;
+    input {
+      padding: 16px 80px 16px 40px;
+      font-size: 18px;
+      background: $grey20;
+      @include media-tablet {
+        padding: 15px 55px 15px 20px;
+        font-size: 16px;
+      }
+    }
+  }
+  &__search-btn {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    @include media-tablet {
+      right: 20px;
+    }
+    .svg-icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__accordion {
+    margin-top: 30px;
+    @include media-tablet {
+      margin-top: 20px;
+    }
+  }
+  &__links {
+    li {
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  &__link {
+    font: 18px/1.2 $font;
+    @include media-tablet {
+      font-size: 16px;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $orange;
+    }
+  }
+  &__ui-button {
+    margin-top: 40px;
+    @include media-laptop {
+      margin-top: 30px;
+    }
+  }
+  &__info {
+    margin-top: 30px;
+    @include media-laptop {
+      margin-top: 25px;
+    }
+  }
+  &__text-inner {
+    max-width: 900px;
+  }
+  &__name {
+    margin-bottom: 20px;
+    font: 700 28px/1.2 $font;
+    @include media-laptop {
+      font-size: 24px;
+    }
+    @include media-tablet {
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+  }
+  &__descr {
+    font: 18px/1.4 $font;
+    @include media-tablet {
+      font-size: 16px;
+    }
+  }
+  &__content {
+    margin-top: 35px;
+    @include media-tablet {
+      margin-top: 25px;
+    }
+    .ui-p1 + .ui-p1 {
+      margin-top: 22px;
+      @include media-tablet {
+        margin-top: 20px;
+      }
+    }
+  }
+  &__section {
+    &:not(:first-child) {
+      margin-top: 35px;
+    }
+    &--bg {
+      padding: 30px 40px;
+      background: $grey20;
+      border-radius: 8px;
+      @include media-tablet {
+        padding: 20px 20px 30px;
+      }
+      &:not(:first-child) {
+        margin-top: 15px;
+        @include media-tablet {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+.info-page {
+  display: grid;
+  grid-template-columns: calc(100% - 365px - 45px) 1fr;
+  column-gap: 45px;
+  @include media-laptop {
+    grid-template-columns: calc(100% - 265px - 30px) 1fr;
+    column-gap: 30px;
+  }
+  @include media-tablet {
+    position: relative;
+    display: block;
+  }
+  &__head {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    @include media-tablet {
+      min-height: 50px;
+      padding-top: 5px;
+      padding-left: 60px;
+    }
+  }
+  &__title {
+    font: 24px/1 $font;
+    @include media-laptop {
+      font-size: 20px;
+    }
+  }
+  &__content {
+    grid-column-start: 1;
+  }
+  &__ui-table {
+    @include media-laptop {
+      overflow-x: auto;
+    }
+  }
+  &__documents.documents {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}
+.info-page-aside {
+  align-self: flex-start;
+  @include media-tablet {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &__btn {
+    position: relative;
+    display: none;
+    width: 40px;
+    height: 40px;
+    padding: 12px 6px;
+    background: #f6f6f6;
+    border: 1px solid #cacaca;
+    border-radius: 3px;
+    cursor: pointer;
+    @include media-tablet {
+      display: block;
+    }
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: $orange;
+      border-radius: 3px;
+      &:not(:last-child) {
+        margin-bottom: 4px;
+      }
+    }
+  }
+  &__ul {
+    padding: 30px 20px 45px;
+    font: 18px/1.1 $font;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    @include media-laptop {
+      padding: 20px 20px 35px;
+      font-size: 16px;
+    }
+    @include media-tablet {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 5;
+      width: 300px;
+      max-height: 280px;
+      margin-top: 5px;
+      padding: 10px 10px 25px;
+      animation: fade-in 0.3s;
+      overflow-y: auto;
+    }
+    &--active {
+      @include media-tablet {
+        display: block;
+      }
+    }
+  }
+  &__li {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    &--active {
+      color: $orange;
+    }
+  }
+}
+.info-page-section {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #c8c8c8;
+  }
+}

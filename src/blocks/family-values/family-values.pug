@@ -1,0 +1,36 @@
+mixin family-values(mods)
+  -
+    const baseName = 'family-values'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .family-values(class=allMods)&attributes(attributes)
+    .family-values-box.family-values-box-front
+      .family-values-box-content
+        .family-values-box-title Мы за семейные ценности!
+        .family-values-box-desc Приятные бонусы не только для вас, но и для всей вашей семьи! 
+          br 
+          | Совершайте приятные покупки всей семьей.
+        .family-values-box-btn
+          +ui-button('подробнее', '--size-s, --white')
+      .family-values-box-img
+        img(src='./img/family_values_view1.png' alt='')
+    .family-values-box.family-values-box-back
+      .family-values-box-content
+        ul.family-values-box-ol_list
+          li
+            span Оформите совершенно бесплатно дополнительные карты для своих близких
+          li
+            span Совершайте приятные покупки всей семьей
+          li
+            span Получайте еще больше баллов по совместным тратам в любимой категории
+      .family-values-box-btn_close
+      .family-values-box-img
+        img(src='./img/family_values_view2.png' alt='')
+    block

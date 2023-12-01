@@ -1,0 +1,23 @@
+mixin support(supportItems, mods)
+  -
+    const baseName = 'support'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .support(class=allMods)&attributes(attributes)
+    each item in supportItems
+      .support__item
+        .support__icon
+          img(src=item.icon, alt='')
+        .support__text
+          .support__title
+            a(href='#') !{item.title}
+          if item.p2
+            +ui-p2(item.p2)
+    block

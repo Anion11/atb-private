@@ -1,0 +1,55 @@
+.ui-tooltip {
+  display: inline-flex;
+  flex-shrink: 0;
+  vertical-align: sub;
+  margin-left: 5px;
+  &__btn {
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  &--va-top {
+    vertical-align: top;
+  }
+  &--va-baseline {
+    vertical-align: baseline;
+  }
+  &--l-t-va-baseline {
+    vertical-align: baseline;
+    @include media-tablet {
+      vertical-align: sub;
+    }
+  }
+  &--in-ui-h2 {
+    vertical-align: baseline;
+    @include media-tablet {
+      vertical-align: top;
+      margin-top: 7px;
+    }
+  }
+}
+.tippy-box[data-theme~='ui-tooltip'] {
+  font: 14px/1.4 $font;
+  color: $black;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: $bigShadow;
+  .tippy {
+    &-content {
+      max-width: 260px;
+      padding: 12px 20px;
+    }
+  }
+}
+.bvi-body {
+  .tippy-box[data-theme~='ui-tooltip'] {
+    border: 1px solid;
+    overflow: hidden;
+    .tippy {
+      &-content {
+        max-width: 680px;
+      }
+    }
+  }
+}

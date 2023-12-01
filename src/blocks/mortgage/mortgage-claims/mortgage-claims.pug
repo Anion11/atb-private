@@ -1,0 +1,18 @@
+mixin mortgage-claims(mods)
+  -
+    const baseName = 'mortgage-claims'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .mortgage-claims(class=allMods)&attributes(attributes)
+    .mortgage-claims__content
+      +ui-h4('Требование к&nbsp;Кредитору по&nbsp;действующим кредитам Заемщика:', 'mortgage-claims, --bold')
+      +ui-p1('Кредитором по&nbsp;действующим кредитам/займам Заемщика не&nbsp;может быть банк/иная некредитная организация с&nbsp;отозванной лицензией, либо находящаяся в&nbsp;стадии банкротства.', '--light')
+    .mortgage-claims__img: img(src='img/mortgage-claims.png' alt='')
+    block

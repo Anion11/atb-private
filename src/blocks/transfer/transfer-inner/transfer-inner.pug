@@ -1,0 +1,25 @@
+mixin transfer-inner(transferInnerData, mods)
+  -
+    const baseName = 'transfer-inner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .transfer-inner(class=allMods)&attributes(attributes)
+    .transfer-inner__top
+      .transfer-inner__img
+        img(src=transferInnerData.img, alt='')
+      +ui-p1(transferInnerData.rightText, '--light')
+    if !transferInnerData.onlyTopBlock
+      .transfer-inner__main
+        block
+      .transfer-inner__bot
+        .transfer-inner__footnote Осуществить переводы клиенты могут в
+          =' '
+          a.text-orange(href='#') Отделениях банка
+        a.transfer-inner__doc(href='#') Тарифы

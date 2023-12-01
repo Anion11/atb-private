@@ -1,0 +1,28 @@
+.garmin-pay-devices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 150px;
+  @include media-laptop {
+    gap: 50px;
+  }
+  @include media-tablet {
+    grid-template-columns: 1fr;
+  }
+  &__img {
+    display: flex;
+    height: 196px;
+    margin-bottom: 35px;
+    img {
+      max-height: 100%;
+      margin: auto;
+    }
+  }
+  &__ui-ul {
+    font-size: 17px;
+    @include media-tablet {
+      width: fit-content;
+      margin: 0 auto;
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,139 @@
+mixin search(mods)
+  -
+    const baseName = 'search'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .search(class=allMods)&attributes(attributes)
+    form.search__filter
+      +ui-input('search', '', 'search')
+        button.search__submit
+      .search__settings
+        +ui-checkbox('search-news', 'Искать в новостях', '--switch')
+        .search__dates показать за
+          =' '
+          button.search__dates-btn любое число
+          .search__period
+            .search__period-title Дата
+            .search__range
+              +ui-datepicker('search, --single')
+              +ui-datepicker('search, --single')
+              +ui-button('ок', 'search')
+            .search__example Пример: 07.11.2022
+            .search__shortcuts
+              button.search__shortcut любая
+              button.search__shortcut сегодня
+              button.search__shortcut вчера
+              button.search__shortcut неделю
+              button.search__shortcut месяц
+              button.search__shortcut год
+    +ui-pagination('search')
+    ul.search__results
+      li.search__result
+        a.search__name(href='#') Новый семейный
+          =' '
+          b кредит
+          |  «Акционный» со сниженной процентной ставкой от Азиатско-Тихоокеанского банка
+        .search__preview ... в официальном браке, разработан
+          =' '
+          span.text-orange
+            b кредит
+          |  с минимальной процентной ставкой в ... линейку и предлагает новый специальный
+          =' '
+          span.text-orange
+            b кредит
+          |  «Акционный» с одной из ... на рынке потребительского кредитования.
+          =' '
+          span.text-orange
+            b Кредит
+          |  на сумму от 5 до ... – 5,5% годовых . «Новый кредит «Акционный» пополнил целую линейку семейных ... мог найти свое выгодное предложение. Кредит «Акционный» не ограничивает наших заемщиков ... При этом АТБ позволяет оформить кредит «Акционный» и тем, кто ... кредита бесплатно. Заявку на кредит можно оставить на сайте, ...
+        ul.search__breadcrumbs
+          li.search__breadcrumbs-item
+            a(href='#') Бизнесу
+          li.search__breadcrumbs-item
+            a(href='#') Кредит Микролайт
+      li.search__result
+        a.search__name(href='#') Как погасить кредит наличными
+        ul.search__breadcrumbs
+          li.search__breadcrumbs-item
+            a(href='#') Бизнесу
+          li.search__breadcrumbs-item
+            a(href='#') Деньги для бизнеса
+          li.search__breadcrumbs-item
+            a(href='#') Как погасить кредит наличными
+    +ui-pagination('search')
+    br
+    br
+    .search__notice.search__notice--no-result
+      +ui-p3('К сожалению, на ваш поисковый запрос ничего не найдено.')
+    br
+    br
+    .search__notice
+      .search__notice-section
+        +ui-p3('')
+          p В поисковой фразе обнаружена ошибка:
+          p
+            span.text-orange Пустой поисковый запрос (запрос не содержит букв или цифр).
+          p Исправьте поисковую фразу и повторите поиск.
+      .search__notice-section
+        +ui-p3('')
+          p
+            b Синтаксис поискового запроса:
+          p Обычно запрос представляет из себя просто одно или несколько слов, например:
+            br
+            i контактная информация
+            br
+            | По такому запросу будут найдены страницы, на которых встречаются оба слова запроса.
+          p Логические операторы позволяют строить более сложные запросы, например:
+            br
+            i контактная информация или телефон
+            br
+            | По такому запросу будут найдены страницы, на которых встречаются либо слова "контактная" и "информация", либо слово "телефон".
+          p
+            i контактная информация не телефон
+            br
+            | По такому запросу будут найдены страницы, на которых встречаются либо слова "контактная" и "информация", но не встречается слово "телефон".
+            br
+            | Вы можете использовать скобки для построения более сложных запросов.
+          p
+           b Логические операторы:
+          table.search__notice-table
+            tbody
+              tr
+                td Оператор
+                td Синонимы
+                td Описание
+              tr
+                td и
+                td and, &, +
+                td
+                  | Оператор
+                  i логическое "и"
+                  |  подразумевается, его можно опускать: запрос "контактная информация" полностью эквивалентен запросу "контактная и информация".
+              tr
+                td или
+                td or, |
+                td
+                  | Оператор
+                  i логическое "или"
+                  |  позволяет искать товары, содержащие хотя бы один из операндов.
+              tr
+                td не
+                td not, ~
+                td
+                  | Оператор
+                  i логическое "не"
+                  |  ограничивает поиск страниц, не содержащих слово, указанное после оператора.
+              tr
+                td ( )
+                td
+                td
+                  i Круглые скобки
+                  |  задают порядок действия логических операторов.
+    block

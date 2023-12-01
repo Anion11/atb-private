@@ -1,0 +1,22 @@
+extends layouts/layout
+
+block styles
+  link(rel='stylesheet' href='styles/style.min.css')
+
+block scripts
+  script(src='js/index.js')
+
+block variables
+  -const pageTitle ='Index'
+
+block content
+  main
+    .page-content
+      .inner
+        +ui-h1(pageTitle)
+        a(href='pages/blocks/blocks.html') Repository blocks
+        br
+        br
+        a(href='pages/arrests/arrests.html') Arrests
+        br
+        br

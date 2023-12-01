@@ -1,0 +1,45 @@
+mixin p-credit-promo(mods)
+  -
+    const baseName = 'p-credit-promo'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const list = [
+      {
+        title: '',
+        titleNowrap: '0%',
+        titleTooltip: 'При условии оформления услуги &laquo;Снижение процентной ставки по&nbsp;кредиту&raquo; в&nbsp;размере&nbsp;10% от&nbsp;предоставленной суммы Кредита. В&nbsp;случае несогласия Заемщика на&nbsp;оформление услуги &laquo;Снижение процентной ставки по&nbsp;кредиту&raquo;&nbsp;&mdash; 27,5% годовых',
+        descr: 'ставка'
+      },
+      {
+        title: '10&nbsp;месяцев',
+        descr: 'срок кредитования'
+      },
+      {
+        title: '30&nbsp;000 -&nbsp;150&nbsp;000&nbsp;₽',
+        descr: 'сумма кредита'
+      },
+    ]
+
+  a.p-credit-promo(class=allMods href='#')&attributes(attributes)
+    .p-credit-promo__content
+      .p-credit-promo__title Кредит наличными #Ставок.нет!
+      ul.p-credit-promo__list
+        each itemLi in list
+          li
+            +ui-h4(itemLi.title, 'p-credit-promo')
+              if itemLi.titleNowrap
+                =' '
+                span.text-nowrap !{itemLi.titleNowrap}
+                  if itemLi.titleTooltip
+                    +ui-tooltip(itemLi.titleTooltip)
+            +ui-p2(itemLi.descr, 'p-credit-promo, --light').text-grey80
+      +ui-button('Подробнее')
+    .p-credit-promo__img: img(src='img/p-credit-promo.png' alt='')
+    block

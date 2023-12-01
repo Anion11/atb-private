@@ -1,0 +1,25 @@
+mixin confirm-income(confirmIncomeItems, mods)
+  -
+    const baseName = 'confirm-income'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .confirm-income(class=allMods)&attributes(attributes)
+    each item in confirmIncomeItems
+      .confirm-income__item
+        +ui-h4(item.h4, 'confirm-income, --bold')
+        if item.p2
+          +ui-p2('', 'confirm-income')
+            each itemText in item.p2
+              p !{itemText}
+        .confirm-income__imgs
+          each itemImg in item.imgs
+            .confirm-income__logo
+              img(src=itemImg, alt='')
+    block

@@ -1,0 +1,47 @@
+mixin sitemap(mods)
+  -
+    const baseName = 'sitemap'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .sitemap(class=allMods)&attributes(attributes)
+    ul.sitemap__list
+      li
+        a(href='#') Частным клиентам
+        ul.sitemap__list.sitemap__list--depth-2
+          li
+            a(href='#') Банковские карты
+            ul.sitemap__list.sitemap__list--depth-3
+              li
+                a(href='#') Кредитные карты
+                ul.sitemap__list.sitemap__list--depth-4
+                  li
+                    a(href='#') Карта «Универсальная»
+                  li
+                    a(href='#') Оформить по паспорту
+                  li
+                    a(href='#') Карта с льготным периодом
+              li
+                a(href='#') Частным клиентам
+                ul.sitemap__list.sitemap__list--depth-4
+                  li
+                    a(href='#') Карта «Универсальная»
+                  li
+                    a(href='#') Оформить по паспорту
+                    ul.sitemap__list.sitemap__list--depth-5
+                      li
+                        a(href='#') Карта «Универсальная»
+                      li
+                        a(href='#') Карта «Универсальная»
+                        ul.sitemap__list.sitemap__list--depth-6
+                          li
+                            a(href='#') Карта «Универсальная»
+                          li
+                            a(href='#') Карта «Универсальная»
+    block

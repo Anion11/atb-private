@@ -1,0 +1,47 @@
+.wallet-pay-app {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  .swiper {
+    height: fit-content;
+    @include media-tablet {
+      overflow: visible;
+    }
+  }
+  &__box {
+    width: 340px;
+    text-align: center;
+    @include media-laptop {
+      width: 210px;
+    }
+    @include media-tablet {
+      width: 225px;
+    }
+    &:nth-child(2) {
+      @include media-laptop {
+        width: 240px;
+      }
+      @include media-tablet {
+        width: 225px;
+      }
+    }
+    &-img {
+      height: 400px;
+      margin-bottom: 25px;
+      @include media-laptop {
+        height: 350px;
+        margin-bottom: 20px;
+      }
+      img {
+        max-height: 100%;
+        margin: 0 auto;
+      }
+    }
+    &-txt {
+      font: 400 20px/1.3 $font;
+      @include media-tablet {
+        font-size: 18px;
+      }
+    }
+  }
+}

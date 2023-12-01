@@ -1,0 +1,51 @@
+mixin rest-table(tableData, mods)
+  -
+    const baseName = 'rest-table'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .rest-table.js-table(class=allMods data-media='767')&attributes(attributes)
+    .rest-table__names.js-column
+      .rest-table__names-ceil.js-ceil
+      each item in tableData.names
+        .rest-table__names-ceil.js-ceil !{item}
+    .rest-table__columns
+      each col in tableData.columns
+        .rest-table__col.js-column
+          .rest-table__head.js-ceil.js-accordion-head(class=(col.headMods ? `rest-table__head--${col.headMods}` : ''))
+            .rest-table__head-text
+              .rest-table__head-name !{col.name}
+          .rest-table__main
+            each row, index in col.rows
+              .rest-table__ceil.js-ceil
+                .rest-table__title !{tableData.names[index]}
+                if row.icon
+                  .rest-table__icon(class=`rest-table__icon--${row.icon}`)
+                    +icon(`icon_${row.icon}`)
+                  span.text-mob-only
+                    +ui-p2('', 'rest-table')
+                      if row.icon === 'no'
+                        | Не требуется
+                      else
+                        | Обязательное условие
+                if row.text
+                  +ui-p2(row.text, 'rest-table')
+                if row.docs
+                  .rest-table__expand
+                    +ui-button('Документы', '--expand').text-orange(data-expand-btn='rest-table-docs'
+                      data-start-text='Документы' data-end-text='Скрыть'
+                      onclick='setTimeout(() => {window.autoHeightTable()}, 310); return false;')
+                    .rest-table__expand-hidden(data-expand-block='rest-table-docs')
+                      .rest-table__expand__documents
+                        each document in row.docs
+                          +documents-item(document.name, '', 'rest-table, --no-link', false)
+                            if document.tooltip
+                              span.text-nowrap !{document.nowrapTooltip}
+                                +ui-tooltip('text')
+    block

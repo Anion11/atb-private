@@ -1,0 +1,87 @@
+.ui-ul {
+  list-style-type: none;
+  line-height: 1.4;
+  > li {
+    position: relative;
+    padding-left: 20px;
+    &:not(:last-child) {
+      margin-bottom: 15px;
+      @include media-tablet {
+        margin-bottom: 10px;
+      }
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      counter-increment: none;
+      top: calc((1.4em - 8px) / 2);
+      left: 0;
+      width: 6px;
+      height: 6px;
+      background: var(--bvi-contrast-color, $orange);
+      border-radius: 50%;
+    }
+  }
+  &--fz-inherit {
+    font-size: inherit;
+  }
+  &--mt5 {
+    margin-top: 5px;
+  }
+  &--li-mb0 {
+    > li {
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &--li-mb5 {
+    > li {
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+  }
+  &--li-mb10 {
+    > li {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  &--li-mb20 {
+    > li {
+      &:not(:last-child) {
+        margin-bottom: 20px;
+        @include media-tablet {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+  &--child {
+    margin-top: 1em;
+  }
+  &--dash {
+    > li {
+      &::before {
+        content: '—';
+        top: 0;
+        width: auto;
+        height: auto;
+        background: transparent;
+        color: $orange;
+        border-radius: 0;
+      }
+    }
+  }
+  &--dash-curr-color {
+    /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+    @extend .ui-ul--dash;
+    > li {
+      &::before {
+        color: inherit;
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+mixin mobile-features(mods)
+  -
+    const baseName = 'mobile-features'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const data = [
+      {
+        mod: 'mobile-features__item--span2',
+        title: 'Простая авторизация',
+        p2: [
+          'Теперь не&nbsp;нужно запоминать и&nbsp;записывать данные для&nbsp;входа. Для&nbsp;первой авторизации нужны:',
+          `<ul class="ui-ul mobile-features__ui-ul ui-ul--li-mb5">
+              <li>основной номер телефона</li>
+              <li>один дополнительный реквизит
+                <br> (номер карты или&nbsp;счета)
+              </li>
+            </ul>`,
+        ],
+        img: 'img/mobile-features_1.png'
+      },
+      {
+        title: 'Сервис СБП для&nbsp;оплаты по&nbsp;QR&nbsp;коду',
+        p2: [
+          'Долгожданный сервис теперь в&nbsp;мобильном приложении. Оплачивать покупки и&nbsp;услуги с&nbsp;помощью СБП стало проще',
+        ],
+        img: 'img/mobile-features_2.png'
+      },
+      {
+        title: 'Реквизиты карты для&nbsp;онлайн-покупок',
+        p2: [
+          'Больше не&nbsp;нужно доставать карту: <br> номер карты, срок действия и&nbsp;CVV теперь есть в&nbsp;подробной информации',
+        ],
+        img: 'img/mobile-features_3.png'
+      },
+      {
+        mod: 'mobile-features__item--span2 mobile-features__item--img-w540',
+        title: 'Обновленная программа лояльности',
+        titleNowrap: '«АТБ Клуб»',
+        titleTooltip: 'Для карт с&nbsp;тарифными планами АТБ 2.0, Кошелек, Большой кошелек и&nbsp;Кэшбэк ',
+        p2: [
+          `<ul class="ui-ul mobile-features__ui-ul ui-ul--li-mb5">
+              <li>история трат и&nbsp;накопления бонусов</li>
+              <li>возможность смены категории повышенного кэшбэка</li>
+              <li>обмен баллов на&nbsp;рубли</li>
+            </ul>`,
+        ],
+        img: 'img/mobile-features_4.png'
+      },
+    ]
+
+  .mobile-features(class=allMods)&attributes(attributes)
+    each item in data
+      .mobile-features__item(class=item.mod)
+        .mobile-features__content
+          +ui-h5(item.title, 'mobile-features, --mob-fz18, --bold')
+            if item.titleTooltip
+              if item.titleNowrap
+                =' '
+                span.text-nowrap  !{item.titleNowrap}
+                  +ui-tooltip(item.titleTooltip)
+          each point in item.p2
+            +ui-p2(point, 'mobile-features, --light')
+        .mobile-features__img: img(src=item.img alt='')
+    block

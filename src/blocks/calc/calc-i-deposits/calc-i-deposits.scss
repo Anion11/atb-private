@@ -1,0 +1,198 @@
+.calc-i-deposits {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include media-laptop {
+    display: block;
+  }
+  &__params {
+    width: 570px;
+    @include media-laptop {
+      width: auto;
+      margin-bottom: 45px;
+    }
+    @include media-tablet {
+      margin-bottom: 30px;
+    }
+    &-line {
+      &:not(:first-child) {
+        margin-top: 35px;
+        @include media-tablet {
+          margin-top: 25px;
+        }
+      }
+    }
+    .ui-range {
+      &__inp {
+        @include media-tablet {
+          max-width: 190px;
+        }
+      }
+    }
+  }
+  &__ui-checkbox {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+      @include media-tablet {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  &__ui-range {
+    @include media-laptop {
+      padding: 0 10px;
+    }
+  }
+  &__info {
+    width: 520px;
+    @include media-laptop {
+      width: auto;
+    }
+  }
+  &__result {
+    padding: 30px 50px;
+    background: #fff;
+    box-shadow: 10px 15px 60px rgb(0 0 0 / 0.08);
+    border-radius: 7px;
+    @include media-laptop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    @include media-tablet {
+      display: block;
+      padding: 20px 25px 30px;
+      text-align: start;
+    }
+    &-line {
+      display: flex;
+      gap: 30px;
+      @include media-laptop {
+        justify-content: center;
+      }
+      @include media-tablet {
+        justify-content: flex-start;
+      }
+      &:not(:last-child) {
+        margin-bottom: 30px;
+        @include media-tablet {
+          margin-bottom: 20px;
+        }
+      }
+    }
+    &-name {
+      margin-bottom: 20px;
+      font: 300 12px/1 $font;
+      text-transform: uppercase;
+      color: $grey80;
+      @include media-tablet {
+        margin-bottom: 15px;
+      }
+    }
+    &-val {
+      font: 300 32px/1 $font;
+      @include media-tablet {
+        font-size: 24px;
+      }
+      &--big {
+        font-weight: 400;
+        font-size: 48px;
+        @include media-tablet {
+          font-size: 40px;
+        }
+      }
+    }
+    &-descr {
+      font-weight: 400;
+      font-size: 20px;
+      @include media-tablet {
+        font-size: 16px;
+      }
+    }
+    &-foot {
+      margin-top: 15px;
+      font: 300 12px/1.5 $font;
+      color: #999;
+      @include media-laptop {
+        max-width: 440px;
+      }
+    }
+    &-btns {
+      margin-top: 35px;
+      @include media-tablet {
+        margin-top: 25px;
+        text-align: center;
+      }
+    }
+  }
+  &__ui-button {
+    @include media-tablet {
+      width: 100%;
+    }
+  }
+  &__adv {
+    position: relative;
+    min-height: 155px;
+    margin-top: 25px;
+    padding: 30px 25px;
+    color: #fff;
+    background: #17171d;
+    border-radius: 8px;
+    overflow: hidden;
+    @include media-tablet {
+      min-height: 145px;
+      margin-top: 30px;
+    }
+    &-content {
+      position: relative;
+      z-index: 1;
+      max-width: 240px;
+      @include media-tablet {
+        max-width: 205px;
+      }
+    }
+    &-title {
+      margin-bottom: 30px;
+      font: 400 20px/1.2 $font;
+      @include media-tablet {
+        margin-bottom: 25px;
+        font-size: 18px;
+      }
+    }
+    &-img {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      img {
+        max-width: unset;
+        max-height: 100%;
+        @include media-tablet {
+          transform: translateX(90px);
+        }
+      }
+    }
+  }
+}
+body .bvi-body {
+  .calc-i-deposits {
+    &__result {
+      &-line {
+        display: block;
+      }
+      &-item {
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+      }
+    }
+    &__adv-content {
+      max-width: unset;
+    }
+  }
+}

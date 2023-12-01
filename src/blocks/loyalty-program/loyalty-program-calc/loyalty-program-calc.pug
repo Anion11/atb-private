@@ -1,0 +1,162 @@
+mixin loyalty-program-calc(mods)
+  -
+    const baseName = 'loyalty-program-calc'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const programTable = [
+      [
+        {
+          attention: 'Папа',
+          txt: 'купил новые ботинки – 3000 ₽ и рубашку – 2000 ₽',
+        },
+        {
+          txt: '5 000 ₽',
+        },
+      ],
+      [
+        {
+          attention: 'Мама',
+          txt: 'купила хозтовары и товары для дома',
+        },
+        {
+          txt: '5 000 ₽',
+        },
+      ],
+      [
+        {
+          attention: 'Для дочери',
+          txt: 'в магазине игрушек купили куклу',
+        },
+        {
+          txt: '1 000 ₽',
+        },
+      ],
+      [
+        {
+          attention: 'Для сына',
+          txt: 'купили детские товары (подгузники и питание)',
+        },
+        {
+          txt: '3 000 ₽',
+        },
+      ],
+      [
+        {
+          attention: 'Коту',
+          txt: 'в зоомагазине купили корм',
+        },
+        {
+          txt: '3 000 ₽',
+        },
+      ],
+      [
+        {
+          txt: 'Продукты 1 раз в неделю по 4 000 ₽',
+        },
+        {
+          txt: '16 000 ₽',
+        },
+      ],
+      [
+        {
+          txt: 'Поход в парикмахерскую всей семьей',
+        },
+        {
+          txt: '3 000 ₽',
+        },
+      ],
+      [
+        {
+          txt: 'Транспортные расходы (автобус, такси)',
+        },
+        {
+          txt: '2 000 ₽',
+        },
+      ],
+      [
+        {
+          txt: 'Воскресный ужин в ресторане',
+        },
+        {
+          txt: '5 000 ₽',
+        },
+      ],
+      [
+        {
+          txt: 'Прочие покупки',
+        },
+        {
+          txt: '7 000 ₽',
+        },
+      ],
+    ]
+
+  .loyalty-program-calc(class=allMods)&attributes(attributes)
+    .loyalty-program-calc__container
+      .loyalty-program-calc__purchases
+        .loyalty-program-calc__title.loyalty-program-calc__title--main В феврале обе семьи сделали покупки по одинаковому перечню:
+        .loyalty-program-calc__table
+          each tr in programTable
+            .loyalty-program-calc__table-tr
+              each td in tr
+                .loyalty-program-calc__table-td
+                  if td.attention
+                    span.loyalty-program-calc__table-td--attention !{td.attention}
+                    =' '
+                  | !{td.txt}
+          .loyalty-program-calc__table-total
+            span.loyalty-program-calc__table-total-txt
+              b Итого:
+            span.loyalty-program-calc__table-total-txt.ui-attention 50 000 ₽
+      .loyalty-program-calc__sum
+        .loyalty-program-calc__sum-top
+          .loyalty-program-calc__sum-tab.loyalty-program-calc__sum-tab--active Кэшбэк cемьи Ивановых
+          .loyalty-program-calc__sum-tab Кэшбэк cемьи Сидоровых
+        .loyalty-program-calc__sum-content
+          .loyalty-program-calc__sum-item
+            .loyalty-program-calc__txt Сумма по бонусной категории не превысила заявленный правилами лимит
+              =' '
+              span.text-nowrap 15&nbsp;000&nbsp;₽
+                +ui-tooltip('Рубашка 2&nbsp;000&nbsp;₽ + детские товары сыну и куклу дочери 4&nbsp;000&nbsp;₽ + корм коту 3&nbsp;000&nbsp;₽ + расходы на транспорт 2&nbsp;000&nbsp;₽. <br> Итого: 11&nbsp;000&nbsp;₽.')
+              | , поэтому получить повышенный кэшбэк в этом месяце не удалось
+            .loyalty-program-calc__title Расчет кэшбэка:
+            ul.ui-ul.loyalty-program-calc__ui-ul
+              li Кэшбэк по операциям в любимой категории =
+                span.text-nowrap 550 ₽
+                  +ui-tooltip('При сумме покупок от 5 000 ₽ до 15 000 ₽ — ставка 5% ')
+              li Кэшбэк по прочим операциям =
+                span.text-nowrap 390 ₽
+                  +ui-tooltip('1 % от суммы покупок 39 тыс ₽')
+            .loyalty-program-calc__compute 550 + 390 = 940&nbsp;₽
+            .loyalty-program-calc__payout
+              .loyalty-program-calc__title Сумма к выплате:
+              .loyalty-program-calc__payout-val 940 ₽
+            .loyalty-program-calc__cashback
+              .loyalty-program-calc__cashback-img
+                img(src='img/cahsback_1.png' alt='')
+              .loyalty-program-calc__desc Кэшбэк в следующем месяце потрачен на 2 билета в кино
+          .loyalty-program-calc__sum-item
+            .loyalty-program-calc__txt Сумма составила 50 000 ₽, что превысило заявленный правилами лимит 20 000 ₽ и позволило получить повышенный кэшбэк
+            .loyalty-program-calc__title Расчет кэшбэка:
+            ul.ui-ul.loyalty-program-calc__ui-ul
+              li Повышенный кэшбэк 10% от 25 000 ₽ = 2 500 ₽
+              li Стандартный кэшбэк 1% от 25 000 ₽ = 250 ₽
+            .loyalty-program-calc__compute 2 500 + 250 = 2 750 ₽
+            .loyalty-program-calc__payout
+              .loyalty-program-calc__title Сумма к выплате:
+              .loyalty-program-calc__payout-val 2 750 ₽
+            .loyalty-program-calc__cashback
+              .loyalty-program-calc__cashback-img
+                img(src='img/cashback_2.png' alt='')
+              .loyalty-program-calc__desc Кэшбэк в следующем месяце потрачен на полный бак бензина
+    .loyalty-program-calc__conclusion
+      .loyalty-program-calc__conclusion-txt Выгода новой программы лояльности очевидна!
+    block

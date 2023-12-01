@@ -1,0 +1,25 @@
+mixin p-close-office(mods)
+  -
+    const baseName = 'p-close-office'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .p-close-office(class=allMods)&attributes(attributes)
+    .p-close-office__title 10 октября закрывается офис
+      =' '
+      span.text-nowrap в Санкт-Петербурге
+    .p-close-office__text
+      p АТБ сохраняет все обязательства перед клиентами
+        =' '
+        span.text-nowrap и кредиторами
+          +ui-tooltip('Клиенты переводятся на&nbsp;обслуживание в&nbsp;офис по&nbsp;адресу г.&nbsp;Москва, пер.&nbsp;Вознесенский, дом&nbsp;11, стр.&nbsp;1.')
+      p Для решения ваших задач вы можете воспользоваться <a href="/services/mobile/" class="text-orange text-nowrap">онлайн-сервисами</a> или обратиться в&nbsp;<a href="/atms/moskva/" class="text-orange">любой офис</a> банка в&nbsp;другом городе.
+    .p-close-office__img
+      img(src='img/p-close-office.png' alt)
+    block

@@ -1,0 +1,139 @@
+.care-steps {
+  &__section {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, auto);
+    align-items: center;
+    gap: 30px 50px;
+    @include media-laptop {
+      gap: 25px;
+    }
+    @include media-tablet {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 15px;
+    }
+    &:not(:first-child) {
+      margin-top: 40px;
+      @include media-tablet {
+        margin-top: 60px;
+      }
+    }
+    &--reverse {
+      .care-steps__img {
+        grid-column: 2/-1;
+        @include media-tablet {
+          grid-column: unset;
+        }
+      }
+    }
+  }
+  &__img {
+    display: flex;
+    width: 520px;
+    height: 520px;
+    flex-shrink: 0;
+    grid-row: 1/-1;
+    @include media-laptop {
+      width: 395px;
+      height: 395px;
+    }
+    @include media-tablet {
+      width: 355px;
+      height: 315px;
+      overflow: hidden;
+      grid-row: unset;
+    }
+    img {
+      max-height: 100%;
+      margin: auto;
+      @include media-tablet {
+        max-height: unset;
+      }
+    }
+    &--vertical {
+      height: 570px;
+      @include media-laptop {
+        height: 470px;
+      }
+      @include media-tablet {
+        height: 315px;
+        padding: 0 55px;
+      }
+    }
+  }
+  &__list {
+    display: grid;
+    gap: 40px;
+    align-self: start;
+    @include media-laptop {
+      gap: 30px;
+    }
+    @include media-tablet {
+      margin-top: 5px;
+      gap: 20px;
+    }
+  }
+  &__step {
+    display: flex;
+    gap: 30px;
+    @include media-laptop {
+      gap: 20px;
+    }
+    @include media-tablet {
+      gap: 12px;
+    }
+  }
+  &__num {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: $orangeYellowGradient;
+    border-radius: 50%;
+    flex-shrink: 0;
+    @include media-tablet {
+      width: 32px;
+      height: 32px;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      z-index: 0;
+      background: #fff;
+      border-radius: inherit;
+    }
+    span {
+      position: relative;
+      z-index: 1;
+      font-size: 20px;
+      background: $orangeYellowGradient;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      @include media-tablet {
+        font-size: 18px;
+      }
+    }
+  }
+  &__ui-h3 {
+    align-self: end;
+    @include media-tablet {
+      order: -1;
+      text-align: center;
+    }
+  }
+  &__ui-h6 {
+    align-self: center;
+  }
+}
+.bvi-body {
+  .care-steps {
+    &__num {
+      &::before {
+        content: none;
+      }
+    }
+  }
+}

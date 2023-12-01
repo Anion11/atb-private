@@ -1,0 +1,41 @@
+.multi-insuranse-contact {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 25px;
+  text-align: center;
+  background: #fff;
+  box-shadow: $lightBigShadow;
+  border-radius: 8px;
+  @include media-tablet {
+    padding: 20px;
+  }
+  &__title {
+    margin-bottom: 5px;
+    font: 400 18px/1.5 $font;
+    @include media-tablet {
+      font-size: 16px;
+    }
+  }
+  &__desc {
+    margin-bottom: 15px;
+    font: 400 14px/1.4 $font;
+    color: $grey60;
+  }
+  &__nums {
+    font: 16px/1.4 $font;
+    &-item {
+      display: inline;
+      font-weight: 700;
+      white-space: nowrap;
+      color: $black;
+    }
+    &-sp {
+      margin: 0 10px;
+      color: $grey60;
+      @include media-tablet {
+        display: block;
+        margin: 0;
+      }
+    }
+  }
+}

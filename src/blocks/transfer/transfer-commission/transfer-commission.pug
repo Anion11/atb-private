@@ -1,0 +1,32 @@
+mixin transfer-commission(mods)
+  -
+    const baseName = 'transfer-commission'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .transfer-commission(class=allMods)&attributes(attributes)
+    .transfer-commission__img: img(src='img/transfer-commission.png' alt='')
+    h4.transfer-commission__title Уменьшили комиссию за&nbsp;переводы в&nbsp;японских йенах
+    .transfer-commission__descr в офисах Приморья, Хабаровского края, Иркутской и Сахалинской областей
+    .transfer-commission__table
+      .transfer-commission__tr
+        .transfer-commission__td
+          b Сумма перевода
+        .transfer-commission__td
+          b Фиксированная комиссия
+      .transfer-commission__tr
+        .transfer-commission__td до 1,5 млн ¥
+        .transfer-commission__td 7 000 ¥
+      .transfer-commission__tr
+        .transfer-commission__td 1,5–3 млн ¥
+        .transfer-commission__td 8 500 ¥
+      .transfer-commission__tr
+        .transfer-commission__td от 3 млн ¥
+        .transfer-commission__td 10 000 ¥
+    block

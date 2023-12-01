@@ -1,0 +1,67 @@
+mixin p-bonus-operation(mods)
+  -
+    const baseName = 'p-bonus-operation'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const pBonusOperation =[
+      {
+        name: 'Детские товары',
+        list: [
+          { text: 'игрушки' },
+          { text: 'товары для детей' },
+        ]
+      },
+      {
+        name: 'Одежда и обувь',
+        list: [
+          { text: 'женская' },
+          { text: 'мужская' },
+          { text: 'детская' },
+        ]
+      },
+      { name: 'Мебель и аксессуары' },
+      { name: 'Спортивные товары' },
+      {
+        name: 'Рестораны',
+        list: [
+          { text: 'кафе' },
+          { text: 'бары' },
+          { text: 'рестораны' },
+          { text: 'фаст –фуд' },
+        ]
+      },
+      {
+        name: 'Салоны красоты и здоровья',
+        list: [
+          { text: 'парикмахерские' },
+          { text: 'салоны красоты' },
+          { text: 'спа салоны' },
+        ]
+      },
+      {
+        name: 'Товары для дома',
+        list: [
+          { text: 'бытовые и хозтовары' },
+        ]
+      },
+    ]
+
+  .p-bonus-operation(class=allMods)&attributes(attributes)
+    .p-bonus-operation__title Бонусные операции
+    .p-bonus-operation__wrapper
+      each item in pBonusOperation
+        .p-bonus-operation__item
+          .p-bonus-operation__name !{item.name}
+          if item.list
+            +ui-p1('', '--light')
+              +ui-ul(item.list)
+
+    block

@@ -1,0 +1,42 @@
+.cumulative-insurance-features {
+  display: flex;
+  @include media-tablet {
+    display: block;
+  }
+  &__item {
+    width: 25%;
+    text-align: center;
+    @include media-tablet {
+      width: auto;
+    }
+    &:not(:last-child) {
+      @include media-tablet {
+        margin-bottom: 50px;
+      }
+    }
+  }
+  &__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 88px;
+    margin: 0 auto;
+    @include media-laptop {
+      width: 60px;
+      height: 68px;
+    }
+    img {
+      max-height: 100%;
+    }
+  }
+  &__text {
+    margin-top: 30px;
+    text-align: center;
+    font: 400 20px/1.1 $font;
+    @include media-laptop {
+      font-size: 14px;
+      line-height: 1.3;
+    }
+  }
+}

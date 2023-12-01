@@ -1,0 +1,27 @@
+.garmin-pay-info {
+  display: flex;
+  align-items: center;
+  @include media-tablet {
+    display: block;
+  }
+  &__logo {
+    flex-shrink: 0;
+    width: 187px;
+    height: 52px;
+    margin-right: 115px;
+    @include media-laptop {
+      width: 154px;
+      height: 43px;
+      margin-right: 35px;
+    }
+    @include media-tablet {
+      margin: 0 auto 40px;
+    }
+  }
+  &__text {
+    font: 20px/1.3 $font;
+    @include media-tablet {
+      font-size: 16px;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+mixin antivirus-actions(mods)
+  -
+    const baseName = 'antivirus-actions'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .antivirus-actions(class=allMods)&attributes(attributes)
+    .antivirus-actions-title Действия при страховом случае
+    .antivirus-actions-steps
+      .antivirus-actions-steps-item
+        .antivirus-actions-steps-item-num 1
+        .antivirus-actions-steps-item-txt
+          .antivirus-actions-steps-item-txt-head Уведомить Страховую компанию о наступлении страхового события:
+          .antivirus-actions-steps-item-txt-main
+            ul
+              li По телефону 8 (800) 333-90-13 (звонок по России бесплатный)
+              li Лично в офисе Страховой компании по адресу: г. Москва, ул. Малая Ордынка, д.50 
+              li По электронной почте: info@makclife.ru
+      .antivirus-actions-steps-item
+        .antivirus-actions-steps-item-num 2
+        .antivirus-actions-steps-item-txt
+          .antivirus-actions-steps-item-txt-head Подать заявление (в свободной форме) на выплату в течение 30 (тридцати) календарных дней с момента наступления события, имеющего признаки страхового случая по адресу: 115184, 
+            nobr г. Москва, 
+            nobr ул. Малая Ордынка, 
+            nobr д. 50. 
+      .antivirus-actions-steps-item
+        .antivirus-actions-steps-item-num 3
+        .antivirus-actions-steps-item-txt
+          .antivirus-actions-steps-item-txt-head Подать документы:
+          .antivirus-actions-steps-item-txt-main
+            ul
+              li В случае смерти Застрахованного, наступившей в результате подтверждённого заболевания, вызванного коронавирусной инфекцией (2019-nCoV), предоставить документы: страховой полис, документ удостоверяющий личность, свидетельство ЗАГСа о смерти Застрахованного, выписка из истории болезни стационарного больного и т. п.
+              li В случае временной утраты трудоспособности в результате подтвержденного заболевания, вызванного коронавирусной инфекцией (2019-nCoV), предоставить документы: страховой полис, документ, удостоверяющий личность Застрахованного - физического лица, больничный лист, справка лечебного учреждения, результаты анализов, подтверждающие положительный результат (2019-nCoV) и т. п.
+      .antivirus-actions-steps-item
+        .antivirus-actions-steps-item-num 4
+        .antivirus-actions-steps-item-txt
+          .antivirus-actions-steps-item-txt-head Выплата производится в течение 20 рабочих дней с даты поступления последнего документа. 
+            br
+            | ООО «МАКС-Жизнь» вправе запросить дополнительные документы для рассмотрения заявления и принятия решения о страховой выплате.
+    .antivirus-actions-btns
+      +ui-button('Оформить онлайн')(href='https://makclife.ru/b2b/life/policy/atb' target='_blank')
+    block

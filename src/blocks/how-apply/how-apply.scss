@@ -1,0 +1,102 @@
+.how-apply {
+  display: flex;
+  justify-content: center;
+  @include media-laptop {
+    flex-direction: column;
+    align-items: center;
+  }
+  &__box {
+    position: relative;
+    width: 320px;
+    margin-right: 70px;
+    text-align: center;
+    @include media-laptop {
+      display: flex;
+      width: 550px;
+      margin-right: 0;
+      margin-bottom: 60px;
+      text-align: left;
+    }
+    @include media-tablet {
+      width: 100%;
+      margin-bottom: 50px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 45px;
+      left: calc(100% - 15px);
+      width: 100px;
+      height: 1px;
+      background: rgb(153 153 153 / 0.5);
+      @include media-laptop {
+        top: 120px;
+        left: 50px;
+        width: 1px;
+        height: calc(100% - 100px - 40px + 60px);
+      }
+      @include media-tablet {
+        top: 90px;
+        left: 30px;
+        height: calc(100% - 60px - 60px + 50px);
+      }
+    }
+    br {
+      @include media-tablet {
+        display: none;
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+      @include media-laptop {
+        margin-bottom: 0;
+      }
+      &::after {
+        display: none;
+      }
+    }
+    &-img {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 25px;
+      @include media-laptop {
+        flex-shrink: 0;
+        margin: 0 50px 0 0;
+      }
+      @include media-tablet {
+        width: 60px;
+        height: 60px;
+        margin: 0 20px 0 0;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    &-content {
+      @include media-laptop {
+        align-self: center;
+      }
+    }
+    &-title {
+      margin-bottom: 10px;
+      font: 400 20px/1.3 $font;
+      @include media-tablet {
+        font-size: 18px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &-descr {
+      font: 300 16px/1.5 $font;
+      @include media-tablet {
+        font-size: 14px;
+      }
+    }
+  }
+  &-foot {
+    margin-top: 40px;
+    text-align: center;
+  }
+}

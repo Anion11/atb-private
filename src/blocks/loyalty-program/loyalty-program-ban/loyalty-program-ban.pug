@@ -1,0 +1,29 @@
+mixin loyalty-program-ban(mods)
+  -
+    const baseName = 'loyalty-program-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .loyalty-program-ban(class=allMods)&attributes(attributes)
+    .loyalty-program-ban__item.loyalty-program-ban__item--front
+      .loyalty-program-ban__txt Узнай, как получать 
+        span.ui-attention максимальный кэшбэк
+      +ui-button('Подробнее', 'loyalty-program-ban')
+      .loyalty-program-ban__img
+        img(src='img/loyalty-program-ban-1.png' alt='')
+    .loyalty-program-ban__item.loyalty-program-ban__item--back
+      .loyalty-program-ban__close
+      .loyalty-program-ban__txt ОФОРМИ 
+        span.ui-attention ДОПОЛНИТЕЛЬНЫЕ КАРТЫ
+        | ЧЛЕНАМ СЕМЬИ 
+        span.ui-attention С ЕДИНЫМ СЧЕТОМ –
+        | ПОЛУЧАЙ КЭШБЭК ЗА ВСЕ ПОКУПКИ
+      .loyalty-program-ban__img
+        img(src='img/loyalty-program-ban-2.png' alt='')
+    block

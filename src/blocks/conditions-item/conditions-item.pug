@@ -1,0 +1,26 @@
+mixin conditions-item(conditionsItemData, mods)
+  -
+    const baseName = 'conditions-item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .conditions-item(class=allMods)&attributes(attributes)
+    .conditions-item-txt
+      .conditions-item-title !{conditionsItemData.title}
+      .conditions-item-descr
+        each p in conditionsItemData.paragraphs
+          p !{p}
+        if conditionsItemData.list
+          +ui-ul(conditionsItemData.list)
+        block
+      if conditionsItemData.btn
+        .conditions-item-btn
+          +ui-button(conditionsItemData.btn.txt)(href=conditionsItemData.btn.link)
+    .conditions-item-img(class=conditionsItemData.img.mod ? `conditions-item-img--${conditionsItemData.img.mod}` : '')
+      img(src=conditionsItemData.img.src alt='')

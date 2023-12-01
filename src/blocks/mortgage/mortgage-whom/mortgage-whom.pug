@@ -1,0 +1,23 @@
+mixin mortgage-whom(mortgageWhomItems, mods)
+  -
+    const baseName = 'mortgage-whom'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .mortgage-whom(class=allMods)&attributes(attributes)
+    each item in mortgageWhomItems
+      .mortgage-whom__item
+        .mortgage-whom__imgs
+          each itemImg in item.imgs
+            .mortgage-whom__photo
+              img(src=`img/${itemImg}` alt='')
+        .mortgage-whom__text
+          .mortgage-whom__title !{item.title}
+          .mortgage-whom__descr !{item.descr}
+    block

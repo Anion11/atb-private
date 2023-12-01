@@ -1,0 +1,89 @@
+.coins-slider {
+  position: relative;
+  &__title {
+    font: 30px/1.2 $font;
+  }
+  &__wrapper {
+    padding-top: 70px;
+    overflow: hidden;
+  }
+  &__nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+  }
+  &__btn {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border: 1px solid $grey40;
+    border-radius: 4px;
+    transition: 0.3s;
+    cursor: pointer;
+    &::before {
+      position: absolute;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      border-bottom: 2px solid $grey50;
+      border-left: 2px solid $grey50;
+      content: '';
+      transition: 0.3s;
+      transform: translateY(-50%) rotate(45deg);
+    }
+    &:hover {
+      background-color: #fff;
+      box-shadow: 0 0 7px rgb(0 0 0 / 0.09);
+      &::before {
+        border-color: $green;
+      }
+    }
+    &--prev {
+      margin-right: 5px;
+      &::before {
+        left: 18px;
+      }
+    }
+    &--next {
+      &::before {
+        right: 18px;
+        transform: translateY(-50%) rotate(-135deg);
+      }
+    }
+  }
+  &__pagination {
+    &.swiper-pagination-bullets {
+      position: static;
+      bottom: unset;
+      left: unset;
+      margin-top: 30px;
+      text-align: center;
+      .swiper-pagination-bullet {
+        width: 11px;
+        height: 11px;
+        margin: 0 6px;
+        background: transparent;
+        border: 1px solid $grey50;
+        opacity: 1;
+        &.swiper-pagination-bullet-active {
+          background: $grey60;
+        }
+      }
+    }
+  }
+}
+.bvi-body {
+  .coins-slider {
+    &__pagination {
+      &.swiper-pagination-bullets {
+        .swiper-pagination-bullet {
+          opacity: 0.8;
+          &.swiper-pagination-bullet-active {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

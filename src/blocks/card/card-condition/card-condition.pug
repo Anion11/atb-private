@@ -1,0 +1,34 @@
+mixin card-condition(mods)
+  -
+    const baseName = 'card-condition'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-condition(class=allMods)&attributes(attributes)
+    .card-condition__item.card-condition__item--no
+      .card-condition__top Нет
+        .card-condition__img
+          img(src='img/card-condition_no.png', alt='')
+      .card-condition__content
+        .card-condition__title Вы можете участвовать в акции
+        .card-condition__label
+          span основное условие участия выполнено
+    .card-condition__item.card-condition__item--yes
+      .card-condition__top Да
+        .card-condition__img
+          img(src='img/card-condition_yes.png', alt='')
+      .card-condition__content
+        .card-condition__title Вы не можете участвовать в акции лично
+        .card-condition__label
+          span основное условие участия не выполнено
+        .card-condition__txt Но вы можете порекомендовать близким и оформить дополнительные карты с привязкой к единому счету.
+        .card-condition__txt.card-condition__txt--info Тарифы по картам, оформленным до 14 июля 2022 года доступны
+          =' '
+          a.text-orange(href='#') здесь
+    block

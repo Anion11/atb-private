@@ -1,0 +1,70 @@
+.pension-plans-gazfond {
+  display: flex;
+  justify-content: space-between;
+  @include media-laptop {
+    display: block;
+  }
+  &__text {
+    max-width: 680px;
+    padding-top: 20px;
+    font: 400 18px/1.4 $font;
+    @include media-laptop {
+      max-width: 100%;
+      padding-top: 0;
+      margin-bottom: 60px;
+    }
+    @include media-tablet {
+      font-size: 16px;
+    }
+    p {
+      &:not(:last-child) {
+        margin-bottom: 25px;
+        @include media-tablet {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+  &__content {
+    padding: 40px 40px 35px 35px;
+    background: #fff;
+    box-shadow: $bigShadow;
+    border-radius: 6px;
+    max-width: 460px;
+    @include media-laptop {
+      max-width: 100%;
+    }
+    @include media-tablet {
+      padding: 20px;
+    }
+    &-logo {
+      margin-bottom: 32px;
+      max-width: 200px;
+      height: 81px;
+    }
+    &-adress {
+      font: 400 20px/1.6 $font;
+      margin-bottom: 20px;
+      .title {
+        display: block;
+        margin-bottom: 8px;
+        font: 400 18px/1 $font;
+        color: $grey80;
+      }
+    }
+    &-phone {
+      font: 400 22px/1.5 $font;
+      color: $orange;
+      margin-bottom: 20px;
+    }
+    &-title {
+      display: block;
+      margin-bottom: 8px;
+      font: 400 18px/1 $font;
+      color: $grey80;
+    }
+    &-license {
+      font: 300 16px/1.37 $font;
+    }
+  }
+}

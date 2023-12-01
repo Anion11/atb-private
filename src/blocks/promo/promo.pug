@@ -1,0 +1,44 @@
+mixin promo(mods)
+  -
+    const baseName = 'promo'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const promoTimeItems =[
+      { id: 'hours' },
+      { id: 'minutes' },
+      { id: 'seconds', },
+    ]
+
+  .promo(class=allMods)&attributes(attributes)
+    .promo__inner
+      +ui-h3('Успейте оформить карту ', 'promo, --xs')
+        span.text-nowrap «180 дней без %»
+      .promo__counter
+        +ui-p1('Осталось').promo__counter-title
+        .promo__timer(data-start='May 22, 2023 22:00:00' data-end='September 28, 2023 16:00:00')
+          .promo__timer-item(data-timer-item='promo-timer-days')
+            .promo__timer-numbers
+              .promo__timer-number.promo__timer-number--first
+              .promo__timer-number.promo__timer-number--second
+            +ui-p1('Дней').promo__timer-descr
+          each item, index in promoTimeItems
+            .promo__timer-item(data-timer-item=`promo-timer-${item.id}`)
+              .promo__timer-numbers
+                .promo__timer-number.promo__timer-number--first
+                .promo__timer-number.promo__timer-number--second
+            if index !== (promoTimeItems.length - 1)
+              .promo__timer-separate
+                +icon('promo_timer_separate')
+      +ui-button('Подробнее', 'promo, --size-s')(href='#')
+      .promo__img: img(src='/img/promo_percent.png' alt='')
+      button.promo__close
+        +icon('icon_close')
+    block

@@ -1,0 +1,44 @@
+mixin exchange-adv(type, mods)
+  -
+    const baseName = 'exchange-adv'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    let data = [
+      {
+        icon: 'img/exchange-adv_1.svg',
+        text: 'Войти в&nbsp;Интернет-банк'
+      },
+      {
+        icon: 'img/exchange-adv_2.svg',
+        text: 'Мобильное приложение АТБ'
+      },
+      {
+        icon: 'img/exchange-adv_3.svg',
+        text: 'Стать клиентом не выходя из дома'
+      },
+    ]
+
+    const offline = [
+      {
+        icon: 'img/exchange-adv_4.svg',
+        text: 'НАЙДИТЕ БЛИЖАЙШИЙ ПУНКТ ОБМЕНА'
+      }
+    ]
+
+    if (type === 'offline') {
+      data = offline
+    }
+
+  .exchange-adv(class=allMods)&attributes(attributes)
+    each item in data
+      a.exchange-adv__item(href='#')
+        .exchange-adv__img: img(src=item.icon alt='')
+        .exchange-adv__name !{item.text}
+    block

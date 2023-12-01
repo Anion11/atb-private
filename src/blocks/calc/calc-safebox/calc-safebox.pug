@@ -1,0 +1,55 @@
+mixin calc-safebox(mods)
+  -
+    const baseName = 'calc-safebox'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -const dataCalcName = `data-safebox`
+
+  .calc-safebox(class=allMods)&attributes(attributes)
+    .calc-safebox__params
+      .calc-safebox__line
+        +ui-form-name('Город')
+          +ui-tooltip('Города, в&nbsp;которых есть данная услуга. Полный список отделений найдете <a class="text-orange" href="#">здесь</a>')
+        +ui-select('', 'Город 1', 'Город 2', 'Город 3')&attributes({[`${dataCalcName}-select-city`]: ''})
+      .calc-safebox__line
+        +ui-form-name('Отделение')
+        +ui-select('', 'Отделение 1', 'Отделение 2', 'Отделение 3')&attributes({[`${dataCalcName}-select-atm`]: ''})
+      .calc-safebox__line
+        +ui-form-name('Размеры ячейки')
+        +ui-select('', '61 х 7,6 х 12,7 см / V = 6 литров', '61 х 7,6 х 12,7 см / V = 6 литров 2', '61 х 7,6 х 12,7 см / V = 6 литров 3')&attributes({[`${dataCalcName}-select-dimensions`]: ''})
+      .calc-safebox__line
+        +ui-range('Cрок аренды ', ' дней')(data-min='1' data-max='365')&attributes({[`${dataCalcName}-range-rental-period`]: ''})
+
+    .calc-safebox__info
+      .calc-safebox__result
+        .calc-safebox__result-main
+          .calc-safebox__result-title За
+            =' '
+            span&attributes({[`${dataCalcName}-text-rental-period`]: ''}) 14 дней
+            |  аренды
+          .calc-safebox__result-value&attributes({[`${dataCalcName}-text-value`]: ''})  518 ₽
+          .calc-safebox__result-descr Точную стоимость аренды вы сможете узнать
+            =' '
+            span.text-nowrap в
+              =' '
+              a.text-orange.text-underline(href='#' target='_blank') офисе банка
+        .calc-safebox__atm
+          .calc-safebox__atm-name ОТДЕЛЕНИЕ «АТБ» (АО) Г ВЛАДИВОСТОК
+          .calc-safebox__atm-text
+            p г Владивосток, Окатовая, 12
+            p Тел (физ. лица): <b>8-800-775-88-88</b>
+              br
+              | Тел (юр. лица): <b>8-800-775-80-80</b>
+            p <b>Режим работы:</b>
+              =' '
+              span.text-nowrap Пн-Пт: 09:00-19:00,
+              =' '
+              span.text-nowrap Сб: 10:00-16:00
+    block

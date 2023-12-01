@@ -1,0 +1,44 @@
+.financial-literacy-more {
+  position: relative;
+  min-height: 240px;
+  padding: 40px 590px 40px 40px;
+  background: $grey30;
+  border-radius: 8px;
+  overflow: hidden;
+  @include media-laptop {
+    padding: 30px 320px 30px 30px;
+  }
+  @include media-tablet {
+    padding: 30px 20px 80px;
+  }
+  > *:not(.financial-literacy-more__img) {
+    position: relative;
+    z-index: 1;
+  }
+  &__img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    max-width: 590px;
+    @include media-laptop {
+      max-width: 400px;
+    }
+    @include media-tablet {
+      right: -85px;
+      max-width: 340px;
+    }
+  }
+  &__ui-p1 {
+    margin-top: 10px;
+    @include media-tablet {
+      margin-top: 8px;
+    }
+  }
+  &__ui-button {
+    margin-top: 28px;
+    @include media-tablet {
+      margin-top: 20px;
+    }
+  }
+}

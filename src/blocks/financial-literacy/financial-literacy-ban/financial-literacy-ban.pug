@@ -1,0 +1,19 @@
+mixin financial-literacy-ban(mods)
+  -
+    const baseName = 'financial-literacy-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .financial-literacy-ban(class=allMods)&attributes(attributes)
+    .financial-literacy-ban__img: img(src='img/financial-literacy-ban.png' alt='')
+    +ui-h4('Отвечаем на&nbsp;ваши вопросы по&nbsp;финансовой грамотности', 'financial-literacy-ban, --bold')
+    .financial-literacy-ban__btns
+      +ui-button('задать вопрос', '--empty')(href='#')
+      +ui-button('Подробнее', '--link-next').text-orange(href='#')
+    block

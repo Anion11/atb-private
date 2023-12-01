@@ -1,0 +1,27 @@
+mixin multi-insuranse-table(tableData, mods)
+  -
+    const baseName = 'multi-insuranse-table'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .multi-insuranse-table(class=allMods)&attributes(attributes)
+    +ui-table(tableData, 'multi-insuranse-table')
+    +accordion('multi-insuranse-table')
+      each item, index in tableData.tbody[0].td
+        if index !== 0
+          +accordion-item(item.text, '--mob-green')
+            -for(let i=1; i < tableData.tbody.length; i++)
+              if tableData.tbody[i].isMobileTitle
+                .multi-insuranse-table__line
+                  .multi-insuranse-table__title !{tableData.tbody[i].td[1].text}
+              else
+                .multi-insuranse-table__line
+                  .multi-insuranse-table__item !{tableData.tbody[i].td[0].text}
+                  .multi-insuranse-table__item !{tableData.tbody[i].td[index].text}
+    block

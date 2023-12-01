@@ -1,0 +1,58 @@
+mixin instruction(mods)
+  -
+    const baseName = 'instruction'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const instructionSlider = [
+      {
+        img: 'img/tel1.png',
+        txt: 'Зайдите в Мобильное приложение <span class="text-nowrap">«АТБ Мобайл NEW»</span>',
+      },
+      {
+        img: 'img/tel2.png',
+        txt: 'Оформите заявку на Цифровую карту',
+      },
+      {
+        img: 'img/tel3.png',
+        txt: 'Получите реквизиты Цифровой карты',
+      },
+      {
+        img: 'img/romb4.png',
+        txt: 'Добавьте карту в свое любимое платежное приложение <br> (Apple Pay, Samsung Pay, Google Pay)',
+      },
+      {
+        img: 'img/romb5.png',
+        txt: 'Совершайте операции по карте',
+      },
+    ]
+
+  .instruction(class=allMods)&attributes(attributes)
+    .instruction__wrapper
+      .instruction__top
+        .instruction__top-title Цифровая карта «Кошелек»
+        .instruction__top-desc Оформи полноценную дебетовую карту в цифровом формате в своем телефоне и пользуйся сразу, без обращения в банк!
+      .instruction__title Удобство Цифровой карты «Кошелек»
+      .instruction__img
+        .instruction__img-slider
+          .swiper
+            .swiper-wrapper
+              each slide in instructionSlider
+                .swiper-slide
+                  img(src=slide.img alt='')
+      .instruction-steps
+        .instruction-steps__items
+          each step, index in instructionSlider
+            .instruction-steps-item(class=index===0 ? 'active' : '')
+              .instruction-steps-item-num
+                .instruction-steps-item-num-inn
+                  span=index+1
+              .instruction-steps-item-txt !{step.txt}
+      .swiper-pagination

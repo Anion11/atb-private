@@ -1,0 +1,20 @@
+mixin ubs-info(mods)
+  -
+    const baseName = 'ubs-info'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .ubs-info(class=allMods)&attributes(attributes)
+    .ubs-info__main
+      .ubs-info__icon
+        img(src='img/ubs_info_icon.svg', alt='')
+      .ubs-info__text
+        .ubs-info__title Станьте клиентом без посещения офиса
+        .ubs-info__descr с помощью биометрии на сайте госуслуг
+    +ui-button('получить онлайн', 'ubs-info, --biometrics')(href='#')

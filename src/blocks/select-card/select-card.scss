@@ -1,0 +1,69 @@
+.select-card {
+  padding-bottom: 30px;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 435px;
+    padding: 40px 40px 50px;
+    box-shadow: $lightBigShadow;
+    border-radius: 8px;
+    text-align: center;
+    @include media-laptop {
+      width: 364px;
+      padding: 40px 30px 30px;
+    }
+    @include media-tablet {
+      width: 300px;
+    }
+    .ui-button {
+      &--link-next {
+        margin-top: 20px;
+      }
+    }
+  }
+  &__img {
+    width: 220px;
+    height: 150px;
+    margin: 0 auto 20px;
+  }
+  &__name {
+    margin-bottom: 25px;
+    font: 400 24px/1.25 $font;
+    @include media-laptop {
+      font-family: 20px;
+    }
+  }
+  &__btns {
+    margin-top: auto;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+  }
+  &__ui-swiper {
+    &-pagination {
+      margin-top: 20px;
+    }
+    &-button {
+      margin-top: -15px;
+      @media (max-width: 1380px) {
+        display: none;
+      }
+      &.swiper-button-prev {
+        left: -60px;
+      }
+      &.swiper-button-next {
+        right: -60px;
+      }
+    }
+  }
+  .swiper {
+    overflow: visible;
+    &-slide {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      &.swiper-slide-visible {
+        opacity: 1;
+      }
+    }
+  }
+}

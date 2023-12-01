@@ -1,0 +1,38 @@
+mixin smart-medicine-doctors(mods)
+  -
+    const baseName = 'smart-medicine-doctors'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const listItems =[
+      { text: 'Врач общей практики' },
+      { text: 'Аллерголог-иммунолог' },
+      { text: 'Уролог-андролог' },
+      { text: 'Оториноларинго&shy;лог' },
+      { text: 'Педиатр' },
+      { text: 'Ревматолог' },
+      { text: 'Акушер-гинеколог' },
+      { text: 'Гастроэнтеролог' },
+      { text: 'Травматолог' },
+      { text: 'Кардиолог' },
+      { text: 'Врач-УЗИ' },
+      { text: 'Офтальмолог' },
+      { text: 'Невролог' },
+      { text: 'Дерматовенеро&shy;лог' },
+      { text: 'Эндокринолог' },
+      { text: 'Терапевт' },
+      { text: 'Хирург' },
+      { text: 'Стоматолог' },
+    ]
+
+  .smart-medicine-doctors(class=allMods)&attributes(attributes)
+    .smart-medicine-doctors__title Специализации врачей:
+    +ui-ul(listItems, 'smart-medicine-doctors')
+  block

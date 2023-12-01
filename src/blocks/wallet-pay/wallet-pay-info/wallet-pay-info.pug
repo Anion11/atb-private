@@ -1,0 +1,23 @@
+mixin wallet-pay-info(mods)
+  -
+    const baseName = 'wallet-pay-info'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .wallet-pay-info(class=allMods)&attributes(attributes)
+    .wallet-pay-info__img
+      img(src='img/info_logo.svg' alt='')
+    .wallet-pay-info__text
+      p Кошелёк Pay™ — это сервис, позволяющий быстро и безопасно оплачивать ваши покупки. Добавив в приложение «Кошелёк» данные своей банковской карты, вы сможете оплачивать покупки 
+        span.nowrap в офлайн-магазинах, 
+        | а также совершать покупки в самом приложении.
+      p Кроме того, в Кошелёк можно добавить дисконтные карты, подарочные сертификаты, билеты и купоны, — чтобы они всегда были под рукой. Чтобы получать скидки и оплачивать покупки на кассе, вам нужен только 
+        span.nowrap Android-смартфон 
+        | с NFC.
+    block

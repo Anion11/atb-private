@@ -1,0 +1,135 @@
+.promo-loan {
+  position: relative;
+  background: #e1f5f5;
+  overflow: hidden;
+  &__inner {
+    position: relative;
+    max-width: 1460px;
+    margin: 0 auto;
+    padding: 44px 20px;
+    @include media-laptop {
+      padding: 25px 20px;
+    }
+    @include media-tablet {
+      padding: 15px 10px 25px;
+    }
+  }
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding-right: 630px;
+    @include media-custom(1415px) {
+      padding-right: 37%;
+    }
+    @include media-laptop {
+      padding-right: 41%;
+      gap: 35px;
+    }
+    @include media-tablet {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  }
+  &__ui-h3 {
+    @include media-laptop {
+      max-width: 255px;
+    }
+    @include media-tablet {
+      max-width: 220px;
+    }
+  }
+  &__close {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: #838383;
+    background: transparent;
+    border: 1px solid #838383;
+    border-radius: 8px;
+    cursor: pointer;
+    @include media-tablet {
+      top: 15px;
+      right: 10px;
+      transform: none;
+      width: 32px;
+      height: 32px;
+    }
+    .svg-icon {
+      width: 15px;
+      height: 15px;
+      margin: auto;
+      @include media-tablet {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+  &__img {
+    position: absolute;
+    z-index: 0;
+    &--sky1 {
+      top: -68px;
+      left: -280px;
+      max-width: 426px;
+      @include media-tablet {
+        display: none;
+      }
+    }
+    &--sky2 {
+      right: 26%;
+      bottom: 0;
+      max-width: 596px;
+      @include media-tablet {
+        top: -68px;
+        right: -44px;
+        bottom: unset;
+        max-width: 386px;
+      }
+    }
+    &--scene {
+      right: 100px;
+      bottom: 0;
+      z-index: 1;
+      max-width: 530px;
+      @include media-custom(1415px) {
+        right: 4vw;
+        max-width: 35%;
+        height: 100%;
+      }
+      @include media-laptop {
+        right: 6vw;
+        max-width: 38%;
+      }
+      @include media-tablet {
+        right: -44px;
+        max-width: 345px;
+        height: unset;
+      }
+      img {
+        @include media-custom(1415px) {
+          height: 100%;
+          object-fit: contain;
+          object-position: bottom;
+        }
+        @include media-tablet {
+          height: unset;
+          object-fit: unset;
+        }
+      }
+    }
+  }
+  &--hidden {
+    display: none;
+  }
+}

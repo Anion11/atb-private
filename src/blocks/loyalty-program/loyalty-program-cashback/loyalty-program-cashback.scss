@@ -1,0 +1,115 @@
+.loyalty-program-cashback {
+  padding: 40px 35px 35px;
+  background: $grey20;
+  border-radius: 8px;
+  @include media-laptop {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+  }
+  &__top {
+    display: flex;
+    @include media-laptop {
+      justify-content: space-between;
+      flex-direction: column;
+    }
+  }
+  &__item {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    @include media-laptop {
+      flex-direction: column;
+      padding: 25px 20px 0;
+      background-color: $grey20;
+      border-radius: 8px;
+    }
+    &:not(:last-child) {
+      margin-right: 30px;
+      @include media-laptop {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  &__img {
+    max-width: 180px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    align-self: flex-end;
+    pointer-events: none;
+    user-select: none;
+    @include media-laptop {
+      max-width: 155px;
+      margin-top: 5px;
+      margin-right: 0;
+      order: 1;
+      align-self: flex-start;
+    }
+    @include media-tablet {
+      max-width: 120px;
+    }
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    max-width: 370px;
+    @include media-laptop {
+      max-width: unset;
+    }
+  }
+  &__title {
+    margin-bottom: 5px;
+    font: 700 18px/1.44 $font;
+    @include media-laptop {
+      font-size: 17px;
+    }
+    @include media-tablet {
+      font-size: 16px;
+    }
+    &--short {
+      max-width: 240px;
+      @include media-tablet {
+        max-width: 200px;
+      }
+    }
+  }
+  &__cattainer {
+    display: flex;
+    @include media-laptop {
+      margin-top: auto;
+    }
+  }
+  &__desc {
+    margin-right: 2px;
+    font: 16px/1.4 $font;
+    color: $grey80;
+    @include media-laptop {
+      margin-right: 0;
+    }
+    @include media-tablet {
+      font-size: 14px;
+    }
+    &-item {
+      display: block;
+      @include media-laptop {
+        display: inline;
+      }
+    }
+    &-img {
+      max-width: 90px;
+      flex-shrink: 0;
+      pointer-events: none;
+      user-select: none;
+      @include media-laptop {
+        position: absolute;
+        right: 20px;
+        bottom: 0;
+        max-width: 80px;
+      }
+      @include media-tablet {
+        max-width: 70px;
+      }
+    }
+  }
+}

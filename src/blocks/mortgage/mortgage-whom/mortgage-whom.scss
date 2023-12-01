@@ -1,0 +1,70 @@
+.mortgage-whom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  @include media-laptop {
+    gap: 20px;
+  }
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+  }
+  &__item {
+    padding: 30px;
+    background: $grey20;
+    border-radius: 8px;
+    @include media-laptop {
+      padding: 30px 20px;
+    }
+  }
+  &__imgs {
+    display: flex;
+    margin-bottom: 30px;
+    @include media-laptop {
+      margin-bottom: 20px;
+    }
+  }
+  &__photo {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    @include media-laptop {
+      width: 65px;
+      height: 65px;
+    }
+    @include media-tablet {
+      width: 90px;
+      height: 90px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &:not(:last-child) {
+      position: relative;
+      margin-right: -38px;
+      @include media-laptop {
+        margin-right: -25px;
+      }
+      @include media-tablet {
+        margin-right: -38px;
+      }
+    }
+  }
+  &__title {
+    margin-bottom: 10px;
+    font: 700 24px/1.3 $font;
+    @include media-laptop {
+      font-size: 20px;
+    }
+  }
+  &__descr {
+    font: 400 20px/1.3 $font;
+    @include media-laptop {
+      font-size: 18px;
+    }
+  }
+}

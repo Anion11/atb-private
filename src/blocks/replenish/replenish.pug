@@ -1,0 +1,33 @@
+mixin replenish(replenishItems, mods)
+  -
+    const baseName = 'replenish'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .replenish(class=allMods)&attributes(attributes)
+    each item in replenishItems
+      .replenish__box
+        .replenish__box-img
+          img(src=`img/${item.img}.jpg` alt='')
+        .replenish__box-content
+          .replenish__box-title !{item.title}
+          .replenish__box-desc !{item.desc}
+          if item.apps === true
+            .replenish__box-apps
+              a.replenish__box-apps-item(href='#')
+                +icon('icon_appsrore')
+              a.replenish__box-apps-item(href='#')
+                +icon('icon_google_play')
+              .replenish__box-apps-qr
+                img(src='img/qr-code.png' alt='')
+          if item.btnText
+            .replenish__box-btn
+              +ui-button(item.btnText, '--link-next').text-orange(href='#')
+
+    block
