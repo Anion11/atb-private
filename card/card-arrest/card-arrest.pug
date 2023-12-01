@@ -1,0 +1,14 @@
+mixin card-arrest(mods)
+  -
+    const baseName = 'card-arrest'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-arrest(class=allMods)&attributes(attributes)
+    block

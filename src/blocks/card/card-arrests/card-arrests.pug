@@ -1,0 +1,38 @@
+mixin card-arrests(arrestsData, mods)
+  -
+    const baseName = 'card-arrests'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-arrests(class=allMods)&attributes(attributes)
+    if arrestsData.title 
+      .card-arrests__title
+        if arrestsData.title.h4
+          +ui-h4(arrestsData.title.h4, "--bold")
+    if arrestsData.descr
+      .card-arrests__descr !{arrestsData.descr}
+    if arrestsData.img
+      .card-arrests__img
+        img(src=arrestsData.img, alt='cardImg')
+    block
+
+mixin card-arrests-wrapper(mods)
+  -
+    const baseName = 'card-arrests-wrapper'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-arrests__wrapper(class=allMods)&attributes(attributes)
+    block

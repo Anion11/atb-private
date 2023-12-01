@@ -1,0 +1,32 @@
+.card-arrests__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+.card-arrests {
+  padding: 40px 30px 0;
+  border-radius: 8px;
+  background: var(--white, #FFF);
+  box-shadow: 0px 3px 30px 0px rgba(135, 151, 155, 0.15);
+  display: grid;
+  @include media-tablet {
+    padding: 30px 20px 0;
+  }
+  &__descr {
+    margin-bottom: 22px;
+    @include media-tablet {
+      margin-bottom: 10px;
+    }
+  }
+  &__img {
+    max-width: 389px;
+    margin-left: auto;
+    @include media-tablet {
+      max-width: 300px;
+    }
+  }
+}

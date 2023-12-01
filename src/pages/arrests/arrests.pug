@@ -10,6 +10,24 @@ block scripts
 
 block variables
   -
+    const cardArrestsData = [
+      { 
+        title: { h4: "Арест счёта" },
+        descr: "",
+        img: "img/arrests-image.png"
+      },
+      { 
+        title: { h4: "Взыскание" },
+        descr: "Это блокировка определенной суммы по требованию государственного органа или по решению суда.<br/> Доступ к средствам сверх арестованной суммы не ограничивается. Например:<ol class='ui-ol ui-ol--li-mb10'><li>о списании денежных средств со счетов и вкладов;</li><li>об удержании сумм ценных бумаг и драгоценных металлов, находящихся в банке.</li></ol>",
+        img: "img/collection-image.png"
+      }
+    ]
+    const smallBannersData = {
+      title: 'Банк НЕ принимает решение об аресте или взыскании',
+      descr: "По 229-ФЗ «Об исполнительном производстве» банк обязан выполнять требования исполнительных документов:<ul class='ui-ul ui-ul--li-mb8'><li>о списании денежных средств со счетов и вкладов;</li><li>об удержании сумм ценных бумаг и драгоценных металлов, находящихся в банке.</li></ul>После списание со счета суммы сразу направляются судебному приставу или взыскателю, поэтому банк не может вернуть вам деньги.",
+      descrMods: "ui-ul",
+      img: 'img/mob-banner-image.png'
+    }
     const accordionData = {
       sectionHead : { text: 'Часто задаваемые вопросы' },
       content: {
@@ -26,12 +44,6 @@ block variables
         ]
       }
     }
-    const smallBannersData = {
-      title: 'Банк НЕ принимает решение об аресте или взыскании',
-      descr: "По 229-ФЗ «Об исполнительном производстве» банк обязан выполнять требования исполнительных документов:<ul class='ui-ul ui-ul--li-mb8'><li>о списании денежных средств со счетов и вкладов;</li><li>об удержании сумм ценных бумаг и драгоценных металлов, находящихся в банке.</li></ul>После списание со счета суммы сразу направляются судебному приставу или взыскателю, поэтому банк не может вернуть вам деньги.",
-      descrMods: "ui-ul",
-      img: 'img/mob-banner-image.png'
-    }
 
 block content
   main
@@ -45,7 +57,11 @@ block content
               +ui-button('Оставить заявку', 'banner')(href='#')
     .page-content
       .inner
-        +section()
+        +section("--mt0")
+          +card-arrests-wrapper()
+            each item in cardArrestsData
+              +card-arrests(item)
+        +section("--mt-xs")
           +small-banner(smallBannersData, '--arrests')
         +section()
           +section-head()
