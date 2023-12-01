@@ -10,14 +10,48 @@ block scripts
 
 block variables
   -
+    const accordionData = {
+      sectionHead : { text: 'Часто задаваемые вопросы' },
+      content: {
+        items: [
+          { title: 'Можно ли вернуть сумму взыскания, перечисленную банком?', text: 'Если сумма была излишне уплачена, обратитесь к судебным приставам по контактным данным указанным на сайте ФССП или по телефону горячей линии ФССП 8 800 350 34 86 для уточнения возможности возврата суммы.' },
+          { title: 'Что делать, если приставы ошибочно наложили ограничение?', text: 'Какой то текст' },
+          { title: 'Как отменить арест?', text: 'Какой то текст' },
+          { title: 'Как отменить взыскание?', text: 'Какой то текст' },
+          { title: 'Как определить, с каких выплат и сколько могут списать?', text: 'Какой то текст' },
+          { title: 'Сумму, поступившую с КВД 3 или 5, взыскивать', text: 'Какой то текст' },
+          { title: 'Могут ли ограничения быть наложены на кредиты и кредитные карты?', text: 'Какой то текст' },
+          { title: 'По каким причинам может быть наложен арест или проведено взыскание?', text: 'Какой то текст' },
+          { title: 'Где посмотреть информацию о наложении ареста и взыскания', text: 'Какой то текст' }
+        ]
+      }
+    }
+    const smallBannersData = {
+      title: 'Банк НЕ принимает решение об аресте или взыскании',
+      descr: "По 229-ФЗ «Об исполнительном производстве» банк обязан выполнять требования исполнительных документов:<ul class='ui-ul ui-ul--li-mb8'><li>о списании денежных средств со счетов и вкладов;</li><li>об удержании сумм ценных бумаг и драгоценных металлов, находящихся в банке.</li></ul>После списание со счета суммы сразу направляются судебному приставу или взыскателю, поэтому банк не может вернуть вам деньги.",
+      descrMods: "ui-ul",
+      img: 'img/mob-banner-image.png'
+    }
 
 block content
   main
     +banner('--m-vertically')
-      +banner-item('')
+      +banner-item()
         +banner-wrapper('img/banner-image.png', true)
           +banner-h1('Аресты и взыскания', '--mob-w-100, --mob-size-m, --mob-mb-s')
           +banner-descr('Разъяснения и помощь', '--fw400, --size-xs, --mob-w-100, --mob-size-m').text-orange
           .banner-item-foot.banner-item-foot--mob-stretch-w100
             .banner-item-foot-item
               +ui-button('Оставить заявку', 'banner')(href='#')
+    .page-content
+      .inner
+        +section()
+          +small-banner(smallBannersData, '--arrests')
+        +section()
+          +section-head()
+            +ui-h2(accordionData.sectionHead.text, 'section-head')
+          +accordion
+            each accordionItem in accordionData.content.items
+              +accordion-item(accordionItem.title)
+                +ui-p1(accordionItem.text, "--light")
+      

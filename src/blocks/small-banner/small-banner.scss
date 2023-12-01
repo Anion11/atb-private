@@ -65,6 +65,11 @@
         font-size: 16px;
       }
     }
+    &--ui-ul {
+      .ui-ul {
+        margin: 10px 0;
+      }
+    }
   }
   &__btns {
     display: flex;
@@ -305,6 +310,21 @@
     .small-banner__ui-button {
       @include media-tablet {
         width: 100%;
+      }
+    }
+  }
+  &--arrests {
+    background: linear-gradient(90deg, #FFF8F2 0%, #FFEEDB 100%);
+    @include media-tablet {
+      padding-bottom: 200px;
+    }
+    .small-banner__img {
+      max-width: 440px;
+      @include media-laptop {
+        max-width: 360px;
+      }
+      @include media-tablet {
+        max-width: 260px;
       }
     }
   }
