@@ -13,15 +13,11 @@ block variables
 
 block content
   main
-    +banner()
-      +banner-item('--class')
-        +banner-wrapper('/img/banner_gradient.jpg')
-          +banner-h1('h1')
-          +banner-descr('descr mobile none').text-orange.banner-item-dn
-          +banner-descr('descr --fw400 ', '--fw400').banner-item-dn
-          .banner-item-foot.banner-item-foot--mob-stretch
+    +banner('--m-vertically')
+      +banner-item('')
+        +banner-wrapper('img/banner-image.png', true)
+          +banner-h1('Аресты и взыскания', '--mob-w-100, --mob-size-m, --mob-mb-s')
+          +banner-descr('Разъяснения и помощь', '--fw400, --size-xs, --mob-w-100, --mob-size-m').text-orange
+          .banner-item-foot.banner-item-foot--mob-stretch-w100
             .banner-item-foot-item
-              +ui-button('button', 'banner')(href='#')
-        +banner-mobile
-          p text
-            span.banner-mobile__text-xxl  text xxl
+              +ui-button('Оставить заявку', 'banner')(href='#')
