@@ -48,6 +48,14 @@
       }
     }
   }
+  &--li-mb8 {
+    li {
+      margin-bottom: 8px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
   &--child {
     margin-top: 0.5em;
   }

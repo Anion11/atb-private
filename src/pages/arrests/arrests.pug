@@ -12,19 +12,19 @@ block variables
   -
     const cardArrestsData = [
       {
-        title: { h4: "Арест счёта" },
-        descr: "<div class='card-arrests__descr--mb10'>Это блокировка определенной суммы по требованию государственного органа или по решению суда.</div><div>Доступ к средствам сверх арестованной суммы не ограничивается. Например:</div><ol class='ui-ol arrests__ui-ol ui-ol--li-mb10 ui-ol--mt10'><li>На счету 1 000 ₽</li><li>Пришло постановление на арест 800 ₽</li><li>800 ₽ будут заблокированы, 200 ₽ будут доступны</li></ol>",
-        img: "img/arrests-image.png"
+        title: { h4: 'Арест счёта' },
+        descr: '<p>Это блокировка определенной суммы по требованию государственного органа или по решению суда.</p><p>Доступ к средствам сверх арестованной суммы не ограничивается. Например:</p><ol class="ui-ol ui-ol--li-mb8" arrests__ui-ol"><li>На счету 1 000 ₽</li><li>Пришло постановление на арест 800 ₽</li><li>800 ₽ будут заблокированы, 200 ₽ будут доступны</li></ol>',
+        img: 'img/arrests-image.png'
       },
       {
-        title: { h4: "Взыскание" },
-        descr: "<div>Это принудительное списание суммы в счет долга:</div><ul class='ui-ul arrests__ui-ul ui-ul--li-mb8 ui-ul--mt10 ui-ul--mb10'><li>по решению суда;</li><li>постановлению судебного пристава или иного государственного органа.</li></ul><div class='card-arrests__descr--mb10'>Списание может происходить с одного, нескольких или всех ваших счетов, включая валютные.</div><div>Также взыскание могут наложить на ценные бумаги.</div>",
-        img: "img/collection-image.png"
+        title: { h4: 'Взыскание' },
+        descr: '<p>Это принудительное списание суммы в счет долга:</p><ul class="ui-ul arrests__ui-ul ui-ul--li-mb8"><li>по решению суда;</li><li>постановлению судебного пристава или иного государственного органа.</li></ul><p>Списание может происходить с одного, нескольких или всех ваших счетов, включая валютные.</p><p>Также взыскание могут наложить на ценные бумаги.</p>',
+        img: 'img/collection-image.png'
       }
     ]
     const smallBannersData = {
       title: 'Банк НЕ принимает решение об аресте или взыскании',
-      descr: "По 229-ФЗ «Об исполнительном производстве» банк обязан выполнять требования исполнительных документов:<ul class='ui-ul ui-ul--li-mb8 ui-ul--mt10 ui-ul--mb10'><li>о списании денежных средств со счетов и вкладов;</li><li>об удержании сумм ценных бумаг и драгоценных металлов, находящихся в банке.</li></ul>После списание со счета суммы сразу направляются судебному приставу или взыскателю, поэтому банк не может вернуть вам деньги.",
+      descr: 'По 229-ФЗ «Об исполнительном производстве» банк обязан выполнять требования исполнительных документов:<ul class="ui-ul ui-ul--li-mb8 ui-ul--mt10 ui-ul--mb10"><li>о списании денежных средств со счетов и вкладов;</li><li>об удержании сумм ценных бумаг и драгоценных металлов, находящихся в банке.</li></ul>После списание со счета суммы сразу направляются судебному приставу или взыскателю, поэтому банк не может вернуть вам деньги.',
       img: 'img/mob-banner-image.png'
     }
     const accordionData = {
@@ -56,11 +56,11 @@ block content
               +ui-button('Оставить заявку', 'banner')(href='#')
     .page-content
       .inner
-        +section("--mt0")
+        +section('--mt0')
           +card-arrests-wrapper()
             each item in cardArrestsData
               +card-arrests(item)
-        +section("--mt-xs")
+        +section('--mt-xs')
           +small-banner(smallBannersData, '--arrests')
         +section()
           +section-head()
@@ -68,4 +68,4 @@ block content
           +accordion
             each accordionItem in accordionData.content.items
               +accordion-item(accordionItem.title)
-                +ui-p1(accordionItem.text, "--light")
+                +ui-p1(accordionItem.text, '--light')
