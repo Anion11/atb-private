@@ -50,10 +50,9 @@ block content
       +banner-item()
         +banner-wrapper('img/banner-image.png', true)
           +banner-h1('Аресты и взыскания', '--mob-w-100, --mob-size-m, --mob-mb-s')
-          +banner-descr('Разъяснения и помощь', '--fw400, --size-xs, --mob-w-100, --mob-size-m').text-orange
-          .banner-item-foot.banner-item-foot--mob-stretch-w100
-            .banner-item-foot-item
-              +ui-button('Оставить заявку', 'banner')(href='#')
+          +banner-text('Разъяснения и помощь')
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l, --m-w100')(href='#')
     .page-content
       .inner
         +section('--mt0')
