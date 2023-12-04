@@ -1,0 +1,294 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'cards'
+  -const pageTitle ='Дебетовая карта «Приморец»'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/benefit_primorets-1.svg', title: 'Одна карта для пенсий, субсидий, пособий' },
+      { icon: 'img/benefit_primorets-2.svg', title: 'Скидки и акции от <a class="text-orange" href="#">торговых партнёров</a>' },
+      { icon: 'img/benefit_primorets-3.svg', title: 'Бесплатное обслуживание' },
+      { icon: 'img/benefit_primorets-4.svg', title: 'До 4,5% доход на остаток и кэшбэк до 5%' },
+    ]
+
+  -
+    const termsTable =[
+      { name: 'Тип банковской карты', descr: 'Мир' },
+      { name: 'Ежемесячное и годовое обслуживание основной и дополнительной карты', descr: 'Бесплатно' },
+      { name: 'Ежемесячное начисление процентов на минимальный остаток по счету банковской карты', descr: 'До 4,5%' },
+      { name: 'Ежедневный лимит совершения операций выдачи наличных денежных средств в банкоматах любых банков, в т.ч. «Азиатско-Тихоокеанский банк» (АО)', descr: '150 000 ₽' },
+      { name: 'Ежемесячный лимит совершения операций выдачи наличных денежных средств в банкоматах и в пунктах выдачи наличных любых банков, в т.ч. «Азиатско-Тихоокеанский банк» (АО)', descr: '500 000 ₽' },
+      { name: 'Возврат от суммы покупок в аптеках', descr: 'Кэшбэк 5%' },
+      { name: 'Снятие наличных в любых банкоматах России', descr: 'Бесплатно в пределах установленного лимита на снятие в месяц' },
+    ]
+
+  -
+    const termsList =[
+      { text: 'участие в дисконтных программах банка и платежной системы «Мир»' },
+      { text: 'удобный и многофункциональный Мобильный банк <span class="text-nowrap">«АТБ-Мобайл new»</span>' },
+      { text: 'бесплатные переводы в любые банки по номеру телефона с использованием Системы быстрых платежей' },
+      { text: 'круглосуточная поддержка горячей линии банка' },
+    ]
+
+  -
+    const termsPayment =[
+      { img: 'img/icon-pay-wifi.svg' },
+      { img: 'img/samsung-pay-seeklogo.svg' },
+      { img: 'img/logo-mir-pay.svg' },
+    ]
+
+  -
+    const tableData = {
+      names: [
+        { text: 'Как выглядит карта', },
+        { text: 'Программа лояльности', },
+        { text: 'Параметры', },
+        { text: 'Тарифные планы, по&nbsp;которым действует программа лояльности', },
+        { text: '' },
+      ],
+      columns: [
+        {
+          img: 'img/card_router_img_standard_bonus.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Стандарт-бонус</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descr: 'паспорт',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '1% на все покупки',
+                    '7% в выбранных категориях',
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Карта АТБ 2.0</a>',
+                  ],
+                  descr: `Подключается при выдаче`,
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кошелек</a>',
+                  ],
+                  descr: `Подключение через колл-центр`,
+                }
+              ]
+            },
+            { },
+          ],
+        },
+        {
+          isActive: true,
+          img: 'img/card_router_img_standard_direct.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Стандарт-директ</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descr: 'паспорт',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '1% на все покупки',
+                    '5% в выбранных категориях',
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Особый статус</a>',
+                  ],
+                },
+                {
+                  label: 'Приморец',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Единая карта сахалинца</a>',
+                  ],
+                }
+              ]
+            },
+            {
+              sections: [
+                {
+                  subtitle: 'Архив',
+                  text: [
+                    '<a href="#" class="text-underline">Большой кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Валютный кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Детская карта</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кампус</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+              ]
+            },
+          ],
+        },
+        {
+          img: 'img/card_router_img_cash_back_direct.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кэш-Бэк Директ</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descr: 'паспорт',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '2% на все покупки',
+                    'до 10% в выбранных категориях',
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            { },
+            {
+              sections: [
+                {
+                  subtitle: 'Архив',
+                  text: [
+                    '<a href="#" class="text-underline">Карта Кэш-бэк</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+              ]
+            },
+          ],
+        },
+      ]
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--primorets')
+        +banner-wrapper('img/banner_primorets.png', true)
+          +banner-h1('Дебетовая карта «Приморец»', '--mob-size-l')
+          +banner-descr('Оплачивайте товары и&nbsp;услуги со&nbsp;скидками', '--size-xs, --mob-size-l, --mob-mb-l').text-orange
+          +banner-item-foot
+            .banner-item-foot-item
+              +ui-button('оформить карту', 'banner, --m-size-l')(href='#form-section')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head('--max-w900')
+              +ui-h2('Больше, чем просто банковская карта', 'section-head')
+              +ui-p1('Комплекс социальных возможностей для категории граждан, указанных в <a class="text-orange" href="#">п.2.1. Постановления Администрации Приморского края № 460 от 18.07.2019г.</a>, являющихся получателями мер социальной поддержки на территории Приморского края')
+          +benefits(benefitsItems, '--title-normal, --items2-default')
+      +section
+        .inner
+          +switch('', 'Параметры карты', 'Тарифы и документы', 'card-info', '--mb40, --mob-vertical')
+          +switch-group('card-info')
+            +switch-content(true)
+              +card-terms({ termsTable, termsList, termsPayment, support: true })
+            +switch-content
+              +documents
+              +accordion
+                +accordion-item('Архив')
+                  +accordion('--inner')
+                    +accordion-item('Архив тарифов')
+                      +documents
+                    +accordion-item('Архив УДБО')
+                      +documents
+      +section
+        .inner
+          +section-head
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Почему именно карта Мир')
+              +ui-p1('Согласно Федеральному закону № 161-ФЗ «О национальной платёжной системе» все российские банки обязаны производить зачисления бюджетных выплат на карты платёжной системы Мир.', '--light')
+            +accordion-item('Что относится к бюджетным выплатам')
+              +ui-p1('', '--light')
+                ul.ui-ul
+                  li Денежное содержание, вознаграждение, довольствие государственных служащих, оплата труда работников государственных и муниципальных органов, учреждений, государственных внебюджетных фондов, государственные стипендии, ежемесячное пожизненное содержание судей
+                  li Пенсии и прочие социальные выплаты от пенсионного фонда РФ в соответствии с законодательством РФ
+                  li Социальные выплаты безработным гражданам, установленные Законом Российской Федерации «О занятости населения в Российской Федерации»
+                  li Государственные пособия гражданам, имеющим детей, установленные Федеральным законом «О государственных пособиях гражданам, имеющим детей»
+                  li Прочие социальные перечисления, предусмотренные законодательством РФ
+            +accordion-item('Как оформить карту Мир')
+              +ui-p1('', '--light')
+                ul.ui-ul
+                  li В отделении банка
+                  li Оставьте заявку через оператора по Единому номеру Горячей линии банка
+                    =' '
+                    a.text-orange.nowrap(href='tel:88007758888') 8-800-775-88-88
+                  li Оставьте заявку на сайте банка
+                    =' '
+                    a.text-orange(href='/') www.atb.su
+            +accordion-item('Как определить, какая программа лояльности действует по вашей карте?', '--card-router')
+              +ui-p1('', '--light')
+                p Для этого вам нужно узнать свой тарифный план, он указан в&nbsp; названии карты (в&nbsp;договоре, а&nbsp;также в&nbsp;мобильном и&nbsp;интернет-банке, если вы не&nbsp;переименовывали карту).
+              +section-box
+                +card-router(tableData)
+      +section#form-section
+        .inner
+          +section-head
+            +ui-h2('Оформите заявку на&nbsp;карту', 'section-head').text-center

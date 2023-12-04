@@ -1,0 +1,608 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'cards'
+    const pageTitle ='Кредитная карта «180 дней без %»'
+
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Заявка', descr: 'Заполнение анкеты в&nbsp;среднем занимает 5&nbsp;минут' },
+      { icon: './img/how_get_step2.svg', title: 'Одобрение', descr: 'В&nbsp;течение 3&nbsp;минут придет <br> вам в&nbsp;смс', descrTooltips: [ {text: 'Предварительное одобрение, окончательное решение при посещении банка.'} ] },
+      { icon: './img/how_get_step3.svg', title: 'Оформление и подписание договора', descr: 'В&nbsp;ближайшем отделении банка', descrTooltips: [ {text: 'Необходим паспорт. Для&nbsp;получения более выгодных условий предоставьте документы, подтверждающие доход.'} ] },
+    ]
+
+    const tabs = [
+      { text: 'О&nbsp;карте' },
+      { text: 'Пример использования карты' },
+      { text: 'Кэшбэк' },
+      { text: 'Вопросы и&nbsp;ответы' },
+      { text: 'Тарифы и&nbsp;документы' },
+    ]
+
+    const cardBenefits = [
+      {
+        title: 'Беспроцентный период',
+        list: [
+          {
+            name: 'До 180 дней',
+            descr: [
+              {
+                txt: 'длительность льготного периода возобновляется после погашения всей задолженности',
+              },
+            ],
+          },
+          {
+            name: 'На всё:',
+            descr: [
+              {
+                txt: 'покупки по карте, <br> снятие наличных <br> и переводы',
+              },
+            ],
+          },
+        ]
+      },
+      {
+        title: 'Кэшбэк',
+        list: [
+          {
+            name: '1,5% на&nbsp;все покупки',
+            tooltip: 'За&nbsp;исключением категорий, указанных <a href="#" class="text-orange">здесь</a>',
+            descr: [
+              {
+                txt: 'без ограничения по&nbsp;максимальной сумме выплаты',
+              },
+            ],
+          },
+          {
+            name: 'до 50% у&nbsp;партнеров',
+            descr: [
+              {
+                txt: 'в&nbsp;мобильном приложении',
+              },
+            ],
+          },
+        ]
+      },
+      {
+        title: 'Бесплатные опции',
+        list: [
+          {
+            name: 'Наличные без комиссий',
+            descr: [
+              {
+                txt: 'до 30&nbsp;000&nbsp;₽ в&nbsp;месяц',
+              },
+            ],
+          },
+          {
+            name: 'Обслуживание карты',
+            descr: [
+              {
+                txt: 'на&nbsp;весь срок использования',
+              },
+            ],
+          },
+          {
+            name: 'Дополнительные карты',
+            descr: [
+              {
+                txt: 'для&nbsp;членов семьи',
+              },
+            ],
+          },
+        ]
+      },
+    ]
+
+    const termsTable =[
+      { name: 'Кредитный лимит', descr: 'до&nbsp;700&nbsp;тыс.&nbsp;рублей' },
+      { name: 'Беспроцентный период', nameTooltip: 'Льготный период кредитования без&nbsp;уплаты %&nbsp;при своевременном внесении обязательного минимального ежемесячного платежа и&nbsp;полного погашения ссудной задолженности до&nbsp;окончания этого периода', descr: 'до&nbsp;180 дней на&nbsp;покупки и&nbsp;снятие наличных' },
+      { name: 'Процентная ставка', descr: 'от&nbsp;0&nbsp;%&nbsp;годовых', descrTooltip: 'В&nbsp;случае выполнения условий беспроцентного периода' },
+      { name: 'Обслуживание карты', descr: 'бесплатно' },
+      { name: 'Снятие наличных без&nbsp;комиссии', descr: 'бесплатно', descrTooltip: 'до&nbsp;30&nbsp;000&nbsp;Р в&nbsp;месяц'  },
+      { name: 'Комиссия за&nbsp;переводы', descr: '4,9% от&nbsp;суммы переводимых денежных средств за&nbsp;счет кредитного лимита + 590&nbsp;₽' },
+    ]
+
+    const termsList =[
+      { text: 'участие в&nbsp;дисконтных программах банка и&nbsp;платежных систем' },
+      { text: 'бесплатная выписка по&nbsp;счетам <span class="text-nowrap">в «АТБ-Онлайн»</span> /<span class="text-nowrap">«АТБ-Мобайл»</span>' },
+      { text: 'круглосуточная поддержка через Колл-центр АТБ' },
+      { text: 'сообщение в&nbsp;банк о&nbsp;потере или краже карты по&nbsp;единому номеру в&nbsp;любой точке мира' },
+      { text: 'оплачивайте покупки одним движением руки!' },
+    ]
+
+    const termsPayment =[
+      { img: 'img/icon-pay-wifi.svg' },
+      { img: 'img/samsung-pay-seeklogo.svg' },
+      { img: 'img/logo-mir-pay.svg' },
+    ]
+
+    const usefulGoods =[
+      {
+        mod: 'green20',
+        title: 'Рефинансирование',
+        list: [
+          { title: 'Снижение ставки' },
+          { title: 'Объединение кредитов разных банков в&nbsp;один' },
+          { title: 'Дополнительная сумма <br> на&nbsp;любые цели' },
+        ],
+        btn: 'Подробнее',
+        img: 'useful_goods_img_refin.png',
+      },
+      {
+        mod: 'orange30',
+        title: 'Кредит наличными',
+        list: [
+          { title: 'Ставка от 5,5%', descr: 'годовых' },
+          { title: 'До 5 лет', descr: 'срок кредита' },
+          { title: 'До 3 млн рублей', descr: 'сумма кредита' },
+        ],
+        btn: 'Подробнее',
+        img: 'useful_goods_img_cash.png',
+      },
+      {
+        mod: 'orange30',
+        title: 'Кредитная карта «Универсальная»',
+        list: [
+          { title: 'До 120 дней%', descr: 'беспроцентный период' },
+          { title: 'Кэшбэк до 5%', descr: 'в семейных категориях' },
+          { title: '0 рублей', descr: 'обслуживание карты' },
+        ],
+        btn: 'Оставить заявку',
+        img: 'useful_goods_img_uc.png',
+      },
+    ]
+
+    const tableItems3 = {
+      thead: [
+        {
+          th: [
+            { text: 'Дата' },
+            { text: 'За&nbspчто' },
+            { text: 'Сумма', mods: 'text-center' },
+            { text: 'Комиссия', mods: 'text-center' },
+            { text: 'Кэшбэк', mods: 'text-center' },
+            { text: 'Долг', mods: 'text-center' },
+          ],
+        },
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Август', mods: 'text-bold', colspan: '6' },
+          ]
+        },
+        {
+          td: [
+            { text: '14&nbsp;августа' },
+            { text: '<b>Покупка по карте</b><div class="text-grey80 ui-table__mt-2">билеты в&nbsp;отпуск</div>' },
+            { text: '-50 000 ₽', mods: 'text-center text-red text-nowrap' },
+            { text: '' },
+            { text: '750 ₽', mods: 'text-center text-grey80 text-nowrap' },
+            { text: '-50 000 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Сентябрь', mods: 'text-bold', colspan: '6' },
+          ]
+        },
+        {
+          td: [
+            { text: '1&nbsp;сентября' },
+            { text: '<b>Перевод</b><div class="text-grey80 ui-table__mt-2">маме в&nbsp;другой город</div>' },
+            { text: '-10 000 ₽', mods: 'text-center text-red text-nowrap' },
+            { text: '1080 ₽', mods: 'text-center text-grey80 text-nowrap' },
+            { text: '' },
+            { text: '-61 080 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '2&nbsp;сентября' },
+            { text: '<b>Снятие наличных,</b><div class="text-grey80 ui-table__mt-2">чтобы взять с&nbsp;собой в&nbsp;отпуск</div>' },
+            { text: '-50 000 ₽', mods: 'text-center text-red text-nowrap' },
+            { text: '1570&nbsp;₽',
+              tooltip: `
+                590₽ (минимальная комиссия)
+                <br>+ 4,9% от&nbsp;суммы, превышающей 30&nbsp;000&nbsp;₽ в&nbsp;месяц (4,9%*20&nbsp;000&nbsp;₽ = 980&nbsp;₽)`,
+              mods: 'text-center text-grey80' },
+            { text: '' },
+            { text: '-112 650 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '14&nbsp;сентября' },
+            { text: '<b>Начисление кэшбэка</b>' },
+            { text: '+750 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-111 900 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '24&nbsp;сентября' },
+            { text: '<b>Оплата минимального платежа</b><div class="text-grey80 ui-table__mt-2">3%&nbsp;от&nbsp;суммы долга на&nbsp;1&nbsp;сентября</div>' },
+            { text: '+1 500 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-110 400 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Октябрь', mods: 'text-bold', colspan: '6' },
+          ]
+        },
+        {
+          td: [
+            { text: '8&nbsp;октября' },
+            { text: '<b>Покупка по карте</b><div class="text-grey80 ui-table__mt-2">бытовая техника</div>' },
+            { text: '-100 000 ₽', mods: 'text-center text-red text-nowrap' },
+            { text: '' },
+            { text: '1500 ₽', mods: 'text-center text-grey80 text-nowrap' },
+            { text: '-210 400 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '18&nbsp;октября' },
+            { text: '<b>Перевод</b><div class="text-grey80 ui-table__mt-2">маме в&nbsp;другой город</div>' },
+            { text: '-20 000 ₽', mods: 'text-center text-red text-nowrap' },
+            { text: '1570 ₽', mods: 'text-center text-grey80 text-nowrap' },
+            { text: '' },
+            { text: '-231 970 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '24&nbsp;октября' },
+            { text: '<b>Оплата минимального платежа</b><div class="text-grey80 ui-table__mt-2">3%&nbsp;от&nbsp;суммы долга на&nbsp;1&nbsp;октября</div>' },
+            { text: '+3 312 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-228 658 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '26&nbsp;октября' },
+            { text: '<b>Пополнение карты с&nbsp;зарплаты</b>' },
+            { text: '+80 000 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-148 658 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Ноябрь', mods: 'text-bold', colspan: '6' },
+          ]
+        },
+        {
+          td: [
+            { text: '15&nbsp;ноября' },
+            { text: '<b>Начисление кэшбэка</b>' },
+            { text: '+1500 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-147 158 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '24&nbsp;ноября' },
+            { text: '<b>Оплата минимального платежа</b><div class="text-grey80 ui-table__mt-2">3% от суммы долга на&nbsp;1&nbsp;ноября</div>' },
+            { text: '+4 459,74 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-142 698,26 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '26&nbsp;ноября' },
+            { text: '<b>Пополнение карты с&nbsp;зарплаты</b>' },
+            { text: '+70 000 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-72 698,26 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Декабрь', mods: 'text-bold', colspan: '6' },
+          ]
+        },
+        {
+          td: [
+            { text: '20&nbsp;декабря' },
+            { text: '<b>Покупки по&nbsp;карте</b><div class="text-grey80 ui-table__mt-2">к&nbsp;новому году</div>' },
+            { text: '-35 000 ₽', mods: 'text-center text-red text-nowrap' },
+            { text: '' },
+            { text: '525 ₽', mods: 'text-center text-grey80 text-nowrap' },
+            { text: '-107 698,26 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '24&nbsp;декабря' },
+            { text: '<b>Оплата минимального платежа</b><div class="text-grey80 ui-table__mt-2">3%&nbsp;от&nbsp;суммы долга на&nbsp;1&nbsp;декабря</div>' },
+            { text: '+2 180,9 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-105 517,3 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '26&nbsp;декабря' },
+            { text: '<b>Пополнение карты с&nbsp;зарплаты</b>' },
+            { text: '+50 000 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-55 517,3 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Январь', mods: 'text-bold', colspan: '6' },
+          ]
+        },
+        {
+          td: [
+            { text: '14&nbsp;января' },
+            { text: '<b>Начисление кэшбэка</b>' },
+            { text: '+525 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-54 992,3 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '24&nbsp;января' },
+            { text: '<b>Оплата минимального платежа</b><div class="text-grey80 ui-table__mt-2">3%&nbsp;от&nbsp;суммы долга на&nbsp;1&nbsp;января</div>' },
+            { text: '+1 665,5 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-53 326,8 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '26&nbsp;января' },
+            { text: '<b>Пополнение карты с&nbsp;зарплаты</b>' },
+            { text: '+50 000 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '-3 326,8 ₽', mods: 'text-center text-red text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: '29&nbsp;января' },
+            { text: '<b>Закрыть всю сумму долга,</b><div class="text-grey80 ui-table__mt-2">чтобы не&nbsp;начислили проценты</div>' },
+            { text: '+3 326,8 ₽', mods: 'text-center text-light-green text-nowrap' },
+            { text: '' },
+            { text: '' },
+            { text: '0 ₽', mods: 'text-center text-grey80 text-nowrap' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Итого', mods: 'text-orange text-bold' },
+            { text: `<b>Сумма переплаты: 0&nbsp;₽</b>
+                <br> <b>Комиссия за&nbsp;переводы и&nbsp;снятие наличных</b> (при&nbsp;превышении суммы снятия 30&nbsp;тыс&nbsp;руб/мес): <b>4&nbsp;220&nbsp;₽</b>
+                <br> <b>Сумма кэшбэка: 2&nbsp;775&nbsp;₽</b>`,
+              mods: 'text-orange', colspan: '5' },
+          ]
+        },
+      ]
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--card-180-days')
+        +banner-wrapper('img/banner_180-days.png', true)
+          +banner-h1('Кредитная карта <br> «180 дней без %»', '--mob-size-l')
+          +banner-text('Действует на&nbsp;всё: покупки, снятие наличных и&nbsp;переводы')
+          +banner-foot
+            +ui-button('ОФОРМИТь заявку', 'banner, --m-size-l')(href='#')
+            +banner-slogan('Забудь про&nbsp;проценты на&nbsp;полгода!')
+
+    .page-content
+      +section('--mt0')
+        +tabs-head(tabs, false, '--no-item-border, --inner-line')
+        +tabs-main
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +card-benefits('', cardBenefits)
+            +section
+              .inner
+                +card-conditions
+            +section('--bg-grey')
+              .inner
+                +how-get('Как получить карту', howGetItems, 'Оформить карту')
+            +section
+              .inner
+                +section-head.text-center
+                  +ui-h2('Как работает беспроцентный период', 'section-head')
+                +grace-period('', 'big')
+            +section
+              .inner
+                +section-head
+                  +ui-h2('Условия', 'section-head')
+                +card-terms({ termsTable, termsList, termsPayment })
+          +tabs-main__item#examples-of-using
+            +section('--mt0')
+              .inner
+                +section-head('--max-w900')
+                  +ui-h4('Мы&nbsp;понимаем, что разобраться с&nbsp;условиями нового инструмента бывает не&nbsp;просто, поэтому подготовили для вас пример с&nbsp;типовым сценарием использования')
+            +section('--mt-s')
+              .inner
+                +accordion
+                  +accordion-item('Пример использования всех возможностей карты')#examples-of-using-table
+                    +ui-table(tableItems3, '--all-border, --v-al-top, --black-thead700, --tablet-scrollbar, --180days-6col')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +section-head
+                  +ui-h3('Кэшбэк начисляется на сумму покупки кратную 100 ₽', 'section-head, --bold')
+                +cashback-scheme('180days')
+            +section
+              .inner
+                +section-head
+                  +ui-h3('Вопросы и ответы по кэшбэку', 'section-head, --bold')
+                +accordion
+                  +accordion-item('Что такое кэшбэк?')
+                    +ui-p1('Кэшбэк&nbsp;&mdash; это возврат банком части расходов за&nbsp;покупки по&nbsp;карте АТБ.', '--light')
+                  +accordion-item('Когда банк начисляет и выплачивает кэшбэк?')
+                    +ui-p1('Выплата начисленного кэшбэка в&nbsp;рублевом эквиваленте осуществляется в&nbsp;течение&nbsp;10 (десяти) рабочих дней с&nbsp;момента окончания месяца совершения Бонусных транзакций.', '--light')
+                  +accordion-item('За какие операции не начислят кэшбэк?')
+                    +ui-p1('', '--light')
+                      p Кэшбэк не начисляется:
+                      +ui-ul('')
+                        li За&nbsp;операции переводов, снятия наличных.
+                        li За&nbsp;операции с&nbsp;кодами
+                          =' '
+                          a.text-orange(href='#') МСС
+                          |, перечень которых указан в&nbsp;приложении 2
+                          =' '
+                          a.text-orange(href='#') правил программы лояльности
+                          |  банка.
+                        li Если сумма транзакции менее 100&nbsp;рублей.
+                        li За&nbsp;операции оплаты товаров (работ, услуг) в&nbsp;разделе &laquo;Платежи&raquo; Интернет-банка и/или Мобильного банка.
+                        li За&nbsp;операции оплаты любых товаров (работ, услуг) в&nbsp;ТСП с&nbsp;одновременным снятием наличных денежных средств в&nbsp;ТСП.
+                  +accordion-item('Какую сумму кэшбэка я могу получить?')
+                    +ui-p1('', '--light')
+                      p Сумма кэшбэка не&nbsp;ограничена по&nbsp;максимальной сумме выплаты.
+                  +accordion-item('Куда приходит кэшбэк?')
+                    +ui-p1('Кэшбэк будет начислен в&nbsp;рублях на&nbsp;вашу карту АТБ, которой вы&nbsp;оплатили покупку.', '--light')
+                  +accordion-item('Как я могу воспользоваться кэшбэком?')
+                    +ui-p1('Кэшбэк начисляется в&nbsp;рублях на&nbsp;карту АТБ, по&nbsp;которой вы&nbsp;совершали покупки. Это обычное пополнение счёта, поэтому использовать полученные деньги вы&nbsp;можете на&nbsp;своё усмотрение.', '--light')
+                  +accordion-item('Что произойдет, если я верну приобретённый товар?')
+                    +ui-p1('Если магазин или вы&nbsp;отменили покупку и&nbsp;вернули товар, то&nbsp;кэшбэк за&nbsp;эту покупку не&nbsp;начислится. В&nbsp;случае если возврат товара был оформлен после выплаты кэшбэка, в&nbsp;будущем периоде кэшбэк будет уменьшен на&nbsp;сумму выплаченного ранее кэшбэка по&nbsp;этой покупке.', '--light')
+                  +accordion-item('Куда обращаться, если я не получил кэшбэк?')
+                    +ui-p1('Необходимо обратиться в&nbsp;колл-центр банка по&nbsp;телефону ', '--light')
+                      =' '
+                      a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                      |  или в&nbsp;отделение банка.
+                  +accordion-item('Что такое МСС код?')
+                    +ui-p1('Код вида торговой точки. Представляет собой четырехзначный номер и&nbsp;применяется в&nbsp;отрасли банковских карт для&nbsp;классификации торгово-сервисных предприятий по&nbsp;типу их&nbsp;деятельности. Начисление кэшбэка привязано к&nbsp;MCC&nbsp;кодам.', '--light')
+                  +accordion-item('Будет ли начисляться   если покупки совершались по дополнительной карте?')
+                    +ui-p1('Да, при начислении кэшбэка учитываются покупки, оплаченные основной и&nbsp;дополнительными картами.', '--light')
+                  +accordion-item('Кэшбэк начисляется на всю сумму покупки?')
+                    +ui-p1('При начислении кэшбэка сумма каждой покупки, по&nbsp;которой осуществляется расчет, округляется до&nbsp;числа, кратного 100&nbsp;₽. <br> Например, вы&nbsp;совершили покупку на&nbsp;1&nbsp;787&nbsp;₽, кэшбэк будет начисляться на&nbsp;сумму 1&nbsp;700&nbsp;₽. На&nbsp;остаток суммы 87&nbsp;₽ (не&nbsp;кратно 100&nbsp;₽) кэшбэк не&nbsp;начисляется.', '--light')
+                  +accordion-item('Где найти информацию о&nbsp;кэшбэке от&nbsp;партнеров банка?')
+                    +ui-p1('', '--light')
+                      +ui-ol('')
+                        li Откройте мобильное приложение
+                        li Выберите карту
+                        li Нажмите на&nbsp;баннер:
+                          img(src='img/180days-get-cash.png' alt='')
+                        li Далее вы увидите предложения от&nbsp;партнеров
+                        li Активируйте предложение и&nbsp;совершайте покупки в&nbsp;текущем месяце
+                        li В&nbsp;следующий расчетный период вам придет кэшбэк на&nbsp;карту, с&nbsp;которой была совершена покупка
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +accordion
+                  +accordion-item('Как можно срочно заблокировать кредитную карту?')
+                    +ui-p1('Обратиться в&nbsp;колл-центр банка по&nbsp;телефону <a href="tel:88007758888" class="text-orange text-nowrap">8-800-775-88-88</a>, либо через Мобильный/Интернет банк, либо обратиться в&nbsp;', '--light')
+                      a.text-orange(href='/atms') отделение банка
+                      | .
+                  +accordion-item('Где узнать все условия по&nbsp;кредитной карте: сумма к&nbsp;погашению, остаток свободного лимита, ставка, срок и&nbsp;сумма минимального обязательного платежа, включая смс-информирование и&nbsp;взнос по&nbsp;страховым кредитным продуктам (если они подключены)?')
+                    +ui-p1('Информацию можно посмотреть в&nbsp;Мобильном/Интернет банке, или позвонив сотруднику банка по&nbsp;телефону колл-центра <a href="tel:88007758888" class="text-orange text-nowrap">8-800-775-88-88</a> (информация доступна при условии прохождения процедуры идентификации), или обратиться в&nbsp;отделение банка.', '--light')
+                  +accordion-item('Перечислил деньги мошенникам. Как отменить платеж?')
+                    +ui-p1('Срочно позвоните в&nbsp;банк по&nbsp;телефону <a href="tel:88007758888" class="text-orange text-nowrap">8-800-775-88-88</a> и&nbsp;заблокируйте карту. Далее необходимо подойти в&nbsp;<a href="/atms" class="text-orange">любое отделение банка</a> и&nbsp;заполнить бланк претензии. По&nbsp;факту несанкционированного списания будет проведено расследование международной платежной системой в&nbsp;течение 45&nbsp;календарных дней, о&nbsp;результатах вам сообщат. Карту можно переоформить, написав заявление в&nbsp;<a href="/atms" class="text-orange">отделении банка</a>.', '--light')
+                  +accordion-item('Что такое льготный период и&nbsp;как им&nbsp;пользоваться?')
+                    +ui-p1('Период, в&nbsp;течение которого не&nbsp;взимаются проценты по&nbsp;кредиту. Если вы&nbsp;будете своевременно погашать ежемесячные платежи по&nbsp;карте в&nbsp;период действия льготного периода и&nbsp;полностью погасите задолженность не&nbsp;позднее срока окончания льготного периода, то&nbsp;проценты за&nbsp;использование заёмных средств не&nbsp;начисляются.', '--light')
+                  +accordion-item('Потерял карту/украли. Что делать?')
+                    +ui-p1('', '--light')
+                      p Если вы&nbsp;потеряли карту или ее&nbsp;у&nbsp;вас украли, следует немедленно её&nbsp;заблокировать. Вы&nbsp;можете сделать это самостоятельно в&nbsp;личном кабинете Мобильного и&nbsp;Интернет-банка с&nbsp;помощью вкладки &laquo;Мои средства&raquo; &rarr; &laquo;Карты&raquo; &rarr; &laquo;Блокировка карты&raquo;.
+                      +ui-ol('')
+                        li Выбираете карту, которую необходимо заблокировать
+                        li Указываете причину блокировки
+                        li Нажимаете &laquo;ОК&raquo;
+                        li Карта будет заблокирована, комиссия за&nbsp;блокировку отсутствует.
+                      p Также об&nbsp;утере&nbsp;/ краже карты можно сообщить в&nbsp;колл-центр банка по&nbsp;круглосуточному номеру телефона <a href="tel:88007758888" class="text-orange text-nowrap">8-800-775-88-88</a> или&nbsp;<a href="tel:+74162222333" class="text-orange text-nowrap">+7 (4162) 222-333</a> (для&nbsp;звонков из-за рубежа) и&nbsp;заблокировать карту. Кроме того, вы&nbsp;можете обратиться в&nbsp;любое отделение банка и&nbsp;заблокировать карту. Чтобы в&nbsp;дальнейшем разблокировать карту, вам необходимо обратиться в&nbsp;
+                        a.text-orange(href='/atms') отделение банка
+                        | .
+                  +accordion-item('Как привязать карту в&nbsp;Mir Pay?')
+                    +ui-p1('Скачайте приложение Mir Pay в&nbsp;Google Play. Откройте приложение и&nbsp;привяжите к&nbsp;нему свою карту (сфотографируйте, введите данные вручную или отсканируйте по&nbsp;NFC&nbsp;&mdash; самый надежный и&nbsp;удобный способ), введите вручную код CVC и&nbsp;пароль из&nbsp;СМС.', '--light')
+                  +accordion-item('Забыл ПИН-код, что делать?')
+                    +ui-p1('Вы&nbsp;можете поменять ПИН-код на&nbsp;более удобный для&nbsp;себя <a href="/atms" class="text-orange">в&nbsp;одном из&nbsp;банкоматов АТБ</a>, если у&nbsp;вас возникло подозрение, что ПИН-код стал известен посторонним лицам либо его трудно запомнить.', '--light')
+                  +accordion-item('Что такое МСС код?')
+                    +ui-p1('Код вида торговой точки. Представляет собой четырехзначный номер и&nbsp;применяется в&nbsp;отрасли банковских карт для&nbsp;классификации торгово-сервисных предприятий по&nbsp;типу их&nbsp;деятельности. Начисление кэшбэка привязано к&nbsp;MCC&nbsp;кодам.', '--light')
+                  +accordion-item('В&nbsp;какие сроки начисляется кэшбэк? За&nbsp;какие операции?')
+                    +ui-p1('Кэшбэк начисляется не&nbsp;позднее десятого рабочего дня календарного месяца, следующего за&nbsp;месяцем, в&nbsp;котором были совершены платежи с&nbsp;использованием карты (при условии, что тарифный план карты предусматривает начисление кэшбэка). Конкретные правила и&nbsp;условия начисления кэшбэка устанавливаются вашим тарифным планом, в&nbsp;рамках которого оформлена банковская карта, и&nbsp;программой лояльности, документ содержит коды операций (MCC&nbsp;коды), по&nbsp;которым начисляется кэшбэк.', '--light')
+                  +accordion-item('Не&nbsp;пришли деньги на&nbsp;карту. Что делать?')
+                    +ui-p1('В&nbsp;данном вопросе вам может помочь колл-центр банка по&nbsp;номеру <a href="tel:88007758888" class="text-orange text-nowrap">8-800-775-88-88</a>.', '--light')
+                  +accordion-item('Что такое беспроцентный (льготный, грейс) период?')
+                    +ui-p1('Это период длительностью 180 дней (с&nbsp;1-го числа месяца, в&nbsp;котором совершена первая операция, с&nbsp;которой возникла задолженность, до&nbsp;последнего дня 6-го месяца), до&nbsp;истечения которого нужно вернуть долг по&nbsp;кредитной карте, чтобы не&nbsp;платить проценты.', '--light')
+                  +accordion-item('Когда начинается и&nbsp;заканчивается беспроцентный период?')
+                    +ui-p1('', '--light')
+                      p Первый беспроцентный период с&nbsp;1-го числа месяца, в&nbsp;котором совершена первая операция, с&nbsp;которой возникла задолженность, до&nbsp;последнего дня 6-го месяца.
+                      p Следующий беспроцентный период начнется 1-го дня месяца, в&nbsp;котором совершена новая операция с&nbsp;возникновением ссудной задолженности (при условии, что ссудная задолженность была полностью погашена до&nbsp;этого).
+                      p Посмотреть конкретные даты вы&nbsp;можете в&nbsp;Мобильном приложении или позвонив на&nbsp;горячую линию
+                        =' '
+                        a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                        |  (бесплатный звонок по&nbsp;России).
+                  +accordion-item('На какие операции действует беспроцентный период?')
+                    +ui-p1('На&nbsp;любые операции: покупки по&nbsp;карте, переводы, снятие наличных и&nbsp;прочие.', '--light')
+                  +accordion-item('Что такое минимальный платеж?')
+                    +ui-p1('Это&nbsp;3% от&nbsp;суммы долга в&nbsp;на&nbsp;первое число каждого месяца, вы&nbsp;можете оплачивать минимальный платеж или больше. Сумма поступит на&nbsp;карту и&nbsp;будет доступна для&nbsp;использования.', '--light')
+                  +accordion-item('Как сохранить беспроцентный период?')
+                    +ui-p1('', '--light')
+                      +ui-ol('')
+                        li Оплачивать минимальные платежи.
+                        li Погасить весь долг до завершения беспроцентного периода.
+                  +accordion-item('Что будет, если не&nbsp;вернуть всю сумму долга до&nbsp;конца беспроцентного периода?')
+                    +ui-p1('Банк начислит проценты на&nbsp;сумму долга за&nbsp;весь период пользования денежными средствами', '--light')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +accordion
+                  +accordion-item('Тарифы')
+                    +documents
+                  +accordion-item('Полезная информация')
+                    +documents
+                  +accordion-item('Документы')
+                    +documents
+                  +accordion-item('Условия предоставления кредита')
+                    +ui-p1('', '--light')
+                      +ui-ul('')
+                        li Вам от 21 до 70 лет (на момент окончания кредитного договора)
+                          +ui-tooltip('минимальный срок кредитования – 24 мес.')
+                        li Вы проживаете на территории обслуживания Банка или у Вас положительная кредитная история в АТБ или других банках.
+                        li У Вас есть гражданство РФ
+                        li для&nbsp;работающих по найму - стаж на последнем месте работы от 3 месяцев
+                        li для&nbsp;индивидуальных предпринимателей – стаж ведения ИП не менее 6 месяцев
+                        li для&nbsp;пенсионеров – регулярное поступление пенсионных или иных социальных выплат
+                      p
+                        br
+                        | Документы:
+                      +ui-ul('')
+                        li Паспорт гражданина РФ
+                          br
+                          | Увеличьте вероятность одобрения заявки на кредит подтвердив доход.
+                          =' '
+                          a.text-orange(href='#') Подробнее…
+      +section('--ov-hidden')
+        .inner
+          +section-head.text-center
+            +ui-h2('Вас также могут заинтересовать', 'section-head')
+          +useful-goods(usefulGoods)

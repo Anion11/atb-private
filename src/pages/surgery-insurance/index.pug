@@ -1,0 +1,131 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const pageTitle ='Хирургия'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/icon_shield.svg', title: 'Ваша защита в&nbsp;непредвиденных обстоятельствах.' },
+      { icon: 'img/icon_benefits3.svg', title: 'Быстрое оформление&nbsp;&mdash; без&nbsp;описей, анкет, осмотра и&nbsp;заполнения документов.' },
+      { icon: 'img/icon_benefits2.svg', title: 'Минимальный пакет документов при&nbsp;наступления страхового случая.' },
+      { icon: 'img/icon_cash.svg', title: 'Выплата за&nbsp;19&nbsp;дней',
+        titleTooltip: 'Страховщик производит страховую выплату Страхователю, являющемуся заемщиком &laquo;Азиатско-Тихоокеанский Банк&raquo; (АО), в&nbsp;течение 19&nbsp;календарных дней с&nbsp;момента получения Страховщиком последнего из&nbsp;всех запрошенных и&nbsp;надлежащим образом оформленных документов, необходимых для принятия Страховщиком решения о&nbsp;выплате.' },
+    ]
+
+  -
+    const tableItems ={
+      thead: [
+        {
+          th: [
+            { text: 'Риски', mods: 'ui-table__tr-title text-center' },
+            { text: 'Страховые суммы', mods: 'ui-table__tr-title text-center' },
+            { text: 'Страховые выплаты', mods: 'ui-table__tr-title text-center' },
+            { text: 'Срок страхования', mods: 'ui-table__tr-title text-center' },
+            { text: 'Тариф (годовой)', mods: 'ui-table__tr-title text-center' },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { rowspan: '4', text: '&laquo;хирургическая операция в&nbsp;результате несчастного случая&raquo; <span class="text-nowrap">(п.3.3.19&nbsp;Правил)</span>' },
+            { rowspan: '2', text: 'до&nbsp;1&nbsp;000&nbsp;000&nbsp;руб. (включительно)', mods: 'text-center' },
+            { rowspan: '4', text: 'Согласно таблице выплат (прил.&nbsp;&#8470;&nbsp;5 к&nbsp;Правилам) в&nbsp;%&nbsp;от&nbsp;страховой суммы', mods: 'text-center' },
+            { text: 'до 3,5 лет (включительно) ', mods: 'text-center' },
+            { text: '1,50%', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: '3,5 – 7 лет <br>(включительно)', mods: 'text-center' },
+            { text: '1%', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { rowspan: '2', text: 'от 1 000 000 руб.', mods: 'text-center' },
+            { text: 'до 3,5 лет <br>(включительно)', mods: 'text-center' },
+            { text: '1%', mods: 'text-center' },
+          ]
+        },
+          {
+          td: [
+            { text: '3,5 – 7 лет <br>(включительно)', mods: 'text-center' },
+            { text: '0,60%', mods: 'text-center' },
+          ]
+        },
+      ]
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--surgery-insurance')
+        +banner-wrapper('img/banner_surgery_insurance.png', true)
+          +banner-h1('ХИРУРГИЯ от&nbsp;СК&nbsp;ООО <span class="text-nowrap">«МАКС-Жизнь»</span>', '--mob-size-l')
+          +banner-text(`Программа добровольного страхования жизни граждан
+            поможет вам и&nbsp;вашим близким получить финансовую помощь в&nbsp;случае непредвиденных обстоятельств.`)
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--title-normal, --items2-default')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Страховые программы', 'section-head')
+          +ui-table(tableItems, '--all-border, --auto-scroll')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Порядок урегулирования страховых случаев ', 'section-head')
+          +ui-p1()
+            p При наступлении события, имеющего признаки страхового, необходимо:
+            +ui-ol('')
+              li подать Заявления о&nbsp;страховой выплате (с&nbsp;указанием или&nbsp;приложением полных банковских реквизитов);
+              li собрать и&nbsp;предоставить полный комплект документов о&nbsp;страховом событии.
+                +ui-ul('', '--child')
+                  li Оригинал или&nbsp;копию договора страхования (страхового полиса), документов, подтверждающих уплату страховой премии (страховых взносов).
+                  li Документы, подтверждающие факт, причины и&nbsp;обстоятельства страхового случая (оригиналы или&nbsp;их&nbsp;копии, заверенные выдавшим органом или&nbsp;его должностным лицом либо нотариусом):
+                    +ui-ul('','--child, --dash')
+                      li справка или&nbsp;иной документ из&nbsp;лечебного учреждения, оказавшего первую медицинскую помощь
+                        =' '
+                        span.text-nowrap и/или проводившего
+                        |  лечение, установившего характер повреждений;
+                      li акт о&nbsp;несчастном случае на&nbsp;производстве по&nbsp;форме
+                        =' '
+                        span.text-nowrap Н-1
+                        |  (если несчастный случай произошел на&nbsp;производстве), другой документ, составленный соответствующим уполномоченным органом, достоверно свидетельствующий о&nbsp;факте и&nbsp;обстоятельствах несчастного случая, повлекшего причинение вреда здоровью;
+                      li протокол хирургической операции;
+                      li медицинская карта стационарного больного;
+                      li данные соответствующих лабораторных и&nbsp;инструментальных методов исследования, подтверждающие установленный диагноз (по&nbsp;требованию Страховщика).
+                  li Копию документа, удостоверяющего личность заявителя
+              li Страховая выплата осуществляется в&nbsp;течение 19&nbsp;календарных дней со&nbsp;дня представления указанных документов.
+          +section-box
+            +ui-p2('').text-grey60
+              p Телефон горячей линии МАКС-Жизнь:
+                =' '
+                a.text-nowrap.text-orange(href='tel:88003339013')  8 800 333 90 13
+              p Электронная почта МАКС-Жизнь:
+                =' '
+                a.text-nowrap.text-orange(href='mailto:life@makc.ru. ') life@makc.ru.
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания', 'section-head')
+          +accordion
+            +accordion-item('Документы')
+              +documents
+          +section-footnote
+            p Договор вступает в&nbsp;силу на&nbsp;следующий день после даты заключения, следующего за&nbsp;датой уплаты страховой премии. Тарифы действительны на&nbsp;май 2023&nbsp;г.
+            p Узнать более подробные условия и&nbsp;приобрести данную услугу можно в&nbsp;ближайшем офисе АО&nbsp;&laquo;Азиатско-Тихоокеанского Банка&raquo; (АТБ). Банк является агентом на&nbsp;основании Агентского договора &#8470;&nbsp;01&nbsp;от&nbsp;30.03.2018г. Услуги по&nbsp;договору страхования ХИРУРГИЯ осуществляет страховая компания ООО &laquo;МАКС-Жизнь&raquo;
+            p Размер агентского вознаграждения по&nbsp;агентскому договору со&nbsp;страховой компанией&nbsp;82% от&nbsp;страховой премии, в&nbsp;т.ч. НДС&nbsp;20%.

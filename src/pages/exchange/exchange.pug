@@ -1,0 +1,121 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -const page = 'exchange'
+  -const fileName = 'exchange'
+  -const pageTitle ='Обмен валюты'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/benefits-1.svg', title: '<span class="text-orange">Один из&nbsp;лучших курсов на&nbsp;покупку <br> китайских юаней</span>' },
+      { icon: 'img/benefits-2.svg', title: 'Доступные валюты для обмена: <b>₽&nbsp;$&nbsp;&euro;&nbsp;&yen; ₸</b>' },
+      { icon: 'img/benefits-3.svg', title: 'Индивидуальный курс при крупных суммах' },
+      { icon: 'img/benefits-4.svg', title: 'Любые объемы сделок' },
+    ]
+
+    const usefulGoods =[
+      {
+        mod: 'green20',
+        title: 'Система быстрых платежей',
+        btn: 'Подробнее',
+        img: 'useful-goods_sbp.png',
+        list: [
+            { title: '0 рублей', descr: 'переводы до 100&nbsp;000&nbsp;₽ в&nbsp;месяц' },
+            { title: 'Удобно', descr: 'мгновенное зачислениеперевода на счет' },
+            { title: 'Безопасно', descr: 'не нужно сообщать данные карты, достаточно знать номер телефона' },
+          ]
+      },
+      {
+        mod: 'blue10',
+        title: 'Переводы по&nbsp;реквизитам в&nbsp;отделениях банка',
+        btn: 'Подробнее',
+        img: 'useful-goods_swift.png',
+        list: [
+            { title: 'По России и зарубеж' },
+            { title: 'В&nbsp;рублях, долларах США, японских йенах, китайских юанях, казахстанских тенге' },
+          ]
+      },
+      {
+        mod: 'grey30',
+        title: 'Переводы с&nbsp;карты на&nbsp;карту',
+        btn: 'Подробнее',
+        img: 'useful-goods_trans.png',
+        list: [
+            { title: 'По России', descr: 'и в зарубежные банки' },
+            { title: '0 рублей комиссия', descr: 'за переводы внутри банка' },
+          ]
+      },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Услуги', '#')
+      +breadcrumbs-item(pageTitle)
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --exchange')
+        +banner-wrapper('img/banner_exchange.png', true)
+          +banner-h1('Обмен валюты', '--mob-size-l')
+          +banner-descr('Покупка по&nbsp;выгодному курсу', '--size-xs, --mob-size-l').text-orange
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--items2-default, --title-normal, --icon-xl')
+      +section
+        .inner
+          +switch('', 'В отделении АТБ', 'Онлайн', 'switch-tab', '--mob-vertical, --mb40')
+          +switch-group('switch-tab')
+            +switch-content(true)
+              +cur-converter
+              +section('--mt-xs')
+                +exchange-adv('offline')
+            +switch-content()
+              +exchange-ban
+              +section('--mt-xs')
+                +exchange-adv
+      +section
+        .inner
+          +currency
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Вас также могут заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)
+      +section
+        .inner
+          +accordion
+            +accordion-item('Другие банковские продукты')
+              +ui-p1
+                +ui-ul('')
+                  li
+                    a.text-orange(href='/kredit/ipoteka/', target='_blank') Ипотека
+                  li
+                    a.text-orange(href='/business/cash-services/packages-rko/', target='_blank') РКО
+                  li
+                    a.text-orange(href='/business/services/acquiring/', target='_blank') Эквайринг для бизнеса
+    +seo('Валютно-обменные операции')
+      p Азиатско-Тихоокеанский Банк производит обмен самых популярных валют: здесь вы сможете обменять российские рубли, доллары США, евро, китайские юани, швейцарские франки по выгодному курсу и в любых объемах. Онлайн на сайте легко рассчитать сумму, которую Вы получите в итоге операции, и найти ближайший обменный пункт.
+      +seo-accordion
+        +seo-accordion-item('Преимущества обмена в АТБ')
+          p Обменять валюту в АО Азиатско-Тихоокеанский Банк – значит обменять просто, выгодно и без рисков. Мы предлагаем:
+          ul
+            li Предварительный онлайн-расчет. Услуга позволяет заранее сориентироваться по стоимости и рассчитать итоговую сумму. Работающий на сайте калькулятор настроен на тот же курс, что и в отделении банка.
+            li Выгодный курс, отслеживать который можно прямо на сайте. И предварительный расчет суммы, и реальный производятся по действующему на сегодня курсу, который меняется в соответствии с тенденциями валютного рынка. Для наличных и безналичных операций он немного различается.
+            li Операции по любым валютным парам. Обменять доллары можно на евро или юани, юани на франки или рубли и т.д.
+            li Обмен валюты любых объемов. В АТБ не предусмотрены лимиты для обменных операций. Перевести из евро или другой валюты в рубли или наоборот можно любую сумму.
+            li Спецпредложения для клиентов с крупными суммами. При совершении обменных операций на сумму, превышающую 5 000 $, мы предлагаем специальный курс.
+            li Достаточный объем наличных в любой вышеуказанной валюте. В АТБ можно получить всю сумму на руки или зачислить на карту. Никаких лимитов при этом со стороны банка не предусмотрено.
+            li Прием ветхих купюр. Денежные знаки, предлагаемые клиентом для обмена, могут быть в любом состоянии.
+            li Доступность филиалов и отделений. Представленность АТБ в 19 регионах Сибири и ДВФО позволяет быстро найти нужное отделение и произвести обмен.
+        +seo-accordion-item('Алгоритм обмена валюты в АТБ')
+          p С имеющейся валютой необходимо посетить отделение банка и обратиться к специалисту по валютным операциям. Он произведет расчет по действующему курсу, и вам будет на месте выдана либо перечислена на карту сумма в требуемой валюте.

@@ -1,0 +1,191 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'smart-medicine'
+  -const pageTitle ='Умная медицина'
+
+  -
+    const tabsHeadItems =[
+      { text: 'Умная медицина' },
+      { text: 'Телемедицина' },
+      { text: 'Теледоктор24' },
+    ]
+
+  -
+    const benefitsItems1 =[
+      { icon: 'img/ic.call-center.svg', title: 'Специалисты на&nbsp;связи 24&nbsp;часа 7&nbsp;дней в&nbsp;неделю' },
+      { icon: 'img/ic.businessman.svg', title: 'Внимание ко всем требованиям клиента' },
+      { icon: 'img/ic.transport.svg', title: 'Быстрая госпитализация' },
+      { icon: 'img/ic.miscellaneous.svg', title: 'Контроль качества оказания услуг на месте госпитализации' },
+      { icon: 'img/ic.hotel.svg', title: 'Контроль качества оказания услуг на месте госпитализации' },
+      { icon: 'img/ic.health-clinic.svg', title: 'Связь с клиентом на протяжении всего лечения' },
+    ]
+
+  -
+    const benefitsItems2 =[
+      { icon: 'img/benefits_1.svg', descr: 'Доступность квалифицированного медицинского обслуживания из любой точки мира в формате 24/7' },
+      { icon: 'img/benefits_2.svg', descr: 'Экономия времени на визиты к врачам (до 50% вопросов снимаются без посещения клиники)' },
+      { icon: 'img/benefits_3.svg', descr: 'Альтернативное мнение врача' },
+      { icon: 'img/benefits_4.svg', descr: 'Отказ от самолечения' },
+      { icon: 'img/benefits_5.svg', descr: 'Доступ к «недоступным» в регионе врачам' },
+      { icon: 'img/benefits_6.svg', descr: 'Психологическая поддержка' },
+      { icon: 'img/benefits_7.svg', descr: 'Подготовка к визиту в клинику (к обследованию)' },
+      { icon: 'img/benefits_8.svg', descr: 'Быстрый доступ к врачебной экспертизе в экстренных ситуациях' },
+      { icon: 'img/benefits_9.svg', descr: 'Расшифровка анализов без визита в&nbsp;клинику' },
+    ]
+
+  -
+    const benefitsItems3 =[
+      { icon: 'img/benefits_2.svg', title: 'Быстро', descr: 'Услуга доступна в любой точке планеты круглосуточно, 365 дней в году. Клиент всегда получит ответ, специалисты всегда на связи!' },
+      { icon: 'img/benefits_6.svg', title: 'Удобно', descr: 'Решить интересующий вопрос и пообщаться со специалистом можно любым удобным способом: по многоканальному телефону, Skype, e-mail, через личный кабинет' },
+      { icon: 'img/benefits_10.svg', title: 'Выгодно', descr: 'Стоимость годового обслуживания в рамках сертификата «Теледоктор24» в среднем в 2 раза ниже разовой консультации у врача' },
+    ]
+
+  -
+    const smartMedPsychologistItems =[
+      { txt: 'Состояния стресса и депрессии'},
+      { txt: 'Трудности в принятии решений' },
+      { txt: 'Семейные конфликты'},
+    ]
+
+  -
+    const smartMedHowItems =[
+      { icon: 'img/smart-medicine-how-1.svg', txt: 'У клиента возникает любой вопрос медицинского или околомедицинского характера' },
+      { icon: 'img/smart-medicine-how-2.svg', txt: 'Клиент звонит в Медилог. Звонить можно круглосуточно, в любой день, сервис работает&nbsp;24/7' },
+      { icon: 'img/smart-medicine-how-3.svg', txt: 'Специалисты Медилог выясняют необходимую информацию и&nbsp;решают вопрос клиента' },
+      { icon: 'img/smart-medicine-how-4.svg', txt: 'При необходимости специалисты подбирают стационар и время госпитализации в зависимости от пожеланий клиента' },
+      { icon: 'img/smart-medicine-how-5.svg', txt: 'Специалисты Медилог всегда будут на связи с клиентом. Проконтролируют условия пребывания клиента в стационаре и качество оказываемых услуг' },
+    ]
+
+  -
+    const smartMedServices1 =[
+      { icon: 'img/doc-male.png', title: 'Телемедицина Врач – пациент', txt: 'Позволяет получать консультации врачей по телефону, посредством видео связи и чатов с использованием специализированных мобильных приложений или веб-страниц, пересылать врачам медицинскую документацию и получать письменные заключения.' },
+      { icon: 'img/doc-female.png', title: 'Телемедицина от Доктор рядом', txt: 'Это медицинский сервис, предоставляющий возможность дистанционного общения с практикующими врачами. Онлайн консультации осуществляются в любом удобном формате: аудио/ видео или чат в мобильном приложении или на сайте.' },
+    ]
+
+  -
+    const smartMedServices2 =[
+      { icon: 'img/laptop.png.png', title: 'Сервис позволяет:' },
+      { icon: 'img/tablet.png', title: 'График работы:' },
+    ]
+
+  -
+    const bannerList =[
+      { text: 'Быстрое круглосуточное предоставление услуги по телефону, в личном кабинете или чате' },
+      { text: 'Решение всех вопросов, связанных с госпитализацией и полнотой лечения' },
+      { text: 'Дистанционная и очная поддержка врачей' },
+      { text: 'Второе мнение российских и зарубежных специалистов' },
+      { text: 'Помощь в поиске альтернативных лекарств' },
+    ]
+
+  -
+    const list_1 =[
+      { text: 'Консультацию узкопрофильного специалиста' },
+      { text: 'Второе мнение по поставленному диагнозу' },
+      { text: 'Подбор врача в вашем регионе' },
+      { text: 'Юридические консультации по оказанию медицинских услуг' },
+      { text: 'Рекомендации по лекарственным средствам' },
+      { text: 'Помощь в экстренной ситуации' },
+    ]
+
+block content
+  main
+    +banner()
+      +banner-item('--smart-medicine')
+        +banner-wrapper('img/banner_smart_medicine.jpg')
+          +banner-h1('Медицинские услуги')
+          +ui-ul(bannerList, 'banner-wrapper').banner-item-dn
+        +banner-mobile()
+          +ui-ul(bannerList, 'banner-mobile')
+
+    .page-content
+      +section('--mt0')
+        +tabs-head(tabsHeadItems)
+        +tabs-main
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +section-head
+                  +ui-h2('Преимущества').text-center
+                +benefits(benefitsItems1, '--mob-items2, --title-normal')
+            +section
+              .inner
+                +section-head
+                  +ui-h2('Как это работает').text-center
+                +smart-medicine-how(smartMedHowItems)
+            +section
+              .inner
+                +smart-medicine-programs('smart-medicine')
+            +section('--mt-s')
+              .inner
+                +section-footnote
+                  | Узнать более подробные условия и приобрести данную услугу можно в ближайшем офисе АО «Азиатско-Тихоокеанского Банка» (АТБ).
+                  <br> Банк является агентом на основании Агентского договора. Услуги по сертификатам «Умная медицина» осуществляет компания ООО «Медилог».
+                  <br> Размер агентского вознаграждения по агентскому договору с компанией 75% от стоимости продукта, в т.ч. НДС 20%.
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +section-head
+                  .section-head__descr Телемедицина – это использование современных средств коммуникаций для дистанционного предоставления врачебных и консультационных услуг, реальный инструмент эффективного лечения и оптимизации расходов.
+                +smart-medicine-service(smartMedServices1, 'type1')
+            +section
+              .inner
+                +smart-medicine-doctors
+            +section
+              .inner
+                +smart-medicine-psychologist(smartMedPsychologistItems)
+            +section
+              .inner
+                +smart-medicine-service(smartMedServices2, 'type2')
+            +section
+              .inner
+                +smart-medicine-programs('telemedicine')
+            +section
+              .inner
+                +section-head
+                  +ui-h2('Преимущества программ для клиентов банка').text-center
+                +benefits(benefitsItems2)
+            +section('--mt-s')
+              .inner
+                +section-footnote
+                  | Узнать более подробные условия и приобрести данную услугу можно в ближайшем офисе «Азиатско-Тихоокеанского Банка» (АО).
+                  <br>Банк является агентом на основании Агентского договора. Услуги по сертификатам «Телемедицина» осуществляет компания ООО «МК Доктор рядом».
+                  <br>Размер агентского вознаграждения по агентскому договору с компанией 80% от стоимости продукта, в т.ч. НДС 20%.
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +section-head
+                  .section-head__descr Теледоктор24 - это возможность получить консультацию профессионального врача прямо по телефону в любое время и в любой ситуации, а так же получить страхование от несчастного случая. Подключив услугу, вы сможете получить устную консультацию по любым медицинским вопросам, включая:
+                  +ui-p1
+                    +ui-ul(list_1)
+            +section
+              .inner
+                +section-head
+                  +ui-h2('Преимущества программ для клиентов банка').text-center
+                +benefits(benefitsItems3, '--ai-start')
+            +section
+              .inner
+                +smart-medicine-programs('teledoctor')
+            +section('--mt-s')
+              .inner
+                +section-footnote
+                  | Узнать более подробные условия и приобрести данную услугу можно в ближайшем офисе «Азиатско-Тихоокеанского Банка» (АО).
+                  br
+                  | Банк является агентом на основании Агентского договора. Услуги по сертификатам «Теледоктор24» осуществляет компания ООО «Теледоктор24».
+                  br
+                  | Размер агентского вознаграждения по агентскому договору с компанией 80% от стоимости продукта, в т.ч. НДС 20%.
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания')
+          +accordion
+            +accordion-item('Документы')
+              +documents

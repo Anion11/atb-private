@@ -1,0 +1,102 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'you-word'
+    const pageTitle ='Акция «АТБ. Ваше слово»'
+
+    const howGetItems =[
+      { icon: './img/how-get_1.svg', title: 'Напишите отзыв на портале <a class="text-orange" href="/" taget="_blank">banki.ru</a>', descr: 'Расскажите о&nbsp;положительном опыте работы с&nbsp;банком АТБ' },
+      { icon: './img/how-get_2.svg', title: 'Подтвердите отзыв', descr: 'Ответив на&nbsp;запрос портала в&nbsp;течение 1&nbsp;недели с&nbsp;момента поступления запроса' },
+      { icon: './img/how-get_3.svg', title: 'Дождитесь определения победителей', descr: 'Мы свяжемся с&nbsp;каждым победителем для&nbsp;уточнения деталей отправки призов' },
+    ]
+
+    const greatPercentagesRaffleData = {
+      title: 'Победители',
+      date: [
+        {
+          dateTop: 'с 1 по 31 октября',
+          dateBot: '<b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">24-30</span> ноября </b>',
+        },
+        {
+          dateTop: 'с 1 по 30 ноября',
+          dateBot: '<b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">24-30</span> декабря </b>',
+        },
+        {
+          dateTop: 'с 1 по 31 декабря',
+          dateBot: '<b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">24-30</span> января </b>',
+        },
+      ],
+      firstDate: 'с 1 по 30 сентября',
+      winners: [
+        {
+          name: 'Тамара Киприянова А.',
+          city: 'г. Чита',
+        },
+        {
+          name: 'Екатерина Викторовна И.',
+          city: 'г. Абакан',
+        },
+        {
+          name: 'Сергей Сергеевич М.',
+          city: 'г. Черногорск',
+        },
+        {
+          name: 'Валентин Алексеевич Т.',
+          city: 'г. Усолье-Сибирское',
+        },
+      ],
+    }
+
+block content
+  main
+    +banner
+      +banner-item('--you-word')
+        +banner-wrapper('img/banner_you-word.jpg')
+          +banner-h1('Акция <br> «АТБ. Ваше слово»')
+          +banner-descr('Расскажите, что понравилось в&nbsp;АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий', '--size-s').text-orange
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('Скачать условия', 'banner')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +how-get('Условия акции', howGetItems, 'Скачать условия')
+      +section
+        .inner
+          +section-head.text-center.text-center--mob-left
+            +ui-h2('4 розыгрыша наборов для&nbsp;путешествий', 'section-head')
+            +ui-h5('Объявляем по&nbsp;10 победителей в&nbsp;каждом периоде', 'section-head')
+          +great-percentages-raffle(greatPercentagesRaffleData)
+      +section
+        .inner
+          +section-head
+            +ui-h2('Часто задаваемые вопросы').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Кто может принять участие в&nbsp;акции?')
+              +ui-p1('Любой клиент банка, которому исполнилось 18&nbsp;лет, проживающий на&nbsp;территории&nbsp;РФ.', '--light')
+            +accordion-item('Что нужно сделать, чтобы стать участником акции?')
+              +ui-p1('Разместите положительный отзыв на&nbsp;портале Banki.ru и, в&nbsp;случае необходимости, ответьте на&nbsp;запрос администрации портала, чтобы отзыв был признан зачтенным. Зачтенные отзывы будут окрашены в&nbsp;зеленый цвет.', '--light')
+            +accordion-item('Что получает победитель акции?')
+              +ui-p1('Победитель получает брендированный набор для комфортных путешествий (внешний зарядный аккумулятор, спортивная бутылка для воды, дорожная надувная подушка в&nbsp;чехле).', '--light')
+            +accordion-item('Сколько можно получить призов?')
+              +ui-p1('Один участник может получить только один приз.', '--light')
+            +accordion-item('Как будет определен победитель?')
+              +ui-p1('В&nbsp;каждом периоде среди всех участников, выполнивших условия акции, банк определит победителей конкурса с&nbsp;помощью генератора случайных чисел в&nbsp;эфире официального <a class="text-orange"  href="https://t.me/atb_su">Telegram канала</a>. В&nbsp;каждом периоде будет по&nbsp;10&nbsp;победителей.', '--light')
+            +accordion-item('Как я узнаю, что выиграл в акции?')
+              +ui-p1('Банк уведомит победителя при помощи звонка. Также результаты будут размещены на&nbsp;официальных страницах АТБ в&nbsp;социальных сетях и&nbsp;на&nbsp;сайте АТБ.', '--light')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Документы')
+              +documents

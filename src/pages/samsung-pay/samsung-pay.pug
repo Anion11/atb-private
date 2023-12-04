@@ -1,0 +1,146 @@
+
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'samsung-pay'
+  -const pageTitle ='Samsung Pay'
+
+  -
+    const stepsItems =[
+      { img: 'img/pay_st1.jpg', title: 'Проведите по&nbsp;экрану снизу вверх, чтобы выбрать карту в&nbsp;Samsung Pay' },
+      { img: 'img/pay_st2.jpg', title: 'Авторизуйтесь по&nbsp;отпечатку пальца <span class="text-nowrap">или PIN-коду</span> приложения' },
+      { img: 'img/pay_st3.jpg', title: 'Поднесите смартфон к&nbsp;терминалу для&nbsp;оплаты' },
+    ]
+
+  -
+    const smallBannerData ={
+      h3: 'Уведомление об&nbsp;ограничениях',
+      h3Mods: ', --xl',
+      descr: `<p>В&nbsp;связи с&nbsp;ограничениями некоторых международных платежных систем недоступен ряд операций &mdash; таких, как добавление карт этих платежных систем в&nbsp;Samsung&nbsp;Pay на&nbsp;смартфоне и&nbsp;носимых устройствах, совершение по&nbsp;ним мобильных платежей и&nbsp;денежных переводов.</p>
+        <p>Подробнее о&nbsp;сервисе Samsung&nbsp;Pay –
+          <a class="text-orange" href="https://www.samsung.com/ru/samsung-pay/" target="_blank">на&nbsp;официальном сайте</a></p>`,
+      img: 'img/small_banner_samsung_pay_notif.png',
+    }
+
+  -
+    const compatibleDevicesData ={
+      logo: 'img/compatible-devices-logo.svg',
+      h3: 'Это удобный и&nbsp;безопасный мобильный платёжный сервис',
+      text: `Добавьте вашу карту &laquo;Мир&raquo; в&nbsp;Samsung Pay и&nbsp;совершайте быстрые и&nbsp;безопасные платежи смартфоном Samsung Galaxy. Сервис доступен для всех карт &laquo;Мир&raquo; от&nbsp;АТБ.
+        <br> <a class='text-orange' href='#'>Подробнее о&nbsp;сервисе и&nbsp;совместимых устройствах.</a>`,
+      services: [
+        'img/compatible-devices-mir-logo.svg'
+      ]
+    }
+
+  -
+    const cautionData ={
+      img: 'img/caution_img.png',
+      h3: 'Важно!',
+      h3Mods: 'text-orange',
+      text: 'Держите в&nbsp;секрете свой PIN-код и&nbsp;не&nbsp;позволяйте никому, включая членов вашей семьи, регистрировать свои отпечатки пальцев, радужки глаз в&nbsp;привязке к&nbsp;вашему устройству с&nbsp;Samsung Pay.',
+    }
+
+  -
+    const supportItems = [
+      { icon: 'img/icon_call_center.svg',
+        title: 'Служба поддержки клиентов Samsung',
+        p2: `Горячая линия (Россия) — <span class="text-nowrap">8-800-555-55-55</span>
+          <br>Горячая линия (Беларусь) — <span class="text-nowrap">8-10-800-500-55-500</span>`,
+      },
+      { icon: 'img/icon_claims.svg',
+        title: 'Часто задаваемые вопросы',
+      },
+    ]
+
+  -
+    const telInstruction =[
+      {
+        mods: 'tel-instruction__section--right',
+        nav: false,
+        img: [
+          { src: 'tel_instruction_sl1_1' },
+          { src: 'tel_instruction_sl1_2' },
+          { src: 'tel_instruction_sl1_3' },
+          { src: 'tel_instruction_sl1_4' },
+        ],
+        steps: [
+          { title: 'Откройте Samsung Pay и&nbsp;настройте авторизацию (по&nbsp;отпечатку пальца <span class="text-nowrap">или PIN-коду</span> приложения)' },
+          { title: 'Отсканируйте карту камерой смартфона, <br>добавьте ее по&nbsp;NFC или&nbsp;введите данные вручную' },
+          { title: 'Примите Условия обслуживания Банка и&nbsp;пройдите проверку <span class="text-nowrap">по SMS-коду</span> от&nbsp;Банка.' },
+          { title: 'Введите подпись с&nbsp;помощью пальца или&nbsp;стилуса. <br>Карта добавлена!' },
+        ]
+      }
+    ]
+
+  -
+    const paySafetyItems =[
+      { img: 'img/pay-safety-code.png', h4: 'Токенизация', p2: 'Во&nbsp;время совершения транзакции вместо номера карты используется специальный цифровой код, созданный случайным образом – токен. Ваша личная информация не&nbsp;используется во&nbsp;время оплаты  и&nbsp;остается в&nbsp;безопасности.' },
+      { img: 'img/pay-safety-knox.svg', h4: 'Защищенная среда KNOX', p2: 'Samsung KNOX – встроенная система безопасности, которая защищает устройство от&nbsp;попыток вредоносных атак и&nbsp;непрерывно отслеживает возможные уязвимости на&nbsp;устройстве.' },
+      { img: 'img/pay-safety-fingerprint.png', h4: 'Авторизация', p2: 'Каждая операция обязательно подтверждается  по&nbsp;вашему отпечатку пальца, радужке глаз <span class="text-nowrap">или PIN-коду</span> приложения – только вы можете  совершать покупки. <br>* Каждая операция обязательно подтверждается по&nbsp;вашему отпечатку пальца <span class="text-nowrap">или PIN-коду</span> приложения&nbsp;&mdash; только вы&nbsp;можете совершать покупки.' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--samsung-pay')
+        +banner-wrapper('img/banner_samsung_pay_small.png', true)
+          +banner-h1('Плати смартфоном с&nbsp;Samsung Pay', '--mob-size-l')
+          +banner-text('Оплачивайте свои покупки в&nbsp;одно касание')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +compatible-devices(compatibleDevicesData)
+
+      +section('--mt-xs')
+        .inner
+          +pay-safety(paySafetyItems)
+
+      +section('--ov-hidden')
+        .inner
+          +section-head('--max-w900')
+            +ui-h2('Как добавить карту в&nbsp;Samsung&nbsp;Pay на&nbsp;смартфон', 'section-head')
+            .section-head__descr.section-head__descr--max-w630
+              +ui-h4('Чтобы оплачивать покупки смартфоном Samsung Galaxy, необходимо добавить в&nbsp;Samsung&nbsp;Pay карту &laquo;Мир&raquo; от&nbsp;АТБ.')
+          +tel-instruction(telInstruction, '--line-between-items, --samsung-pay')
+          +section-box('--hr, --max-w700')
+            +section-footnote('', '--mt0')
+              | На&nbsp;смартфоне должна быть добавлена учетная запись Samsung Account.
+              br
+              | На&nbsp;одно устройство можно добавить до&nbsp;10&nbsp;банковских карт.
+              br
+              | * Карты &laquo;Мир&raquo; можно добавить в&nbsp;Samsung Pay только на&nbsp;оригинальных смартфонах Samsung, предназначенных для&nbsp;распространения на&nbsp;территории Российской Федерации и&nbsp;Республики Беларусь.
+              br
+              | Использование карт &laquo;Мир&raquo; в&nbsp;Samsung Pay на&nbsp;носимых устройствах, а&nbsp;также для&nbsp;оплаты онлайн и&nbsp;в&nbsp;приложениях пока не&nbsp;поддерживается.
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Как оплатить покупки в&nbsp;магазине с&nbsp;помощью Samsung Pay', 'section-head')
+          +steps-cards(stepsItems)
+
+      +section('--mt-xs')
+        .inner
+          +caution(cautionData)
+
+      +section('--ov-hidden')
+        .inner
+          +section-head().text-center
+            +ui-h2('Карты, поддерживающие Samsung Pay', 'section-head')
+          +select-card
+
+      +section
+        .inner
+          +small-banner(smallBannerData, '--samsung-pay-notif')
+
+      +section
+        .inner
+          +support(supportItems)

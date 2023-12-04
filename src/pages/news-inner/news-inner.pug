@@ -1,0 +1,22 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'news-inner'
+  -const pageTitle ='Новости'
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item(pageTitle)
+    .page-content.page-content--pt-s
+      +section('--mt0')
+        .inner
+          +news-inner

@@ -1,0 +1,30 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'financial-literacy-inner'
+    const pageTitle ='Кредитный лимит'
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--financial-literacy-inner, --v-inner-pt-xxl')
+        +banner-wrapper('img/banner_financial-literacy-inner.png', true)
+          +banner-h1('Плюсы и&nbsp;минусы <br> кредитных карт', '--mob-size-l')
+    .page-content
+      +section('--mt0')
+        .inner
+          +useful-articles-inner('', 'extended')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Может быть интересно', 'section-head')
+          +useful-articles('articlesFinancialOthers')

@@ -1,0 +1,22 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'ingots-inner'
+  -const pageTitle ='Мерный слиток 10 г.'
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Слитки', '/')
+      +breadcrumbs-item(pageTitle)
+    .page-content
+      +section('--mt0')
+        .inner
+          +ingots-inner

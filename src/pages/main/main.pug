@@ -1,0 +1,195 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'main'
+    const pageTitle ='Main'
+
+    const seoList1 =[
+      { txt: 'Кредиты: потребительские, ипотечные, карты, рефинансирование.' },
+      { txt: 'Вклады: размещение средств депозита на выгодных условиях.' },
+      { txt: 'Счета: личный, номинальный, накопительный, эскроу, обезличенные металлические счета.' },
+      { txt: 'Банковские карты: кредитные, дебетовые, универсальные, с выгодным кэшбэком.' },
+      { txt: 'Страхование: жизни (инвестиционное и накопительное), здоровья, имущества, обязательное пенсионное страхование, продукт "Защита карты".' },
+      { txt: 'Валютно-обменные операции: выгодный курс, и индивидуальные условия.' },
+      { txt: 'Банковские и онлайн-переводы: наличными в любую точку мира или с карты на карту.' },
+      { txt: 'Оплата коммунальных услуг: наличными по квитанции, картой или онлайн через сайт.<br>' },
+      { txt: 'Специальные предложения для бизнеса: эквайринг, реализация имущества.' },
+      { txt: 'Премиальное обслуживание клиентов.' },
+      { txt: 'Инвестиции: брокерское обслуживание, управление активами, индивидуальный инвестиционный счет.' },
+      { txt: 'Монеты: памятные (серебро и золото), иностранные.' },
+    ]
+
+    const seoList2 =[
+      { txt: 'Выгодные процентные ставки по кредитам.' },
+      { txt: 'Широкая линейка кредитных и депозитных продуктов, рассчитанная на различные категории клиентов и их цели.' },
+      { txt: 'Активный выпуск карт, принимаемых по всему миру.' },
+      { txt: 'Стабильный режим работы.' },
+      { txt: 'Сайт банка доступен круглосуточно, информационная и клиентская поддержка осуществляется онлайн.' },
+      { txt: 'Современное дистанционное обслуживание: интернет- и мобильный банк, смс-информирование, платежные Samsung Pay, Apple Pay и другие.' },
+      { txt: 'Онлайн-операции по всем видам услуг. Оплатить кредит, перевести деньги с карты на карту, погасить коммунальные платежи и т.д. можно в любое время суток, не выходя из дома.' },
+      { txt: 'Квалифицированные сотрудники. Помощь и пояснения можно получить у любого специалиста, в офисе банка или по телефону.' },
+      { txt: 'АТБ имеет не только широкую сеть отделений, но и множество собственных банкоматов и терминалов. Также Вас обрадует отсутствие комиссий за снятие наличных в банкоматах сторонних банков.' },
+    ]
+
+    const mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным <a class="text-orange" href="#">Мобильным банком</a>, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+    const calcTypeTabs = [
+      { text: 'дальневосточная'},
+      { text: 'готовое'},
+      { text: 'новостройка'},
+      //- { text: 'семейным'},
+      //- { text: 'военным'},
+      //- { text: 'рефинансирование'},
+    ]
+
+    const calcCreditData ={
+      ranges: [
+        { title: 'Сумма кpедита', inpDescr: ' ₽', min: '30000', max: '1000000', dataName: 'amount' },
+        { title: 'Срок кредита, мес', inpDescr: ' мес', min: '13', max: '60', dataName: 'term' },
+      ],
+      psText: [
+        `* Расчет платежа произведен в качестве примера с учетом оформления личного страхования**, ставка подбирается индивидуально.`,
+        `** Без оформления Личного страхования ставка увеличивается на 8 п.п.`,
+        `Информация носит справочный характер и не является публичной офертой`,
+      ],
+      button: 'оставить заявку',
+      buttonLink: 'подробнее',
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--cash-loan')
+        +banner-wrapper('img/banner_cash_loan_small.png', true)
+          +banner-h1('Кредит <br class="banner__br-no-mob">наличными', '--mob-size-l')
+          +banner-subtitle('Сумма до')
+            =' '
+            span.banner-subtitle__accent 5
+            | &nbsp;млн&nbsp;
+            span.banner-subtitle__accent ₽
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+            +banner-slogan('Нужен только паспорт!')
+
+      //- +banner-item('--card-180-days')
+        +banner-wrapper('img/banner_180-days.png', true)
+          +banner-h1('Кредитная карта <br> «180 дней без %»', '--mob-size-l')
+          +banner-text('Действует на&nbsp;всё: покупки, снятие наличных и&nbsp;переводы')
+          +banner-foot
+            +ui-button('ОФОРМИТь заявку', 'banner, --m-size-l')(href='#')
+            +banner-slogan('Забудь про&nbsp;проценты на&nbsp;полгода!')
+      +banner-item('--card-uk-m-vertically')
+        +banner-wrapper('img/banner_uk_small.png', true)
+          +banner-h1('Универсальная кредитная карта', '--mob-size-l')
+          +banner-subtitle('до&nbsp;180&nbsp;дней без&nbsp;%')
+          +banner-foot
+            +ui-button('Оформить карту', 'banner, --m-size-l')(href='#')
+            +banner-slogan('На всё, что&nbsp;нужно сейчас')
+
+      //- +banner-item('--refinancing')
+        +banner-wrapper('img/banner_refinancing_small.png', true)
+          +banner-h1('Рефинансирование кредитов', '--mob-size-l', false)
+          +banner-text('Объедините кредиты других банков и&nbsp;платите меньше!')
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+
+      +banner-item('--deposit-welcome')
+        +banner-wrapper('img/banner_deposit_welcome_small.png', true)
+          +banner-h1('Вклад <br>«Добро пожаловать»', '--mob-size-l', false)
+          +banner-subtitle('Ставка до  ')
+            span.banner-subtitle__accent 15%
+            |  годовых
+          +banner-foot
+            +ui-button('оформить вклад', 'banner, --m-size-l')(href='#')
+            +banner-slogan('Дружеский вклад с&nbsp;высоким процентом!')
+
+      +banner-item()
+        +banner-wrapper('img/banner_union_pay.png', true)
+          +banner-h1('Дебетовая карта <span class="text-nowrap">«АТБ 2.0»</span> UnionPay', '--mob-size-l', false)
+          +banner-subtitle('Безграничная карта <br>для&nbsp;заграничных путешествий')
+          +banner-foot
+            +ui-button('Подробнее', 'banner, --m-size-l')(href='#')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +main-attention({ title: '10 октября закрывается офис <span class="text-nowrap">в Санкт-Петербурге</span>', btn: 'Подробнее', btnLink: '#close-office', btnClass: 'js-popup-open' }, '--close-office')
+          div Чтобы открыть попап: showPopup('#close-office')
+      +section('--mt-xs')
+        .inner
+          +main-attention({ title: '<span class="text-orange">Внимание!</span> Клиентам Квантмобайл банка', btn: 'Подробнее' }, '--quant')
+      +section
+        .inner
+          +switch('Подберите', 'кредит', 'ипотеку', 'main-calc', '--mb20, --main-calc')
+          +switch-group('main-calc')
+            +switch-content(true)
+              +section-head
+                .section-head__descr От низкой ставки к высоким целям
+              +calc-credit('main', calcCreditData)
+            +switch-content
+              +tabs-head(calcTypeTabs, true, '--round')
+              +tabs-main
+                +tabs-main__item(true)
+                  +calc-mortgage('dfo')
+                +tabs-main__item
+                  +calc-mortgage('complete')
+                +tabs-main__item
+                  +calc-mortgage('new_building')
+      +section
+        .inner
+          +main-attention({ descr: 'Информация по текущей ситуации', btn: 'Подробнее' })
+      +section
+        .inner
+          +mob-banner(mobBannersData)
+      +section
+        .inner
+          +main-info
+      +section
+        .inner
+          +section-head('--flex')
+            +ui-h2('Новости')
+            +ui-button('все новости', '--link-next')(href='#')
+          +useful-articles('mainPage')
+      +section
+        .inner
+          +journal-ban
+      +section
+        .inner
+          +financial-literacy-more
+    +popup__wrapper#close-office
+      +p-close-office
+  +seo('Азиатско-Тихоокеанский Банк')
+    p Азиатско-Тихоокеанский Банк – один из крупнейших банков Дальнего Востока и Сибири с мультирегиональной сетью. Работает на российском рынке 30 лет.
+    p Предоставляет полный комплекс банковских продуктов и услуг для физических и юридических лиц. Банк имеет сбалансированную универсальную бизнес-модель и совершает операции по следующим направлениям: розничные банковские операции, карты и сопутствующие услуги, корпоративные клиенты, поддержка МСП, операции с золотом и драгоценными металлами, торговля ценными бумагами и производными финансовыми инструментами, межбанковский и международный бизнес. Банк предлагает банковские продукты и услуги 16&nbsp;000 корпоративных клиентов и предприятий малого и среднего бизнеса, а также 280 000 физических лиц. Банк – участник Системы страхования вкладов. Сеть Банка составляет 176 отделений в 100 населенных пунктах в 20 регионах РФ, включает 263 банкомата и 209 платежных терминалов. В банке работает 3 200 сотрудников.
+    +seo-accordion
+        +seo-accordion-item('Услуги')
+          p На официальном сайте банка представлен весь перечень услуг, оказываемых частным клиентам и бизнесу:
+          ul
+            each item in seoList1
+              li=item.txt
+          p Узнать подробнее о каждой из перечисленных услуг Вы можете на посвященной ей странице сайта. Мы также готовы проконсультировать Вас по телефону горячей линии 8-800-775-88-88, на сайте или в офисе банка.
+        +seo-accordion-item('Преимущества Asian Pacific Bank')
+          p У Азиатско-Тихоокеанского Банка достаточно конкурентных преимуществ даже перед флагманами банковского сектора. В их числе:
+          ul
+            each item in seoList2
+              li=item.txt
+  +cookies-banner

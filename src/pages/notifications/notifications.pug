@@ -1,0 +1,143 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'notifications'
+    const pageTitle ='Оповещения об операциях по картам'
+
+    const benefitsItems =[
+      { icon: 'img/benefits_1.svg', title: 'Оперативное оповещение обо всех поступлениях и&nbsp;списаниях' },
+      { icon: 'img/benefits_2.svg', title: 'Узнайте об изменении баланса даже без&nbsp;доступа к&nbsp;онлайн-сервисам' },
+      { icon: 'img/benefits_3.svg', title: '0 ₽ за оповещения о&nbsp;расходах' },
+    ]
+
+    const tableData = {
+      names: [
+        'Сумма расходной операции',
+        'Место расходной операции',
+        'Остаток на карте',
+        'Пополнение через банкоматы АТБ',
+        'Зачисление на счет',
+        'Сумма выплаченных процентов по счету',
+        'Иные сведения',
+        '<b>Как подключить</b>',
+      ],
+      columns: [
+        {
+          name: 'Бесплатно',
+          descr: 'дебетовая / кредитная карта',
+          img: 'img/notifications_router_img_bell.png',
+          rows: [
+            { icon: 'yes' },
+            { icon: 'no' },
+            { icon: 'no' },
+            { icon: 'no' },
+            { icon: 'no' },
+            { icon: 'no' },
+            { text: `На усмотрение банка` },
+            { text: `Автоматически <br>при&nbsp;выпуске карты`,
+              textMods: '--bold',
+            },
+          ],
+        },
+        {
+          name: '69₽ / 89₽ в месяц',
+          descr: 'дебетовая / кредитная карта',
+          img: 'img/notifications_router_img_email.png',
+          headMods: 'paid',
+          rows: [
+            { icon: 'yes' },
+            { icon: 'yes' },
+            { icon: 'yes' },
+            { icon: 'yes' },
+            { icon: 'yes' },
+            { icon: 'yes' },
+            { text: `На усмотрение банка` },
+            { text: `В отделении, банкомате или по&nbsp;телефону <a class="text-orange text-nowrap" href='tel:88007758888'>8-800-775-88-88</a>`,
+              textMods: '--bold',
+            },
+          ],
+        },
+      ]
+    }
+
+block content
+  main
+    +banner()
+      +banner-item('--notifications')
+        +banner-wrapper('img/banner_notifications.jpg')
+          +banner-h1('Оповещения <br>об операциях <br>по картам')
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('Как подключить', 'banner').js-open-accordion(href='#how-connect')
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--title-normal')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Выбирайте пакет, который вам подходит', 'section-head')
+            +ui-h4('и получайте оповещения в&nbsp;виде&nbsp;СМС <span class="text-nowrap">или push-уведомлений</span>', '--light')
+          +notifications-router(tableData)
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Как подключить услугу?')#how-connect
+              +ui-p1('')
+                p Обязательный пакет подключается и&nbsp;активируется при выдаче карты автоматически. Полный пакет можно подключить по&nbsp;телефону
+                  =' '
+                  a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                  |  в&nbsp;банкоматах АТБ или подать заявление в&nbsp;отделении банка.
+            +accordion-item('Могу&nbsp;ли я&nbsp;не&nbsp;подключать ни&nbsp;один их&nbsp;пакетов СМС-информирования?')
+              +ui-p1('')
+                p Нет. Бесплатный пакет подключается автоматически, так как банк обязан информировать клиента о&nbsp;совершении каждой операции с&nbsp;использованием электронного средства платежа (п.&nbsp;4. ст.&nbsp;9&nbsp;ФЗ &laquo;О&nbsp;национальной платежной системе&raquo;).
+                p Платный пакет подключается по&nbsp;желанию клиента.
+            +accordion-item('Как отключить услугу?')
+              +ui-p1('')
+                p Вы&nbsp;можете сменить платный пакет на&nbsp;бесплатный (обязательный). Напишите заявление в&nbsp;любом отделении АТБ или по&nbsp;телефону
+                  =' '
+                  a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                  | .
+                p Отключить бесплатный (обязательный) пакет вы&nbsp;можете только при расторжении Договора карты.
+            +accordion-item('Как мне перейти с СМС на push-уведомления?')
+              +ui-p1('')
+                p Если у&nbsp;вас есть доступ в&nbsp;личный кабинет АТБ Мобайл, вы&nbsp;может самостоятельно переключить СМС на&nbsp;push-уведомления. Для этого:
+                +ui-ol('', '--li-mb10')
+                  li Войдите в&nbsp;приложение &laquo;АТБ Мобайл&raquo;
+                  li В&nbsp;правом нижнем углу нажмите кнопку &laquo;Еще&raquo;
+                  li В&nbsp;правом верхнем углу нажмите
+                    =' '
+                    span.text-nowrap иконку ⚙️
+                  li Передвиньте бегунок напротив &laquo;Включить Push-уведомления&raquo;
+                  li Готово!
+            +accordion-item('Чем push-уведомления лучше СМС?')
+              +ui-p1('')
+                p Push-уведомления на&nbsp;сегодня являются наиболее безопасным вариантом оповещений по&nbsp;банковским картам&nbsp;&mdash; они направляются по&nbsp;защищённому каналу в&nbsp;зашифрованном виде. Кроме того, push-уведомления не&nbsp;занимают свободное место в&nbsp;памяти смартфона, в&nbsp;отличие от&nbsp;СМС.
+            +accordion-item('Как изменить номер телефона, на который приходят оповещения?')
+              +ui-p1('')
+                p Обратитесь лично в&nbsp;любое отделение АТБ с&nbsp;документом, удостоверяющим личность.
+            +accordion-item('Могу&nbsp;ли я&nbsp;подключить один Полный пакет уведомлений на&nbsp;все свои карты в&nbsp;Банке?')
+              +ui-p1('Нет, к&nbsp;каждой карте подключается отдельный пакет уведомлений (платный или бесплатный). Ежемесячная комиссия выставляется за&nbsp;каждый из&nbsp;подключенных платных (Полных) пакетов.')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы', 'section-head')
+          +accordion
+            +accordion-item('Документы')
+              +documents
+              +accordion('--inner')
+                +accordion-item('Архив')
+                  +documents

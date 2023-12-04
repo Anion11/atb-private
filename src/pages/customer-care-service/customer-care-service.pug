@@ -1,0 +1,136 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'customer-care-service'
+    const pageTitle ='Служба заботы о клиентах'
+
+    const benefitsItems =[
+      {
+        icon: 'img/care-products_1.svg',
+        title: 'Карты',
+        descr: 'Дебетовые и&nbsp;кредитные'
+      },
+      {
+        icon: 'img/care-products_2.svg',
+        title: 'Кредиты',
+        descr: 'Кредиты наличными, автокредиты, ипотека'
+      },
+      {
+        icon: 'img/care-products_3.svg',
+        title: 'Накопления',
+        descr: 'Вклады, счета, слитки, монеты'
+      },
+      {
+        icon: 'img/care-products_4.svg',
+        title: 'Мобильное приложение',
+      },
+      {
+        icon: 'img/care-products_5.svg',
+        title: 'Интернет-банк',
+      },
+      {
+        icon: 'img/care-products_6.svg',
+        title: 'Клиентам Квантмобайл Банка',
+      },
+      {
+        icon: 'img/care-products_7.svg',
+        title: 'Программа лояльности',
+        descr: 'Акции, бонусы и&nbsp;скидки'
+      },
+      {
+        icon: 'img/icon_claims.svg',
+        title: 'Прием обращений, жалоб, претензий',
+      },
+      {
+        icon: 'img/care-products_8.svg',
+        title: 'Другое',
+      },
+    ]
+
+    const benefitsItems2 =[
+      {
+        icon: 'img/icon_soldier.svg',
+        title: 'Мобилизация и&nbsp;СВО',
+      },
+      {
+        icon: 'img/icon_coins_arrow_up.svg',
+        title: 'Валютные операции, вклады и&nbsp;счета',
+      },
+      {
+        icon: 'img/icon_card_globe.svg',
+        title: 'Работа карт АТБ по&nbsp;России и&nbsp;в&nbsp;других странах',
+      },
+      {
+        icon: 'img/icon_smart.svg',
+        title: 'Бесконтактная оплата телефоном (NFC)',
+      },
+      {
+        icon: 'img/icon_interface.svg',
+        title: 'Кредитные каникулы в&nbsp;рамках <span class="ui-nowrap">106-ФЗ</span>'
+      },
+    ]
+
+    const careInfoData = [
+      {
+        icon: 'img/care-info_call.svg',
+        title: 'По&nbsp;телефону <span class="text-nowrap">8-800-775-88-88</span>',
+        descr: 'Может потребоваться кодовое слово или&nbsp;T-пин',
+      },
+      {
+        icon: 'img/care-info_chat.svg',
+        title: 'В чате банка',
+        descr: '<a href="#" class="text-orange">В Мобильном приложении</a> или&nbsp;<a href="#" class="text-orange text-nowrap">Интернет-банке</a>',
+      },
+      {
+        icon: 'img/care-info_mob.svg',
+        title: '<a href="#" class="text-orange">В Мобильном приложении</a> или&nbsp;<a href="#" class="text-orange text-nowrap">Интернет-банке</a>',
+      },
+      {
+        icon: 'img/care-info_bank.svg',
+        title: '<a href="#" class="text-orange">В отделениях банка</a>',
+        descr: 'Возьмите с собой паспорт',
+      },
+      {
+        icon: 'img/care-info_mail.svg',
+        title: 'Электронная почта',
+        descr: '<a href="mailto:ask@atb.su" class="text-orange">ask@atb.su</a>',
+      },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Самое важное сегодня', '#')
+      +breadcrumbs-item(pageTitle)
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head.text-center.text-center--mob-left
+            +ui-h2('Служба заботы о&nbsp;клиентах', 'section-head')
+            +ui-h4('По&nbsp;какому продукту у&nbsp;вас возник вопрос:', 'section-head')
+          +benefits(benefitsItems, '--xl, --links', 'isLinks')
+
+      +section
+        .inner
+          +section-head('--max-w700, --center').text-center.text-center--mob-left
+            +ui-h2 ('Информация по&nbsp;текущей ситуации в&nbsp;связи с&nbsp;СВО и&nbsp;санкциями', 'section-head')
+          +benefits(benefitsItems2, '--xl, --links', 'isLinks')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Вы можете получить информацию следующими способами', 'section-head')
+          +care-info(careInfoData)
+      +section
+        .inner
+          +ui-p1('Тут будет форма')

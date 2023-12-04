@@ -1,0 +1,372 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'cards'
+  -const pageTitle ='Единая карта Сахалинца'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/benefit_sakhalin-1.svg', title: 'Проект <a class="text-orange" href="https://msz.admsakhalin.ru/node/23674" target="_blank">«Сахалинское долголетие»</a>' },
+      { icon: 'img/benefit_sakhalin-2.svg', title: 'Одна карта для пенсий, субсидий, пособий' },
+      { icon: 'img/benefit_sakhalin-3.svg', title: 'Скидки и акции от <a class="text-orange" href="#">торговых партнёров</a>' },
+      { icon: 'img/benefit_sakhalin-4.svg', title: 'Бесплатное обслуживание' },
+      { icon: 'img/benefit_sakhalin-5.svg', title: 'До 4,5% доход на остаток и кэшбэк до 5%', modClass:'benefits__item--col2' },
+    ]
+
+  -
+    const termsTable =[
+      { name: 'Тип банковской карты', descr: 'Мир' },
+      { name: 'Ежемесячное и годовое обслуживание карты основной и дополнительной карты', descr: 'бесплатно' },
+      { name: 'ежемесячное начисление процентов на минимальный остаток по счету банковской Карты', descr: 'до 4,5%' },
+      { name: 'ежедневный лимит совершения операций выдачи наличных денежных средств в банкоматах любых банков, в т.ч. АТБ (АО)', descr: '150 000 руб.' },
+      { name: 'ежемесячный лимит совершения операций выдачи наличных денежных средств в банкоматах и в пунктах выдачи наличных любых банков, в т.ч. АТБ (АО)', descr: '500 000 руб.' },
+      { name: 'возврат от суммы покупок в Аптеках', descr: 'кэшбэк 5%' },
+    ]
+
+  -
+    const termsList =[
+      { text: 'участие в дисконтных программах банка и платежных систем' },
+      { text: 'бесплатная выписка по счетам <span class="text-nowrap">в «АТБ-Онлайн»</span> /<span class="text-nowrap">«АТБ-Мобайл»</span>' },
+      { text: 'круглосуточная поддержка через Колл-центр АТБ' },
+      { text: 'сообщение в банк о потере или краже карты по единому номеру в любой точке мира' },
+      { text: 'Оплачивайте покупки одним движением руки!' },
+    ]
+
+  -
+    const termsPayment =[
+      { img: 'img/icon-pay-wifi.svg' },
+      { img: 'img/samsung-pay-seeklogo.svg' },
+      { img: 'img/logo-mir-pay.svg' },
+    ]
+
+  -
+    const tabsHeadItems =[
+      { text: 'Сахалинское долголетие' },
+      { text: 'Скидки и бонусы' },
+      { text: 'Проездной билет' },
+      { text: 'Социальные выплаты' },
+      { text: 'Программа лояльности НПС Мир' },
+    ]
+
+  -
+    const conditionsItemsData = [
+      {
+        title: 'Сахалинское долголетие',
+        paragraphs: [
+          'Социальная программа, направленная на повышение условий и продолжительности активной жизни граждан в возрасте от 55 лет.',
+          'Бесплатно посещайте до 20 культурно-досуговых и спортивных мероприятий в месяц, пользуйтесь <a class="text-orange" href="https://eks.sakhalin.gov.ru/partners/" target="_blank">скидками</a> в партнёрских магазинах и аптеках.',
+          'Полный перечень организаций культуры и спорта <a class="text-orange" href="https://eks.sakhalin.gov.ru/capabilities/" target="_blank">здесь</a>',
+        ],
+        img: {
+          src: 'img/conditions1.png'
+        }
+      },
+      {
+        title: 'Полис обязательного медицинского страхования',
+        paragraphs: [
+          'Единая карта сахалинца полноценно заменяет полис ОМС при обращении в учреждения здравоохранения Сахалинской области. Просто предъявите Единую карту сахалинца в регистратуре медучреждения.',
+        ],
+        img: {
+          src: 'img/conditions2.png'
+        }
+      },
+      {
+        title: 'Проездной билет',
+        paragraphs: [
+          'Единая карта сахалинца заменяет единый и льготный проездной билет на городском общественном транспорте. Гражданам с правом на социальный проезд не нужно дополнительно оформлять льготный билет.',
+        ],
+        img: {
+          src: 'img/conditions3.png'
+        }
+      },
+      {
+        title: 'Социальные выплаты',
+        paragraphs: [
+          'Оформите начисление социальных выплат (пособий, пенсий и т.д.) на Единую карту сахалинца.Напишите заявление в отделении банка, Пенсионного фонда или МФЦ.',
+          'При подаче заявления в МФЦ и Пенсионном фонде укажите реквизиты счета, к которому привязана ваша Единая карта сахалинца.',
+        ],
+        img: {
+          src: 'img/conditions4.png'
+        }
+      },
+      {
+        title: 'Программа лояльности платежной системы МИР',
+        paragraphs: [
+          'Получая Единую карту Сахалинца Вы автоматически становитесь участником <a class="text-orange" target="_blank" href="https://privetmir.ru/promo/">программы лояльности НПС Мир:</a>',
+        ],
+        list: [
+          { text: 'Кэшбэк за покупки у партнёров' },
+          { text: 'Специальные предложения, скидки, акции' },
+        ],
+        btn: {
+          txt: 'подробнее',
+          link: '#'
+        },
+        img: {
+          src: 'img/conditions5.png',
+        }
+      },
+    ]
+
+    const tableData = {
+      names: [
+        { text: 'Как выглядит карта', },
+        { text: 'Программа лояльности', },
+        { text: 'Параметры', },
+        { text: 'Тарифные планы, по&nbsp;которым действует программа лояльности', },
+        { text: '' },
+      ],
+      columns: [
+        {
+          img: 'img/card_router_img_standard_bonus.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Стандарт-бонус</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descr: 'паспорт',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '1% на все покупки',
+                    '7% в выбранных категориях',
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Карта АТБ 2.0</a>',
+                  ],
+                  descr: `Подключается при выдаче`,
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кошелек</a>',
+                  ],
+                  descr: `Подключение через колл-центр`,
+                }
+              ]
+            },
+            { },
+          ],
+        },
+        {
+          isActive: true,
+          img: 'img/card_router_img_standard_direct.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Стандарт-директ</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descr: 'паспорт',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '1% на все покупки',
+                    '5% в выбранных категориях',
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Особый статус</a>',
+                  ],
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Приморец</a>',
+                  ],
+                },
+                {
+                  label: 'Единая карта сахалинца',
+                }
+              ]
+            },
+            {
+              sections: [
+                {
+                  subtitle: 'Архив',
+                  text: [
+                    '<a href="#" class="text-underline">Большой кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Валютный кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Детская карта</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кампус</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кошелек</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+              ]
+            },
+          ],
+        },
+        {
+          img: 'img/card_router_img_cash_back_direct.png',
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<a href="#" class="text-underline">Кэш-Бэк Директ</a>',
+                  ],
+                  textClass: 'card-router__text--bold',
+                  descr: 'паспорт',
+                  descrClass: 'card-router__descr--mob-big',
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '2% на все покупки',
+                    'до 10% в выбранных категориях',
+                  ],
+                  textClass: 'card-router__text--light',
+                },
+              ]
+            },
+            { },
+            {
+              sections: [
+                {
+                  subtitle: 'Архив',
+                  text: [
+                    '<a href="#" class="text-underline">Карта Кэш-бэк</a>',
+                  ],
+                  textClass: 'text-grey60',
+                },
+              ]
+            },
+          ],
+        },
+      ]
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--sakhalin-card')
+        +banner-wrapper('img/banner_sakhalin.png', true)
+          +banner-h1('Единая карта сахалинца', '--mob-size-l')
+          +banner-descr('Получайте выплаты и&nbsp;пользуйтесь льготами', '--size-xs, --mob-size-l, --mob-mb-l').text-orange
+          +banner-item-foot
+            .banner-item-foot-item
+              +ui-button('оформить карту', 'banner, --m-size-l')(href='#form-section')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head('--max-w900')
+              +ui-h2('Больше, чем просто банковская карта', 'section-head')
+              +ui-p1('Комплекс социальных возможностей для жителей Сахалина и Курил')
+          +benefits(benefitsItems, '--title-normal')
+      +section
+        +tabs-head(tabsHeadItems)
+        +tabs-main
+          each tab, index in conditionsItemsData
+            -const flag = index===0 ? true : false
+            +tabs-main__item(flag)
+              .inner
+                +conditions-item(tab)
+      +section
+        .inner
+          +switch('', 'Параметры карты', 'Тарифы и документы', 'card-info', '--mb40, --mob-vertical')
+          +switch-group('card-info')
+            +switch-content(true)
+              +card-terms({ termsTable, termsList, termsPayment, support: true })
+            +switch-content()
+              +documents
+              +accordion
+                +accordion-item('Архив')
+                  +accordion('--inner')
+                    +accordion-item('Архив тарифов')
+                      +documents
+                    +accordion-item('Архив УДБО')
+                      +documents
+      +section
+        .inner
+          +section-head
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Почему именно карта Мир')
+              +ui-p1('Согласно Федеральному закону № 161-ФЗ «О национальной платёжной системе» все российские банки обязаны производить зачисления бюджетных выплат на карты платёжной системы Мир.', '--light')
+            +accordion-item('Что относится к бюджетным выплатам')
+              +ui-p1('', '--light')
+                ul.ui-ul
+                  li Денежное содержание, вознаграждение, довольствие государственных служащих, оплата труда работников государственных и муниципальных органов, учреждений, государственных внебюджетных фондов, государственные стипендии, ежемесячное пожизненное содержание судей
+                  li Пенсии и прочие социальные выплаты от пенсионного фонда РФ в соответствии с законодательством РФ
+                  li Социальные выплаты безработным гражданам, установленные Законом Российской Федерации «О занятости населения в Российской Федерации»
+                  li Государственные пособия гражданам, имеющим детей, установленные Федеральным законом «О государственных пособиях гражданам, имеющим детей»
+                  li Прочие социальные перечисления, предусмотренные законодательством РФ
+            +accordion-item('Как оформить карту Мир')
+              +ui-p1('', '--light')
+                ul.ui-ul
+                  li В отделении банка
+                  li Оставьте заявку через оператора по Единому номеру Горячей линии банка
+                    =' '
+                    a.text-orange.nowrap(href='tel:88007758888') 8-800-775-88-88
+                  li Оставьте заявку на сайте банка
+                    =' '
+                    a.text-orange(href='/') www.atb.su
+            +accordion-item('Как воспользоваться акциями и скидками Единой карты сахалинца?')
+              +ui-p1('Используйте единую карту при оплате товара на кассе или при оформлении заказа онлайн. <a class="text-orange" href="https://eks.sakhalin.gov.ru/capabilities/" target="_blank">Подробная информация о предложениях программы лояльности держателей Единой карты сахалинца</a>.', '--light')
+            +accordion-item('Как определить, какая программа лояльности действует по вашей карте?', '--card-router')
+              +ui-p1('Для этого вам нужно узнать свой тарифный план, он указан в названии карты (в договоре, а также в мобильном и интернет-банке, если вы не переименовывали карту).', '--light')
+              .section-box
+                +card-router(tableData)
+      +section#form-section
+        .inner
+          +section-head
+            +ui-h2('Оформите заявку на карту', 'section-head').text-center

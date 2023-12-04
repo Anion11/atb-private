@@ -1,0 +1,137 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'credit'
+    const pageTitle ='Кредиты наличными'
+
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Оставьте заявку', descr: 'В среднем занимает 5&nbsp;минут' },
+      { icon: './img/how_get_step2.svg', title: 'Дождитесь одобрения', descr: 'В течение 3&nbsp;минут придет в&nbsp;смс' },
+      { icon: './img/how_get_step3.svg', title: 'Подпишите договор', descr: 'В&nbsp;ближайшем отделении банка с&nbsp;паспортом' },
+    ]
+
+    const benefitsItems =[
+       { icon: 'img/icon_benefits-no-bets-1.svg', title: 'Ставка 0% <br> на&nbsp;весь срок кредита', titleTooltip: '<p>Ставка&nbsp;0% действует при условии оформления услуги «Снижение процентной ставки по&nbsp;кредиту»:</p> <p>при оформлении кредита списывается единоразовая комиссия в&nbsp;размере&nbsp;10% от&nbsp;предоставленной суммы кредита.</p> <p>В&nbsp;случае несогласия Заемщика на&nbsp;оформление услуги «Снижение процентной ставки по&nbsp;кредиту»&nbsp;— по&nbsp;кредиту действует ставка 27,5% годовыx.</p>' },
+       { icon: 'img/icon_benefits-no-bets-2.svg', title: '10 равных платежей <br> на&nbsp;10&nbsp;месяцев' },
+       { icon: 'img/icon_benefits-no-bets-3.svg', title: 'Для оформления <br>нужен только ', titleNowrap: 'паспорт', titleTooltip: 'При оформление кредита на&nbsp;сумму от&nbsp;100&nbsp;000&nbsp;₽ предоставьте <a class="text-orange" href="/kredit/sposoby-predostavleniya-dohodov/">документы подтверждающие доход</a>' },
+    ]
+
+    const tabs =[
+      { text: 'О продукте' },
+      { text: 'Условия' },
+      { text: 'Документы' },
+    ]
+
+    const usefulGoods =[
+      {
+        mod: 'orange30',
+        title: 'Кредит наличными',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_cash_loan.png',
+        list: [
+          { title: 'ставка от 4%', descr: 'годовых' },
+          { title: 'до 7 лет', descr: 'срок кредита' },
+          { title: 'до 5 млн рублей', descr: 'сумма кредита' },
+        ]
+      },
+      {
+        mod: 'green20',
+        title: 'Рефинансирование кредитов',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_refin_loans.png',
+        list: [
+          { title: 'Снижение ставки' },
+          { title: 'Объединение кредитов разных банков в&nbsp;один' },
+          { title: 'Дополнительная сумма<br>на&nbsp;любые цели' },
+        ]
+      },
+      {
+        mod: 'orange30',
+        title: 'Кредитная карта «Универсальная»',
+        btn: 'Оставить заявку',
+        img: 'useful_goods_img_uc.png',
+        list: [
+          { title: 'До&nbsp;120&nbsp;дней', descr: 'беспроцентный период' },
+          { title: '1,5% кэшбэк', descr: 'на все покупки' },
+          { title: '0 рублей', descr: 'обслуживание карты' },
+        ]
+      },
+    ]
+
+    const calcCreditData ={
+      numAccentName: 'СТАВКА по кредиту',
+      numAccent: '0 %',
+      paymentDescr: 'платите кредит равными долями',
+      ranges: [
+        { title: 'Сумма кpедита', inpDescr: ' ₽', min: '30000', max: '150000', dataName: 'amount' },
+      ],
+      resultLine2: [
+        { name: 'срок кредита ', num: '10 мес.', data: 'text-total_amount' },
+        { name: 'единоразовая комиссия ', num: '', numNowrap: '3 000 ₽', descr: '10% от суммы кредита', numTooltip: 'В&nbsp;случае несогласия Заемщика на&nbsp;оформление услуги &laquo;Снижение процентной ставки по&nbsp;кредиту&raquo; процентная ставка 27,5% годовых', data: 'text-once_amount' },
+      ]
+    }
+
+    const termsItems =[
+      { name: 'Минимальная сумма кредита', descr: '30&nbsp;000&nbsp;₽' },
+      { name: 'Максимальная сумма кредита', descr: '150&nbsp;000&nbsp;₽' },
+      { name: 'Процентная ставка (в&nbsp;процентах годовых)*', descr: '0%' },
+      { name: 'Срок возврата кредита', descr: '10&nbsp;(десять) месяцев' },
+      { name: 'Диапазон полной стоимости Кредита в&nbsp;процентном выражении (%&nbsp;годовых)', descr: '33,966%–34,936 %' },
+      { name: 'Срок действия решения о&nbsp;предоставлении Кредита', descr: '30 календарных дней' },
+      { name: 'Обеспечение', descr: 'Не предусмотрено' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--no-bets')
+        +banner-wrapper('img/banner_no-bets.png', true)
+          +banner-h1('Кредит наличными <br> #Ставок.нет!', '--mob-size-l')
+          +banner-subtitle('до ')
+            span.banner-subtitle__accent 1
+            |  млн
+            span.banner-subtitle__accent  ₽
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+            +banner-slogan('Заморозим проценты!')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Простые условия')
+          +benefits(benefitsItems, '--title-normal')
+
+      +section
+        .inner
+          +tabs-head(tabs, true, '--no-item-border')
+          +tabs-main
+            +tabs-main__item(true)
+              +section-head
+                +ui-h2('Рассчитайте свой кредит', 'section-head')
+              +calc-credit('no-bets', calcCreditData)
+            +tabs-main__item
+              +terms(termsItems)
+              +section-footnote('*При условии оформления услуги &laquo;Снижение процентной ставки по&nbsp;кредиту&raquo; в&nbsp;размере&nbsp;14% от&nbsp;предоставленной суммы Кредита. В&nbsp;случае несогласия Заемщика на&nbsp;оформление услуги &laquo;Снижение процентной ставки по&nbsp;кредиту&raquo;&nbsp;&mdash; 35% годовых')
+            +tabs-main__item
+              +documents
+              +section-footnote('Полная версия тарифов, условий предоставления, использования и&nbsp;возврата потребительского кредита представлены в&nbsp;<a class="text-orange">Книге тарифов</a>', '--fz16, --grey60')
+
+      +section('--bg-grey')
+        .inner
+          +how-get('Как оформить кредит', howGetItems, 'оформить заявку')
+
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Вас также может заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)

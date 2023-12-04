@@ -1,0 +1,85 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'mortgage-insurance'
+    const pageTitle = 'Страхование при ипотеке'
+
+    const tabs = [
+      { text: 'Пролонгация договора' },
+      { text: 'Полезная информация' },
+    ]
+
+    const benefitsItems = [
+      {
+        icon: 'img/benefits-1.svg',
+        title: 'Страховая премия оплачивается 1&nbsp;раз в&nbsp;год.',
+        descr: 'Сумму и&nbsp;дату платежей вы&nbsp;найдете в&nbsp;Графике страховой суммы и&nbsp;уплаты страховой премии (страховых взносов). Страховой взнос зависит от&nbsp;остатка задолженности по&nbsp;кредиту. Если вы&nbsp;частично погашали кредит досрочно, то&nbsp;предоставьте страховой компании новый график платежей, чтобы вам пересчитали График страховой суммы, и&nbsp;заключите Дополнительное соглашение к&nbsp;договору страхования.'
+      },
+      {
+        icon: 'img/benefits-2.svg',
+        title: 'Отсутствие страховки может привести к&nbsp;повышению процентной ставки <br> по&nbsp;Кредитному договору.',
+        descr: 'При неисполнении или ненадлежащем исполнении Заемщиком обязательств, касающихся страхования жизни заемщика, предмета ипотеки и&nbsp;титула (предусмотренных условиями Кредитного Договора), Кредитор вправе требовать полного досрочного исполнения обязательств по&nbsp;кредиту.'
+      },
+      {
+        icon: 'img/benefits-3.svg',
+        title: 'Страховая компания не&nbsp;всегда сообщает банку об&nbsp;оплате заемщиком очередного страхового взноса, поэтому важно после оплаты сообщить банку о&nbsp;выполнении данного условия Кредитного договора.',
+        descr: 'По&nbsp;условиям кредитного договора заемщик принимает на&nbsp;себя обязательства по&nbsp;исполнению обязанностей по&nbsp;страхованию.'
+      },
+    ]
+
+    const transferInnerCallData ={
+      title: 'Остались вопросы?',
+      text: 'Звоните',
+      phoneLink: '88007758888',
+      phoneText: '8-800-775-88-88',
+      img: 'img/transfer-inner-call.png',
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --mortgage-insurance')
+        +banner-wrapper('img/banner_mortgage-insurance.png', true)
+          +banner-h1('Страхование при&nbsp;ипотеке', '--mob-size-l')
+          +banner-item-foot
+            .banner-item-foot-item
+              +ui-button('подтвердите страховку', 'banner').js-open-tab(href='#form-container')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +tabs-head(tabs, true, '--no-item-border')
+          +tabs-main
+            +tabs-main__item(true)
+              +form-container#form-container
+                p Форма
+                +form-container__fn
+                  +ui-p2('', '--light')
+                    p Документы, подтверждающие пролонгацию/ заключение договора страхования, также возможно передать следующими способами:
+                    +ui-ul('', 'form-container')
+                      li Направив на&nbsp;официальный почтовый ящик &laquo;Азиатско-Тихоокеанский Банк&raquo; (АО)
+                        =' '
+                        a.text-orange(href='mailto:ask@atb.su') ask@atb.su
+                      li Предоставив в&nbsp;ближайшее
+                        =' '
+                        a.text-orange(href='#') отделение Банка
+            +tabs-main__item
+              +benefits(benefitsItems, '--rows-xl')
+
+      +section
+        .inner
+          +transfer-inner-call(transferInnerCallData)
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Полезные статьи об&nbsp;ипотеке')
+          +useful-articles('articlesOthers')

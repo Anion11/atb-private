@@ -1,0 +1,515 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'credit'
+  -const pageTitle ='Кредит на автомобиль'
+
+  -
+    const tabs = [
+      { text: 'Автокредиты', groupItem: 'tab-main-form-common' },
+      { text: 'Условия и документы', groupItem: 'tab-main-form-common' },
+      { text: 'Вопросы и ответы', groupItem: 'tab-main-form-common' },
+      { text: 'Страхование', groupItem: 'tab-main-form-common' },
+      { text: 'Партнерам', groupItem: 'tab-main-form-partners' },
+    ]
+
+  -
+    const howGetItems1 =[
+      { icon: './img/car_how_get_step1.svg', title: 'Выберите автомобиль <br>в&nbsp;автосалоне' },
+      { icon: './img/car_how_get_step2.svg', title: 'Оформите заявку на&nbsp;кредит в&nbsp;автосалоне' },
+      { icon: './img/car_how_get_step3.svg', title: 'Оформите страхование и сервисное обслуживание автомобиля' },
+    ]
+
+  -
+    const howGetItems2 =[
+      { icon: './img/car_how_get_step_bank.svg', title: 'Получите автокредит <br>в&nbsp;отделении банка' },
+      { icon: './img/car_how_get_step_car.svg', title: 'Купите автомобиль и&nbsp;предоставьте документы на&nbsp;него' },
+      { icon: './img/car_how_get_step_star.svg', title: 'Получите скидку <br>к&nbsp;ставке' },
+    ]
+
+  -
+    const howGetTabs =[
+      { text: 'АвтоПривилегия' },
+      { text: 'Легкий старт'},
+      { text: 'АвтоРешение'},
+    ]
+
+  -
+    const benefitsItems_1 =[
+      { icon: 'img/benefits_null_rub.svg', title: 'Первоначальный взнос' },
+      { icon: 'img/benefits_people.svg', title: 'Возможность выбора продавца' },
+      { icon: 'img/benefits_stopwatch.svg', title: 'Решение за&nbsp;1&nbsp;час' },
+      { icon: 'img/benefits_file.svg', title: 'Оформление по&nbsp;двум документам' },
+    ]
+
+  -
+    const benefitsItems_3 =[
+      { icon: 'img/benefits_building.svg', title: 'Широкая география' },
+      { icon: 'img/benefits_stopwatch.svg', title: 'Быстрое оформление' },
+      { icon: 'img/benefits_file.svg', title: 'Упрощенный комплект документов' },
+      { icon: 'img/benefits_book.svg', title: 'Обучаем продукту и продажам' },
+    ]
+
+  -
+    const list_1 =[
+      { text: 'Гражданство Российской Федерации' },
+      { text: 'Адрес постоянной регистрации и фактическое место жительства заёмщика – все регионы РФ' },
+      { text: 'Возраст Заёмщика не&nbsp;менее 21&nbsp;года (на&nbsp;момент оформления кредита) и не более 70 лет (на&nbsp;момент окончания действия срока возврата кредита) включительно' },
+      { text: 'Стаж на&nbsp;последнем месте работы не менее 3&nbsp;мес. (на&nbsp;клиентов, являющихся пенсионерами, данное требование не распространяется)' },
+    ]
+
+  -
+    const list_3 =[
+      { text: 'Паспорт гражданина РФ' },
+      { text: 'Второй документ на&nbsp;выбор: загранпаспорт, водительское удостоверение, СНИЛС, паспорт гражданина&nbsp;РФ лица, допущенного к&nbsp;управлению приобретаемым&nbsp;ТС, и&nbsp;его водительское удостоверение' },
+      { text: `Документы, подтверждающие доход и&nbsp;трудовую занятость для&nbsp;кредита на&nbsp;сумму свыше <span class="text-nowrap">2,5 млн</span> рублей`
+      },
+    ]
+
+    const calcCreditData ={
+      ranges: [
+        { title: 'Стоимость автомобиля', inpDescr: ' ₽', min: '200000', max: '4500000', dataName: 'amount' },
+        { title: 'Сумма первоначального взноса', inpDescr: ' ₽', min: '0', max: '4500000', dataName: 'initial_pay' },
+        { title: 'Срок кредита, лет', inpDescr: ' лет', min: '2', max: '8', dataName: 'term' },
+      ],
+      resultLine2: [
+        { name: 'СУММА КРЕДИТА ', num: '2 600 000 ₽', data: 'text-total_amount' },
+      ],
+      psText: [
+        `* Расчет платежа произведен в&nbsp;качестве примера с&nbsp;учетом оформления страхования, ставка подбирается индивидуально`,
+        `Информация носит справочный характер и&nbsp;не&nbsp;является публичной офертой`,
+      ],
+      foot: [
+        `Увеличьте вероятность одобрения заявки на&nbsp;кредит,&nbsp;подтвердив доход. <a class="text-link-underline text-orange" target="_blank" href="#">Подробнее</a>`,
+        `<a class="text-link-underline text-orange" target="_blank" href="#">Узнайте свой кредитный рейтинг бесплатно</a>`,
+      ]
+    }
+
+  -
+    const usefulGoods =[
+      {
+        mod: 'green20',
+        title: 'Рефинансирование кредитов',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_refin_loans.png',
+        list: [
+          { title: 'Снижение ставки' },
+          { title: 'Объединение кредитов разных банков в&nbsp;один' },
+          { title: 'Дополнительная сумма<br>на&nbsp;любые цели' },
+        ]
+      },
+      {
+        mod: 'orange30',
+        title: 'Кредит наличными',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_cash_loan.png',
+        list: [
+          { title: 'ставка от 4%', descr: 'годовых' },
+          { title: 'до 7 лет', descr: 'срок кредита' },
+          { title: 'до 3 млн рублей', descr: 'сумма кредита' },
+        ]
+      },
+      {
+        mod: 'orange30',
+        title: 'Кредитная карта «Универсальная»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_uc.png',
+        list: [
+          { title: 'До&nbsp;120&nbsp;дней', descr: 'беспроцентный период' },
+          { title: '1,5% кэшбэк', descr: 'на все покупки' },
+          { title: '0 рублей', descr: 'обслуживание карты' },
+        ]
+      },
+      {
+        mod: 'green20',
+        title: 'Кредит под залог недвижимости',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_secured_loan.png',
+        list: [
+          { title: 'Ставка от 13,5%', descr: 'годовых' },
+          { title: 'До 20 лет', descr: 'срок кредитования' },
+          { title: 'До 15 млн рублей', descr: 'сумма кредита' },
+        ]
+      },
+    ]
+
+  -
+    const usefulGoods2 =[
+      {
+        mod: 'green20',
+        title: 'АвтоПривилегия',
+        btn: 'Рассчитать',
+        btnMods: ', --d-w100',
+        btnHref: '#section-calc',
+        btnDataSelectChange: 'calc-type',
+        btnDataSelectValue: 'auto-privilege',
+        img: 'useful_goods_img_autoprivilegy.png',
+        p2: 'Новый и&nbsp;с&nbsp;пробегом в&nbsp;автосалоне и&nbsp;у&nbsp;физлица',
+        p2Tooltip: 'У&nbsp;продавца должен быть заключен договор с&nbsp;АТБ',
+        list: [
+          { title: 'от 16,4% годовых' },
+          { title: 'до 4,5 млн рублей' },
+          { title: 'до 8 лет' },
+        ]
+      },
+      {
+        mod: 'blue10',
+        title: 'Легкий старт',
+        btn: 'Рассчитать',
+        btnMods: ', --d-w100',
+        btnHref: '#section-calc',
+        btnDataSelectChange: 'calc-type',
+        btnDataSelectValue: 'easy-start',
+        img: 'useful_goods_img_easy_start.png',
+        p2: 'Новый и&nbsp;с&nbsp;пробегом только в&nbsp;автосалоне',
+        p2Tooltip: 'У&nbsp;автосалона должен быть заключен договор с&nbsp;АТБ',
+        list: [
+          { title: 'от 15% годовых' },
+          { title: 'до 4,5 млн рублей' },
+          { title: 'до 8 лет' },
+        ]
+      },
+      {
+        mod: 'orange30',
+        title: 'АвтоРешение',
+        btn: 'Рассчитать',
+        btnMods: ', --d-w100',
+        btnHref: '#section-calc',
+        btnDataSelectChange: 'calc-type',
+        btnDataSelectValue: 'auto-decision',
+        img: 'useful_goods_img_auto_resolution.png',
+        p2: 'Оставляем за&nbsp;вами решение о&nbsp;месте покупки и&nbsp;состоянии авто',
+        list: [
+          { title: 'от 10,9% годовых' },
+          { title: 'до 2 млн рублей' },
+          { title: 'до 5 лет' },
+        ]
+      },
+    ]
+
+  -
+    const smallBannerData = {
+      h3: 'Покупайте авто на&nbsp;аукционах Японии',
+      h3Mods: ', --xs',
+      descr: 'Новый продукт АвтоРешение подходит для&nbsp;покупки авто на&nbsp;аукционах, просто предоставьте документы на&nbsp;автомобиль после покупки.',
+      descrMods: 'd-size-l',
+      img: 'img/small_banner_buy_cars_japan.png'
+    }
+
+  -
+    const creditServices =[
+      {
+        name: 'Страхование КАСКО+',
+        list: [
+          { text: `Покрывает сумму кредита
+                  <div class="credit-services__li-descr">выплаты по&nbsp;рискам «Хищение» и&nbsp;«Ущерб на&nbsp;условиях полной гибели»</div> ` },
+          { text: `Дополнительное покрытие
+                  <div class="credit-services__li-descr">при&nbsp;утрате авто в&nbsp;результате самовозгорания</div> ` },
+          { text: `Действие на&nbsp;весь срок кредита
+                  <div class="credit-services__li-descr">либо в&nbsp;течение выбранного срока</div> ` },
+        ]
+      },
+      {
+        name: 'Страхование  жизни',
+        list: [
+          { text: `Погашение кредита
+                  <div class="credit-services__li-descr">в&nbsp;сложных ситуациях: болезни, несчастные случаи, смерть</div>` },
+          { text: `Минимальный пакет документов` },
+          { text: `Дополнительные  выплаты
+                  <div class="credit-services__li-descr">при получении травмы в&nbsp;результате несчастного случая</div>` },
+          { text: `Один полис
+                  <div class="credit-services__li-descr">покрывает несколько рисков одновременно</div>` },
+        ]
+      },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl')
+        +banner-wrapper('img/banner_car_loan_small.png', true)
+          +banner-h1('Автокредиты <br class="banner__br-no-mob"> от&nbsp;АТБ', '--mob-size-l')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +tabs-head(tabs, true, '--no-item-border')(data-tabs-group='main-tabs')
+
+        +tabs-main(data-tabs-group='main-tabs')
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +benefits(benefitsItems_1, '--items2-default, --title-normal, --icon-xl')
+
+            +section('--ov-hidden')
+              .inner
+                +section-head
+                  +ui-h2('Выберите то, что подходит именно вам', 'section-head')
+                +useful-goods(usefulGoods2)
+
+            +section
+              .inner
+                +small-banner-wrapper()
+                  +small-banner(smallBannerData, '--buy-cars-japan')
+
+            +section#section-calc
+              .inner
+                +section-head('--mb-size-xxs')
+                  +ui-h2('Рассчитайте платеж', 'section-head')
+                +section-head('--calc-for-auto')
+                  +ui-form-name('Выберите кредит')
+                  +ui-select('')(data-select-group='calc-type')
+                    option(value='auto-privilege') АвтоПривилегия
+                    option(value='easy-start') Легкий старт
+                    option(value='auto-decision') АвтоРешение
+                +section('--mt0').text-fadein(data-toggle-group='calc-type' data-toggle-element='auto-privilege')
+                  +calc-credit('auto_privilege_c2c', calcCreditData)
+                +section('--mt0').text-fadein(style='display: none;' data-toggle-group='calc-type' data-toggle-element='easy-start')
+                  +calc-credit('easy_start_c2c', calcCreditData)
+                +section('--mt0').text-fadein(style='display: none;' data-toggle-group='calc-type' data-toggle-element='auto-decision')
+                  +calc-credit('auto_decision_c2c', calcCreditData)
+
+            +section('--bg-grey')
+              .inner
+                +section-head
+                  +ui-h2('Как оформить автокредит', 'section-head').text-center
+                  +tabs-head(howGetTabs, true, '--round, --d-l-slides-center')(data-tabs-group='how-get-tabs')
+                +tabs-main(data-tabs-group='how-get-tabs')
+                  +tabs-main__item(true)
+                    +how-get('', howGetItems1)
+                  +tabs-main__item
+                    +how-get('', howGetItems1)
+                  +tabs-main__item
+                    +how-get('', howGetItems2)
+
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +accordion()
+                  +accordion-item('Требования к заемщику')
+                    +ui-p1('', '--light')
+                      +ui-ul(list_1)
+                  +accordion-item('Краткие условия предоставления автокредита')
+                    +documents
+                    p Полная версия тарифов, условий предоставления, использования и возврата потребительского кредита представлены в
+                      =' '
+                      a.text-orange(href='#') Книге тарифов
+                  +accordion-item('Документы на&nbsp;ТС для&nbsp;получения кредита')
+                    +ui-p1('', '--light')
+                      +ui-ul('')
+                        li Для подержанных ТС* - оригиналы ПТС (допускается прием дубликата ПТС)
+                          br
+                          | При&nbsp;отсутствии ПТС на&nbsp;бланке:
+                          br
+                          | - выписка из&nbsp;Электронного паспорта&nbsp;ТС (далее&nbsp;&mdash; выписка ЭПТС) в&nbsp;статусе &laquo;действующий&raquo; + СТС*
+                        li Для новых ТС:
+                          br
+                          | - выписка ЭПТС в&nbsp;статусе &laquo;действующий&raquo;
+                      p * применимо в&nbsp;случае, если&nbsp;ТС к&nbsp;моменту реализации было в&nbsp;установленном законодательством порядке поставлено на&nbsp;государственный регистрационный учет в&nbsp;Российской Федерации или год выпуска&nbsp;ТС не&nbsp;соответствует новому ТС<br>
+                        br
+                        |  ** если в&nbsp;выписке ЭПТС отсутствует информация о&nbsp;предыдущем владельце и&nbsp;ТС к&nbsp;моменту реализации было в&nbsp;установленном законодательством порядке поставлено на&nbsp;государственный регистрационный учет в&nbsp;Российской Федерации
+                      p Полномочия юридического лица&nbsp;/ ИП&nbsp;на&nbsp;реализацию&nbsp;ТС подтверждаются одним из&nbsp;следующих документов: договором купли-продажи, дилерским договором, договором поставки и&nbsp;актом приема-передачи ТС&nbsp;по&nbsp;указанным договорам или агентским договором, договором комиссии и&nbsp;т.п., заключенным с&nbsp;собственником&nbsp;ТС и&nbsp;предоставляющим ему право на&nbsp;реализацию такого ТС. Для&nbsp;ТС, ввезенных из-за границы и&nbsp;не&nbsp;поставленных на&nbsp;государственный регистрационный учет в&nbsp;РФ дополнительно к&nbsp;указанным документам и&nbsp;выписке из&nbsp;ЭПТС прилагается таможенная декларация (или&nbsp;иной документ при&nbsp;отсутствии у&nbsp;продавца&nbsp;ТС таможенной декларации или в&nbsp;дополнение к&nbsp;ней). При&nbsp;этом таможенная декларация и/или иной документ, предоставленный Банку, должен содержать VIN номер&nbsp;ТС, а&nbsp;также идентификационные данные продавца&nbsp;ТС (или иного лица, осуществлявшего таможенные процедуры в&nbsp;отношении&nbsp;ТС, а&nbsp;также процедуры, необходимые для&nbsp;получения ЭПТС, и&nbsp;передавшего полномочия по&nbsp;реализации&nbsp;ТС продавцу&nbsp;ТС на&nbsp;основании договора).
+                  +accordion-item('Документы заёмщика для&nbsp;получения кредита')
+                    +ui-p1('', '--light')
+                      +ui-ul(list_3)
+                  +accordion-item('Документы')
+                    +documents
+
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +accordion
+                  +accordion-item('Как оформить кредит?')
+                    +ui-p1('Оформить кредит можно, оставив заявку на&nbsp;сайте банка, в&nbsp;<a class="text-orange" href="#">Мобильном приложении</a> или в&nbsp;офисе. При&nbsp;оформлении заявки дистанционно (сайт банка/<a class="text-orange" href="#">Мобильное приложение</a>) после предварительного одобрения вам будет назначена встреча в&nbsp;<a class="text-orange" href="#">офисе</a> для&nbsp;подписания договора и&nbsp;получения кредита. Для&nbsp;действующих клиентов банка, с&nbsp;установленным <a class="text-orange" href="#">Мобильным приложением</a> доступно оформление кредита онлайн без&nbsp;посещения офиса.', '--light')
+                  +accordion-item('Почему мне отказали в кредите?')
+                    +ui-p1('Для обеспечения финансовой надежности принятие решения о&nbsp;выдаче кредита осуществляется банком на&nbsp;основании требований и&nbsp;критериев, применяемых при&nbsp;оценке финансовой устойчивости заемщика, а&nbsp;также иных показателей, влияющих на&nbsp;вероятность возврата кредита. Кроме того, действующим законодательством не&nbsp;предусмотрена обязанность банка информировать лиц, обратившихся за&nbsp;предоставлением кредита, о&nbsp;причинах отказа в&nbsp;предоставлении кредита.', '--light')
+                  +accordion-item('Можно ли оформить кредит без&nbsp;залога в&nbsp;АТБ?')
+                    +ui-p1('Да, в&nbsp;АТБ возможно оформление кредита на&nbsp;сумму до&nbsp;3&nbsp;млн рублей без&nbsp;залога. Ставка фиксирована на&nbsp;весь срок кредитования. Более подробно можно ознакомиться ', '--light')
+                      a.text-orange(href='#') здесь
+                      | .
+                  +accordion-item('Как платить по&nbsp;кредиту?')
+                    +ui-p1('', '--light')
+                      p Оплачивать можно в наличной и безналичной форме. Все доступные способы погашения кредита представлены на
+                        =' '
+                        a.text-orange(href='#') странице
+                        | .
+                  +accordion-item('Не могу оплачивать кредит, что делать? Как оформить кредитные каникулы?')
+                    +ui-p1('', '--light')
+                      p Банк может предложить вам снижение платежа, увеличив срок кредита либо предоставить отсрочку платежа, как частичную, так и&nbsp;полную. Более подробно ознакомиться с&nbsp;информацией и&nbsp;оставить заявку на&nbsp;получение услуги можно на&nbsp;
+                        a.text-orange(href='#') сайте банка
+                        | , либо обратиться в любое удобное для&nbsp;Вас
+                        =' '
+                        a.text-orange(href='#') отделение
+                        | .
+                      p При наличии просроченной задолженности банк может предложить вам несколько программ реструктуризации. Оставить заявку и&nbsp;более подробно ознакомиться с&nbsp;условиями вы&nbsp;можете на
+                        =' '
+                        a.text-orange(href='#') сайте
+                        |  либо обратиться
+                        =' '
+                        a.text-orange(href='#') в&nbsp;любое удобное для&nbsp;вас отделение
+                        | .
+                  +accordion-item('Как узнать сумму платежа?')
+                    +ui-p1('', '--light')
+                      p В&nbsp;личном кабинете
+                        =' '
+                        a.text-orange(href='#') Интернет-банка
+                        | , через
+                        =' '
+                        a.text-orange(href='#') Мобильное приложение, в&nbsp;
+                        a.text-orange(href='#') отделении банка
+                        |  по&nbsp;предъявлению паспорта, через банкомат, по&nbsp;телефону горячей линии&nbsp;&mdash;
+                        =' '
+                        a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                        |  (потребуется назвать кодовое слово и&nbsp;паспортные данные).
+                  +accordion-item('Как снизить ставку по&nbsp;действующему кредиту?')
+                    +ui-p1('', '--light')
+                      p Вы&nbsp;можете объединить действующие кредиты, оформленные в&nbsp;АТБ, и&nbsp;получить дополнительные денежные средства, которыми сможете распоряжаться по&nbsp;своему усмотрению. АТБ предлагает различные условия кредитования, ознакомиться более подробно и&nbsp;оставить заявку можно
+                        =' '
+                        a.text-orange(href='#') здесь
+                        | .
+                  +accordion-item('У меня плохая кредитная история, могу ли я оформить кредит?')
+                    +ui-p1('', '--light')
+                      p Существует возможность получения кредита и в такой ситуации. Банк принимает решение индивидуально по&nbsp;каждому клиенту с&nbsp;учетом совокупности данных. Обратитесь по&nbsp;телефону колл-центра
+                        =' '
+                        a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                        |  или в&nbsp;
+                        a.text-orange(href='#') отделение банка
+                        | .
+                  +accordion-item('Можно ли погасить кредит частично или полностью досрочно?')
+                    +ui-p1('', '--light')
+                      p Действующий кредитный договор можно погасить досрочно, частично либо полностью, для&nbsp;этого вам необходимо уведомить банк, написав заявление на&nbsp;полное либо частичное погашение, в&nbsp;том числе и&nbsp;по&nbsp;телефону
+                        =' '
+                        a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                        | , а&nbsp;позже внести необходимую сумму для&nbsp;погашения.
+                  +accordion-item('Как узнать реквизиты счета?')
+                    +ui-p1('', '--light')
+                      p Реквизиты счета можете узнать непосредственно в
+                        =' '
+                        a.text-orange(href='#') офисе банка
+                        | , а&nbsp;также в&nbsp;
+                        a.text-orange(href='#') Интернет-банке
+                        |   и&nbsp;в&nbsp;
+                        a.text-orange(href='#') Мобильном приложении
+                        | . При&nbsp;возникновении вопросов по&nbsp;работе с
+                        =' '
+                        a.text-orange(href='#') Интернет-банком
+                        |   или
+                        =' '
+                        a.text-orange(href='#') Мобильным приложением
+                        |  можно обратиться в&nbsp;колл-центр
+                        =' '
+                        a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                        | .
+
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +credit-services(creditServices)
+
+            +section()
+              .inner
+                +section-head
+                  +ui-h2('Дополнительно о&nbsp;программе страхования')
+                +accordion()
+                  +accordion-item('КАСКО+')
+                    +ui-p1('', '--light')
+                      b
+                        a.text-orange(href='#' target='_blank') Условия программы КАСКО+
+                    p
+                      b Страховые риски:
+                    +ui-ul('')
+                      li Угон, хищение ТС (ст.158,161,162,166 УК РФ)
+                      li Ущерб с&nbsp;выплатой на&nbsp;условиях «Полная гибель»
+                      li Ущерб в&nbsp;результате самовозгорания с&nbsp;выплатой в&nbsp;случае «Полной гибели»
+                    p
+                      b На страхование не&nbsp;принимаются:
+                    +ui-ul('')
+                      li транспортные средства, которые не&nbsp;являются легковыми
+                      li транспортные средства, приобретаемые для&nbsp;использования в&nbsp;качестве такси
+                      li транспортные средства, приобретаемые для&nbsp;передачи
+                        =' '
+                        span.text-nowrap в прокат/аренду
+                    p
+                      b
+                        a.text-orange(href='#' target='_blank') Правила страхования средств наземного транспорта
+                          =' '
+                          span.text-nowrap №09.20
+                          =' '
+                          span.text-nowrap от 25.04.2022 г.
+
+                  +accordion-item('Страхование жизни')
+                    +ui-p1('', '--light')
+                      p
+                        b
+                          a.text-orange(href='#' target='_blank') Условия программы Страхования жизни
+                      p
+                        b
+                          a.text-orange(href='#' target='_blank') Размер страховых выплат
+                      p
+                        b Страховые риски:
+                      ul.ui-ul
+                        li Риск «травма в&nbsp;результате несчастного случая»
+                        li Риск «инвалидность»
+                        li Риск «смерть от&nbsp;любой причины»
+                      p
+                        b
+                          a.text-orange(href='#' target='_blank') Правила добровольного страхования жизни граждан
+                            =' '
+                            span.text-nowrap №09.6
+                            =' '
+                            span.text-nowrap от 19.11.2021 г.
+
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +section-head('--max-w')
+                  +ui-h2('Как стать партнером', 'section-head')
+                  +ui-p1('', '--light')
+                    p Приглашаем к сотрудничеству новых партнеров, потому что мы хотим предоставить клиентам максимум возможностей для&nbsp;покупки новых и&nbsp;подержанных автомобилей.
+                    p Предлагаем автосалонам выгодные партнерские условия.
+                    +documents-item('Информация по&nbsp;порядку взаимодействия')(href='#')
+            +section
+              .inner
+                +section-head
+                  +ui-h3('Преимущества')
+                +benefits(benefitsItems_3, '--items2-default, --title-normal, --icon-xl')
+
+      +section
+        +tabs-main(data-tabs-group='main-tabs')
+          +tabs-main__item(true)(data-group-item='tab-main-form-common')
+            +section('--mt0')
+              .inner
+                +section-head.text-center
+                  +ui-h2('Остались вопросы?', 'section-head')
+                  .section-head__descr Оставьте свои данные и&nbsp;консультант свяжется с&nbsp;вами в&nbsp;ближайшее время
+                p форма
+
+          +tabs-main__item(data-group-item='tab-main-form-partners')
+            +section('--mt0')
+              .inner
+                +section-head
+                  +ui-h3('Чтобы получить подробную информацию, оформите заявку:', 'section-head').text-center
+                p форма
+
+      +section
+        .inner
+
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Вас также могут заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)
+
+      +section
+        .inner
+          +accordion
+            +accordion-item('Другие банковские продукты')
+              +credits-list

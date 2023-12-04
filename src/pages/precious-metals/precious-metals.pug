@@ -1,0 +1,56 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'precious-metals'
+  -const pageTitle ='Инвестируйте в драгоценные металлы'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/benefits_1.svg', descr: 'Возможность получения дохода за счет роста цен на металл' },
+      { icon: 'img/benefits_2.svg', descr: 'Высокая ликвидность' },
+      { icon: 'img/benefits_3.svg', descr: 'Отсутствие НДС' },
+    ]
+
+    const preciousMetalsBanData = {
+      title: 'Драгоценные металлы- наиболее стабильная форма хранения капитала',
+      descr: 'Вложения в драгоценные металлы защищают сбережения и позволяют их значительно приумножить',
+      img: 'img/precious_metals_ban.png',
+    }
+
+block content
+  main
+    +banner()
+      +banner-item('--precious-metals')
+        +banner-wrapper('img/banner_precious_metals.jpg')
+          +banner-h1('Инвестируйте <br>в драгоценные <br>металлы')
+          +banner-descr('Надежное вложение ваших средств', '--size-s').text-orange.banner-item-dn
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('Оставить предзаказ', 'banner')(href='#')
+        +banner-mobile
+          p.text-orange Надежное вложение ваших средств
+    .page-content
+      +section('--mt0')
+        .inner
+          +precious-metals-ban(preciousMetalsBanData)
+      +section
+        .inner
+          +benefits(benefitsItems)
+      +section
+        .inner
+          +section-head
+            +ui-h2('Инвестирование в драгоценные металлы возможно в&nbsp;следующих форматах:', '--mw80')
+          +precious-metals-investment
+
+      +section('--bg-grey')
+        .inner
+          +section-head
+            +ui-h2('Оставить предзаказ').text-center

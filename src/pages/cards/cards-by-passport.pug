@@ -1,0 +1,149 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'cards'
+  -const pageTitle ='Кредитные карты по паспорту'
+
+  -
+    const bannerSapid = [
+      {
+        img: 'img/ic.servis.svg',
+        txt: 'Сервисы',
+        content: [
+          {
+            img: 'img/ic.credit-card-plus.svg',
+            txt: 'Как пополнить карту?',
+            link: '#',
+          },
+          {
+            img: 'img/ic.credit-card.svg',
+            txt: 'Перевести по номеру карты',
+            link: '#',
+          },
+        ]
+      },
+      {
+        img: 'img/star.gif',
+        txt: 'Акции',
+        content: [
+          {
+            img: 'img/ic.book.svg',
+            txt: 'Книга в подарок',
+            link: '#',
+          },
+        ]
+      },
+    ]
+
+  -
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Заполните <a href="#"> анкету </a>',
+        descr: `
+          <p>Это в среднем занимает около 7 минут</p>
+          <p>Авторизация с помощью сервиса ЕСИА ускорит процесс заполнения заявки и повысит шансы на положительное решение.</p>` },
+      { icon: './img/how_get_step2.svg', title: 'Дождитесь предварительного одобрения Банком', descr: 'Мы принимаем решение в течение 15 минут и сообщим вам по СМС на указанный в анкете номер' },
+      { icon: './img/how_get_step3.svg', title: 'Приходите с паспортом <a href="#"> в&nbsp;ближайшее отделение </a>',
+        descr: `
+          <p>Возьмите с собой документы, указанные в анкете и приходите в любое удобное отделение без очереди</p>
+          <p>Увеличьте вероятность одобрения заявки на кредит подтвердив доход.
+            <a href="#">Подробнее…</a></p>` },
+    ]
+
+  -
+    const termsTable =[
+      { name: 'Валюта счета карты', descr: 'Рубли' },
+      { name: 'Срок действия карты ', descr: '3 года' },
+      { name: 'Кредитный лимит', descr: 'До 700&nbsp;000 рублей' },
+      { name: 'Процентная ставка', descr: 'От 0% до 19% годовых на безналичные операции' },
+      { name: 'Защита электронным чипом', descr: 'Есть' },
+      { name: 'Бесплатное мобильное приложение', descr: 'Есть' },
+      { name: 'Возврат суммы от покупок', descr: 'До 7%' },
+    ]
+
+  -
+    const termsList =[
+      { text: 'участие в дисконтных программах банка и платежных систем' },
+      { text: 'круглосуточная поддержка через Колл-центр АТБ' },
+      { text: 'сообщение в банк о потере или краже карты по единому номеру в любой точке мира' },
+      { text: 'бесплатная выписка по счетам <span class="text-nowrap">в «АТБ-Онлайн»</span> /<span class="text-nowrap">«АТБ-Мобайл»</span>' },
+    ]
+
+  -
+    const termsPayment =[
+      { img: 'img/icon-pay-wifi.svg' },
+    ]
+
+  -
+    let mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным Мобильным банком, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+block content
+  main
+    +banner()
+      +banner-item('--credit-cards')
+        +banner-wrapper('img/banner_credit_cards.jpg')
+          +banner-h1('Кредитные <br>карты')
+          .banner-item-foot.banner-item-foot--mob-col-reverse
+            .banner-item-foot-item
+              +ui-button('оставить заявку', 'banner')(href='#')
+            .banner-item-foot-item
+              +ui-button('Получить онлайн', 'banner, --white, --biometrics')(href='#')
+        +banner-sapid-container(bannerSapid)
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head('--max-w')
+            +ui-h3('Тарифный план <b>Кредитная карта по паспорту</b>', 'section-head, --normal')
+            .section-head__descr Надоело откладывать покупку действительно важных для Вас вещей? Азиатско-Тихоокеанский банк позволяет оформить кредитные карты по паспорту. Большой запас средств на карте, приемлемая процентная ставка, кэшбэк в качестве дополнительного бонуса – все это доступно для клиентов, которые решили оформить кредитную карту по паспорту онлайн в АТБ.
+            +ui-button('Оформить карту')(href='#')
+      +section
+        .inner
+          +switch('', 'Параметры карты', 'Тарифы и документы', 'card-info', '--mb40, --mob-vertical')
+          +switch-group('card-info')
+            +switch-content(true)
+              +card-terms({ termsTable, termsList, termsPayment })
+            +switch-content()
+              +documents
+              +accordion
+                +accordion-item('Архив')
+                  +accordion('--inner')
+                    +accordion-item('Архив тарифов')
+                      +documents
+                    +accordion-item('Архив УДБО')
+                      +documents
+      +section
+        .inner
+          +mob-banner(mobBannersData)
+      +section
+        .inner
+          +how-get('Как получить карту', howGetItems, 'Оформить карту')
+    +seo('Как оформить кредитную карту по паспорту в АТБ')
+      p Вас интересуют кредитные карты по паспорту? Рассмотрите возможность получения подобной в Азиатско-Тихоокеанском банке. На сайте банка есть почти вся нужная информация. Оформить кредитную карту по паспорту в АТБ можно всего в несколько шагов:
+      ul
+        li Рассмотрите варианты, представленные на сайте банка, выбрав наиболее подходящее предложение под Ваши цели.
+        li Заполните анкету за несколько минут.
+        li Дождитесь приглашения из банка для получения продукта.
+        li Приходите в ближайшее отделение с минимальным набором документов и начинайте использовать карту.&nbsp;
+      p Как видите, оформить кредитную карту онлайн по паспорту в АТБ очень просто. Еще проще ее использовать. Механизм бесконтактной оплаты по кредитной карте по паспорту от Азиатско-Тихоокеанского банка делает расчеты по карте АТБ простыми и быстрыми, но при этом, безопасными.
+      +seo-menu('seo')
+        a(href='#') Моментальная кредитная карта
+        a(href='#') Экспресс кредитная карта
+        a(href='#') Кредитная карта без справок и поручителей
+        a(href='#') Кредитная карта с льготным периодом

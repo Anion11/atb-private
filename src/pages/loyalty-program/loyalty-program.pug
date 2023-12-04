@@ -1,0 +1,57 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'loyalty-program'
+  -const pageTitle ='Программа лояльности с картой «Универсальная»'
+
+block content
+  main
+    +banner()
+      +banner-item('--loyalty-program')
+        +banner-wrapper('img/banner_loyalty-program.jpg')
+          +banner-h1('Программа лояльности с&nbsp;картой «Универсальная»', '--size-s')
+          +banner-descr('4 причины перейти на новую программу', '--size-s').text-orange.banner-item-dn
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('Сменить программу', 'banner')(href='#')
+            .banner-item-foot-item
+              +banner-descr('Получать больше кэшбэка стало проще!', '--size-xs').text-orange.banner-item-dn
+        +banner-mobile.text-orange
+          p.banner-mobile__text-l 4 причины перейти на новую программу
+          p Получать больше кэшбэка стало проще!
+    .page-content
+      +section('--mt0')
+        .inner
+          +loyalty-program-advt
+      +section
+        .inner
+          +loyalty-program-compare
+      +section
+        .inner
+          +section-head
+            +ui-h2('Расчет кэшбэка на примерах', 'section-head')
+          +loyalty-program-cashback
+      +section
+        .inner
+          +loyalty-program-ban
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Заявка на смену программы лояльности', 'section-head')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы по программам лояльности', 'section-head')
+          +accordion()
+            +accordion-item('Документы')
+              +documents
+    +popup__wrapper#bonus_operations
+      +p-bonus-operation

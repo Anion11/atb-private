@@ -1,0 +1,92 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'wallet-pay'
+  -const pageTitle ='Кошелёк Pay'
+
+  -
+    const howApplyItems =[
+      { icon: 'img/how_apply1.svg', title: 'Разблокируйте экран телефона' },
+      { icon: 'img/how_apply2.svg', title: 'Поднесите телефон к банковскому терминалу' },
+      { icon: 'img/how_apply3.svg', title: 'Дождитесь подтверждения оплаты' },
+    ]
+
+  -
+    const telInstruction =[
+      {
+        mods: 'tel-instruction__section--left',
+        img: [
+          { src: 'transfer1' },
+          { src: 'transfer2' },
+          { src: 'transfer3' },
+          { src: 'transfer4' },
+          { src: 'transfer5' },
+        ],
+        steps: [
+          { title: 'Скачайте приложение «Кошелёк» в&nbsp;официальном магазине приложений:',
+            descr: `<a class="text-orange text-underline" href="https://play.google.com/store/apps/details?id=ru.cardsmobile.mw3" target="_blank">Google Play</a> — для смартфонов Android.
+              <br><a class="text-orange text-underline" href="https://appgallery.huawei.com/#/app/C101207065?appId=C101207065&amp;source=appshare&amp;subsource=C101207065" target="_blank">Huawei App Gallery</a> — для&nbsp;смартфонов <span class="nowrap">Huawei/Honor.</span>`,
+          },
+          { title: 'Откройте приложение и&nbsp;выберите «Добавить карту».' },
+          { title: 'Введите реквизиты карты вручную или&nbsp;считайте реквизиты карты с&nbsp;помощью<span class="text-nowrap">NFC-модуля</span> телефона.' },
+          { title: 'Примите условия пользовательского соглашения.' },
+          { title: 'Введите проверочный код<span class="text-nowrap">из смс-сообщения</span> банка, чтобы активировать карту для&nbsp;бесконтактной оплаты телефоном.' },
+        ],
+        footButton: ' ',
+        footButtonMods: '--text',
+        footButtonClass: 'text-orange',
+        footButtonBlock: `
+          <svg class="svg-icon svg-icon--icon_watch_youtube">
+            <use xlink:href="/img/sprite.svg#icon_watch_youtube"></use>
+          </svg> смотреть видео`
+      },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--wallet-pay')
+        +banner-wrapper('img/banner_wallet-pay.png', true)
+          +banner-h1('Оплачивайте покупки смартфоном', '--mob-size-l')
+          +banner-descr('Добавьте банковскую карту в&nbsp;приложение «Кошелёк»', '--size-xs, --mob-size-l').text-orange
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +wallet-pay-info
+
+      +section
+        .inner
+          +section-head('--max-w700, --center').text-center
+            +ui-h2('Как перенести карту', 'section-head')
+            .section-head__descr Перенести свои карты Visa Азиатско-Тихоокеанского банка в&nbsp;приложение «Кошелёк» можно всего за&nbsp;несколько минут.
+          +tel-instruction(telInstruction, '--wallet-pay')
+
+      +section('--bg-grey')
+        .inner
+          +section-head('--max-w700, --center').text-center
+            +ui-h2('Как оплачивать покупки на кассе', 'section-head')
+            .section-head__descr Теперь вы можете оплачивать покупки вашей картой Visa АТБ, используя приложение «Кошелёк».
+          +how-apply(howApplyItems)
+          +section-footnote().text-center
+            +wallet-pay-watch('https://www.youtube.com/watch?v=s27JhgeZ-U4')
+
+      +section('--mob-ov-hidden')
+        .inner
+          +section-head().text-center
+            +ui-h2('Как оплачивать покупки в приложении', 'section-head')
+          +wallet-pay-app
+          +section-footnote().text-center
+            +wallet-pay-watch('https://www.youtube.com/watch?v=WzgCWfKUw78&feature=youtu.be')
+
+      +section
+        .inner
+          +information('Для бесконтактной оплаты покупок вам понадобится <span class="text-nowrap">Android-смартфон</span> с NFC с версией операционной системы Android 5.0 и выше. Приложение «Кошелёк» необходимо скачать из официального магазина мобильной операционной системы или производителя смартфона (Google Play, Huawei AppGallery).')

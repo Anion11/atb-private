@@ -1,0 +1,30 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'the-most-important'
+  -const pageTitle ='Самое важное сегодня'
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item(pageTitle)
+    +banner
+      +banner-item('--the-most-important')
+        +banner-wrapper('img/banner_the_most_important.jpg')
+          +banner-h1('Самое важное сегодня')
+          +banner-descr('Здесь собрана вся актуальная информация. Рассказываем обо всех мерах поддержки и продуктах Банка для вас.', '--size-s').banner-item-dn
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('направить вопрос в банк', 'banner')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +most-important

@@ -1,0 +1,45 @@
+
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'atms'
+  -const pageTitle ='Отделения и банкоматы'
+
+block content
+  main
+    +banner()
+      +banner-item('--atms')
+        +banner-wrapper('/img/banner_gradient.jpg')
+          +banner-h1('Отделения и банкоматы в <span class="text-orange">Москве</span>', '--size-s')
+          +banner-descr(`Уважаемые  клиенты, с актуальным режимом работы отделений и&nbsp;часто задаваемыми вопросами вы можете ознакомиться по ссылкам`, '--size-xs')
+          .banner-item-foot.banner-item-foot--mob-stretch
+            .banner-item-foot-item
+              a.text-orange(href='#') Часто задаваемые вопросы
+            .banner-item-foot-item
+              a.text-orange(href='#') Актуальный список работающих отделений банка
+            .banner-item-foot-item
+              a.js-popup-open.text-orange(href='#popup-atms-error') Нашли ошибку?
+
+    .page-content.page-content--pt0
+      +section('--mt0')
+        +atms
+      +section()
+        .inner
+          +section-head
+            +ui-h2('Также Вас может заинтересовать:', 'section-head').text-center
+          +may-interest
+
+    +popup__wrapper#p-atms
+      +p-atms
+
+    +popup__wrapper('--small')#popup-atms-error
+      +section-head().text-center
+        +ui-h3('Сообщение об ошибке')

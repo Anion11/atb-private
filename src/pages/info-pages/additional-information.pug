@@ -1,0 +1,59 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'info-pages'
+  -const pageTitle ='Дополнительные сведения'
+
+  -
+    const infoPageAsideList =[
+      { text: 'Документы и тарифы' },
+      { isActive: true, text: 'Дополнительные сведения' },
+      { text: 'Клиентам ПАО «КВАНТ МОБАЙЛ БАНК»' },
+      { text: 'Уведомления' },
+      { text: 'Банковский надзор за деятельностью кредитной организации' },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Общая информация', '#')
+      +breadcrumbs-item(pageTitle)
+
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl')
+        +banner-wrapper('img/banner_documents_and_tariffs.png', true)
+          +banner-h1('Документы <br class="banner__br-no-mob">и&nbsp;тарифы', '--mob-size-l')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +info-page(infoPageAsideList, pageTitle)
+            +section-box
+              +info-page-nav
+            +section-box
+              +info-page-section
+                .documents.info-page__documents
+                  +documents-item('Положение об информационной политике и раскрытии информации "Азиатско-Тихоокеанский Банк" (АО)', '(pdf, 354.58 КБ)')(href='#')
+              +info-page-section
+                .documents.info-page__documents
+                  +documents-item('Положение об информационной политике и раскрытии информации "Азиатско-Тихоокеанский Банк" (АО)', '(pdf, 354.58 КБ)')(href='#')
+                +accordion
+                  +accordion-item('Архив тарифов')
+                    +documents('', 'info-page')
+            +section-box
+              +attention
+                +ui-p1()
+                  p Ни в коем случае не переходите по ссылкам, содержащимся в незнакомых письмах, отправленных якобы от банка. Внимательно проверяйте адрес отправителя письма. Все письма от Банка направляются с адреса - atb@atb.su , ask@atb.su
+                  p Банк никогда не запрашивает реквизиты банковской карты для оформления банковских продуктов
+                  p Если у Вас возникли подозрения, обратитесь в Банк по телефону
+                    =' '
+                    span.text-nowrap 8-800-775-88-88

@@ -1,0 +1,143 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'promotion-cash-loan'
+    const pageTitle ='Чудеса под Новый год'
+
+    const greatPercentagesRaffleData = {
+      title: '34&nbsp;приза по&nbsp;20&nbsp;230&nbsp;₽ (4&nbsp;победителя 1&nbsp;неделю и&nbsp;по&nbsp;5&nbsp;победителей каждую последующую)',
+      titleMods: 'tt-no',
+      date: [
+        {
+          dateTop: 'с 7 по 13 ноября',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">19</span> ноября </b>',
+        },
+        {
+          dateTop: 'с 14 по 20 ноября',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">26</span> ноября </b>',
+        },
+        {
+          dateTop: 'с 21 по 27 ноября',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">3</span> декабря </b>',
+        },
+        {
+          dateTop: 'с 28 ноября по 4 декабря',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">10</span> декабря </b>',
+        },
+        {
+          dateTop: 'с 5 по 11 декабря',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">17</span> декабря </b>',
+        },
+        {
+          dateTop: 'с 12 по 18 декабря',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">24</span> декабря </b>',
+        },
+        {
+          dateTop: 'с 19 по 25 декабря',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">31</span> декабря </b>',
+        },
+      ],
+      firstDate: 'с 7 по 13 ноября',
+      winners: [
+        {
+          name: 'Тамара Киприянова А.',
+          city: 'г. Чита',
+        },
+        {
+          name: 'Екатерина Викторовна И.',
+          city: 'г. Абакан',
+        },
+        {
+          name: 'Сергей Сергеевич М.',
+          city: 'г. Черногорск',
+        },
+        {
+          name: 'Валентин Алексеевич Т.',
+          city: 'г. Усолье-Сибирское',
+        },
+      ],
+    }
+
+    const greatPercentagesBanData ={
+      h4: 'Одно простое условие',
+      descr: `Возьмите <a class="text-orange" href="#">кредит наличными</a> на&nbsp;сумму от&nbsp;100&nbsp;000&nbsp;₽ и&nbsp;примите участие в&nbsp;розыгрыше денежных призов`,
+      button: 'Участвовать',
+      fn: 'с&nbsp;7&nbsp;ноября по&nbsp;25&nbsp;декабря 2022 года',
+      img: 'img/great-percentages-ban.png',
+    }
+
+block content
+  main
+    +banner
+      +banner-item('--promotion-cash-loan')
+        +banner-wrapper('img/banner_promotion_cash_loan.jpg')
+          +banner-h1('Кредиты <br>наличными')
+          +banner-descr('Оформляйте по ставке от <b>4,9%</b> и&nbsp;выигрывайте <b>202300₽</b>', '--size-s').text-orange
+          .banner-item-foot.banner-item-foot--mob-col-reverse
+            .banner-item-foot-item
+              +ui-button('оставить заявку', 'banner')(href='#')
+            .banner-item-foot-item
+              +banner-descr('Участвуйте в акции!', '--size-xs').text-orange
+    .page-content
+      +section('--mt0')
+        .inner
+          +great-percentages-ban(greatPercentagesBanData, '--promotion-cash-loan')
+      +section
+        .inner
+          +section-head('--max-w900, --center').text-center.text-center--mob-left
+            +ui-h2('Обладатель главного приза в&nbsp;размере 202&nbsp;300&nbsp;₽ будет объявлен в&nbsp;январе 2023 года', 'section-head')
+          +great-percentages-raffle(greatPercentagesRaffleData)
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Часто задаваемые вопросы').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Кто может принять участие в&nbsp;акции?')
+              +ui-p1('', '--light')
+                p Любой клиент банка, которому исполнилось 21&nbsp;год, проживающий
+                  =' '
+                  a.text-orange(href='#') на территории обслуживания банка
+                  | . Кроме сотрудников банка и&nbsp;членов их&nbsp;семей.
+            +accordion-item('Что нужно сделать, чтобы стать участником акции?')
+              +ui-p1('', '--light')
+                p Взять
+                  =' '
+                  a.text-orange(href='#') кредит наличными
+                  |  на&nbsp;сумму от&nbsp;100&nbsp;000 в&nbsp;период с&nbsp;7&nbsp;ноября по&nbsp;25&nbsp;декабря 2022&nbsp;года
+            +accordion-item('Что получает победитель акции?')
+              +ui-p1('', '--light')
+                p 34&nbsp;победителя получают по&nbsp;20&nbsp;230&nbsp;₽
+                p 1&nbsp;главный победитель получает 202&nbsp;300&nbsp;₽
+            +accordion-item('Сколько можно получить призов?')
+              +ui-p1('Один участник может получить только один приз.', '--light')
+            +accordion-item('Как будет определен победитель?')
+              +ui-p1('', '--light')
+                p Победителями будут объявлены по&nbsp;порядковому номеру договора заключенного за&nbsp;период
+                +ui-ul('')
+                  li 4&nbsp;победителя за&nbsp;период с&nbsp;7&nbsp;по&nbsp;13&nbsp;ноября 2022: 2-ой, 23-ий, 230-ый и&nbsp;460-ый (20*23)
+                  li по&nbsp;5&nbsp;победителей за&nbsp;каждый период с&nbsp;14&nbsp;ноября по&nbsp;25&nbsp;декабря (30&nbsp;победителей за&nbsp;6&nbsp;периодов) 2-ой, 23-ий, 230-ый, 460-ый (20*23) и&nbsp;последний договор, кратный 23
+                  li Главным победителем становится 2023 договор среди договоров заключенных с&nbsp;7&nbsp;ноября по&nbsp;25&nbsp;декабря 2022&nbsp;года. За&nbsp;исключением ранее определенных победителей.
+
+            +accordion-item('Как я узнаю, что выиграл в акции?')
+              +ui-p1('', '--light')
+                p Банк уведомит победителя при помощи звонка. Также результаты будут размещены на&nbsp;официальных страницах АТБ в&nbsp;социальных сетях и&nbsp;на&nbsp;сайте АТБ
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Краткие условия акции')
+              +documents
+            +accordion-item('Правила проведения акции')
+              +documents

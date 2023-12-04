@@ -1,0 +1,302 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'mortgage'
+    const pageTitle ='Ипотека АТБ'
+
+    const howGetItems =[
+      { icon: './img/how_get-1.svg', title: 'Оставьте онлайн-заявку <br> и получите скидку на&nbsp;ставку&nbsp;0,4%', descr: 'Соберите документы и&nbsp;ожидайте рассмотрения в&nbsp;течение 2-х рабочих', descrNowrap: 'дней', descrTooltip: 'Список документов вы можете найти на&nbsp;странице выбранного продукта' },
+      { icon: './img/how_get-2.svg', title: 'Выберите недвижимость', descr: 'Которую вы собираетесь приобрести' },
+      { icon: './img/how_get-3.svg', title: 'Оформите сделку', descr: 'Подпишите документы <a class="text-orange" href="#">в&nbsp;офисе банка</a>' },
+    ]
+
+    const bannerSapid = [
+      {
+        link: '#',
+        img: 'img/ban_sapid_gift.svg',
+        txt: 'Вход в ЛК',
+      },
+    ]
+
+    const productsData =[
+      {
+        img: 'img/products_1.png',
+        title: 'Дальневосточная ипотека',
+        list: [
+          { text: 'Супругам или одному родителю до&nbsp;35&nbsp;лет включительно с&nbsp;несовершеннолетним ребенком' },
+          { text: 'Педагогам и&nbsp;медикам со&nbsp;стажем от&nbsp;5&nbsp;лет в&nbsp;ДФО' },
+        ],
+        features: [
+          {
+            name: 'Ставка',
+            txt: 'от <span class="products__val-big">0,8%</span>',
+          },
+          {
+            name: 'Срок',
+            txt: 'до <span class="products__val-big">20 лет</span>',
+          },
+          {
+            name: 'сумма кредита',
+            txt: 'до <span class="products__val-big">6 млн ₽</span>',
+          },
+        ],
+        btn: {
+          href: '#',
+          txt: 'Оставить заявку',
+        },
+        link: {
+          href: '#',
+          txt: 'Подробнее',
+        },
+      },
+      {
+        img: 'img/products_3.png',
+        title: 'Вторичное жилье',
+        list: [
+          { text: 'Квартира, апартаменты, таунхаус или жилой дом с&nbsp;участком' },
+          { text: 'Наемным работникам и&nbsp;ИП' },
+        ],
+        features: [
+          {
+            name: 'Ставка',
+            txt: 'от <span class="products__val-big">9,9%</span>',
+          },
+          {
+            name: 'Срок',
+            txt: 'до <span class="products__val-big">30 лет</span>',
+          },
+          {
+            name: 'сумма кредита',
+            txt: 'до <span class="products__val-big">30 млн ₽</span>',
+          },
+        ],
+        btn: {
+          href: '#',
+          txt: 'Оставить заявку',
+        },
+        link: {
+          href: '#',
+          txt: 'Подробнее',
+        },
+      },
+      {
+        img: 'img/products_4.png',
+        title: 'Под залог недвижимости',
+        list: [
+          { text: 'На&nbsp;любые цели, кроме предпринимательской деятельности' },
+          { text: 'Наемным работникам и&nbsp;ИП' },
+        ],
+        features: [
+          {
+            name: 'Ставка',
+            txt: 'от <span class="products__val-big">11,2%</span>',
+          },
+          {
+            name: 'Срок',
+            txt: 'до <span class="products__val-big">20 лет</span>',
+          },
+          {
+            name: 'сумма кредита',
+            txt: 'до <span class="products__val-big">15 млн ₽</span>',
+          },
+        ],
+        btn: {
+          href: '#',
+          txt: 'Оставить заявку',
+        },
+        link: {
+          href: '#',
+          txt: 'Подробнее',
+        },
+      },
+      {
+        img: 'img/products_5.png',
+        title: 'На этапе строительства',
+        list: [
+          { text: 'Квартира, апартаменты или&nbsp;таунхаус' },
+          { text: 'Наемным работникам, ИП и&nbsp;пенсионерам' },
+        ],
+        features: [
+          {
+            name: 'Ставка',
+            txt: 'от <span class="products__val-big">21,5%</span>',
+          },
+          {
+            name: 'Срок',
+            txt: 'до <span class="products__val-big">30 лет</span>',
+          },
+          {
+            name: 'сумма кредита',
+            txt: 'до <span class="products__val-big">30 млн ₽</span>',
+          },
+        ],
+        btn: {
+          href: '#',
+          txt: 'Оставить заявку',
+        },
+        link: {
+          href: '#',
+          txt: 'Подробнее',
+        },
+      },
+    ]
+
+    const calcTypeTabs = [
+      { text: 'господдержка'},
+      { text: 'нецелевой'},
+      { text: 'дальневосточная'},
+      { text: 'готовое'},
+      { text: 'новостройка'},
+      { text: 'рефинансирование' }
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl')
+        +banner-wrapper('img/banner_mortgage.png', true)
+          +banner-h1('Ипотека', '--mob-size-l')
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+        +banner-sapid-container(bannerSapid)
+    .page-content
+      +section('--mt0')
+        .inner
+          +mortgage-filter
+      +section
+        .inner
+          +products(productsData, '--img-contain')
+      +section
+        +tabs-head(calcTypeTabs, '', '--round')
+        +tabs-main
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +calc-mortgage('state-support')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +calc-mortgage('non-targeted')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +calc-mortgage('dfo')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +calc-mortgage('complete')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +calc-mortgage('new_building')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +calc-mortgage('refinancing')
+      +section
+        .inner
+          +mortgage-evaluation
+      +section
+        .inner
+          +how-get('Как получить ипотеку', howGetItems)
+      +section
+        .inner
+          +mortgage-widget
+      +section
+        .inner
+          +section-head
+            +ui-h2('Полезная информация об&nbsp;ипотеке', 'section-head')
+          +useful-articles('articlesOthers')
+      +section
+        .inner
+          +mortgage-partners
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Документы для скачивания', 'section-head')
+          +accordion
+            +accordion-item('Документы')
+              +documents
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Как оформить ипотечный кредит?')
+              +ui-p1('', '--light')
+                p Предлагаем несколько удобных способов: через личный кабинет на сайте Банка, также можно позвонить в колл-центр по&nbsp;телефону
+                  =' '
+                  span.text-nowrap 8-800-775-88-88
+                  |  (звонок по России бесплатный) или посетить ближайший офис банка.
+            +accordion-item('Что нужно для оформления ипотеки?')
+              +ui-p1('Анкета, паспорт, документы о&nbsp;трудоустройстве и доходе.', '--light')
+            +accordion-item('Как узнать, сколько осталось выплатить по ипотеке?')
+              +ui-p1('', '--light')
+                p В мобильном приложении, через личный кабинет на сайте Банка, также можно позвонить в колл-центр по&nbsp;телефону
+                  =' '
+                  span.text-nowrap 8-800-775-88-88
+                  |  (звонок по России бесплатный) или посетить ближайший офис банка.
+            +accordion-item('Как использовать материнский капитал для выплаты ипотеки и&nbsp;какие есть ограничения?')
+              +ui-p1('Обратиться в Банк для получения соответствующей справки для Пенсионного фонда и&nbsp;предоставить ее в&nbsp;ПФР. После перечисления материнского капитала вы можете выбрать, каким образом будет происходить погашение ипотеки: с&nbsp;уменьшением ежемесячного платежа или уменьшением срока кредитования. Ограничения могут устанавливаться Пенсионным фондом.', '--light')
+            +accordion-item('Как частично/полностью погасить ипотеку досрочно?')
+              +ui-p1('', '--light')
+                p Обратиться в колл-центр по телефону 8-800-775-88-88 (звонок по России бесплатный) или посетить ближайший офис банка.
+            +accordion-item('Какие объекты недвижимости можно приобрести за счет ипотечного кредита?')
+              +ui-p1('В ипотеку можно приобрести квартиру, апартаменты, таунхаус, дом с&nbsp;земельным участком.', '--light')
+            +accordion-item('Что делать, если я сейчас не могу выплачивать ипотечный кредит?')
+              +ui-p1('Необходимо обратиться в ', '--light')
+                a.text-orange(href='#') отделения АТБ
+                |  с&nbsp;соответствующим заявлением. Возможна реструктуризация кредита.
+
+            +accordion-item('Как внести платеж по ипотеке?')
+              +ui-p1('', '--light')
+                p Безналичным переводом в мобильном или интернет-банке с&nbsp;дебетовой карты, оформленной в Банке.
+                p Безналичным переводом с&nbsp;любой карты на карту Банка.
+                p Зачислением через банкомат Банка. Наличными в кассе любого
+                  =' '
+                  a.text-orange(href='#') отделения Банка
+                  | .
+            +accordion-item('Как долго вы рассматриваете заявку на кредит?')
+              +ui-p1('Заявка рассматривается в&nbsp;течение двух рабочих дней.', '--light')
+            +accordion-item('Можно ли изменить дату платежа?')
+              +ui-p1('Да, обратившись в ', '--light')
+                =' '
+                a.text-orange(href='#') отделение банка
+                |  с&nbsp;соответствующим заявлением.
+
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Вас также могут заинтересовать', 'section-head')
+          +accordion
+            +accordion-item('Другие банковские продукты')
+              +ui-p1('', '--light')
+                +ui-ul('')
+                  li
+                    a.text-orange(href='#') РКО
+                  li
+                    a.text-orange(href='#') Автокредит
+                  li
+                    a.text-orange(href='#') Кредит под залог недвижимости
+    +seo('Как взять ипотечный кредит: ипотеку в АТБ: условия оформления')
+      p Азиатско-Тихоокеанский банк выдает ипотеку на покупку строящегося и готового жилья. На сайте АТБ представлены кредиты под залог покупаемой или имеющейся в собственности недвижимости с первоначальным взносом от 10% на срок от 3 до 30 лет:
+      ul
+        li на приобретение готового жилья;
+        li на покупку квартиры на этапе строительства;
+        li на покупку частного дома;
+        li для покупки жилья на Дальнем Востоке или на строительство частного дома на Дальнем Востоке;
+        li на приобретение строящегося жилья по программе Господдержки.
+      p АТБ также предлагает сделать рефинансирование ипотеки, взятой в других кредитных организациях, на выгодных условиях.
+      p Ипотечным заемщиком Азиатско-Тихоокеанского банка может стать гражданин РФ в возрасте от 21 до 75 лет (на дату погашения кредита). Обязательное условие для наемных сотрудников — стаж не менее 3-х месяцев на последнем месте работы и общая трудовая выслуга не менее года.
+      p Подать заявку на получение ипотеки в Азиатско-Тихоокеанском банке можно онлайн. Ее заполнение займет около 7 минут. На рассмотрение полного пакета документов уйдет 2 рабочих дня. Уведомление об одобрении придет в виде сообщения на номер телефона и адрес электронной почты, оставленные при оформлении онлайн-заявки.
+      p Через онлайн-калькулятор, представленный на сайте, вы можете рассчитать сумму ежемесячного платежа и подобрать оптимальные условия по кредиту.
+      p Заполните и отправьте нам форму заявки. Менеджеры банка свяжутся с Вами, чтобы сделать выгодное предложение по ипотеке.

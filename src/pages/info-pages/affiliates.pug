@@ -1,0 +1,64 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'info-pages'
+  -const pageTitle ='Аффилированные лица | «Азиатско-Тихоокеанский Банк» (АО)'
+
+  -
+    const infoPageAsideList =[
+      { text: 'Устав и иные внутренние документы' },
+      { text: 'Лицензии' },
+      { text: 'Финансовая отчетность' },
+      { text: 'Годовые отчеты' },
+      { text: 'Сообщения о существенных фактах' },
+      { isActive: true, text: 'Аффилированные лица' },
+      { text: 'Ежеквартальные отчеты' },
+      { text: 'Эмиссия ценных бумаг' },
+      { text: 'Реорганизация' },
+      { text: 'Раскрытие информации для регулятивных целей' },
+      { text: 'Раскрытие информации об обязательной оценке Банка на предмет соответствия требований положения №382-П' },
+      { text: 'Раскрытие информации в соответствии с Указанием Банка России от 28.12.2015 г. №3921-У' },
+      { text: 'Документы для ознакомления' },
+      { text: 'Архив документов' },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Общая информация', '#')
+      +breadcrumbs-item('Аффилированные лица')
+    +banner
+      +banner-item('--text-old')
+        +banner-wrapper('/img/banner_gradient.jpg')
+          +banner-h1(pageTitle)
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-p1('До 30.11.2020 г. «Азиатско-Тихоокеанский Банк» (АО) являлся ПАО и осуществлял раскрытие на странице информационного агентства ООО&nbsp;«Интерфакс-ЦРКИ» по ')
+              a.text-orange(href='#') ссылке
+          +info-page(infoPageAsideList, 'Аффилированные лица')
+            +section-box
+              +info-page-section
+                +ui-p1()
+                  p
+                    a(href='#') Сведения об аффилированных лицах за 2020 год
+                      span.text-grey60  (3)
+                  p
+                    a(href='#') Сведения об аффилированных лицах за 2019 год
+                      span.text-grey60  (4)
+                  p
+                    a(href='#') Сведения об аффилированных лицах за 2018 год
+                      span.text-grey60  (13)
+                  p
+                    a(href='#') Сведения об аффилированных лицах за 2017 год
+                      span.text-grey60  (4)

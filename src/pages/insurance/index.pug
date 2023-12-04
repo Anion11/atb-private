@@ -1,0 +1,175 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'insurance'
+    const pageTitle ='Страхование'
+
+  -
+    const productsData =[
+      {
+        img: 'img/products_1.png',
+        title: 'Антивирус',
+        list: [
+          { text: 'На случай выявления вируса COVID-19' },
+          { text: 'Ежедневные выплаты при госпитализации или временной утрате трудоспособности' },
+        ],
+        features: [
+          {
+            name: 'Возраст',
+            txt: 'от <span class="products__val-big">18</span> до <span class="products__val-big">65 лет</span>',
+          },
+          {
+            name: 'Срок страхования',
+            txt: '<span class="products__val-big">1 год</span>',
+          },
+          {
+            name: 'Сумма выплат',
+            txt: 'до <span class="products__val-big">1,5 млн ₽</span>',
+          },
+        ],
+        btn: {
+          href: '#',
+          txt: 'Подробнее',
+        },
+        link: {
+          href: '#',
+          txt: 'Оформить онлайн',
+          class: 'text-orange'
+        },
+      },
+      {
+        img: 'img/products_3.png',
+        title: 'Страхование дома и квартиры',
+        list: [
+          { text: 'Без осмотра и составления описи' },
+          { text: 'Страхование гражданской ответственности и личного имущества' },
+        ],
+        features: [
+          {
+            name: 'Виды недвижимости',
+            txt: 'Квартира, жилой дом <span class="products__val-big"></span>',
+          },
+          {
+            name: 'Срок страхования',
+            txt: '<span class="products__val-big">1 год</span>',
+          },
+          {
+            name: 'Сумма выплат',
+            txt: 'до <span class="products__val-big">2 млн ₽</span>',
+          },
+        ],
+        btn: {
+          href: '#',
+          txt: 'Подробнее',
+        },
+      },
+      {
+        img: 'img/products_2.png',
+        title: 'Страхование жизни и здоровья',
+        list: [
+          { text: 'Временная нетрудоспособность или госпитализация' },
+          { text: 'Инвалидность' },
+          { text: 'Укусы животных' },
+        ],
+        features: [
+          {
+            name: 'Возраст',
+            txt: 'от <span class="products__val-big">18</span> до <span class="products__val-big">70 лет</span>',
+          },
+          {
+            name: 'Срок страхования',
+            txt: '<span class="products__val-big">1 год</span>',
+          },
+          {
+            name: 'Сумма выплат',
+            txt: 'до <span class="products__val-big">3 млн ₽</span>',
+          },
+        ],
+        btn: {
+          href: '#',
+          txt: 'Подробнее',
+        },
+      },
+      {
+        img: 'img/products_4.png',
+        title: 'Хирургия',
+        list: [
+          { text: 'Финансовая помощь в&nbsp;случае проведения хирургической операции в&nbsp;результате несчастного случая' },
+          { text: 'Ежедневные выплаты при&nbsp;госпитализации или&nbsp;временной утрате трудоспособности' },
+          { text: 'Сумма выплат до&nbsp;90% от&nbsp;страховой суммы ' },
+        ],
+        features: [
+          {
+            name: 'Возраст',
+            txt: 'от <span class="products__val-big">18</span> до <span class="products__val-big">68 лет</span>',
+          },
+          {
+            name: 'Срок страхования',
+            txt: 'от <span class="products__val-big">12</span> до <span class="products__val-big">120</span> мес.',
+          },
+          {
+            name: 'Страховая сумма',
+            txt: 'до <span class="products__val-big">15 млн ₽</span>',
+          },
+        ],
+        btn: {
+          href: '#',
+          txt: 'Подробнее',
+        },
+      },
+    ]
+
+  -
+    const usefulGoods =[
+      {
+        mod: 'deposits',
+        title: 'Вклады и счета',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_deposits.png',
+        p2: 'Выберите выгодный вклад с лучшими для вас условиями',
+      },
+      {
+        mod: 'pr-metals',
+        title: 'Банковские счета в&nbsp;драгоценных металлах',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_pr_metals.png',
+        p2: 'Надежное вложение ваших средств',
+      },
+      {
+        mod: 'pension-plans',
+        title: 'Индивидуальные пенсионные планы',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_pension_plans.png',
+        p2: 'Ваш инструмент для формирования дополнительной пенсии',
+      },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--insurance')
+        +banner-wrapper('img/banner_insurance.png', true)
+          +banner-h1('Страхование в&nbsp;АТБ', '--mob-size-l')
+          +banner-subtitle('Уверенность и&nbsp;финансовая защита в&nbsp;любой ситуации')
+    .page-content
+      +section('--mt0')
+        .inner
+          +products(productsData, '--height-auto, --img-contain')
+
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Вас также может заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)
+
+    +seo('Преимущества оформления страховки в АТБ')
+      p text

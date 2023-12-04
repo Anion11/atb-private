@@ -1,0 +1,210 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'rent-safe-box'
+    const pageTitle ='Аренда банковской ячейки'
+
+  -
+    const tabs = [
+      { text: 'О сервисе', },
+      { text: 'Документы', },
+      { text: 'Вопросы и ответы', },
+    ]
+
+  -
+    const benefitsItems =[
+      { icon: 'img/icon_shield.svg',
+        title: 'Безопасность',
+        descr: 'Благодаря принципу двух ключей',
+        descrTooltip: `Для открытия ячейки нужно два разных ключа.
+          Один ключ хранится у&nbsp;банка, второй&nbsp;&mdash; у&nbsp;клиента`,
+      },
+      { icon: 'img/icon_safe_box.svg',
+        title: 'Конфиденциальность',
+        descr: 'Во&nbsp;время вашего визита в&nbsp;хранилище будете только&nbsp;вы',
+      },
+      { icon: 'img/icon_group.svg',
+        title: 'Доверенные лица',
+        descr: 'Вы&nbsp;решаете, у&nbsp;кого еще будет доступ к&nbsp;ячейке',
+      },
+      { icon: 'img/icon_comfortable.svg',
+        title: 'Удобство',
+        descr: 'Выбирайте офис, срок аренды и&nbsp;размеры ячейки',
+      },
+    ]
+
+  -
+    const howGetItems =[
+      { icon: 'img/how_get_atms.svg',
+        title: 'Выберите офис',
+        descr: `Позвоните, чтобы убедиться, что в&nbsp;офисе есть свободная ячейка нужного размера
+         <a class="text-nowrap text-decoration-none" href='tel:88007758888'>8-800-775-88-88</a>`,
+      },
+      { icon: 'img/how_get_doc.svg',
+        title: 'Заключите договор',
+        descr: 'И оплатите стоимость аренды. <br>Нужен только паспорт',
+      },
+      { icon: 'img/how_get_shield.svg',
+        title: 'Получите ключ',
+        descr: 'И можете пользоваться ячейкой',
+      },
+    ]
+
+  -
+    const usefulGoods =[
+      {
+        mod: 'orange40',
+        title: 'АТБ. Вклад',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_deposit_atb.png',
+        list: [
+          { title: 'До 8,2%', descr: 'годовых' },
+          { title: 'Возможно пополнение' },
+          { title: 'Ежемесячная <br>выплата процентов' },
+        ]
+      },
+      {
+        mod: 'grey30',
+        title: 'Вклад «Добро пожаловать»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_deposit_welcome.png',
+        list: [
+          { title: 'До 9,1%', descr: 'годовых' },
+          { title: '90 дней', descr: 'можно пополнять' },
+          { title: 'От 50 000 рублей', descr: 'сумма открытия' },
+        ]
+      },
+      {
+        mod: 'grey35',
+        title: 'Монеты из драгоценных металлов',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_coins.png',
+        p2: 'Ваши надёжные инвестиции в&nbsp;монеты России и&nbsp;других стран',
+      },
+    ]
+
+  -
+    const creditsListData =[
+      { text: '<a class="text-orange" href="#">Ипотеки</a>' },
+      { text: '<a class="text-orange" href="#">Дебетовые карты</a>' },
+      { text: '<a class="text-orange" href="#">Кредиты на&nbsp;любые цели</a>' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --rent-safe-box')
+        +banner-wrapper('img/banner_rent_safe_box_small.png', true)
+          +banner-h1('Аренда банковской ячейки', '--mob-size-l')
+          +banner-foot
+            +ui-button('Узнать стоимость', 'banner, --m-size-l')(href='#')
+    .page-content
+      .inner
+        +tabs-head(tabs, '', '--no-item-border')(data-tabs-group='main-tabs')
+
+      +tabs-main(data-tabs-group='main-tabs')
+        +tabs-main__item(true)
+          +section('--mt0')
+            .inner
+              +benefits(benefitsItems, '--items2-default')
+
+          +section('--bg')
+            .inner
+              +how-get('Как арендовать ячейку', howGetItems)
+
+          +section
+            .inner
+              +section-head
+                +ui-h2('Рассчитайте стоимость аренды', 'section-head')
+              +calc-safebox
+
+        +tabs-main__item
+          +section('--mt0')
+            .inner
+              +accordion
+                +accordion-item('Условия аренды')
+                  +documents
+                +accordion-item('Договоры и&nbsp;допсоглашения')
+                  +documents
+
+        +tabs-main__item
+          +section('--mt0')
+            .inner
+              +accordion
+                +accordion-item('Для чего используется банковская сейфовая ячейка')
+                  +ui-p1('', '--light')
+                    p Это надежный способ хранить ценные вещи в&nbsp;тех случаях, когда вы&nbsp;не&nbsp;можете обеспечить их&nbsp;безопасность дома или в&nbsp;офисе.
+                      br
+                      | Часто банковские ячейки используются для&nbsp;расчетов по&nbsp;сделкам с&nbsp;недвижимостью, что помогает избежать мошенничества и&nbsp;обмана при&nbsp;передаче средств.
+                +accordion-item('Как дать право другому человеку пользоваться моей ячейкой')
+                  +ui-p1('', '--light')
+                    p Вы&nbsp;можете написать доверенность на&nbsp;доступ к&nbsp;ячейке неограниченному числу лиц. Вы&nbsp;сами выбираете, кто сможет ей&nbsp;воспользоваться. Кроме того, у&nbsp;ячейки может быть два арендатора &mdash;
+                      |  физическое и&nbsp;юридическое лицо, в&nbsp;этом случае они имеют право одновременного доступа.
+                +accordion-item('Что можно хранить в&nbsp;ячейке')
+                  +ui-p1('', '--light')
+                    p Положить в&nbsp;ячейку можно почти любые ценности:
+                    +ui-ul('')
+                      li документы,
+                      li драгоценности,
+                      li деньги,
+                      li дорогие предметы искусства,
+                      li антиквариат,
+                      li электронные носители информации,
+                      li и другое.
+                +accordion-item('Что нельзя хранить в&nbsp;ячейке')
+                  +ui-p1('', '--light')
+                    p Запрещенные предметы:
+                    +ui-ul('')
+                      li оружие,
+                      li наркотики,
+                      li и другое.
+                +accordion-item('Кто будет знать о&nbsp;содержимом ячейки')
+                  +ui-p1('', '--light')
+                    p Только вы&nbsp;и&nbsp;ваше доверенное лицо.
+                +accordion-item('Можно&nbsp;ли передать содержимое ячейки по&nbsp;наследству')
+                  +ui-p1('', '--light')
+                    p Да.
+                +accordion-item('Как получить доступ к&nbsp;ячейке после аренды')
+                  +ui-p1('', '--light')
+                    p Доступ к&nbsp;сейфу будет только у&nbsp;вас и&nbsp;вашего доверенного лица.
+                      br
+                      | В&nbsp;нашем хранилище работает система защиты &laquo;Принцип двух ключей&raquo;, обеспечивающая
+                      |  максимальный уровень безопасности.
+                      br
+                      | При работе с&nbsp;ячейкой вы&nbsp;получаете полную
+                      |  защищенность и&nbsp;конфиденциальность, поскольку в&nbsp;это время в&nbsp;хранилище больше никого
+                      |  не&nbsp;будет. Процесс помещения и&nbsp;изъятия предметов банком не&nbsp;контролируется.
+                      br
+                      | При&nbsp;необходимости на&nbsp;пути до&nbsp;хранилища и&nbsp;при&nbsp;выходе из&nbsp;него вас может
+                      |  сопровождать сотрудник службы безопасности.
+                +accordion-item('Когда я могу получить доступ к&nbsp;ячейке')
+                  +ui-p1('', '--light')
+                    | Получить доступ к&nbsp;ячейке вы можете в&nbsp;любое время работы выбранного отделения.
+
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Вас также могут заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)
+
+      +section
+        .inner
+          +accordion
+            +accordion-item('Другие банковские продукты')
+              +credits-list(creditsListData)
+
+    //- +seo('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      ul
+        li Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        li Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

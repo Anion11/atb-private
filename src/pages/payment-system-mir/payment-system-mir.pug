@@ -1,0 +1,128 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'payment-system-mir'
+    const pageTitle ='Платежная система «Мир»'
+
+    const featuresItems =[
+      { icon: 'img/advantages_1.svg', title: 'Бесплатное обслуживание' },
+      { icon: 'img/advantages_2.svg', title: 'Бесплатные переводы в любые банки по номеру телефона' },
+      { icon: 'img/advantages_3.svg', title: 'Бесплатная выдача наличных в банкоматах любых банков ' },
+      { icon: 'img/advantages_4.svg', title: 'Принимается в 10 странах' },
+      { icon: 'img/advantages_5.svg', title: 'Скидки  и акции от  <a class="text-orange">«Привет, мир»</a>' },
+    ]
+
+    const list_1 =[
+      { text: 'Денежное содержание, вознаграждение, довольствие государственных служащих, оплата труда работников государственных и муниципальных органов, учреждений, государственных внебюджетных фондов, государственные стипендии, ежемесячное пожизненное содержание судей' },
+      { text: 'Пенсии и прочие соц.выплаты, осуществление которых отнесено к компетенции ПФ РФ в соответствии с законодательством РФ' },
+      { text: 'Социальные выплаты безработным гражданам, установленные Законом Российской Федерации «О занятости населения в Российской Федерации»' },
+      { text: 'Государственные пособия гражданам, имеющим детей, установленные Федеральным законом «О государственных пособиях гражданам, имеющим детей»' },
+      { text: 'Прочие социальные перечисления, предусмотренные законодательством РФ' },
+    ]
+
+    const list_2 =[
+      { text: 'Обратиться в отделение нашего банка' },
+      { text: 'Оставить заявку через оператора по Единому номеру Горячей линии банка <a class="text-nowrap text-orange" href="tel:88007758888">8-800-775-88-88</a>' },
+      { text: 'Оставить заявку на сайте банка <a class="text-nowrap text-orange" href="https://www.atb.su/"> www.atb.su</a>' },
+    ]
+
+    const mobBannersData ={
+      title: 'Mir Pay — оплата <br> смартфоном на Android',
+      descr: 'Добавьте карту АТБ Мир в приложение Mir Pay и платите смартфоном с ОС Android',
+      apps: [
+        { icon: 'icon_google_play_white' },
+      ],
+      qrSrc: 'img/qr-code.png',
+      img: 'img/mob-banner.png'
+    }
+
+    const discountsMirData={
+      isMobSlider: true,
+      content: [
+        {
+          label: 'спорт',
+          img: 'img/discount_1.jpg',
+          title: 'Увлекательный мир свободного передвижения и активного спорта',
+          logo: 'img/discount-logo_veloshop.png',
+          percent: '5%',
+          desc: 'кешбэк за любую <br> покупку',
+        },
+        {
+          label: 'спорт',
+          img: 'img/discount_1.jpg',
+          title: 'Всё для экстремального спорта с выгодой',
+          logo: 'img/discount-logo_extremeMarket.jpg',
+          percent: '5%',
+          desc: 'кешбэк за любую <br> покупку',
+        },
+        {
+          label: 'для дома и сада',
+          img: 'img/discount_2.jpg',
+          title: 'Стильные обои с доставкой',
+          logo: 'img/discount-logo_fineWall.jpg',
+          percent: '7%',
+          desc: 'кешбэк за любую <br> покупку',
+        },
+      ],
+      btn: {
+        text: 'Больше акций здесь',
+        link: '#'
+      }
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--payment-mir')
+        +banner-wrapper('img/banner_payment_mir.png', true)
+          +banner-h1('Платежная <br class="banner__br-no-mob">система «Мир»', '--mob-size-l')
+          +banner-subtitle('«Мир» у вас в&nbsp;кармане')
+          +banner-foot
+            +ui-button('Оформить карту', 'banner, --m-size-l')(href='#')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +ui-h4('«Мир» - это удобная и надёжная российская платёжная система, позволяющая безопасно оплачивать покупки, снимать наличные и совершать переводы по всей стране. Подробнее о картах «Мир» на сайтах <a class="text-orange" href="https://mironline.ru/" target="_blank">mironline.ru</a> и <a class="text-orange" href="https://www.nspk.ru" target="_blank">nspk.ru</a>')
+
+      +section
+        .inner
+          +section-head().text-center.text-center--mob-left
+            +ui-h2('Банковская карта «Мир» от АТБ', 'section-head')
+          +features(featuresItems, '--5items')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Бюджетные зачисления на карту «Мир»', 'section-head')
+          +accordion
+            +accordion-item('Зачисления бюджетных выплат')
+              +ui-p1('', '--light')
+                +ui-ul(list_1)
+            +accordion-item('Почему именно карта «Мир»?')
+              +ui-p1('', '--light')
+                p Согласно Федеральному закону № 161-ФЗ «О национальной платёжной системе» все российские банки обязаны производить зачисления бюджетных выплат на карты платёжной системы «Мир».
+            +accordion-item('Как оформить карту «Мир»?')
+              +ui-p1('', '--light')
+                +ui-ul(list_2)
+
+        +section
+          .inner
+            +mob-banner(mobBannersData)
+
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Скидки и акции', 'section-head')
+          +discounts-mir(discountsMirData)
+          +section-box().text-center
+            +ui-button('Больше акций здесь', '--empty')(href='#')

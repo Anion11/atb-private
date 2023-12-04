@@ -1,0 +1,379 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'digital-card'
+  -const pageTitle ='Цифровая карта'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/icon_smart.svg', title: 'Мгновенно', descr: 'Выпуск за&nbsp;пару кликов в&nbsp;мобильном приложении' },
+      { icon: 'img/icon_locked.svg', title: 'Безопасно', descr: 'Данные карты известны только вам' },
+      { icon: 'img/icon_telephone_card.svg', title: 'Удобно', descr: 'Карта всегда у&nbsp;вас в&nbsp;смартфоне' },
+      { icon: 'img/icon_hand.svg', title: 'Экологично', descr: 'Меньше пластика для&nbsp;окружающей среды' },
+    ]
+
+  -
+    const termsTable =[
+      { name: 'Формат карты', descr: 'цифровая', },
+      { name: 'Платежная система', logos: [{ icon: 'img/logo_mir.svg' }], },
+      { name: 'Тарифный план', descr: 'АТБ 2.0', },
+      { name: 'Валюта', descr: 'рубли', },
+      { name: 'Выпуск', descr: 'бесплатно', },
+      { name: 'Обслуживание', descr: 'бесплатно', },
+      { name: 'Бесплатные дополнительные карты', descr: 'до 2 карт',
+        descrTooltip: 'на выбор: Мир или Visa',
+      },
+      { name: 'Кэшбэк', descr: 'до 7% ',
+        descrTooltip: '7% в выбранной категории <br>1% на все остальные покупки',
+      },
+      { name: 'Процент на остаток по&nbsp;счёту банковской карты', descr: 'до 5%',
+        descrTooltip: `<p>При выполнении одного из&nbsp;условий: </p>
+          <ul class="ui-ul ui-ul--li-mb10">
+            <li>поступление зарплаты на&nbsp;счет&nbsp;карты;</li>
+            <li>ежемесячное поступление процентов по&nbsp;вкладу АТБ;</li>
+            <li>безналичные покупки <span class="text-nowrap">в торгово-сервисных</span> предприятиях на&nbsp;сумму от&nbsp;15&nbsp;000&nbsp;₽ в&nbsp;месяц.</li>
+          </ul>
+          <p>Иначе — 2%.</p>`,
+      },
+      { name: 'Выдача наличных', descr: '200 000 ₽ / день <br>400 000 ₽ / месяц',
+        descrTooltip: 'Бесплатно в банкоматах любых банков России до&nbsp;100&nbsp;000&nbsp;₽ в&nbsp;месяц',
+      },
+    ]
+
+  -
+    const tabsHead1 = [
+      { text: 'Условия' },
+      { text: 'Документы и тарифы' },
+      { text: 'Вопросы и ответы' },
+    ]
+
+  -
+    const tabsHead2 = [
+      { text: 'Что предлагаем' },
+      { text: 'Личный кабинет' },
+      { text: 'Инструкция',
+        onclick: "window.slideTo('.tel-instruction__section--right .swiper', 0)",
+      },
+      { text: 'Вопросы и ответы' },
+    ]
+
+  -
+    const telInstruction1 =[
+      {
+        mods: 'tel-instruction__section--left',
+        title: 'Как выпустить Цифровую карту?',
+        nav: false,
+        footButton: 'выпустить карту',
+        img: [
+          { src: 'tel_instruction_sl1_1' },
+          { src: 'tel_instruction_sl1_2' },
+          { src: 'tel_instruction_sl1_3' },
+          { src: 'tel_instruction_sl1_4' },
+        ],
+        steps: [
+          { title: '<b>Войдите в приложение «АТБ банк»</b>',
+            descr: 'На главном экране нажмите «Открыть новый продукт».'
+          },
+          { title: '<b>Выберите пункт «Выпустить цифровую карту»</b>',
+            descr: 'Выберите платный или&nbsp;бесплатный пакет SMS и&nbsp;нажмите «Далее».'
+          },
+          { title: '<b>Согласитесь с&nbsp;условиями договора и&nbsp;тарифами</b>',
+            descr: 'Нажмите «Выпустить карту», введите код из&nbsp;SMS и&nbsp;нажмите «Подтвердить».'
+          },
+          { title: '<b>Готово. Карта у&nbsp;вас в&nbsp;смартфоне</b>',
+            descr: 'Используйте ее <span class="text-nowrap">в пэй-сервисах</span> и&nbsp;для&nbsp;оплаты покупок в&nbsp;интернете.'
+          },
+        ]
+      }
+    ]
+
+  -
+    const telInstruction2 =[
+      {
+        mods: 'tel-instruction__section--right',
+        img: [
+          { src: 'tel_instruction_sl2_1' },
+          { src: 'tel_instruction_sl2_2' },
+          { src: 'tel_instruction_sl2_3' },
+          { src: 'tel_instruction_sl2_4' },
+        ],
+        steps: [
+          { title: 'Выберите карту в&nbsp;<a href="#" class="text-orange">мобильном приложении</a>' },
+          { title: 'На странице карты нажмите кнопку «АТБ&nbsp;Клуб»' },
+          { title: 'Устанавливайте категорию повышенного кэшбэка' },
+          { title: 'Обменивайте баллы на&nbsp;рубли' },
+        ]
+      }
+    ]
+
+  -
+    const tableData = {
+      names: [
+        { text: 'Дебетовые карты с&nbsp;тарифными планам', itemBold: true, },
+        { text: 'Кредитные карты <span class="text-orange">new</span> с&nbsp;тарифными ',
+          itemBold: true,
+          textNowrap: 'планами',
+          tooltip: 'Программа лояльности для&nbsp;указанных архивных тарифов применяется с&nbsp;1&nbsp;ноября 2023&nbsp;года',
+        },
+        { text: 'Программа лояльности', itemBold: true, },
+        { text: 'Формат кэшбэка', itemBold: true, },
+      ],
+      columns: [
+        {
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    'АТБ 2.0 <br> Кошелек <br> Большой кошелек <br> Валютный кошелек <br> КЭШ-БЭК карта'
+                  ],
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    'Абсолютный ноль <br> Мои правила <br> Ставка 19 <br> Фреш <br>	90 даром'
+                  ],
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<b><a href="#" class="text-orange text-underline">Стандарт-бонус</a></b>',
+                  ],
+                }
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    'В баллах',
+                  ],
+                  descr: `Обмен на рубли в мобильном приложении`,
+                }
+              ]
+            },
+          ],
+        },
+        {
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    'Приморец <br> Единая карта сахалинца <br> Особый статус <br> Детская карта <br> Кампус ',
+                  ],
+                },
+              ]
+            },
+             {
+              sections: [
+                {
+                  text: [ '—' ],
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<b><a href="#" class="text-orange text-underline">Стандарт-директ</a></b>',
+                  ],
+                }
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    'В рублях',
+                  ],
+                  descr: `Автоматическое зачисление на&nbsp;счет не&nbsp;позднее <span class="text-nowrap">10-го рабочего</span> дня следующего месяца`,
+                }
+              ]
+            },
+          ],
+        },
+      ]
+    }
+
+  -
+    const usefulGoods =[
+      {
+        mod: 'you-word',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_you-word.png',
+        p2: 'Расскажите, что понравилось в&nbsp;АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+      {
+        mod: 'you-word',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_you-word.png',
+        p2: 'Расскажите, что понравилось в&nbsp;АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+      {
+        mod: 'you-word',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_you-word.png',
+        p2: 'Расскажите, что понравилось в&nbsp;АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--digital-card')
+        +banner-wrapper('img/banner_digital_card.png', true)
+          +banner-h1('Цифровая <br class="banner__br-no-mob">карта', '--mob-size-l', 'false')
+          +banner-text('Бесплатное оформление <br>и обслуживание')
+          +banner-foot
+            +ui-button('Оформить карту', 'banner, --m-size-l')(href='/kredit/aktsionny/')
+            +banner-slogan('Заменяйте пластик — переходите на&nbsp;цифру!')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--items2-default, --descr-fz18')
+
+      +section
+        +tabs-head(tabsHead1, '', '--no-item-border, --inner-line')
+        +tabs-main()
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +card-terms({ termsTable, termsTableMods: 'card-terms-table--max-w-xl', picture: 'img/card-terms-picture.png' }, '--picture')
+          +tabs-main__item()
+            +section('--mt0')
+              .inner
+                +documents
+          +tabs-main__item()
+            +section('--mt0')
+              .inner
+                +accordion()
+                  +accordion-item('Что такое Цифровая карта?')
+                    +ui-p1('', '--light')
+                      p Цифровая карта&nbsp;&mdash; это банковская платежная карта, выпускаемая в&nbsp;виртуальном формате без&nbsp;пластикового носителя.
+                  +accordion-item('Какой тарифный план на&nbsp;Цифровой карте?')
+                    +ui-p1('', '--light')
+                      p Цифровая карта выпускается в&nbsp;рамках Тарифного плана
+                        =' '
+                        span.text-nowrap &laquo;АТБ 2.0&raquo;
+                        |  на&nbsp;платежной системе Мир.
+                  +accordion-item('Могу&nbsp;ли я&nbsp;снять наличные в&nbsp;банкомате с&nbsp;Цифровой карты?')
+                    +ui-p1('', '--light')
+                      p Да, клиенты со&nbsp;смартфонами на&nbsp;ОС&nbsp;Android могут получить наличные в&nbsp;банкоматах. Важно, чтобы и&nbsp;смартфон, и&nbsp;банкомат были оснащены
+                        =' '
+                        span.text-nowrap NFC-модулем.
+                  +accordion-item('Могу ли я оплачивать покупки Цифровой картой?')
+                    +ui-p1('', '--light')
+                      p Да, при помощи
+                        =' '
+                        span.text-nowrap пэй-сервисов
+                        |  Mir Pay, Samsung Pay и&nbsp;иных платежных приложений, поддерживающихся смартфонами на&nbsp;ОС&nbsp;Android. Активируйте
+                        =' '
+                        span.text-nowrap пэй-сервис,
+                        |  поднесите свой смартфон к&nbsp;платежному терминалу на&nbsp;кассе, и&nbsp;он&nbsp;считает вашу Цифровую карту. Оплатить покупку можно так&nbsp;же
+                        =' '
+                        span.text-nowrap по QR-коду
+                        |  через приложение &laquo;АТБ банк&raquo;.
+                  +accordion-item('Как мне оплатить покупку <span class="text-nowrap">в интернет-магазине?</span>')
+                    +ui-p1('', '--light')
+                      p Процесс оплаты не&nbsp;отличается от&nbsp;оплаты пластиковой картой. Данные, необходимые для&nbsp;оплаты (номер карты, срок ее&nbsp;действия
+                        =' '
+                        span.text-nowrap и CVV-код),
+                        |  хранятся в&nbsp;зашифрованном виде в&nbsp;приложении &laquo;АТБ банк&raquo;, посмотреть их&nbsp;можно, выбрав Цифровую карту,
+                        |  в&nbsp;разделе &laquo;Информация&raquo;&nbsp;&mdash; &laquo;Данные о&nbsp;карте&raquo;. Введите их при&nbsp;оплате покупки
+                        =' '
+                        span.text-nowrap  в интернет-магазине
+                        |  и&nbsp;подтвердите покупку
+                        =' '
+                        span.text-nowrap СМС-кодом.
+                      p Многие клиенты выпускают Цифровые карты специально для&nbsp;оплаты ежемесячных подписок различных сервисов. Привяжите Цифровую карту к&nbsp;нужному сервису и&nbsp;храните на&nbsp;ней сумму, достаточную для&nbsp;оплаты подписки.
+                  +accordion-item('Безопасно ли пользоваться Цифровой картой?')
+                    +ui-p1('', '--light')
+                      p Да, данные карты надёжно хранятся только в&nbsp;приложении &laquo;АТБ банк&raquo;, попасть в&nbsp;которое можно лишь по&nbsp;логину и&nbsp;паролю, известным только вам. Все проверочные
+                        =' '
+                        span.text-nowrap СМС-коды
+                        |  приходят только на&nbsp;ваш номер телефона. Кроме того, Цифровую карту невозможно потерять.
+                      p Не&nbsp;сообщайте никому свои логин и&nbsp;пароль от&nbsp;личного кабинета &laquo;АТБ банк&raquo;, не&nbsp;передавайте
+                        =' '
+                        span.text-nowrap ПИН-коды
+                        =' '
+                        span.text-nowrap и СМС-коды
+                        |  третьим лицам, даже сотруднику Банка.
+                  +accordion-item('Будет&nbsp;ли начисляться кэшбэк за&nbsp;покупки по&nbsp;Цифровой карте?')
+                    +ui-p1('', '--light')
+                      p Конечно, по&nbsp;Цифровой карте действуют те&nbsp;же правила начисления кэшбэка, что и&nbsp;по&nbsp;пластиковой. Оформлять Цифровую карту не&nbsp;только удобно и&nbsp;безопасно, но&nbsp;и&nbsp;ещё и&nbsp;выгодно: за&nbsp;покупки в&nbsp;выбранной категории Банк вернёт&nbsp;7%, а&nbsp;за&nbsp;все остальные покупки&nbsp;1%.
+                  +accordion-item('Можно&nbsp;ли выпустить пластиковую карту к&nbsp;Цифровой?')
+                    +ui-p1('', '--light')
+                      p Да, вы&nbsp;можете выпустить дополнительную карту платежной системы Мир или&nbsp;Visa к&nbsp;Цифровой, она будет оформлена на&nbsp;пластике. Выпустить такую карту можно, обратившись лично в&nbsp;отделение Банка или по&nbsp;телефону горячей линии Банка
+                        =' '
+                        a.text-nowrap.text-orange(href='tel:88007758888') 8-800-775-88-88.
+                  +accordion-item('Можно ли выпустить Цифровую карту к&nbsp;пластиковой?')
+                    +ui-p1('', '--light')
+                      p Нет, на&nbsp;сегодня такой возможности в&nbsp;Банке нет.
+
+      +section
+        .inner
+          +tel-instruction(telInstruction1, '--digital-card')
+
+      +section#section-club
+        +section-head
+          .inner
+            +ui-h2('АТБ Клуб — личный кабинет программы ', 'section-head')
+              span.text-nowrap лояльности
+                +ui-tooltip(' ', '--va-baseline')
+                  p
+                    b Для дебетовых карт
+                    |  с&nbsp;тарифными планами: АТБ 2.0, Кошелек, Большой кошелек, Кэшбэк
+                  p
+                    b Для кредитных карт
+                    |  (с&nbsp;1&nbsp;ноября 2023&nbsp;года) с&nbsp;тарифными планами: Абсолютный ноль, Мои правила, Ставка&nbsp;19, Фреш, 90 даром
+
+        +tabs-head(tabsHead2, '', '--gradient-border')
+        +tabs-main
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +club-offer
+          +tabs-main__item#tab-lk
+            +section('--mt0')
+              .inner
+                +club-offer('lk')
+          +tabs-main__item()
+            +section('--mt0')
+              .inner
+                +tel-instruction(telInstruction2, '--img-l, --club-instructions')
+          +tabs-main__item()
+            +section('--mt0')
+              .inner
+                +accordion()
+                  +accordion-item('Как определить, какая программа лояльности действует по&nbsp;вашей карте?', '--card-router')
+                    +card-router(tableData, '--without-heads, --2slides')(data-slides-per-view='2')
+
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Вас также может заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)
+
+      +section
+        .inner
+          +accordion
+            +accordion-item('Другие банковские продукты')
+              +credits-list

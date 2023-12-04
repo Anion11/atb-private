@@ -1,0 +1,60 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'after-repayment-loan'
+  -const pageTitle ='Что делать после погашения кредита'
+
+  -
+    const stepsData ={
+      decor: 'img/steps_decor.svg',
+      items: [
+        { title: 'Банк передает закладную заемщику',
+          descr: 'Получить закладную вы&nbsp;можете в&nbsp;отделении банка, в&nbsp;котором оформляли ипотечный кредит',
+        },
+        { title: 'Передайте закладную в&nbsp;Росреестр или МФЦ',
+          descr: 'Закладная должна быть с&nbsp;отметкой о&nbsp;погашении обязательств',
+        },
+        { title: 'Если закладная не&nbsp;оформлялась',
+          descr: 'Снятие обременения осуществляется по&nbsp;заявлению банка, без участия Заемщика',
+        },
+        { title: 'После погашения регистрационной записи об&nbsp;ипотеке',
+          descr: 'Предоставлять документ в&nbsp;банк не&nbsp;требуется',
+        },
+      ]
+    }
+
+  -
+    const transferInnerCallData ={
+      title: 'Остались вопросы?',
+      text: 'Звоните',
+      phoneLink: '88007758888',
+      phoneText: '8-800-775-88-88',
+      img: 'img/transfer-inner-call.png',
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --after-repayment-loan')
+        +banner-wrapper('img/banner_after-repayment-loan.png', true)
+          +banner-h1('Что делать после погашения кредита', '--mob-size-l')
+    .page-content
+      +section('--mt0')
+        .inner
+          +steps(stepsData)
+      +section
+        .inner
+          +transfer-inner-call(transferInnerCallData)
+      +section
+        .inner
+          +section-head
+            +ui-h2('Полезные статьи об&nbsp;ипотеке', 'section-head')
+          +useful-articles('articlesInner')

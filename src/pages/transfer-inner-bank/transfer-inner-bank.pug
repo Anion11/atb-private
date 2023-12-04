@@ -1,0 +1,165 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'transfer-inner-bank'
+    const pageTitle ='Переводы по реквизитам'
+
+    const benefitsItems =[
+      { icon: 'img/benefit_1.svg', title: 'Отправить деньги за&nbsp;границу на&nbsp;собственный счет, родственникам или друзьям'  },
+      { icon: 'img/benefit_2.svg', title: 'Оплатить счёт на&nbsp;покупку товаров или услуг, выставленный за&nbsp;рубежом'  },
+      { icon: 'img/benefit_3.svg', title: 'Оплатить медицинские услуги и&nbsp;обучение'  },
+      { icon: 'img/benefit_4.svg', title: 'Забронировать жильё за&nbsp;рубежом'  },
+    ]
+
+    const howGetItems =[
+      { icon: 'img/how-get_1.svg', title: 'В любом <a class"text-orange">отделении банка</a>', descr: 'с документом, удостоверяющий личность' },
+      { icon: 'img/how-get_2.svg', title: 'Укажите получателя перевода', descr: 'Полное имя для физлица&nbsp;/ полное наименование для организации' },
+      { icon: 'img/how-get_3.svg', title: 'Укажите реквизиты получателя', descr: 'SWIFT-код или БИК банка и&nbsp;номер счёта получателя' },
+    ]
+
+    const tableItems ={
+      //- notDisplayThead: true,
+      thead: [
+        {
+          th: [
+            { text: '' },
+            { text: 'Тариф' },
+            { text: 'Мин.' },
+            { text: 'Макс.' },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          title: true,
+          td: [
+            { text: '<b>По России</b>', colspan: '4' },
+          ]
+        },
+        {
+          td: [
+            { text: '₽ (Рубли РФ)' },
+            { text: '2%' },
+            { text: 'от 120 ₽' },
+            { text: 'до 3 000 ₽' },
+          ]
+        },
+        {
+          title: true,
+          td: [
+            { text: '<b>За пределы РФ</b>', colspan: '4' },
+          ]
+        },
+        {
+          td: [
+            { text: '$ (Доллары США)', tooltip: '<div class="ui-p3"><ul class="ui-ul ui-ul--li-mb10"><li>Китай</li><li>Южная Корея<div class="ui-p3 ui-p3--light text-grey80">Клиентам KEB Hana Bank, <br> Seoul, Korea</div></li><li>Казахстан<div class="ui-p3 ui-p3--light text-grey80">Клиентам First Heartland <br> Jusan Bank</div></li></ul></div>' },
+            { text: '2%' },
+            { text: 'от $40' },
+            { text: 'до $400' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Ұ (Китайские юани)' },
+            { text: '1,5%' },
+            { text: 'от 170 Ұ' },
+            { text: 'до 1 700 Ұ' },
+          ]
+        },
+        {
+          td: [
+            { text: '₸ (Казахстанские тенге)' },
+            { text: '1%' },
+            { text: 'от 3 000 ₸' },
+            { text: 'до 10 000 ₸' },
+          ]
+        },
+        {
+          td: [
+            { text: '¥ (Японские йены)' },
+            { text: '0,5% + 3 500 ¥' },
+            { text: 'от 7 500 ¥' },
+            { text: '<span class="text-infinity-icon">∞</span>' },
+          ]
+        },
+      ]
+    }
+
+    const transferInnerCallData ={
+      title: 'Остались вопросы?',
+      text: 'Звоните',
+      phoneLink: '88007758888',
+      phoneText: '8-800-775-88-88',
+      img: 'img/transfer-inner-call.png',
+    }
+
+block content
+  main
+    +breadcrumbs()
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Переводы ', '#')
+      +breadcrumbs-item(pageTitle)
+    +banner('--m-vertically')
+      +banner-item('--transfer-inner-bank')
+        +banner-wrapper('img/banner_transfer-inner-bank.png', true)
+          +banner-h1('Переводы по&nbsp;реквизитам в&nbsp;отделениях банка', '--mob-size-l')
+          +banner-text('По России и&nbsp;в&nbsp;другие страны')
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('', 'section-head')
+              a.text-orange.text-underline(href='#') В офисах АТБ
+              =' '
+              | вы можете
+          +benefits(benefitsItems, '--items2-default, --title-normal')
+      +section
+        .inner
+          +transfer-inner-bank
+      +section
+        .inner
+          +currency
+      +section
+        .inner
+          +section-head
+            +ui-h2('Комиссия за переводы', 'section-head')
+          +ui-table(tableItems, '--all-border, --grey-title, --transfer-inner-bank', 'accordions')
+          +section-footnote('', '--fz16, --fw-normal')
+            span.text-grey80 Подробные тарифы доступны
+            =' '
+            a.text-orange(href='#') здесь
+      +section
+        .inner
+          +transfer-commission
+      +section('--bg-grey')
+        .inner
+          +how-get('Как отправить перевод за границу', howGetItems)
+      +section
+        .inner
+          +section-head
+            +ui-h2('Вопросы и&nbsp;ответы', 'section-head')
+          +accordion
+            +accordion-item('В каких валютах можно перевести деньги за&nbsp;границу?')
+              p АТБ осуществляет переводы клиентов&nbsp;&mdash; физических лиц по&nbsp;системе SWIFT со&nbsp;счетов и&nbsp;наличными в&nbsp;долларах США, японских йенах, китайских юанях. С&nbsp;1&nbsp;августа также доступны переводы в&nbsp;казахстанских тенге.
+            +accordion-item('В какие страны я&nbsp;могу перевести доллары США?')
+              p Клиентам доступны переводы наличными в&nbsp;долларах США в&nbsp;Китай, Южную Корею (только в&nbsp;пользу клиентов KEB Hana Bank, Seoul, Korea) и&nbsp;Казахстан (только в&nbsp;пользу клиентов &laquo;First Heartland Jusan Bank&raquo;). Переводы со&nbsp;счетов клиентов и&nbsp;без открытия счета в&nbsp;долларах США в&nbsp;пользу физических и&nbsp;юридических лиц в&nbsp;другие банки по&nbsp;России и&nbsp;за&nbsp;её&nbsp;пределами, кроме вышеперечисленных стран, осуществляться не&nbsp;будут.
+            +accordion-item('Могу&nbsp;ли я&nbsp;осуществить перевод в&nbsp;евро, фунтах стерлингов Великобритании или швейцарских франках?')
+              p Нет, с&nbsp;1&nbsp;августа переводы в&nbsp;евро, фунтах стерлингов Великобритании, швейцарских франках со&nbsp;счетов клиентов и&nbsp;наличными в&nbsp;другие банки по&nbsp;России и&nbsp;за&nbsp;её&nbsp;пределами не&nbsp;осуществляются.
+            +accordion-item('Какие валютные счета можно открыть в&nbsp;АТБ?')
+              p Счета можно открыть в&nbsp;долларах США (только для осуществления перевода SWIFT), японских йенах, китайских юанях, казахстанских тенге. В&nbsp;евро, фунтах стерлингов Великобритании и&nbsp;швейцарских франках новые счета не&nbsp;открываются.
+            +accordion-item('У меня уже есть валютный счет в&nbsp;долларах США в&nbsp;АТБ, он&nbsp;будет закрыт?')
+              p Нет, ранее открытые счета в&nbsp;долларах США продолжают оставаться активными.
+      +section
+        .inner
+          +documents
+      +section
+        .inner
+          +transfer-inner-call(transferInnerCallData)

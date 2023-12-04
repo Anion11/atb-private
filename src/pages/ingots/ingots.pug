@@ -1,0 +1,64 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'ingots'
+  -const pageTitle ='Инвестируйте в драгоценные металлы'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/benefits_1.svg', descr: 'Диверсификация вложения в условиях экономической и финансовой неопределенности' },
+      { icon: 'img/benefits_2.svg', descr: 'Возможность хранения в сейфовых ячейках банка' },
+      { icon: 'img/benefits_3.svg', descr: 'Отсутствие НДС' },
+    ]
+
+    const preciousMetalsBanData = {
+      title: 'Драгоценные металлы – стабильная форма хранения капитала',
+      descr: 'АТБ предлагает золотые слитки весом от 1 до 1000 граммов',
+      descrTooltip: 'Слитки изготовлены российскими аффинажными заводами в соответствии с российскими стандартами качества'
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--ingots')
+        +banner-wrapper('img/banner_ingots.png', true)
+          +banner-h1('Инвестируйте <br class="banner__br-no-mob">в&nbsp;драгоценные <br class="banner__br-no-mob">металлы', '--mob-size-l')
+          +banner-text('Надежное вложение ваших средств')
+          +banner-foot
+            +ui-button('Оставить предзаказ', 'banner, --m-size-l')(href='#')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +precious-metals-ban(preciousMetalsBanData, '--ingots')
+      +section
+        .inner
+          +benefits(benefitsItems)
+
+      +section
+        .inner
+          +section-head
+            +switch('', 'Выберите ваш слиток', 'График цен на металлы', 'coins', '--mob-vertical')
+          +switch-group('coins')
+            +switch-content(true)
+              +switch('', 'Золото', 'Серебро', 'ingot-type', '--mb40')
+              +switch-group('ingot-type')
+                +switch-content(true)
+                  +ingots
+                +switch-content
+                  +ingots
+            +switch-content()
+              +metals-chart
+
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Заявка для предзаказа слитков', 'section-head')

@@ -1,0 +1,167 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'deposits-inner'
+  -const pageTitle ='Вклады'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/icon_benefits_pig.svg', descr: 'Максимальный доход <span class="text-orange">до 11,2% годовых</span>' },
+      { icon: 'img/icon_benefits_safe_box.svg', descr: 'Сумма открытия от 50&nbsp;000 рублей' },
+      { icon: 'img/icon_benefits_cash.svg', descr: '<span class="text-orange">Вклад пополняемый</span> в течение 90 дней с даты открытия вклада без ограничения по сумме' },
+      { icon: 'img/icon_benefits_percent.svg', descr: 'Срок действия вклада разделен на процентные периоды, для каждого из которых действует индивидуальная процентная ставка' },
+    ]
+
+  -
+    const tableItems ={
+      tbody: [
+        {
+          title: true,
+          td: [
+            { rowspan: '2', text: 'Период действия годовой процентной ставки' },
+            { text: '182 дня', mods: 'text-center' },
+            { text: '367 дней', mods: 'text-center' },
+          ]
+        },
+        {
+          title: true,
+          td: [
+            { colspan: '2', text: 'Ставка*, % в год"', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'До 90 дней включительно' },
+            { text: '10,00', mods: 'text-center' },
+            { text: '11,20', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'С 91 дня' },
+            { text: '9,00', mods: 'text-center' },
+            { text: '9,60', mods: 'text-center' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const list_1 =[
+      { text: 'Валюта - рубли;' },
+      { text: 'Минимальная сумма - 50 000 рублей;' },
+      { text: 'Максимальная сумма – не ограничена;' },
+      { text: 'Срок – 182 дня / 367 дней;' },
+      { text: 'Пополняемый, пополнение возможно в первые 90 дней с даты открытия;' },
+      { text: 'Не пролонгируемый;' },
+      { text: 'Выплата процентов и суммы – в конце срока на счет, открытый в банке;' },
+      { text: 'Расходные операции – не предусмотрены;' },
+      { text: 'При досрочном расторжении проценты выплачиваются по ставке вклада «Личный счет» (до востребования) исходя из фактического срока нахождения средств.' },
+    ]
+
+  -
+    let mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным Мобильным банком, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--deposit-welcome')
+        +banner-wrapper('img/banner_deposit_welcome_small.png', true)
+          +banner-h1('Вклад <br>«Добро пожаловать»', '--mob-size-l', false)
+          +banner-subtitle('Ставка до')
+            =' '
+            span.banner-subtitle__accent 12%
+            |  годовых
+          +banner-foot
+            +ui-button('оформить вклад', 'banner, --m-size-l')(href='#section-form')
+            +banner-slogan('Дружеский вклад с&nbsp;высоким процентом!')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Преимущества вклада')
+          +benefits(benefitsItems, '--items2')
+
+      +section
+        .inner
+          +calc-i-deposits('welcome')
+
+      +section
+        .inner
+          +ui-table(tableItems, '--inner-border')
+          +section-footnote('*Ставка по вкладу в течение срока действия устанавливается для каждого периода нахождения средств и пересчету за прошлый период не подлежит')
+
+      +section
+        .inner
+          +attention
+            +ui-p1('Вклад распространяется на «новых клиентов» - клиентов, оформляющих на свое имя первый срочный вклад в банке, либо клиентов, не имеющих в банке действующего вклада/накопительного счета за период с 01.06.2021. А также на «действующих клиентов» (вкладчиков) с новыми денежными средствами, поступившими в банк на дату открытия вклада.')
+
+      +section
+        .inner
+          +mob-banner(mobBannersData)
+
+      +section()#section-form
+        .inner
+          +section-head().text-center
+            +ui-h2('Оформите заявку на консультацию')
+
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Застрахованы ли вклады и накопительные счета в Банке?')
+              +ui-p1('', '--light')
+                p Да, застрахованы на основании ФЗ от 23 декабря 2003 года № 177-ФЗ «О страховании вкладов в банках Российской Федерации», более подробная информация о страховании вкладов доступна на сайте
+                  =' '
+                  a.text-orange(href='https://www.asv.org.ru/' target='_blank') asv.org.ru
+            +accordion-item('Возможно управлять вкладом или накопительным счетом без посещения офиса Банка?')
+              +ui-p1('', '--light')
+                p Да, открывать и&nbsp;управлять вкладами и&nbsp;накопительными счетами можно удалённо&nbsp;&mdash; через интернет-банк и&nbsp;мобильное приложение АТБ.
+            +accordion-item('Может ли банк менять ставку по вкладу и накопительному счету в одностороннем порядке?')
+              +ui-p1('', '--light')
+                p В&nbsp;течение срока действия договора банк не&nbsp;может менять процентную ставку по&nbsp;вкладу. Переоформление вклада на&nbsp;новый срок (пролонгация) осуществляется по&nbsp;ставке в&nbsp;соответствии с&nbsp;условиями договора вклада. По накопительному счету банк может менять процентную ставку в&nbsp;соответствии с&nbsp;условиями договора.
+            +accordion-item('Как оплатить налог с процентов по вкладу?')
+              +ui-p1('', '--light')
+                p Государственная дума Российской Федерации отменила НДФЛ с&nbsp;полученных в&nbsp;2021&ndash;2022 годах процентов по&nbsp;вкладам. Закон освобождает граждан от&nbsp;уплаты НДФЛ с&nbsp;процентных доходов по&nbsp;вкладам в&nbsp;банках за&nbsp;2021&ndash;2022&nbsp;годы, которые подлежали&nbsp;бы уплате в&nbsp;2022&ndash;2023&nbsp;годах. При этом вносятся изменения в&nbsp;правила налогообложения процентных доходов по&nbsp;вкладам, которые распространятся на&nbsp;будущие налоговые периоды после 2022&nbsp;года. Необлагаемый доход будет определяться как произведение 1&nbsp;млн рублей и&nbsp;максимального значения ключевой ставки Банка России в&nbsp;данном году. Таким образом, если ключевая ставка&nbsp;ЦБ в&nbsp;течение года повышалась, а&nbsp;вслед за&nbsp;ней росли и&nbsp;ставки по&nbsp;вкладам, то&nbsp;увеличится и&nbsp;необлагаемый доход.
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания')
+          +accordion()
+            +accordion-item('Подробные условия')
+              +ui-p1('', '--light')
+                +ui-ul(list_1)
+            +accordion-item('Полезная информация')
+              +documents
+            +accordion-item('Документы')
+              +documents
+            +accordion-item('Архив документов')
+              +accordion('--inner')
+                +accordion-item('inner item 1')
+                  +documents
+                +accordion-item('inner item 2')
+                  +documents
+                .accordion-item
+                  .accordion-item__head.accordion-item__head--link
+                    a(href='#') link

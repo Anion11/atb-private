@@ -1,0 +1,331 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'credit'
+    const pageTitle ='Кредит наличными'
+
+    const bannerSapid = [
+      //- {
+      //-   img: 'img/ic.servis.svg',
+      //-   txt: 'Сервисы',
+      //-   content: [
+      //-     {
+      //-       img: 'img/ic.repayment.svg',
+      //-       txt: 'Способы погашения кредита',
+      //-       link: '#',
+      //-     },
+      //-   ]
+      //- },
+      {
+        img: 'img/star.gif',
+        txt: 'Акции',
+        content: [
+          {
+            img: 'img/ic.book.svg',
+            txt: 'Книга в подарок',
+            link: '/subscribe-to-the-newsletter/',
+          },
+          {
+            img: 'img/ic.book.svg',
+            txt: '«Охота за&nbsp;удачей»',
+            link: '#',
+          },
+        ]
+      },
+    ]
+
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Заявка', descr: 'Заполнение анкеты в среднем занимает 5&nbsp;минут' },
+      { icon: './img/how_get_step2.svg', title: 'Одобрение', descr: 'В течение 3 минут придет вам в&nbsp;смс' },
+      { icon: './img/how_get_step3.svg', title: 'Оформление и подписание договора', descr: 'В ближайшем отделении банка' },
+    ]
+
+    const tableItems ={
+      tbody: [
+        {
+          td: [
+            { colspan: '2', text: 'Минимальная сумма кредита, руб.' },
+            { text: '<b>Свыше <span class="text-nowrap">30 000,00 </span></b>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Максимальная сумма кредита, руб.' },
+            { text: '<b><span class="text-nowrap">1 000 000</span></b>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Диапазон процентных ставок (в процентах годовых) Процентная ставка определяется <span class="text-nowrap"> индивидуально</span>' },
+            { text: '16,5% - <span class="text-nowrap">29,9%</span>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { rowspan: '2', text: 'Срок возврата кредита с шагом в 1 (один) месяц' },
+            { text: 'минимальный' },
+            { text: 'от <b>13</b> (тринадцати) месяцев', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'максимальный' },
+            { text: 'до <b>60</b> (шестидесяти) месяцев', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Диапазон полной стоимости Кредита в процентном (% годовых) и&nbsp;в&nbsp;денежном выражении (в рублях)' },
+            { text: '22,409% - <span class="text-nowrap">39,663%</span> <br><span class="text-nowrap">3957,22 руб.</span> - <span class="text-nowrap">1 103 343,92 руб.</span>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Срок действия решения о предоставлении Кредита' },
+            { text: '<b>30</b> календарных дней', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Пеня при образовании просроченной задолженности' },
+            { text: '<b>3%</b> в день', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Обеспечение' },
+            { text: 'Не предусмотрено', mods: 'text-center' },
+          ]
+        },
+      ]
+    }
+
+    const benefitsItems =[
+       { icon: 'img/icon_benefits1.svg', title: 'Оформление по&nbsp;паспорту ' },
+       { icon: 'img/icon_benefits2.svg', title: 'Фиксированная процентная ставка на&nbsp;весь срок кредита' },
+       { icon: 'img/icon_benefits3.svg', title: 'Удобство и&nbsp;скорость оформления' },
+       { icon: 'img/icon_benefits4.svg', title: 'Подходит для&nbsp;самозанятых' },
+    ]
+
+    const usefulGoods =[
+      {
+        mod: 'you-word',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_you-word.png',
+        p2: 'Расскажите, что понравилось в&nbsp;АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+    ]
+
+    const calcCreditData ={
+      ranges: [
+        { title: 'Сумма кpедита', inpDescr: ' ₽', min: '30000', max: '1000000', dataName: 'amount' },
+        { title: 'Срок кредита, мес', inpDescr: ' мес', min: '13', max: '60', dataName: 'term' },
+      ],
+      resultLine2: [
+        { name: 'СУММА КРЕДИТА ', num: '2 600 000 ₽', data: 'text-total_amount' },
+      ],
+      psText: [
+        `* Расчет платежа произведен в качестве примера с учетом оформления личного страхования**, ставка подбирается индивидуально.`,
+        `** Без оформления Личного страхования ставка увеличивается на 8 п.п.`,
+      ],
+      foot: [
+        `Увеличьте вероятность одобрения заявки на кредит,&nbsp;подтвердив доход. <a class="text-link-underline text-orange" target="_blank" href="#">Подробнее</a>`,
+        `<a class="text-link-underline text-orange" target="_blank" href="#">Узнайте свой кредитный рейтинг бесплатно</a>`,
+      ]
+    }
+
+    const smallBannerBiometricsData ={
+      title: 'Станьте клиентом <br> с&nbsp;помощью биометрии',
+      descr: 'Получите полный доступ к&nbsp;услугам банка без посещения отделения',
+      //- btn: 'Оставить заявку',
+      btnLink: 'Подробнее',
+      img: 'img/small_banner_biometrics.png'
+    }
+
+    const smallBannerSCardData ={
+      title: 'Минус 1,5% от&nbsp;ставки',
+      descr: 'Если вы получаете зарплату на&nbsp;карту АТБ или&nbsp;подтверждаете доход через ПФР',
+      //- btn: 'Оставить заявку',
+      img: 'img/small_banner_salary_card_discount.png'
+    }
+
+    const smallBannerSWData = {
+      title: 'Теперь доступно и&nbsp;для&nbsp;самозанятых',
+      descr: 'Подтвердите статус и&nbsp;воспользуйтесь кредитом наличными',
+      img: 'img/small_banner_self_employed.png'
+    }
+
+    const smallBannerAchievementData = {
+      h3: '<span class="text-orange">1&nbsp;место</span> среди кредитов наличными в&nbsp;рейтинге Bankiros на&nbsp;август 2023',
+      h3Mods: '--xs',
+      h3Nowrap: 'года',
+      h3Tooltip: 'Cреди кредитов от&nbsp;330&nbsp;000&nbsp;₽ на&nbsp;5&nbsp;лет при оформлении летом 2023 года',
+      img: 'img/small_banner_achievement.png'
+    }
+    //- const smallBannersData =[
+    //-   { mods: 'salary-card-discount',
+    //-     title: 'Минус 2% от&nbsp;ставки',
+    //-     descr: 'Если вы получаете зарплату на карту АТБ или&nbsp;подтверждаете доход через ПФР',
+    //-     btn: 'Оставить заявку',
+    //-     img: 'img/small_banner_salary_card_discount.png'
+    //-   }
+    //- ]
+
+block content
+  main
+    .banner.banner--m-vertically
+      .swiper
+        .swiper-wrapper
+          +banner-item('--cash-loan')
+            +banner-wrapper('img/banner_cash_loan_small.png', true)
+              +banner-h1('Кредит <br class="banner__br-no-mob">наличными', '--mob-size-l')
+              +banner-subtitle('Сумма до')
+                =' '
+                span.banner-subtitle__accent 5
+                | &nbsp;млн&nbsp;
+                span.banner-subtitle__accent ₽
+              +banner-foot
+                +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+                +banner-slogan('Нужен только паспорт!')
+      +banner-nav
+      +banner-sapid-container(bannerSapid)
+
+    //- .inner
+      +ui-button('Попап Кредит #Ставок.нет!').js-popup-open(href='#credit-promo')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Преимущества кредита от&nbsp;АТБ')
+          +benefits(benefitsItems, '--title-normal, --items2-default')
+      +section
+        .inner
+          +small-banner(smallBannerAchievementData, '--achievement')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Рассчитайте свой кредит', 'section-head')
+          +calc-credit('cash', calcCreditData)
+      +section
+        .inner
+          +small-banner-wrapper('--3items')
+            +small-banner(smallBannerBiometricsData, '--tiny')
+            +small-banner(smallBannerSCardData, '--tiny')
+            +small-banner(smallBannerSWData, '--tiny')
+
+          br
+          br
+          br
+          p  если блока 2
+          br
+          br
+          br
+
+          +small-banner-wrapper('--2items')
+            +small-banner(smallBannerBiometricsData, '--small')
+            +small-banner(smallBannerSWData, '--small')
+
+      +section
+        .inner
+          +how-get('Три простых шага', howGetItems, 'оформить заявку')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Условия предоставления кредита')
+          +accordion()
+            +accordion-item('Условия предоставления кредита:')
+              +ui-p1()
+                +ui-ul('')
+                  li Являетесь гражданином РФ;
+                  li Ваш возраст до 70 лет (на момент окончания срока возврата Кредита) включительно
+                  li Официально трудоустроены и есть постоянный источник дохода
+                  li Стаж на последнем месте работы не менее 3 мес. (на Клиентов, являющихся пенсионерами данное требование не распространяется)
+                  li Регистрация и фактическое место жительства Заёмщика находится на территории обслуживания Банка
+                    +ui-ul('', '--child')
+                      li Документы:
+                      li Паспорт гражданина РФ
+                p
+                  small Полная версия тарифов, условий предоставления, использования и возврата потребительского кредита представлены в Книге тарифов
+            +accordion-item('Краткие условия ТП «Кредит наличными» с 09.03.2022:')
+              +ui-table(tableItems, '--mob-scroll, --inner-border')
+              +section-footnote
+                p Полная версия тарифов, условий предоставления, использования и возврата потребительского кредита представлены в
+                  =' '
+                  a.text-orange(href='#' target='_blank') Книге тарифов
+            +accordion-item('Документы')
+              +documents
+            +accordion-item('Территория обслуживания Банка')
+              +documents
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Как оформить кредит?')
+              +ui-p1('Оформить кредит можно, оставив заявку на&nbsp;сайте банка, в&nbsp;мобильном приложении или в&nbsp;офисе. При оформлении заявки дистанционно (сайт банка/мобильное приложение) после предварительного одобрения вам будет назначена встреча в&nbsp;офисе для подписания договора и&nbsp;получения кредита. Для действующих клиентов банка, с&nbsp;установленным мобильным приложением доступно оформление кредита онлайн без посещения офиса.', '--light')
+            +accordion-item('Почему мне отказали в кредите?')
+              +ui-p1('Для обеспечения финансовой надежности принятие решения о&nbsp;выдаче кредита осуществляется банком на&nbsp;основании требований и&nbsp;критериев, применяемых при оценке финансовой устойчивости заемщика, а&nbsp;также иных показателей, влияющих на&nbsp;вероятность возврата кредита. Кроме того, действующим законодательством не&nbsp;предусмотрена обязанность банка информировать лиц, обратившихся за&nbsp;предоставлением кредита, о&nbsp;причинах отказа в&nbsp;предоставлении кредита.', '--light')
+            +accordion-item('Можно ли оформить кредит без залога в АТБ?')
+              +ui-p1('Да, в&nbsp;АТБ возможно оформление кредита на&nbsp;сумму до&nbsp;3&nbsp;млн рублей без залога. Ставка фиксирована на&nbsp;весь срок кредитования. Более подробно можно ознакомиться ', '--light')
+                a.text-orange(href='#') здесь
+                | .
+            +accordion-item('Как платить по кредиту?')
+              +ui-p1('', '--light')
+                p Оплачивать можно в наличной и безналичной форме. Все доступные способы погашения кредита представлены на
+                  =' '
+                  a.text-orange(href='#') странице
+                  | .
+            +accordion-item('Не могу оплачивать кредит, что делать? Как оформить кредитные каникулы?')
+              +ui-p1('', '--light')
+                p Банк может предложить вам снижение платежа, увеличив срок кредита либо предоставить отсрочку платежа, как частичную, так и полную. Более подробно ознакомиться с информацией и оставить заявку на получение услуги можно на
+                  =' '
+                  a.text-orange(href='#') сайте банка
+                  | , либо обратиться в любое удобное для Вас отделение.
+                p При наличии просроченной задолженности банк может предложить вам несколько программ реструктуризации. Оставить заявку и&nbsp;более подробно ознакомиться с&nbsp;условиями вы&nbsp;можете на
+                  =' '
+                  a.text-orange(href='#') сайте
+                  |  либо обратиться
+                  =' '
+                  a.text-orange(href='#') в&nbsp;любое удобное для вас отделение
+                  | .
+            +accordion-item('Как узнать сумму платежа?')
+              +ui-p1('', '--light')
+                p В&nbsp;личном кабинете интернет-банка, через мобильное приложение, в
+                  =' '
+                  a.text-orange(href='#') отделении банка
+                  |  по&nbsp;предъявлению паспорта, через банкомат, по&nbsp;телефону горячей линии&nbsp;&mdash; 8-800-775-88-88 (потребуется назвать кодовое слово и&nbsp;паспортные данные).
+            +accordion-item('Как снизить ставку по действующему кредиту?')
+              +ui-p1('', '--light')
+                p Вы&nbsp;можете объединить действующие кредиты, оформленные в&nbsp;АТБ, и&nbsp;получить дополнительные денежные средства, которыми сможете распоряжаться по&nbsp;своему усмотрению. АТБ предлагает различные условия кредитования, ознакомиться более подробно и&nbsp;оставить заявку можно
+                  =' '
+                  a.text-orange(href='#') здесь
+                  | .
+            +accordion-item('У меня плохая кредитная история, могу ли я оформить кредит?')
+              +ui-p1('', '--light')
+                p Существует возможность получения кредита и в такой ситуации. Банк принимает решение индивидуально по каждому клиенту с учетом совокупности данных. Обратитесь по телефону колл-центра 8-800-775-88-88 или в отделение банка.
+            +accordion-item('Можно ли погасить кредит частично или полностью досрочно?')
+              +ui-p1('', '--light')
+                p Действующий кредитный договор можно погасить досрочно, частично либо полностью, для этого вам необходимо уведомить банк, написав заявление на полное либо частичное погашение, в том числе и по телефону 8-800-775-88-88, а позже внести необходимую сумму для погашения.
+            +accordion-item('Как узнать реквизиты счета?')
+              +ui-p1('', '--light')
+                p Реквизиты счета можете узнать непосредственно в офисе банка, а также в Интернет-банке и в Мобильном приложении. При возникновении вопросов по работе с Интернет-банком или Мобильным приложением можно обратиться в колл-центр 8-800-775-88-88.
+
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Вас также может заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)
+
+    +popup__wrapper('--size-xs')#credit-promo
+      +p-credit-promo

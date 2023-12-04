@@ -1,0 +1,27 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'money-transfer'
+  -const pageTitle ='Цифровая карта'
+
+block content
+  main
+    +banner()
+      +banner-item('--money-transfer')
+        +banner-wrapper('img/banner_money-transfer.jpg')
+          +banner-h1('Денежные переводы в АТБ Мобайл NEW и АТБ Онлайн')
+          +banner-descr('Актуальная информация', '--size-xs').banner-item-dn
+        +banner-mobile
+          p Актуальная информация
+    .page-content
+      +section('--mt0')
+        .inner
+          +money-transfer('money-transfer')

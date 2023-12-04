@@ -1,0 +1,45 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'transfer'
+  -const pageTitle ='Переводы по всему миру'
+
+  -
+    const featuresItems =[
+      {
+        icon: 'img/feature1.svg',
+        title: 'Удобно',
+        descr: 'Перевод можно отправить в любую страну мира'
+      },
+      {
+        icon: 'img/feature2.svg',
+        title: 'Выгодно',
+        descr: 'Низкие тарифы - от 0% на все направления'
+      },
+      {
+        icon: 'img/feature3.svg',
+        title: 'Быстро',
+        descr: 'Перевод можно получить через несколько минут после отправки'
+      },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --transfer')
+        +banner-wrapper('img/banner_transfer.png', true)
+          +banner-h1('Переводы <br class="banner__br-no-mob">по&nbsp;всему миру', '--mob-size-l')
+    .page-content
+      +section('--mt0')
+        .inner
+          +features(featuresItems, '--3items')
+      +section
+        .inner
+          +transfer-nav

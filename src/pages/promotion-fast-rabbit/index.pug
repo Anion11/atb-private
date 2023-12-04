@@ -1,0 +1,192 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'promotion-fast-rabbit'
+    const pageTitle ='Акция «Будь быстрее Кролика!»'
+
+  -
+    const smallBannerData ={
+      h3: 'Поздравляем всех победителей акции!',
+      h2Mods: ', --xl',
+      descr: 'С&nbsp25 по 31&nbspмая 2023&nbsp;года были начислены призовые рубли всем участникам, выполнившим условия акции',
+      img: 'img/small_banner_img.png',
+    }
+
+  -
+    const promotionBanData ={
+      img: 'img/promotion_ban_img.png',
+      h3: 'Условия участия',
+      ul: [
+        { text: 'Оформите кредит наличными на&nbsp;новую банковскую карту',
+          beforeTooltip: 'АТБ',
+          tooltip: `Договор и&nbsp;карта должны действовать до&nbsp;момента выплаты приза. Акция не&nbsp;действует на&nbsp;рефинансирование кредитов.`,
+        },
+        { text: 'Оплатите покупки полученной картой на&nbsp;сумму от&nbsp;10&nbsp;000 рублей в&nbsp;течении',
+          beforeTooltip: '15&nbsp;дней',
+          tooltipHref: '#popup_transactions_info',
+        },
+        { text: 'Воспользуйтесь шансом получить приз',
+          beforeTooltip: 'до&nbsp;10&nbsp;000 рублей',
+          tooltipHref: '#popup_prize',
+        },
+      ],
+      button: 'Участвовать',
+      p1: 'с&nbsp;20&nbsp;февраля по&nbsp;30&nbsp;апреля 2023 года'
+    }
+
+  -
+    const tableItems = {
+      tbody: [
+        {
+          td: [
+            { text: '<b>Сумма кредита' },
+            { text: '<b>Приз (вернем обратно), руб.' },
+          ]
+        },
+        {
+          td: [
+            { text: '<span class="text-nowrap"> до 100 000 руб. </span>' },
+            { text: '1 000' },
+          ]
+        },
+        {
+          td: [
+            { text: '<span class="text-nowrap"> >100-300 тыс. руб. </span>' },
+            { text: '2 000' },
+          ]
+        },
+        {
+          td: [
+            { text: '<span class="text-nowrap"> >300-500 тыс. руб. </span>' },
+            { text: '3 000' },
+          ]
+        },
+        {
+          td: [
+            { text: '<span class="text-nowrap"> >500-700 тыс. руб. </span>' },
+            { text: '5 000' },
+          ]
+        },
+        {
+          td: [
+            { text: '<span class="text-nowrap"> >700-1000 тыс. руб. </span>' },
+            { text: '7 000' },
+          ]
+        },
+         {
+          td: [
+            { text: '<span class="text-nowrap"> >1 000 000 руб. </span>' },
+            { text: '10 000' },
+          ]
+        },
+      ]
+    }
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Скидки и акции', '#')
+      +breadcrumbs-item(pageTitle)
+    +banner('--m-vertically')
+      +banner-item('--promotion-fast-rabbit')
+        +banner-wrapper('img/banner_promotion_fast_rabbit_small.png', true)
+          +banner-h1('Акция «Будь быстрее Кролика!»', '--mob-size-l', false)
+          +banner-descr('Вернём до&nbsp;10&nbsp;000&nbsp;₽ <br>при оформлении кредита наличными', '--size-xs').text-orange
+          .banner-item-foot.banner-item-foot--laptop-flex1
+            .banner-item-foot-item
+              +ui-button('Оставить заявку', 'banner, --m-w100')(href='#')
+            .banner-item-foot-item
+              +banner-descr('Призовой фонд - 10&nbsp;000&nbsp;000&nbsp;₽', '--size-xxs').text-orange
+
+    .page-content.page-content--mob-pt0
+      +section('--mt0')
+        .inner
+          +small-banner-wrapper()
+            +small-banner(smallBannerData, '--congratulate-p-fast-rabbit')
+      +section
+        .inner
+          +promotion-ban(promotionBanData)
+      +section
+        .inner
+          +section-head
+            +ui-h2('Часто задаваемые вопросы').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Как стать участником акции?')
+              +ui-p1('', '--light')
+                +ui-ul('')
+                  li Быть гражданином России и&nbsp;проживать на&nbsp;территории&nbsp;РФ;
+                  li Оформить кредит наличными (кроме Рефинансирования) на&nbsp;новую пластиковую карту АТБ;
+                  li Оплатить с&nbsp;использованием карты, полученной при оформлении кредита, покупки на&nbsp;сумму от&nbsp;10&nbsp;000 рублей в&nbsp;течение 15&nbsp;дней с&nbsp;момента оформления кредита;
+                  li Не&nbsp;иметь просроченной задолженности по&nbsp;кредитным договорам, заключенным с&nbsp;Банком, в&nbsp;течение всего срока действия акции и&nbsp;до&nbsp;момента выплаты приза;
+                  li Договор и&nbsp;карта должны действовать до&nbsp;момента выплаты приза;
+                  li Клиент в&nbsp;период проведения акции может заключить не&nbsp;более одного договора на&nbsp;условиях акции, все последующие договора исключаются из&nbsp;участия в&nbsp;акции;
+                  li Работники Банка не&nbsp;могут принимать участия в&nbsp;акции.
+            +accordion-item('Как определяется призер? Какой приз я могу получить?')
+              +ui-p1('')
+                p Сумма призовой выплаты зависит от&nbsp;суммы выданного кредита:
+              +section-box('--mt30')
+                +ui-table(tableItems, '--all-border, --fast-rabbit-promo')
+              +section-box('--mt30')
+                +ui-p1('')
+                  p Призовой фонд 10&nbsp;000&nbsp;000&nbsp;руб.
+              +section-footnote('', '--mt-xxs, --grey60')
+                | Призеры определяются из&nbsp;числа участников акции, выполнивших совокупность условий акции, в&nbsp;хронологическом порядке по&nbsp;дате и&nbsp;времени достижения участниками акции совокупной суммы транзакций по&nbsp;карте, оформленной в&nbsp;дату заключения договора на&nbsp;общую сумму не&nbsp;менее 10&nbsp;000 рублей (если условие по&nbsp;сумме транзакций было выполнено в&nbsp;течение 15&nbsp;дней с&nbsp;даты заключения договора) до&nbsp;исчерпания призового фонда.
+
+            +accordion-item('Как узнать, что я призер?')
+              +ui-p1('')
+                p От&nbsp;банка придет смс с&nbsp;информацией о&nbsp;зачислении денежных средств.
+            +accordion-item('Когда я получу приз?')
+              +ui-p1('')
+                p Призовая выплата осуществляется в&nbsp;период с&nbsp;22.05.2023 по&nbsp;31.05.2023&nbsp;на счет банковской карты участника акции, с&nbsp;помощью которой производились транзакции.
+            +accordion-item('Если я&nbsp;оформлю кредит онлайн через мобильное приложение, я&nbsp;могу участвовать в&nbsp;акции?')
+              +ui-p1('')
+                p Да, в&nbsp;акции могут принять участие клиенты, оформившие кредит в&nbsp;мобильном приложении в&nbsp;период акции. Таким клиентам выдается цифровая карта, по&nbsp;которой вы&nbsp;также можете совершать покупки в&nbsp;интернете или офлайн магазинах через
+                  =' '
+                  a(href='/cards/mir-pay/' target='_blank') Mir Pay
+                  | .
+            +accordion-item('Для целей акции транзакциями не&nbsp;считаются')#accordion-item-not-transactions
+              +ui-p1('', '--light')
+                +ui-ul('')
+                  li любые пополнения карты участника акции;
+                  li получение денежных средств через банкоматы, терминалы, кассовые узлы и&nbsp;т.п.;
+                  li перевод денежных средств c&nbsp;карты участника акции (в&nbsp;том числе, по&nbsp;банковским переводам, переводам по&nbsp;реквизитам карты другого банка, в&nbsp;т.ч.&nbsp;с&nbsp;использованием системы быстрых платежей (СБП) и&nbsp;при оплате по&nbsp;QR-коду);
+                  li платежи и&nbsp;переводы по&nbsp;пополнению любых виртуальных и/или электронных кошельков или иных электронных денежных средств;
+                  li платежи и&nbsp;переводы денежных средств на&nbsp;счета физических и&nbsp;юридических лиц, не&nbsp;связанных с&nbsp;оплатой товаров/работ/услуг (например, перевод денежных средств со&nbsp;счёта карты на&nbsp;иные банковские счета держателя карты, перечисление денежных средств для погашения долговых обязательств и&nbsp;т.п., покупки лотерейных билетов, расчеты в&nbsp;казино, по&nbsp;тотализатору, покупки дорожных чеков, облигаций и&nbsp;драгоценных металлов, включая операции по&nbsp;уплате налогов, сборов и&nbsp;иных обязательных платежей);
+                  li операции по&nbsp;отмененным/возвращенным покупкам;
+                  li платежи за&nbsp;услуги рекламного характера и&nbsp;прочие услуги, связанные с&nbsp;бизнесом и&nbsp;предпринимательской деятельностью;
+                  li оплата любых товаров (работ, услуг) в&nbsp;ТСП с&nbsp;одновременным снятием наличных денежных средств в&nbsp;ТСП.
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Документы')
+              +documents
+
+    +popup__wrapper('--size-s')#popup_transactions_info
+      +ui-p1('')
+        p Необходимо провести любое количество транзакций по&nbsp;карте, на&nbsp;которую были начислены кредитные средства при оформлении договора, на&nbsp;общую сумму более 10&nbsp;000&nbsp;руб.
+        p Исключения по&nbsp;транзакциям
+          =' '
+          a.text-orange.text-underline.js-close-popup.js-open-accordion(href='#accordion-item-not-transactions') Подробнее
+
+    +popup__wrapper('--size-s')#popup_prize
+      +ui-p1('')
+        p Сумма призовой выплаты зависит от&nbsp;суммы выданного кредита:
+      +section-box('--mt30')
+        +ui-table(tableItems, '--all-border')
+      +section-box('--mt30')
+        +ui-p1('')
+          p Призовой фонд 10&nbsp;000&nbsp;000&nbsp;руб.
+      +section-footnote('', '--mt-xxs, --grey60')
+        | Призеры определяются из&nbsp;числа участников акции, выполнивших совокупность условий акции, в&nbsp;хронологическом порядке по&nbsp;дате и&nbsp;времени достижения участниками акции совокупной суммы транзакций по&nbsp;карте, оформленной в&nbsp;дату заключения договора на&nbsp;общую сумму не&nbsp;менее 10&nbsp;000 рублей (если условие по&nbsp;сумме транзакций было выполнено в&nbsp;течение 15&nbsp;дней с&nbsp;даты заключения договора) до&nbsp;исчерпания призового фонда.

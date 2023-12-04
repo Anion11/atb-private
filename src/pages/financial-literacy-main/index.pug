@@ -1,0 +1,97 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName ='financial-literacy-main'
+  -const pageTitle ='Всё о финансовой грамотности'
+
+  -
+    const eventsUpcoming =[
+      { mods: 'blue', img: 'events_img_1.png' },
+      { mods: 'purple', img: 'events_img_2.png' },
+      { mods: 'green', img: 'events_img_3.png' },
+    ]
+
+  -
+    const eventsCarriedOut =[
+      { mods: 'carried-out' },
+      { mods: 'carried-out' },
+      { mods: 'carried-out' },
+    ]
+
+  -
+    const tagsItems = [
+      { text: 'Автострахование' },
+      { text: 'Акции' },
+      { text: 'Банки' },
+      { text: 'Банковская карта' },
+      { text: 'Безналичные платежи' },
+      { text: 'Банковские услуги' },
+      { text: 'Валюта' },
+      { text: 'Вклады и счета' },
+      { text: 'Кредиты' },
+      { text: 'Кредитная история' },
+      { text: 'Наличные' },
+      { text: 'Займы' },
+      { text: 'Инвестиции' },
+      { text: 'Ипотека' },
+      { text: 'Защитить права' },
+      { text: 'Инфляция' },
+      { text: 'Кредит на бизнес' },
+      { text: 'Платежи и переводы' },
+      { text: 'Страхование' },
+      { text: 'Налоговый вычет' },
+      { text: 'Налоговый вычет' },
+      { text: 'Льготы для бизнеса' },
+      { text: 'Начать бизнес' },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Всё о финансовой грамотности')
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head.text-center
+            +ui-h1('Всё о финансовой грамотности', 'section-head')
+            +ui-h4('Статьи, видео, мероприятия и&nbsp;возможность задать вопрос')
+          +tags(tagsItems, '', 'checkboxes')(data-mob-short)
+          +section-box('--mt50')
+            +useful-articles('articlesFinancial')
+
+      +section('--bg-grey')
+        .inner
+          +section-head('--mb-size-xxs').text-mob-only
+            +ui-h2('Мероприятия')
+          +section-head
+            +switch('', 'Ближайшие <span class="text-mob-none">мероприятия</span>', 'Проведенные <span class="text-mob-none">мероприятия</span>', 'switch-events', '--tablet-vertical')
+          +switch-group('switch-events')
+            +switch-content(true)
+              +events(eventsUpcoming)
+            +switch-content()
+              +events(eventsCarriedOut)
+
+      +section('--bg-grey')
+        .inner
+          +section-head
+            +ui-h2('Проведенные мероприятия')
+          +events(eventsCarriedOut)
+
+      +section
+        .inner
+          +section-head.text-tablet-center
+            +ui-h2('Отвечаем на&nbsp;ваши вопросы')
+          +answers
+          +section-box
+            +ui-pagination
+          +section-box('--mt50').text-center
+            +ui-button('задать вопрос', '--m-w100')(href='#')

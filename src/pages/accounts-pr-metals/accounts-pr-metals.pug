@@ -1,0 +1,50 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'accounts-pr-metals'
+  -const pageTitle ='Банковские счета в драгоценных металлах'
+
+  -
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Выберите металл', descr: 'золото, серебро, палладий или платина' },
+      { icon: './img/how_get_step2.svg', title: 'Обратитесь в офис АТБ с&nbsp;паспортом', descr: 'чтобы открыть счет в драгоценных металлах' },
+      { icon: './img/how_get_step3.svg', title: 'Продавайте металл по более высокому курсу', descr: 'чтобы получить доход' },
+    ]
+
+  -
+    const benefitsItems =[
+      { icon: 'img/icon_benefits1.svg', descr: 'Бесплатное открытие и ведение счета' },
+      { icon: 'img/icon_benefits2.svg', descr: 'Нет скрытых комиссий, платежей и&nbsp;НДС' },
+      { icon: 'img/icon_benefits3.svg', descr: 'Неограниченное количество сделок' },
+      { icon: 'img/icon_benefits4.svg', descr: 'Не нужно думать о сохранности металлов' },
+      { icon: 'img/icon_benefits5.svg', descr: 'Котировки на основе международного рынка' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--accounts-pr-metals')
+        +banner-wrapper('img/banner_accounts-pr-metals.png', true)
+          +banner-h1('Банковские счета в&nbsp;драгоценных металлах', '--mob-size-l')
+          +banner-text('Надежное вложение ваших средств')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--title-normal')
+      +section('--bg-grey')
+        .inner
+          +how-get('Как это работает', howGetItems, 'оформить заявку')
+      +section
+        .inner
+          +section-head
+            +ui-h2('График цен на металлы', 'section-head')
+          +metals-chart

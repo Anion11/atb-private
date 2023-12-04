@@ -1,0 +1,419 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'deposits-inner'
+    const pageTitle ='Вклады'
+
+    const list_1 =[
+      { text: 'Валюта - рубли/доллары США;' },
+      { text: 'Минимальная сумма Вклада 5 000 рублей/100 долларов США;' },
+      { text: 'Максимальная сумма Вклада – не ограничена;' },
+      { text: 'Срок Вклада – 92 дня/182 дня/367 дней;' },
+      { text: 'Вклад непополняемый;' },
+      { text: 'Пролонгируемый;' },
+      { text: 'Выплата процентов и суммы Вклада – в конце срока на счет, открытый в Банке;' },
+      { text: 'Расходные операции по Вкладу – не предусмотрены;' },
+      { text: 'При досрочном расторжении Вклада проценты выплачиваются по ставке Вклада «Личный счет» (до востребования) исходя из фактического срока нахождения средств во Вкладе.' },
+    ]
+
+    const mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным Мобильным банком, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+    const tableItemsReplenishment ={
+      thead: [
+        {
+          th: [
+            { text: 'Валюта вклада', mods: 'ui-table__tr-title' },
+            { text: 'RUB', mods: 'ui-table__tr-title' },
+            { text: 'USD', mods: 'ui-table__tr-title', tooltip: 'usd text' },
+            { text: 'CNY', mods: 'ui-table__tr-title' },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Ставка годовых до' },
+            { text: '9.2%' },
+            { text: '0,01%' },
+            { text: '1,8%' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Сумма открытия от' },
+            { text: '5 000 ₽' },
+            { text: '100$' },
+            { text: '700 ¥' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Срок вклада' },
+            { text: '3, 6 или 12 месяцев', tooltip: '92 дня/182 дня/367 дней', colspan: '3' },
+            { text: '3, 6 или 12 месяцев', tooltip: '92 дня/182 дня/367 дней', mods: 'ui-table__td--desk-none' },
+            { text: '3, 6 или 12 месяцев', tooltip: '92 дня/182 дня/367 дней', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Повышеная ставка' },
+            { text: 'При открытии в <a class="text-orange" href="#">Мобильном</a> или <a class="text-orange" href="#">Интернет-банке</a>', colspan: 3 },
+            { text: 'При открытии в <a class="text-orange" href="#">Мобильном</a> или <a class="text-orange" href="#">Интернет-банке</a>', mods: 'ui-table__td--desk-none' },
+            { text: 'При открытии в <a class="text-orange" href="#">Мобильном</a> или <a class="text-orange" href="#">Интернет-банке</a>', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+      ]
+    }
+
+    const tableItemsReplenishmentFull ={
+      thead: [
+        {
+          th: [
+            { text: 'Валюта вклада', mods: 'ui-table__tr-title' },
+            { text: 'RUB', mods: 'ui-table__tr-title' },
+            { text: 'USD', mods: 'ui-table__tr-title', tooltip: 'usd text' },
+            { text: 'CNY', mods: 'ui-table__tr-title' },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Ставка годовых до' },
+            { text: '9,2%' },
+            { text: '0,01%' },
+            { text: '1,8%' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Минимальная сумма вклада' },
+            { text: '5 000 ₽' },
+            { text: '100$' },
+            { text: '700 ¥' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Максимальная сумма вклада' },
+            { text: 'Не ограничена', colspan: 3 },
+            { text: 'Не ограничена', mods: 'ui-table__td--desk-none' },
+            { text: 'Не ограничена', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Срок вклада' },
+            { text: '92 дня/182 дня/367 дней', colspan: 3 },
+            { text: '92 дня/182 дня/367 дней', mods: 'ui-table__td--desk-none' },
+            { text: '92 дня/182 дня/367 дней', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Пополнение' },
+            { text: 'нет', colspan: 3 },
+            { text: 'нет', mods: 'ui-table__td--desk-none' },
+            { text: 'нет', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Прологирование' },
+            { text: 'нет', colspan: 3 },
+            { text: 'нет', mods: 'ui-table__td--desk-none' },
+            { text: 'нет', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Неснижаемый остаток' },
+            { text: 'не предумострен', colspan: 3 },
+            { text: 'не предумострен', mods: 'ui-table__td--desk-none' },
+            { text: 'не предумострен', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+          { text: 'Выплата процентов и суммы Вклада' },
+          { text: 'в конце срока на счет, открытый в АТБ', colspan: 3 },
+          { text: 'в конце срока на счет, открытый в АТБ', mods: 'ui-table__td--desk-none' },
+          { text: 'в конце срока на счет, открытый в АТБ', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Досрочное расторжение Договора' },
+            { text: 'проценты выплачиваются по ставке Вклада Банка «Личный счет» <br> (до востребования)', colspan: 3 },
+            { text: 'проценты выплачиваются по ставке Вклада Банка «Личный счет» <br> (до востребования)', mods: 'ui-table__td--desk-none' },
+            { text: 'проценты выплачиваются по ставке Вклада Банка «Личный счет» <br> (до востребования)', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+      ]
+    }
+
+    const tableItemsNoReplenishment ={
+      thead: [
+        {
+          th: [
+            { text: 'Валюта вклада', mods: 'ui-table__tr-title' },
+            { text: 'RUB', mods: 'ui-table__tr-title' },
+            { text: 'USD', mods: 'ui-table__tr-title', tooltip: 'usd text' },
+            { text: 'CNY', mods: 'ui-table__tr-title' },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Ставка годовых до' },
+            { text: '8,76%' },
+            { text: '0,08%' },
+            { text: '1,6%' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Сумма открытия от' },
+            { text: '5 000 ₽' },
+            { text: '100$' },
+            { text: '700 ¥' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Срок вклада' },
+            { text: '3, 6 или 12 месяцев', tooltip: '92 дня/182 дня/367 дней', colspan: '3' },
+            { text: '3, 6 или 12 месяцев', tooltip: '92 дня/182 дня/367 дней', mods: 'ui-table__td--desk-none' },
+            { text: '3, 6 или 12 месяцев', tooltip: '92 дня/182 дня/367 дней', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Повышеная ставка' },
+            { text: 'При открытии в <a class="text-orange" href="#">Мобильном</a> или <a class="text-orange" href="#">Интернет-банке</a>', colspan: 3 },
+            { text: 'При открытии в <a class="text-orange" href="#">Мобильном</a> или <a class="text-orange" href="#">Интернет-банке</a>', mods: 'ui-table__td--desk-none' },
+            { text: 'При открытии в <a class="text-orange" href="#">Мобильном</a> или <a class="text-orange" href="#">Интернет-банке</a>', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+      ]
+    }
+
+    const tableItemsNoReplenishmentFull ={
+      thead: [
+        {
+          th: [
+            { text: 'Валюта вклада', mods: 'ui-table__tr-title' },
+            { text: 'RUB', mods: 'ui-table__tr-title' },
+            { text: 'USD', mods: 'ui-table__tr-title', tooltip: 'usd text' },
+            { text: 'CNY', mods: 'ui-table__tr-title' },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Ставка годовых до' },
+            { text: '8,76%' },
+            { text: '0,08%' },
+            { text: '1,6%' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Минимальная сумма вклада' },
+            { text: '5 000 ₽' },
+            { text: '100$' },
+            { text: '700 ¥' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Максимальная сумма вклада' },
+            { text: 'Не ограничена', colspan: 3 },
+            { text: 'Не ограничена', mods: 'ui-table__td--desk-none' },
+            { text: 'Не ограничена', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Срок вклада' },
+            { text: '92 дня/182 дня/367 дней', colspan: 3 },
+            { text: '92 дня/182 дня/367 дней', mods: 'ui-table__td--desk-none' },
+            { text: '92 дня/182 дня/367 дней', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Пополнение' },
+            { text: 'Да', colspan: 3 },
+            { text: 'Да', mods: 'ui-table__td--desk-none' },
+            { text: 'Да', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Прологирование' },
+            { text: 'Да', colspan: 3 },
+            { text: 'Да', mods: 'ui-table__td--desk-none' },
+            { text: 'Да', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Неснижаемый остаток' },
+            { text: 'не предумострен', colspan: 3 },
+            { text: 'не предумострен', mods: 'ui-table__td--desk-none' },
+            { text: 'не предумострен', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Выплата процентов' },
+            { text: 'ежемесячно на выбор: на счет, открытый в Банке/капитализация', colspan: 3, tooltip: 'Причисление к основной сумме Вклада (только в отделениях Банка)' },
+            { text: 'ежемесячно на выбор: на счет, открытый в Банке/капитализация', mods: 'ui-table__td--desk-none', tooltip: 'Причисление к основной сумме Вклада (только в отделениях Банка)' },
+            { text: 'ежемесячно на выбор: на счет, открытый в Банке/капитализация', mods: 'ui-table__td--desk-none', tooltip: 'Причисление к основной сумме Вклада (только в отделениях Банка)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Выплата суммы' },
+            { text: 'на счет, открытый в Банке', colspan: 3 },
+            { text: 'на счет, открытый в Банке', mods: 'ui-table__td--desk-none' },
+            { text: 'на счет, открытый в Банке', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Досрочное расторжение Договора' },
+            { text: 'проценты выплачиваются по ставке Вклада Банка «Личный счет» <br> (до востребования)', colspan: 3 },
+            { text: 'проценты выплачиваются по ставке Вклада Банка «Личный счет» <br> (до востребования)', mods: 'ui-table__td--desk-none' },
+            { text: 'проценты выплачиваются по ставке Вклада Банка «Личный счет» <br> (до востребования)', mods: 'ui-table__td--desk-none' },
+          ]
+        },
+      ]
+    }
+
+    const bannerSapid = [
+      {
+        img: 'img/star.gif',
+        txt: 'Акции',
+        content: [
+          {
+            img: 'img/ic.percent.svg',
+            txt: 'Акция «Великолепные проценты»',
+            link: '#',
+          },
+          {
+            img: 'img/ic.friends.svg',
+            txt: 'Акция «Приведи друга»',
+            link: '#',
+          },
+          {
+            img: 'img/ic.book.svg',
+            txt: 'Книга в подарок',
+            link: '#',
+          },
+        ]
+      },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--deposit')
+        +banner-wrapper('img/banner_deposit_atb.png', true)
+          +banner-h1('АТБ Вклад', '--mob-size-l')
+          +banner-subtitle(`Громкая ставка: <br> до `)
+            span.banner-subtitle__accent 11%
+            |  годовых
+          +banner-foot
+            +ui-button('оформить вклад', 'banner, --m-size-l')(href='#')
+            //- .banner-item-foot-item
+              +banner-descr('Доступно через биометрию', '--biometrics')
+        +banner-sapid-container(bannerSapid)
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +switch('', 'Без пополнения и снятия', 'С пополнением', 'switch1', '--mb20, --mob-vertical')
+          +calc-i-deposits('deposit-atb')
+      +section('--mt-s')
+        +tabs-head([{ text: 'Без пополнения и снятия'}, { text: 'С пополнением' }], '', '--round')
+        +tabs-main
+          +tabs-main__item(true)
+            .inner
+              +ui-table(tableItemsReplenishment, '--all-border, --deposit-atb', 'accordions')
+          +tabs-main__item
+            .inner
+              +ui-table(tableItemsNoReplenishment, '--all-border, --deposit-atb', 'accordions')
+
+      +section
+        .inner
+          +mob-banner(mobBannersData)
+
+      +section()#section-form
+        .inner
+          +section-head.text-center
+            +ui-h2('Оформите заявку на консультацию')
+
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Застрахованы ли вклады и накопительные счета в Банке?')
+              +ui-p1('', '--light')
+                p Да, застрахованы на основании ФЗ от 23 декабря 2003 года № 177-ФЗ «О страховании вкладов в банках Российской Федерации», более подробная информация о страховании вкладов доступна на сайте
+                  =' '
+                  a.text-orange(href='https://www.asv.org.ru/' target='_blank') asv.org.ru
+            +accordion-item('Возможно управлять вкладом или накопительным счетом без посещения офиса Банка?')
+              +ui-p1('', '--light')
+                p Да, открывать и&nbsp;управлять вкладами и&nbsp;накопительными счетами можно удалённо&nbsp;&mdash; через интернет-банк и&nbsp;мобильное приложение АТБ.
+            +accordion-item('Может ли банк менять ставку по вкладу и накопительному счету в одностороннем порядке?')
+              +ui-p1('', '--light')
+                p В&nbsp;течение срока действия договора банк не&nbsp;может менять процентную ставку по&nbsp;вкладу. Переоформление вклада на&nbsp;новый срок (пролонгация) осуществляется по&nbsp;ставке в&nbsp;соответствии с&nbsp;условиями договора вклада. По накопительному счету банк может менять процентную ставку в&nbsp;соответствии с&nbsp;условиями договора.
+            +accordion-item('Как оплатить налог с процентов по вкладу?')
+              +ui-p1('', '--light')
+                p Государственная дума Российской Федерации отменила НДФЛ с&nbsp;полученных в&nbsp;2021&ndash;2022 годах процентов по&nbsp;вкладам. Закон освобождает граждан от&nbsp;уплаты НДФЛ с&nbsp;процентных доходов по&nbsp;вкладам в&nbsp;банках за&nbsp;2021&ndash;2022&nbsp;годы, которые подлежали&nbsp;бы уплате в&nbsp;2022&ndash;2023&nbsp;годах. При этом вносятся изменения в&nbsp;правила налогообложения процентных доходов по&nbsp;вкладам, которые распространятся на&nbsp;будущие налоговые периоды после 2022&nbsp;года. Необлагаемый доход будет определяться как произведение 1&nbsp;млн рублей и&nbsp;максимального значения ключевой ставки Банка России в&nbsp;данном году. Таким образом, если ключевая ставка&nbsp;ЦБ в&nbsp;течение года повышалась, а&nbsp;вслед за&nbsp;ней росли и&nbsp;ставки по&nbsp;вкладам, то&nbsp;увеличится и&nbsp;необлагаемый доход.
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания')
+          +accordion
+            +accordion-item('Подробные условия тарифа «АТБ. Вклад (без пополнения и снятия)»')
+              +ui-table(tableItemsReplenishmentFull, '--all-border, --deposit-atb', 'accordions')
+            +accordion-item('Подробные условия тарифа «АТБ. Вклад (с пополнением)»')
+              +ui-table(tableItemsNoReplenishmentFull, '--all-border, --deposit-atb', 'accordions')
+            +accordion-item('Полезная информация')
+              +documents
+            +accordion-item('Документы')
+              +documents
+            +accordion-item('Архив документов')
+              +accordion('--inner')
+                +accordion-item('inner item 1')
+                  +documents
+                +accordion-item('inner item 2')
+                  +documents
+                .accordion-item
+                  .accordion-item__head.accordion-item__head--link
+                    a(href='#') link

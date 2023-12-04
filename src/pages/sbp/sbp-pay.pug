@@ -1,0 +1,141 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'sbp'
+    const pageTitle ='СБПэй от Системы быстрых платежей'
+
+    const list_1 =[
+      { text: 'В Мобильном банке «АТБ- Мобайл New» укажите счет для зачисления переводов СБП и АТБ как банк получателя по умолчанию' },
+      { text: 'В приложении банка-отправителя выберите перевод по номеру телефона, при отправке перевода укажите свой номер телефона и выберите <span class="text-nowrap">Азиатско-Тихоокеанский</span> Банк (АО) для зачисления средств на счет' },
+      { text: 'О зачислении денежных средств на счет в АТБ вам придет сообщение на телефон' },
+    ]
+
+    const tabsSlider = {
+      heading: 'Как подключить',
+      nav: [
+        {
+          text: 'Через приложение АТБ',
+        },
+        {
+          text: 'По номеру телефона',
+        },
+      ],
+      pic: {
+        background: 'img/tabs-slider_bg.svg',
+        images: [
+          {
+            screen: 'img/tabs-slider_screen-1.png',
+            anim: [
+              {
+                mod: 'moneta-1',
+                img: 'img/tabs-slider_moneta-1.png',
+              },
+              {
+                mod: 'moneta-2',
+                img: 'img/tabs-slider_moneta-2.png',
+              },
+              {
+                mod: 'arrow',
+                img: 'img/tabs-slider_arrow.png',
+              },
+            ],
+          },
+          {
+            screen: 'img/tabs-slider_screen-2.png',
+            anim: [
+              {
+                mod: 'moneta-3',
+                img: 'img/tabs-slider_moneta-3.png',
+              },
+              {
+                mod: 'tel',
+                img: 'img/tabs-slider_tel.png',
+              },
+            ],
+          },
+        ],
+      }
+    }
+
+    const sbpInstruction =[
+      {
+        mods: 'tel-instruction__section--left',
+        title: 'Как совершать платежи',
+        img: [
+          { src: 'spb-pay_sl1_1' },
+          { src: 'spb-pay_sl1_2' },
+          { src: 'spb-pay_sl1_3' },
+        ],
+        steps: [
+          { title: 'Сообщите кассиру об оплате по СБПэй или выберите в интернет-магазине СБПэй как способ оплаты и укажите банк АТБ' },
+          { title: 'В приложении СБПэй отсканируйте QR-код' },
+          { title: 'Проверьте данные и, при необходимости, скорректируйте сумму и подтвердите оплату' },
+        ]
+      }
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--sbp-pay')
+        +banner-wrapper('img/banner_sbp-pay.png', true)
+          +banner-h1('СБПэй от Системы быстрых платежей', '--mob-size-l')
+          +banner-descr('Мгновенно оплачивайте покупки в&nbsp;магазинах и&nbsp;услуги', '--size-xs, --mob-size-l, --mob-mb-l').text-orange
+          .banner-item-foot.banner-item-foot--mob-row
+            a.banner-item-app(href='#')
+              img.bvi-no-styles(src='img/App_Store_Badge.svg', alt='')
+            a.banner-item-app(href='#')
+              img.bvi-no-styles(src='img/google-play-badge.svg', alt='')
+            .banner-item-qr.banner-item-dn
+              img.bvi-no-styles(src='img/sbp-pay_qr-code.png', alt='')
+    .page-content
+      +section('--mt0')
+        .inner
+          +sbp-about
+            p Сервис платежей, созданный Центральным банком РФ, который позволяет оплачивать покупки в магазинах или услуги, отсканировав QR.
+      +section
+        .inner
+          +tabs-slider(tabsSlider, '--sbp-pay')
+            +tabs-slider__txt-slide
+              ul.ui-ul.tabs-slider__ui-ul
+                li Скачайте приложение СБПэй
+                  +tabs-slider__app-links
+                li В списке банков выберите АТБ
+                li Перейдите в приложение АТБ и авторизуйтесь
+                  +ui-p1('', '--light')
+                    a.text-orange(href='#') Скачайте приложение АТБ
+                    | , если его у вас нет
+                li Выберите счет, с которого будут списываться деньги, и подтвердите согласие с условиями
+            +tabs-slider__txt-slide
+              ul.ui-ul.tabs-slider__ui-ul
+                li Скачайте приложение СБПэй
+                  +tabs-slider__app-links
+                li В приложении СБПэй выберите банк
+                li Укажите номер телефона, привязанный к вашей учетной записи в АТБ, и номер счета, с которого будут списываться деньги
+                li Подтвердите согласие с условиями, введя код, который придет на указанный номер телефона
+      +section('--bg-grey')
+        .inner
+          +tel-instruction(sbpInstruction, '--grey-bg')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Как при оплате по QR-коду убедиться в успешности платежа?')
+              +ui-p1('Банк продавца незамедлительно сообщает ему статус операции и&nbsp;предоставляет информацию о&nbsp;зачисленной на&nbsp;счет сумме по&nbsp;СМС или другим способом.', '--light')
+            +accordion-item('С какого счета будут списаны деньги? Можно ли заранее выбрать счет для оплаты по QR-коду?')
+              +ui-p1('Клиент сам выбирает, с&nbsp;какого счета списываются денежные средства, следуя инструкциям СБПэй.', '--light')
+            +accordion-item('Насколько безопасны платежи в СБП по QR-коду?')
+              +ui-p1('Оплата через СБП безопасна. Все операции, совершаемые через систему, защищены в&nbsp;соответствии со&nbsp;всеми стандартами информационной безопасности на&nbsp;уровне Банка России, Национальной системы платежных карт и&nbsp;банков-участников. Также это удобнее и&nbsp;быстрее, чем онлайн-оплата картой: не&nbsp;нужно вводить данные своей карты на&nbsp;сайтах.', '--light')
+      +section
+        .inner
+          +sbp-links

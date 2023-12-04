@@ -1,0 +1,174 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'credit'
+    const pageTitle ='Рефинансирование кредитов '
+
+  -
+    const benefitsItems =[
+      { icon: 'img/icon_benefits_percent.svg', title: 'От 4%', descr: 'ставка' },
+      { icon: 'img/icon_benefits_calendar.svg', title: 'До 3 млн рублей', descr: 'сумма кредита' },
+      { icon: 'img/icon_benefits_cash.svg', title: 'До 7 лет', descr: 'срок кредитования' },
+      { icon: 'img/icon_benefits_file.svg', title: 'Объединение кредитов', descr: 'разных банков в&nbsp;один' },
+      { icon: 'img/icon_benefits_rate.svg', title: 'Дополнительная сумма', descr: 'на любые цели' },
+      { icon: 'img/icon_benefits_piggy_bank.svg', title: 'Снижение ставки', descr: 'Минус 1% при&nbsp;погашении кредитов', descrTooltip: 'Предоставьте документы о&nbsp;закрытии кредитов в&nbsp;течение 60&nbsp;дней' },
+    ]
+
+  -
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Заявка', descr: 'Заполнение анкеты в&nbsp;среднем занимает 5&nbsp;минут' },
+      { icon: './img/how_get_step2.svg', title: 'Одобрение', descr: 'В течение 3 минут придет вам в&nbsp;смс' },
+      { icon: './img/how_get_step3.svg', title: 'Подпишите документы', descr: 'В ближайшем отделении банка и&nbsp;подтвердите закрытие кредитов',
+        descrTooltips: [
+          { text: 'Необходим паспорт. <br>Для получения более выгодных условий предоставьте документы, подтверждающие доход' },
+          { text: 'В&nbsp;течение 60&nbsp;дней предоставьте документы о&nbsp;закрытии рефинансируемых кредитов' },
+        ]
+      },
+    ]
+
+  -
+    const tableItems ={
+      tbody: [
+        {
+          td: [
+            { colspan: '2', text: 'Минимальная сумма кредита, руб.' },
+            { text: '<b>Свыше <span class="text-nowrap">30 000,01 </span></b>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Максимальная сумма кредита, руб.' },
+            { text: '<b><span class="text-nowrap">3 000 000</span></b>', mods: 'text-center', },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Диапазон процентных ставок (в процентах годовых) Процентная ставка определяется <span class="text-nowrap"> индивидуально</span>',
+              tooltip: 'При оформлении услуги Личное страхование. Без личного страхования процентная ставка увеличивается на 8 п.п.'
+            },
+            { text: '3,5% - <span class="text-nowrap"> 19,5%</span>', mods: 'text-center',
+              tooltip: 'Процентная ставка от 3,5 % годовых при сформированном предварительно одобренном решении со стороны Банка; от 4,0% годовых - при онлайн оформлении в приложении «АТБ-Мобайл»/при оформлении заявки на сайтах banki.ru., sravni.ru; в остальных случаях подачи заявки процентная ставка от 4,5% годовых. Процентная ставка определяется индивидуально по итогам рассмотрения заявки',
+            },
+          ]
+        },
+        {
+          td: [
+            { rowspan: '2', text: 'Срок возврата кредита с шагом в 1 (один) месяц' },
+            { text: 'минимальный' },
+            { text: 'от <b>13</b> (тринадцати) месяцев', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'максимальный' },
+            { text: 'до <b>84</b> (восьмидесяти четырех) месяцев', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Диапазон полной стоимости Кредита в процентном (% годовых) и&nbsp;в&nbsp;денежном выражении (в рублях)' },
+            { text: '10,156% - <span class="text-nowrap">29,791%</span> <br><span class="text-nowrap">1 743,96 руб.</span> - <span class="text-nowrap">2 343 600,36 руб.</span>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Срок действия решения о предоставлении Кредита' },
+            { text: '<b>30</b> календарных дней', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Обеспечение' },
+            { text: 'Не предусмотрено', mods: 'text-center' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const calcCreditData ={
+      ranges: [
+        { title: 'Сумма долга по&nbsp;кредитам других банков с&nbsp;процентами',
+          tooltip: 'Введите сумму с&nbsp;учетом процентов, которые будут начислены за&nbsp;ближайшие 30&nbsp;дней.',
+          inpDescr: ' ₽', min: '30000', max: '3000000', dataName: 'amount' },
+        { title: 'Срок кредита, мес', inpDescr: ' мес', min: '13', max: '60', dataName: 'term' },
+        { title: 'Сколько платите сейчас', inpDescr: ' ₽', min: '30000', max: '300000', dataName: 'payment' },
+      ],
+      resultLine2: [
+        { name: 'Экономия в месяц ', num: '2 000 ₽', data: 'text-saving' },
+      ],
+      psText: [
+        `* Расчет платежа произведен в&nbsp;качестве примера с&nbsp;учетом
+          оформления личного страхования**, ставка при оформлении в&nbsp;приложении
+          &laquo;АТБ-Мобайл NEW&raquo; меньше на&nbsp;0,5%, ставка
+          подбирается индивидуально.`,
+        `** Без оформления Личного страхования ставка увеличивается на&nbsp;8&nbsp;п.п.`,
+      ],
+      foot: [
+        `Увеличьте вероятность одобрения заявки на&nbsp;кредит, подтвердив доход.
+        <a class="text-link-underline text-orange" target="_blank" href="#">Подробнее</a>`,
+        `<a class="text-link-underline text-orange" target="_blank" href="#">Узнайте свой кредитный рейтинг бесплатно</a>`,
+      ],
+      button: 'Заполнить заявку',
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--refinancing')
+        +banner-wrapper('img/banner_refinancing_small.png', true)
+          +banner-h1('Рефинансирование кредитов в&nbsp;других банках', '--mob-size-l', false)
+          +banner-text('Объедините ваши кредиты в&nbsp;АТБ и&nbsp;платите меньше')
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems)
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Рассчитайте вашу экономию при&nbsp;рефинансировании', 'section-head')
+          +calc-credit('refinancing', calcCreditData)
+
+      +section
+        .inner
+          +how-get('Три простых шага', howGetItems, 'оформить заявку')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Условия и документы')
+          +accordion()
+            +accordion-item('Условия предоставления кредита:')
+              +ui-p1()
+                +ui-ul('')
+                  li Являетесь гражданином РФ;
+                  li Ваш возраст до&nbsp;70 лет (на&nbsp;момент окончания срока возврата Кредита) включительно
+                  li Официально трудоустроены и&nbsp;есть постоянный источник дохода
+                  li Стаж на&nbsp;последнем месте работы не&nbsp;менее 3&nbsp;мес. (на&nbsp;Клиентов, являющихся пенсионерами данное требование не&nbsp;распространяется)
+                  li Регистрация и&nbsp;фактическое место жительства Заёмщика находится на&nbsp;территории обслуживания Банка
+                  li Документы: паспорт гражданина РФ
+
+                +section-footnote
+                  p Полная версия тарифов, условий предоставления, использования и&nbsp;возврата потребительского кредита представлены в
+                    =' '
+                    a.text-orange(href='#' target='_blank') Книге тарифов
+            +accordion-item('Краткие условия ТЗ «Рефинансирование»')
+              +ui-table(tableItems, '--mob-scroll, --inner-border')
+              +section-footnote
+                p Полная версия тарифов, условий предоставления, использования и возврата потребительского кредита представлены в
+                  =' '
+                  a.text-orange(href='#' target='_blank') Книге тарифов
+            +accordion-item('Документы')
+              +documents
