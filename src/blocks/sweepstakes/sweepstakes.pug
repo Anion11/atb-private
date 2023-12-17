@@ -1,0 +1,36 @@
+mixin sweepstakes(mods)
+  -
+    const baseName = 'sweepstakes'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .sweepstakes(class=allMods)&attributes(attributes)
+    block
+
+mixin sweepstakes-item(data, mods)
+  -
+    const baseName = 'sweepstakes-item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .sweepstakes-item(class=allMods)&attributes(attributes)
+    .sweepstakes-item__top-content
+      .sweepstakes-item__label.text-mob-only !{data.count}
+      .sweepstakes-item__image
+        img(src=data.img, alt='sweepstakes-image')
+    .sweepstakes-item__bot-content
+      .sweepstakes-item__label.text-mob-none !{data.count}
+      +ui-h4(data.text, 'sweepstakes-item')
+    block

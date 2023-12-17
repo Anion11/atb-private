@@ -1,0 +1,31 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'test'
+    const data = [
+      { img: 'img/img-1.png', text: 'Количество призов определяется как <span class="text-orange text-bg-light-orange">количество участников, деленное на 100</span> с округлением в меньшую сторону до целого числа. Например:<br /> 1015 участников <span class="text-orange">→</span> делим на 100 <span class="text-orange">→</span> получаем 10 призов', count: '01' },
+      { img: 'img/img-2.png', text: 'Победители будут определены с помощью рандомайзера по номеру договора в указанные выше даты. Запись будет опубликована на этой странице после проведения розыгрыша.', count: '02' },
+      { img: 'img/img-3.png', text: 'Победителей также проинформируем через email/смс и/или push-уведомления в течение 5 рабочих дней после проведения розыгрыша.', count: '03' }
+    ]
+
+block content
+  main
+    .page-content
+      .inner
+        +section()
+          +section-head()
+            +ui-h2("Как будут проходить розыгрыши", 'test').text-center.text-center--laptop-left
+            +ui-h5("Победителям увеличим первый беспроцентный период до 12 месяцев").text-center.text-center--laptop-left
+          +sweepstakes()
+            +sweepstakes-item(data[0], '--right')
+            +sweepstakes-item(data[1])
+            +sweepstakes-item(data[2], '--right')
