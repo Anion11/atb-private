@@ -31,9 +31,11 @@ mixin small-banner(data, mods)
         if data.btn || data.btnLink
           .small-banner__btns(class=data.btsMods)
             if data.btn
-              +ui-button(data.btn, 'small-banner')(href='#')
+              +ui-button(data.btn, `small-banner, ${data.btnMods}`)(href='#')
             if data.btnLink
               +ui-button(data.btnLink, 'small-banner, --link-next').text-orange(href='#')
+            if data.btnDesc
+              +ui-p1(data.btnDesc)
         if data.imgMob
           .small-banner__img.small-banner__img--desktop
             img(src=data.img, alt='')

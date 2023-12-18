@@ -1,0 +1,99 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'promotion-twelve-months'
+
+    const documentsItems = [
+      { name: 'Краткие условия акции «12 месяцев»', info: '' },
+      { name: 'Полные условия акции «12 месяцев»»', info: '' }
+    ]
+
+    const list_1 =[
+      { text: 'На момент оформления Договора по ТП «Универсальная карта» нет действующего Кредитного договора по ТП «Универсальная карта» либо ТП «180 дней без %»;' },
+      { text: 'Гражданин Российской Федерации, не состоящий в браке, возраст которого не превышает 35 лет, и имеющий ребенка в возрасте до 18 лет;' },
+      { text: 'Регистрация: по месту жительства /месту пребывания на территории Российской федерации;' },
+      { text: 'Возраст: от 21 года до 35 лет (включительно) на дату заключения кредитного договора;' },
+      { text: 'Кредитование не осуществляется в случае, если Заемщик (любой из солидарных заемщиков) является (ранее являлся) Заемщиком (солидарным заемщиком) или поручителем по другим жилищным (ипотечным) кредитам, предоставленным в соответствии с Условиями реализации программы "Дальневосточная ипотека", утвержденным Постановлением Правительства Российской Федерации (от «07» декабря 2019 года № 1609).' },
+    ]
+
+    const sweepstakesData = [
+      { img: 'img/sweepstakes_img_1.png', text: 'Количество призов определяется как <span class="text-orange text-bg-light-orange">количество участников, деленное на 100</span> с округлением в меньшую сторону до целого числа. Например:<br /> 1015 участников <span class="text-orange">→</span> делим на 100 <span class="text-orange">→</span> получаем 10 призов', count: '01' },
+      { img: 'img/sweepstakes_img_2.png', text: 'Победители будут определены с помощью рандомайзера по номеру договора в указанные выше даты. Запись будет опубликована на этой странице после проведения розыгрыша.', count: '02' },
+      { img: 'img/sweepstakes_img_3.png', text: 'Победителей также проинформируем через email/смс и/или push-уведомления в течение 5 рабочих дней после проведения розыгрыша.', count: '03' }
+    ]
+
+    const smallBannerData ={
+      h3: 'Условия участия',
+      descr: 'Оформите кредитную карту «Универсальная» в период проведения акции и совершите расходную операцию в месяце оформления.',
+      descrMods: '--d-size-xl',
+      footnote: '<p class="ui-p1 ui-p1--mob-xs text-mob-only">с 1 декабря 2023 по 31 января 2024</p>',
+      img: 'img/small_banner_img.png',
+      btn: 'Условия акции',
+      btnMods: '--empty',
+      btnDesc: '<p class="ui-p1 text-mob-none">с 1 декабря 2023 по 31 января 2024</p>'
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item()
+        +banner-wrapper('img/banner-image.png', true)
+          +banner-h1('Акция<br /> «Двенадцать месяцев»', '--mob-size-l')
+          +banner-text('Оформите кредитную карту «Универсальная» и получите шанс не платить проценты до года!')
+          +banner-foot
+            +ui-button('Оформить карту', 'banner, --m-size-l')(href='#')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +small-banner-wrapper()
+            +small-banner(smallBannerData, '--promotion-twelve-months')
+
+      +section()
+        .inner
+          +section-head('promotion-twelwe-months')
+            +ui-h2('Два розыгрыша призов').text-center.text-center--laptop-left
+            +ui-h5('Розыгрыш проводится среди клиентов, выполнивших <span class="text-orange">все условия акции</span>').text-center.text-center--laptop-left
+
+      +section()
+        .inner
+          +section-head('promotion-twelwe-months')
+            +ui-h2('Как будут проходить розыгрыши', 'test').text-center.text-center--laptop-left
+            +ui-h5('Победителям увеличим первый беспроцентный период до 12 месяцев').text-center.text-center--laptop-left
+          +sweepstakes()
+            +sweepstakes-item(sweepstakesData[0], '--right')
+            +sweepstakes-item(sweepstakesData[1])
+            +sweepstakes-item(sweepstakesData[2], '--right')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Ответы на вопросы')
+          +accordion
+            +accordion-item('Кто может стать участником акции? Есть ли ограничения?')
+              +ui-p1('Нужны выполнить все условия:', '--mb5')
+              +ui-ul(list_1, '--mt10')
+              +ui-p1('Сотрудники АТБ не могут принимать участие в акции.')
+            +accordion-item('Условия предоставления кредитной карты «Универсальная»:') 
+            +accordion-item('Как и когда проходит определение победителей?') 
+            +accordion-item('Как получить беспроцентный период на 12 месяцев по карте Универсальная, оформленной с 1 декабря 2023 по 31 января 2024?') 
+            +accordion-item('Я оформил кредитную карту «Универсальная» до декабря 2023 года, я могу участвовать?') 
+            +accordion-item('Где будет размещена информация о победителях?') 
+
+      +section
+        .inner.text-center
+          +ui-button('Оформить карту')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы')
+          +documents(documentsItems)

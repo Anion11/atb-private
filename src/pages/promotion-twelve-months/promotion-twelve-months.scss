@@ -1,0 +1,15 @@
+@import '../../styles/utils/media';
+@import '../../styles/utils/variables';
+@import '../../blocks/sweepstakes/sweepstakes';
+@import '../../blocks/small-banner/small-banner';
+
+.promotion-twelwe-months {
+  &__section-head {
+    .ui-h2 {
+      margin-bottom: 15px;
+      @include media-tablet {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
