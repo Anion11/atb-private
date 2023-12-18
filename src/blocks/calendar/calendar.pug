@@ -24,8 +24,19 @@ mixin calendar-item(data, mods)
       }
       allMods = allMods.trim()
     }
+    const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+    const day = 0
 
   .calendar-item(class=allMods)&attributes(attributes)
+    .calendar__date.text-center !{data.date}
+    .calendar__wrapper
+      .calendar__head
+        each strDay in days
+          .calendar__head-day !{strDay}
+      .calendar__body
+        while day < data.endDay
+        day++
+          .calendar__head-day !{day}
     block
 
 mixin calendar-wrapper(mods)

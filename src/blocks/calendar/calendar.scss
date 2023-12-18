@@ -1,4 +1,6 @@
 .calendar-wrapper {
+  display: grid;
+  gap: 52px;
   padding: 55px 155px 60px;
   background: #fff;
   border-radius: 8px;
@@ -7,10 +9,37 @@
     padding: 45px 70px;
   }
   @include media-tablet {
+    gap: 41px;
     padding: 40px 20px;
   }
 }
 
 .calendar {
-
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px;
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    gap: 37px;
+  }
+  &-item {
+    
+  }
+  &__head {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 14px;
+    padding: 9px 7px 6px 9px;
+    margin-bottom: 9px;
+    border-radius: 6px;
+    background: #f8f8f8;
+    &-day {
+      font-size: 14px;
+    }
+  }
+  &__date {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
 }
