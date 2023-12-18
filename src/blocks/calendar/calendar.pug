@@ -1,0 +1,44 @@
+mixin calendar(mods)
+  -
+    const baseName = 'calendar'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .calendar(class=allMods)&attributes(attributes)
+    block
+
+mixin calendar-item(data, mods)
+  -
+    const baseName = 'calendar-item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .calendar-item(class=allMods)&attributes(attributes)
+    block
+
+mixin calendar-wrapper(mods)
+  -
+    const baseName = 'calendar-wrapper'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .calendar-wrapper(class=allMods)&attributes(attributes)
+    block

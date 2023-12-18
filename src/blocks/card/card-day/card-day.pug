@@ -1,0 +1,34 @@
+mixin card-day(data, mods)
+  -
+    const baseName = 'card-day'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-day(class=allMods)&attributes(attributes)
+    .card-day__head 
+      .card-day__number.text-white.text-bold !{data.day}
+      +ui-h4(data.month, '--bold')
+    .card-day__descr !{data.descr}
+    .card-day__fn.text-grey90.text-light !{data.footnote}
+    block
+
+mixin card-day-wrapper(mods)
+  -
+    const baseName = 'card-day-wrapper'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-day-wrapper(class=allMods)&attributes(attributes)
+    block
