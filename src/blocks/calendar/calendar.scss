@@ -101,8 +101,8 @@
     position: absolute;
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 5px;
     right: 33px;
+    gap: 5px;
     min-width: 130px;
     margin-top: -7px;
     svg {
@@ -114,8 +114,8 @@
     display: grid;
     grid-template-columns: auto 1fr;
     left: 33px;
-    min-width: 150px;
     top: 7px;
+    min-width: 150px;
     svg {
       margin-top: 17px;
       margin-right: -3px;
