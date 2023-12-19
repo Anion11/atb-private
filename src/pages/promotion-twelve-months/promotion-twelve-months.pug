@@ -22,12 +22,28 @@ block variables
       btnDesc: '<p class="ui-p1 text-mob-none">с 1 декабря 2023 по 31 января 2024</p>'
     }
 
-    const calendarData = [
-      { date: 'Декабрь 2023', startDay: 5, endDay: 31,  promotion: true },
-      { date: 'Январь 2024', prizeDay: 17, startDay: 1, endDay: 31,  promotion: true },
-      { date: 'Февраль 2024', prizeDay: 14, startDay: 4, endDay: 29,  promotion: false },
-    ]
-
+    const calendarItem1 = { 
+      date: 'Декабрь 2023',
+      startDay: 5, 
+      endDay: 31,
+      promotionStart: 1,
+    }
+    
+    const calendarItem2 = {
+        date: 'Январь 2024',
+        prizeDay: 17,
+        startDay: 1,
+        endDay: 31,
+        promotionEnd: 31,
+      }
+    
+    const calendarItem3 = {
+        date: 'Февраль 2024',
+        prizeDay: 14,
+        startDay: 4,
+        endDay: 29,
+      }
+    
     const cardDayData = [
       { 
         day: '17',
@@ -96,8 +112,9 @@ block content
             +ui-h5('Розыгрыш проводится среди клиентов, выполнивших <span class="text-orange">все условия акции</span>').text-center.text-center--laptop-left
           +calendar-wrapper()
             +calendar()
-              each calendarItem in calendarData 
-                +calendar-item(calendarItem)
+              +calendar-item(calendarItem1, '--filled-light-blue')
+              +calendar-item(calendarItem2, '--filled-flesh')
+              +calendar-item(calendarItem3)
             +card-day-wrapper()
               each cardItem in cardDayData
                 +card-day(cardItem, cardItem.itemMods)

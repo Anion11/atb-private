@@ -25,7 +25,8 @@ mixin calendar-item(data, mods)
       allMods = allMods.trim()
     }
     const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
-    const day = 0
+    var day = 1
+    var dayStr = data.startDay
 
   .calendar-item(class=allMods)&attributes(attributes)
     .calendar__date.text-center !{data.date}
@@ -34,9 +35,35 @@ mixin calendar-item(data, mods)
         each strDay in days
           .calendar__head-day !{strDay}
       .calendar__body
-        while day < data.endDay
-        day++
-          .calendar__head-day !{day}
+        -while (true)
+          if day <= data.endDay
+            .calendar__body-row
+              -for (var x = 1; x < 8; x++)
+                if day <= data.endDay
+                  if x >= dayStr
+                    .calendar__body-day(class= `${day === 1 ? 'calendar__body-day--first' : ''} ${day === data.prizeDay ? 'calendar__body-day--prize' : ''} ${(day === data.promotionStart || day === data.promotionEnd) ? 'calendar__body-day--promotion' : ''}`) !{day++}
+                      if day === data.promotionStart + 1
+                        .calendar__promotion-start
+                          +ui-p3('Начало акции', '--light').text-orange
+                          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="9" viewBox="0 0 34 9" fill="none">
+                            <path d="M1.30962 6.55914C4.69104 3.95065 8.78698 1.59738 15.9506 1.13536C24.0652 0.612006 30.7724 5.08976 32.9094 7.81626M32.9094 7.81626L32.5337 3.32445M32.9094 7.81626L28.0757 7.49298" stroke="#FE5000" stroke-linecap="round"/>
+                          </svg>
+                      if day === data.promotionEnd + 1
+                        .calendar__promotion-end
+                          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="8" viewBox="0 0 34 8" fill="none">
+                            <path d="M32.8678 1.62635C29.5075 4.26199 25.4306 6.64816 18.2709 7.16785C10.1608 7.75653 3.41783 3.33293 1.25889 0.623724M1.25889 0.623724L1.67078 5.11236M1.25889 0.623724L6.09504 0.908066" stroke="#FE5000" stroke-linecap="round"/>
+                          </svg>
+                          +ui-p3('Окончание акции', '--light').text-orange
+                    if dayStr < 7
+                      -dayStr++
+                    else
+                      -dayStr = 1
+                  else 
+                    .calendar__body-day--hidden
+                else 
+                  -break
+          else
+            -break
     block
 
 mixin calendar-wrapper(mods)
