@@ -1,0 +1,702 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'rest'
+  -const pageTitle ='Реструктуризация'
+
+  -
+    const tabs =[
+      { text: 'О реструктуризации' },
+      { text: 'Документы' },
+      { text: 'Вопросы и ответы' },
+      { text: 'Кредитные каникулы в рамках 106-ФЗ' },
+      { text: 'Программы реструктуризации при наличии просроченной задолженности', onclick: "setTimeout(() => {window.autoHeightTable()}, 10);" },
+    ]
+
+  -
+    const smallBannerRest = {
+      h3: 'Что такое реструктуризация',
+      h3Mods: ', --xs',
+      descrMods: 'd-size-l',
+      descr: `В&nbsp;сложной финансовой ситуации банк может пойти вам на&nbsp;встречу
+        и&nbsp;изменить условия кредитного договора, чтобы дать вам больше времени`,
+      img: 'img/small_banner_rest.png'
+    }
+
+  -
+    const benefitsItems =[
+      { icon: 'img/icon_cash.svg', title: 'Снижение размера ежемесячного платежа', },
+      { icon: 'img/icon_credit_history.svg',
+        title: 'Сохранение хорошей кредитной истории',
+        titleTooltip: `Факт реструктуризации может
+          понизить кредитный рейтинг, но&nbsp;позволит избежать просрочек`,
+      },
+      { icon: 'img/icon_calendar.svg', title: 'Решение по&nbsp;заявке в&nbsp;течение 3&nbsp;рабочих дней', },
+    ]
+
+  -
+    const transferInnerCallData ={
+      title: 'Остались вопросы?',
+      text: `Обратитесь в любое
+        <a class="text-orange" href='#'>отделение банка</a>  или&nbsp;по&nbsp;телефону
+        <a class="text-nowrap" href='tel:88007758888'>8-800-775-88-88</a> (бесплатно по&nbsp;России)`,
+      img: 'img/transfer-inner-call.png',
+    }
+
+  -
+    const tableItems1 ={
+      style: "width: 600px",
+      tbody: [
+        {
+          td: [
+            { text: '' },
+            { width: '38%',
+              text: `<a href="#" class="text-bold text-orange">Рефинансирование</a>` },
+            { width: '38%',
+              text: `<span class="text-bold">Реструктуризация</span>` },
+          ]
+        },
+        {
+          td: [
+            { text: `<b>В чем смысл услуги</b>` },
+            { text: `
+              <div class="ui-p2">
+                Оформление нового кредита для&nbsp;погашения текущих
+              </div>` },
+            { text: `
+              <div class="ui-p2">
+                Изменений условий кредитного договора
+              </div>`
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `<b>Что дает</b>` },
+            { text: `
+              <div class="ui-p2">
+                Снижение ставки, получение дополнительной суммы, объединение
+                кредитов в&nbsp;один для&nbsp;оплаты одним платежом
+              </div>` },
+            { text: `
+              <div class="ui-p2">
+                Позволяет избежать просрочек, снизить ежемесячный платеж или&nbsp;получить отсрочку
+              </div>`
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `<b>Когда используется</b>` },
+            { text: `
+              <div class="ui-p2">
+                Когда заемщик может получить более выгодные условия кредитования
+              </div>` },
+            { text: `
+              <div class="ui-p2">
+                Когда изменилась финансовая ситуация и&nbsp;нет возможности платить по&nbsp;кредитам
+              </div>`
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `<b>Где оформляется</b>` },
+            { text: `
+              <div class="ui-p2">
+                Чаще всего в&nbsp;другом банке
+              </div>` },
+            { text: `
+              <div class="ui-p2">
+                В&nbsp;том&nbsp;же банке, где уже оформлен кредит
+              </div>`
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `<b>Что для этого нужно</b>` },
+            { text: `
+              <div class="ui-p2">
+                Одобрение банком нового кредита
+              </div>` },
+            { text: `
+              <div class="ui-p2">
+                Документальное подтверждение ухудшения финансовой ситуации
+              </div>`
+            },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItems2 ={
+      style: "width: 400px",
+      tbody: [
+        {
+          td: [
+            { width: '50%',
+              text: '<span class="text-bold">Кредит</span>' },
+            { width: '50%',
+              text: `<span class="text-bold">Лимит</span>` },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Потребительский кредит</b>
+              `
+            },
+            { text: `
+                <b>250 000 ₽</b>
+                <div class="ui-p2 text-grey80">для физлиц</div>
+                <br>
+                <b>300 000 ₽</b>
+                <div class="ui-p2 text-grey80">для ИП</div>
+              `
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Кредитная карта</b>
+                <div class="ui-p2 text-grey80">
+                  Исходя из первоначально установленного лимита
+                </div>
+              `
+            },
+            { text: `
+                <b>100 000 ₽</b>
+              `
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Автокредит</b>
+                <div class="ui-p2 text-grey80">
+                  Потребительские кредиты на&nbsp;цели приобретения
+                  автотранспортных средств с&nbsp;залогом автотранспортного средства
+                </div>
+              `
+            },
+            { text: `
+                <b>600 000 ₽</b>
+              `
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Ипотечные договоры</b>
+                <div class="ui-p2 text-grey80">
+                  Для жилых помещений находящихся на&nbsp;указанных территориях
+                </div>
+              `
+            },
+            { text: `
+                <b>4,5 млн ₽</b>
+                <div class="ui-p2 text-grey80">в Москве</div>
+                <br>
+                <b>3 млн ₽</b>
+                <div class="ui-p2 text-grey80">в&nbsp;МО, Санкт-Петербурге и&nbsp;ДФО</div>
+                <br>
+                <b>2 млн ₽</b>
+                <div class="ui-p2 text-grey80">в остальных регионах</div>
+              `
+            },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItems3 ={
+      style: "width: 770px",
+      tbody: [
+        {
+          td: [
+            { mods: 'ui-table__bg-grey',
+              text: '' },
+            { width: '23%',
+              mods: 'ui-table__bg-grey text-center',
+              text: `<span class="text-bold">Кредитная карта</span>` },
+            { width: '23%',
+              mods: 'ui-table__bg-grey text-center',
+              text: `<span class="text-bold">Кредит</span>` },
+            { width: '23%',
+              mods: 'ui-table__bg-grey text-center',
+              text: `<span class="text-bold">Ипотека</span>` },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Отсрочка по&nbsp;основному долгу и&nbsp;процентам</b>
+                <div class="ui-p2 ui-p2--mb10">В&nbsp;период отсрочки платежи
+                  по&nbsp;кредитному договору не&nbsp;вносятся
+                </div>
+                <div class="ui-p3 text-grey60">Срок возврата кредита увеличивается на&nbsp;срок
+                  предоставленной отсрочки.
+                </div>
+              `
+            },
+            { rowspan: 2,
+              mods: 'text-center',
+              text: `
+                <div class="ui-p2">до 4 месяцев</div>
+              `
+            },
+            { rowspan: 2,
+              mods: 'text-center',
+              text: `
+                <div class="ui-p2">до 4 месяцев</div>
+              `
+            },
+            { rowspan: 2,
+              mods: 'text-center',
+              text: `
+                <div class="ui-p2">до 6 месяцев</div>
+              `
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Отсрочка по&nbsp;основному долгу</b>
+                <div class="ui-p2 ui-p2--mb10">Оплачиваете только проценты</div>
+                <div class="ui-p3 text-grey60">Срок возврата кредита увеличивается
+                  на&nbsp;срок предоставленной отсрочки.
+                </div>
+              `
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Перенос даты для&nbsp;одного платежа</b>
+                <div class="ui-p2">Если не&nbsp;успеваете в&nbsp;этом месяце оплатить кредит вовремя,
+                  можно перенести один платеж. График остальных платежей останется прежним
+                </div>
+              `
+            },
+            { mods: 'text-center',
+              minus: true,
+              text: ``
+            },
+            { colspan: 2,
+              mods: 'text-center',
+              plus: true,
+              text: ``
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Уменьшить ежемесяный платеж</b>
+                <div class="ui-p2">Можно уменьшить ежемесячный платеж увеличив срок возврата кредита</div>
+              `
+            },
+            { mods: 'text-center',
+              text: `
+                <div class="ui-p2">
+                  срок возврата не&nbsp;позднее даты достижения заемщиком возраста 70&nbsp;лет
+                </div>
+              `
+            },
+            { colspan: 2,
+              mods: 'text-center',
+              plus: true,
+              text: ``
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `
+                <b>Комиссия за&nbsp;реструктуризацию</b>
+              `
+            },
+            { colspan: 3,
+              mods: 'text-center',
+              text: `
+                <div class="ui-p2">от 0 до 1500&nbsp;рублей</div>
+              `
+            },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItemsMob1 ={
+      tbody: [
+        {
+          td: [
+            { text: `<div class="ui-p1">Кредитная карта</div>` },
+            { mods: 'text-right',
+              text: `<div class="ui-p1 text-grey80">до 4 месяцев</div>`
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `<div class="ui-p1">Кредит` },
+            { mods: 'text-right',
+              text: `<div class="ui-p1 text-grey80">до 4 месяцев</div>`
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `<div class="ui-p1">Ипотека</div>` },
+            { mods: 'text-right',
+              text: `<div class="ui-p1 text-grey80">до 6 месяцев</div>`
+            },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItemsMob3 ={
+      tbody: [
+        {
+          td: [
+            { text: `<div class="ui-p1">Кредитная карта</div>` },
+            { mods: 'text-right', text: ``, minus: true, },
+          ]
+        },
+        {
+          td: [
+            { text: `<div class="ui-p1">Кредит</div>` },
+            { mods: 'text-right', text: ``, plus: true, },
+          ]
+        },
+        {
+          td: [
+            { text: `<div class="ui-p1">Ипотека</div>` },
+            { mods: 'text-right', text: ``, plus: true, },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItemsMob4 ={
+      tbody: [
+        {
+          td: [
+            { text: `<div class="ui-p1">Кредитная карта</div>` },
+            { mods: 'text-right',
+              text: `<div class="ui-p1 text-grey80">срок возврата не&nbsp;позднее даты достижения заемщиком возраста 70&nbsp;лет</div>`
+            },
+          ]
+        },
+        {
+          td: [
+            { text: `<div class="ui-p1">Кредит</div>` },
+            { mods: 'text-right', text: ``, plus: true, },
+          ]
+        },
+        {
+          td: [
+            { text: `<div class="ui-p1">Ипотека</div>` },
+            { mods: 'text-right', text: ``, plus: true, },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItemsMob5 ={
+      tbody: [
+        {
+          td: [
+            { text: `<div class="ui-p1">Кредитная карта</div>` },
+            { mods: 'text-right', text: `<div class="ui-p1 text-grey80">от 0 до 1500&nbsp;рублей</div>` },
+          ]
+        },
+        {
+          td: [
+            { text: `<div class="ui-p1">Кредит</div>` },
+            { mods: 'text-right', text: `<div class="ui-p1 text-grey80">от 0 до 1500&nbsp;рублей</div>` },
+          ]
+        },
+        {
+          td: [
+            { text: `<div class="ui-p1">Ипотека</div>` },
+            { mods: 'text-right', text: `<div class="ui-p1 text-grey80">от 0 до 1500&nbsp;рублей</div>`, },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableData = {
+      names: [
+        'Оплата пропущенных платежей',
+        'Списание неустойки',
+        'Полная отсрочка платежа или&nbsp;отсрочка платежа по&nbsp;основному долгу',
+        'Пролонгация кредитного договора',
+        'Снижение процентной ставки',
+        'Предоставление подтверждающих документов',
+      ],
+      columns: [
+        {
+          name: 'Тарифный план «Техпомощь&nbsp;+»',
+          headMods: '',
+          rows: [
+            { icon: 'yes', },
+            { text: `Неустойка списывается после оплаты просроченной задолженности,
+              при&nbsp;внесении изменений в&nbsp;график кредитного договора после подписания
+              дополнительного соглашения`,
+            },
+            { text: `До 4 месяцев`, },
+            { text: `До&nbsp;10&nbsp;лет по&nbsp;желанию клиента, если срок кредита
+              не&nbsp;превышает максимально допустимый по&nbsp;условиям тарифного плана`,
+            },
+            { text: `До&nbsp;20%, в&nbsp;случае, если действующая ставка выше
+              (не&nbsp;применимо к&nbsp;автокредитам)`,
+            },
+            { icon: 'no', },
+          ],
+        },
+        {
+          name: 'Тарифный план «Содействие»',
+          headMods: 'assistance',
+          rows: [
+            { text: `Оплата пропущенных платежей не&nbsp;требуется`, },
+            { text: `Неустойка списывается при&nbsp;внесении изменений
+              в&nbsp;график кредитного договора после подписания дополнительного соглашения`,
+            },
+            { text: `До 4 месяцев`, },
+            { text: `Обязательная пролонгация кредитного договора минимум
+              на&nbsp;срок отсрочки, максимум&nbsp;&mdash; до&nbsp;10&nbsp;лет
+              по&nbsp;потребительским кредитам/до 30&nbsp;лет по&nbsp;ипотекам`,
+            },
+            { icon: 'no', },
+            { text: 'Обязательно предоставление документов',
+              docs: [
+                { name: 'Трудовая книжка (оригинал/электронная трудовая книжка)', },
+                { name: 'Приказ об увольнении', },
+                { name: 'Справка из&nbsp;центра занятости о&nbsp;статусе безработного', },
+                { name: 'Справка о&nbsp;снижении доходов по&nbsp;форме работодателя/справка по&nbsp;форме ',
+                  nowrapTooltip: '2-НДФЛ',
+                  tooltip: 'text',
+                },
+              ],
+            },
+          ],
+        },
+      ]
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--rest')
+        +banner-wrapper('img/banner_rest_small.png', true)
+          +banner-h1('Реструктуризация <br>кредита', '--mob-size-l')
+          +banner-text('Поддержка от&nbsp;банка в&nbsp;сложной ситуации')
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+
+    .page-content
+      +section('--mt0')
+        +tabs-head(tabs, '', '--round-d-enable')(data-tabs-group='main-tabs')
+        +tabs-main(data-tabs-group='main-tabs')
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +small-banner-wrapper()
+                  +small-banner(smallBannerRest, '--rest')
+
+            +section
+              .inner
+                +benefits(benefitsItems, '--title-normal')
+
+            +section
+              .inner
+                +ui-table(tableItems3, '--all-border, --auto-scroll, --mob-outside').text-mob-none
+
+                +accordion.text-mob-only
+                  +accordion-item(`
+                      <div class="ui-p1 ui-p1--bold">Отсрочка по&nbsp;основному долгу и&nbsp;процентам</div>
+                      <div class="ui-p3 ui-p3--mb5">В&nbsp;период отсрочки платежи по&nbsp;кредитному договору не&nbsp;вносятся</div>
+                      <div class="ui-p4 text-grey60">Срок возврата кредита увеличивается на&nbsp;срок предоставленной отсрочки.</div>
+                    `, '--table-inside')
+                    +ui-table(tableItemsMob1, '--mob-cell-pd-l, --last-bb0')
+                  +accordion-item(`
+                      <div class="ui-p1 ui-p1--bold">Отсрочка по&nbsp;основному долгу</div>
+                      <div class="ui-p3 ui-p3--mb5">Оплачиваете только проценты</div>
+                      <div class="ui-p4 text-grey60">Срок возврата кредита увеличивается на&nbsp;срок предоставленной отсрочки.</div>
+                    `, '--table-inside')
+                    +ui-table(tableItemsMob1, '--mob-cell-pd-, --last-bb0')
+                  +accordion-item(`
+                      <div class="ui-p1 ui-p1--bold">Перенос даты для&nbsp;одного платежа</div>
+                      <div class="ui-p3 ui-p3--mb5">Если не&nbsp;успеваете в&nbsp;этом месяце оплатить кредит вовремя, можно перенести один платеж. График остальных платежей останется прежним</div>
+                    `, '--table-inside')
+                    +ui-table(tableItemsMob3, '--mob-cell-pd-l, --last-bb0')
+                  +accordion-item(`
+                      <div class="ui-p1 ui-p1--bold">Уменьшить ежемесяный платеж</div>
+                      <div class="ui-p3 ui-p3--mb5">Можно уменьшить ежемесячный платеж увеличив срок возврата кредита</div>
+                    `, '--table-inside')
+                    +ui-table(tableItemsMob4, '--mob-cell-pd-l, --last-bb0')
+                  +accordion-item(`
+                      <div class="ui-p1 ui-p1--bold">Комиссия за&nbsp;реструктуризацию</div>
+                    `, '--table-inside')
+                    +ui-table(tableItemsMob5, '--mob-cell-pd-l, --last-bb0')
+
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +section-head
+                  +ui-p1
+                    b Документы для предоставления реструктуризации по ипотечным кредитным договорам*
+                +documents
+                +section-footnote('*Требование Заемщика-физического лица об изменении условий Кредитного договора, заключенного в целях, не связанных с осуществлением им предпринимательской деятельности, обязательства по которому обеспечены ипотекой, соответствующее условиям ст. 6.1-1. Федерального закона от 21.12.2013 N 353-ФЗ "О потребительском кредите (займе)", удовлетворяется Банком без взимания комиссионного вознаграждения')
+
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +accordion()
+                  +accordion-item('В&nbsp;чем разница между реструктуризацией и&nbsp;рефинансированием')
+                    +ui-p1('')
+                      p Это разные инструменты оптимизации финансовой ситуации.
+                    br
+                    +ui-table(tableItems1, '--all-border, --v-al-top, --auto-scroll')
+
+                  +accordion-item('Не&nbsp;могу внести платеж в&nbsp;этом месяце, что можно сделать')
+                    +ui-p1('')
+                      p Если изменилась дата выплаты зарплаты или&nbsp;пенсионных начислений, можно перенести дату платежа в&nbsp;пределах одного месяца.
+                      p Если причина в&nbsp;незапланированных тратах
+                        =' '
+                        span.text-nowrap или форс-мажоре
+                        |  (пожар, наводнение, больничный),
+                        |  банк может предоставить отсрочку по&nbsp;основному долгу и&nbsp;процентам или&nbsp;только по&nbsp;основному долгу.
+
+                  +accordion-item('Не&nbsp;смогу вносить платеж несколько месяцев, что можно сделать')
+                    +ui-p1('')
+                      p При возможности у&nbsp;клиента вносить платеж меньше текущего, банк может:
+                      +ui-ul('')
+                        li Продлить срок договора и&nbsp;за&nbsp;счет этого уменьшить размер ежемесячного платежа
+                        li Предоставить отсрочку на&nbsp;погашение основного долга, в&nbsp;этом случае нужно будет оплачивать только проценты.
+                          br
+                          | До&nbsp;4&nbsp;месяцев по&nbsp;кредиту&nbsp;/ кредитным картам и&nbsp;до&nbsp;6&nbsp;месяцев по&nbsp;ипотеке.
+                      p При невозможности у&nbsp;клиента вносить платеж совсем, банк может предоставить полную отсрочку
+                        |  до&nbsp;4&nbsp;месяцев по&nbsp;кредиту&nbsp;/ кредитным картам и&nbsp;до&nbsp;6&nbsp;месяцев по&nbsp;ипотеке.
+
+                  +accordion-item('На&nbsp;сколько можно увеличить срок кредитного договора?')
+                    +ui-p1('')
+                      p Общий срок возврата кредитного договора не&nbsp;более 84&nbsp;месяцев, в&nbsp;индивидуальных случаях может быть увеличен до&nbsp;120&nbsp;месяцев.
+
+                  +accordion-item('Что нужно для оформления реструктуризации?')
+                    +ui-p1('')
+                      p Предоставьте все возможные документы, подтверждающие ухудшение финансового положения.
+                        |  Перечень вы&nbsp;найдете во&nbsp;вкладке Документы
+
+                  +accordion-item('У&nbsp;меня уже есть просроченная задолженность по&nbsp;кредиту, что готов предложить Банк?')
+                    +ui-p1('')
+                      p Банк готов рассмотреть вопрос о&nbsp;реструктуризации вашего кредитного договора при наличии просроченной задолженности и&nbsp;предложить вам возможные варианты решения вопроса. Подробная информация в&nbsp;разделе
+                        =' '
+                        a.text-orange.js-open-tab(href='#rest-programms' onclick='setTimeout(() => {window.autoHeightTable()}, 10);') Программы реструктуризации при наличии просроченной задолженности
+                        |  или по&nbsp;номеру
+                        =' '
+                        a.text-orange(href='tel:88003336185') 8&nbsp;800&nbsp;333 61&nbsp;85
+
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +accordion()
+                  +accordion-item('Кто может воспользоваться кредитными каникулами?')
+                    +ui-p1('')
+                      p Воспользоваться правом на&nbsp;кредитные каникулы могут
+                        +ui-ul('')
+                          li субъекты малого и&nbsp;среднего бизнеса из&nbsp;ряда отраслей, определенных Правительством РФ,
+                          li ИП
+                          li физические лица
+                      p Использовать право на&nbsp;кредитные каникулы могут заемщики,
+                        |  которые заключили кредитные договоры до&nbsp;1&nbsp;марта 2022&nbsp;года.
+                      p  Закон распространяется и&nbsp;на&nbsp;тех, кто уже брал отсрочку в&nbsp;2020&nbsp;году.
+                      p  Кредитные каникулы предоставляют на&nbsp;срок не&nbsp;более 6&nbsp;месяцев.
+                        br
+                        | Формат: отсрочка платежа или&nbsp;его уменьшение (для&nbsp;ИП) в&nbsp;течение льготного периода.
+
+                  +accordion-item('Каковы условия получения кредитных каникул?')
+                    +ui-p1('')
+                      p Если официальный доход заемщика снизился более чем на&nbsp;30%
+                        |  по&nbsp;сравнению со&nbsp;среднемесячным доходом за&nbsp;год,
+                        |  предшествующий дате обращения за&nbsp;кредитными каникулами,
+                        |  то&nbsp;он&nbsp;имеет на&nbsp;них право.
+                      p  Размер кредита не&nbsp;должен быть выше максимумов, установленных Правительством,
+                        |  и&nbsp;на&nbsp;момент  обращения за&nbsp;кредитными каникулами у&nbsp;заемщика
+                        |  не&nbsp;должно быть действующей отсрочки по&nbsp;платежам.
+
+                  +accordion-item('Лимиты для кредитных каникул, установленные Правительством&nbsp;РФ')
+                    +ui-p1('')
+                      p Методика расчета среднемесячного дохода Заемщика(ов)
+                        |  определена Постановлением Правительства РФ&nbsp;от&nbsp;03.04.2020&nbsp;N 436.
+                      p Отсрочка может быть предоставлена с&nbsp;учетом максимального размера Кредитного
+                        =' '
+                        span.text-nowrap договора
+                          +ui-tooltip(`Иной максимальный размер кредита, по&nbsp;которому заемщик вправе
+                            обратиться с&nbsp;требованием к&nbsp;кредитору
+                            о&nbsp;предоставлении льготного периода, может быть установлен
+                            Постановлением Правительства.`)
+                    br
+                    +ui-table(tableItems2, '--all-border, --v-al-top, --auto-scroll')
+
+                  +accordion-item('Как получить кредитные каникулы?')
+                    +ui-p1('')
+                      +ui-ul('')
+                        li до&nbsp;31&nbsp;марта 2023 года обратиться к&nbsp;кредитору
+                          |  с&nbsp;заявлением о&nbsp;предоставлении кредитных каникул;
+                        li приложить документы об&nbsp;ухудшении финансового положения заемщика.
+                  +accordion-item('Какие документы нужны для&nbsp;кредитных каникул?')
+                    +ui-p1('')
+                      p
+                        b Для работающих
+                      +ui-ul('')
+                        li Справка о&nbsp;полученных физическим лицом доходах
+                          |  и&nbsp;удержанных суммах налога за&nbsp;текущий год
+                          |  и&nbsp;за&nbsp;год, предшествующий дате обращения по&nbsp;форме,
+                          |  утвержденной федеральным органом исполнительной власти,
+                          |  осуществляющим функции по&nbsp;контролю и&nbsp;надзору за&nbsp;соблюдением
+                          |  законодательства о&nbsp;налогах и&nbsp;сборах, с&nbsp;требованием о&nbsp;предоставлении
+                          |  льготного периода;
+                        li больничный или&nbsp;другие документы, свидетельствующие об&nbsp;уменьшении зарплаты или&nbsp;выручки.
+                      p
+                        b Для безработных
+                      +ui-ul('')
+                        li справка о&nbsp;регистрации на&nbsp;Бирже труда Министерства труда и&nbsp;социальной защиты
+                      p Банк тщательно проверит все справки, и&nbsp;в&nbsp;случае получения от&nbsp;заемщика подделок кредитные каникулы не&nbsp;будут предоставлены.
+
+          +tabs-main__item#rest-programms
+            +section('--mt0')
+              .inner
+                +rest-table(tableData)
+
+      +section
+        .inner
+          +transfer-inner-call(transferInnerCallData)
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Оставьте заявку на&nbsp;реструктуризацию').text-center.text-center--mob-left
+          p тут форма

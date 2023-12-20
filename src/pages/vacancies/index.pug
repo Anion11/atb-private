@@ -1,0 +1,39 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'vacancies'
+    const pageTitle ='Вакансии в АТБ'
+
+    const benefitsItems =[
+      { icon: 'img/benefit-1.svg', descr: 'Достойная зарплата и&nbsp;прозрачная система премирования по&nbsp;результатам работы' },
+      { icon: 'img/benefit-2.svg', descr: 'Оплачиваемая стажировка, ДМС, корпоративные скидки и&nbsp;тарифы, программы материальной поддержки сотрудников' },
+      { icon: 'img/benefit-3.svg', descr: 'Комфортный офис, отличный коллектив, яркая и&nbsp;насыщенная корпоративная жизнь' },
+      { icon: 'img/benefit-4.svg', descr: 'Отличные возможности для&nbsp;обучения и&nbsp;профессионального развития' },
+      { icon: 'img/benefit-5.svg', descr: 'Участие в&nbsp;новых проектах' },
+      { icon: 'img/benefit-6.svg', descr: 'Прямые линии с&nbsp;ТОПменеджерами и&nbsp;Председателем правления Банка' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --vacancies')
+        +banner-wrapper('img/banner_vacancies_small.png', true)
+          +banner-h1('Вакансии в&nbsp;АТБ', '--mob-size-l')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--title-normal')
+
+      +section
+        .inner
+          +vacancies

@@ -1,0 +1,293 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'mobile'
+    const pageTitle ='Мобильный банк'
+
+    let mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным Мобильным банком, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+    const telInstruction =[
+      {
+        mods: 'tel-instruction__section--left',
+        title: 'Основные возможности <br> приложения АТБ банк',
+        img: [
+          { src: 'tel_instruction_sl1_1' },
+          { src: 'tel_instruction_sl1_2' },
+          { src: 'tel_instruction_sl1_3' },
+        ],
+        steps: [
+          { title: 'Оформляйте заявки на&nbsp;продукты онлайн' },
+          { title: 'Платежи и&nbsp;переводы 24/7' },
+          { title: 'Контролируйте расходы, планируйте бюджет, анализируйте траты' },
+        ]
+      }
+    ]
+
+    const tabs =[
+      { text: 'Подключение' },
+      { text: 'Безопасность' },
+      { text: 'Лимиты' },
+      { text: 'Вопросы и ответы' },
+    ]
+
+    const benefitsItems =[
+      {
+        modClass: 'benefits__item--w100 benefits__item--bg-grey20',
+        icon: 'img/mobile-tabs_benefit.svg',
+        descr: 'Для первой авторизации нужен основной номер телефона и&nbsp;дополнительный реквизит <br> (номер карты или номер счета)',
+      }
+    ]
+
+    const tableItems_1 = {
+      style: 'min-width: 700px;',
+      tbody: [
+        {
+          title: true,
+          td: [
+            { width: '45%', text: 'Лимиты для клиентов, не&nbsp;являющихся владельцами программы “<a class="text-orange" href="https://www.atb.su/status/" target="_blank">Статус</a>”' },
+            { text: 'Максимальная сумма на&nbsp;одну операцию', mods: 'text-center' },
+            { width: '18%', text: 'Лимит в&nbsp;сутки *', mods: 'text-center' },
+            { width: '18%', text: 'Лимит в&nbsp;месяц *', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Перевод на&nbsp;свой счет в&nbsp;АТБ' },
+            { text: 'без ограничений', mods: 'text-center' },
+            { text: 'без ограничений', mods: 'text-center' },
+            { text: 'без ограничений', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Перевод на&nbsp;счет другого клиента АТБ или на&nbsp;счет в&nbsp;стороннем банке' },
+            { text: '50 000 ₽', mods: 'text-center' },
+            { text: '100 000 ₽', mods: 'text-center' },
+            { text: '1 500 000 ₽', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Оплата поставщиков услуг через агрегаторов (Киберплат/ФСГ)' },
+            { text: '15 000 ₽', mods: 'text-center' },
+            { text: '100 000 ₽', mods: 'text-center' },
+            { text: '250 000 ₽', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Перевод по&nbsp;номеру банковской карты (на&nbsp;карту АТБ или&nbsp;на&nbsp;карту стороннего банка)' },
+            { text: '50 000 ₽', mods: 'text-center' },
+            { text: '100 000 ₽', mods: 'text-center' },
+            { text: '250 000 ₽', mods: 'text-center' },
+          ]
+        },
+      ]
+    }
+
+    const tableItems_2 = {
+      style: 'min-width: 700px;',
+      tbody: [
+        {
+          title: true,
+          td: [
+            { width: '45%', text: 'Лимиты для&nbsp;владельцев программы “<a class="text-orange" href="https://www.atb.su/status/" target="_blank">Статус</a>”' },
+            { text: 'Максимальная сумма на&nbsp;одну операцию', mods: 'text-center' },
+            { width: '18%', text: 'Лимит в&nbsp;сутки *', mods: 'text-center' },
+            { width: '18%', text: 'Лимит в&nbsp;месяц *', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Перевод на&nbsp;свой счет в&nbsp;АТБ' },
+            { text: 'без ограничений', mods: 'text-center' },
+            { text: 'без ограничений', mods: 'text-center' },
+            { text: 'без ограничений', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Перевод на&nbsp;счет другого клиента АТБ или на&nbsp;счет в&nbsp;стороннем банке' },
+            { text: '500 000 ₽', mods: 'text-center' },
+            { text: '500 000 ₽', mods: 'text-center' },
+            { text: '3 000 000 ₽', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Оплата поставщиков услуг через агрегаторов (Киберплат/ФСГ)' },
+            { text: '15 000 ₽', mods: 'text-center' },
+            { text: '300 000 ₽', mods: 'text-center' },
+            { text: '500 000 ₽', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Перевод по&nbsp;номеру банковской карты (на&nbsp;карту АТБ или&nbsp;на&nbsp;карту стороннего банка)' },
+            { text: '50 000 ₽', mods: 'text-center' },
+            { text: '300 000 ₽', mods: 'text-center' },
+            { text: '500 000 ₽', mods: 'text-center' },
+          ]
+        },
+      ]
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--mobile')
+        +banner-wrapper('img/banner_mobile.png', true)
+          +banner-h1('АТБ банк — новое мобильное приложение', '--mob-size-l', false)
+          +banner-text('Стабильнее, удобнее и&nbsp;безопаснее')
+          +banner-foot
+            .banner-item__qr
+              +ui-button('', 'banner')(data-open-qr)
+                +icon('icon_qr')
+                | Скачать
+              +ui-button('Закрыть', 'banner')(style='display: none;' data-close-qr)
+              .banner-item__qr-popup
+                .banner-item__qr-code
+                  img(src='img/qr-code.svg' alt='')
+                +ui-p1('Установить по&nbsp;QR')
+
+            .banner-item__app-links
+              a.banner-item__app-link(href='https://apps.apple.com/ru/app/%D0%B0%D1%82%D0%B1-%D0%B1%D0%B0%D0%BD%D0%BA/id1604332202' target='_blank'): img(src='img/mobile-banner_apple-icon.svg' alt='')
+              a.banner-item__app-link(href='https://play.google.com/store/apps/details?id=su.atb.mobileapp&hl=ru&pli=1' target='_blank'): img(src='img/mobile-banner_g-play-icon.svg' alt='')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Переходите в&nbsp;новое приложение АТБ&nbsp;банк', 'section-head')
+            +ui-h6('Действующее приложение АТБ&nbsp;Мобайл будет работать до&nbsp;31&nbsp;августа 2023 года', '--light')
+          +mobile-benefits
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Новые функции')
+          +mobile-features
+
+      +section('--bg-grey')
+        .inner
+          +tel-instruction(telInstruction, '--img-l, --grey-bg')
+
+      +section
+        .inner
+          +tabs-head(tabs, true, '--no-item-border')
+          +tabs-main
+            +tabs-main__item(true, '--d-bg')
+              +benefits(benefitsItems, '--descr-fz18')
+              br
+              br
+              +ui-p1('После успешного входа установите четырехзначный код доступа и&nbsp;дополнительную защиту входа с&nbsp;помощью Touch ID&nbsp;или Face&nbsp;ID, которые упростят вход при&nbsp;повторной авторизации.')
+            +tabs-main__item(false, '--d-bg')
+              +ui-p1('', '--light')
+                p Мы&nbsp;стремимся к&nbsp;созданию безопасного пространства, в&nbsp;котором клиенты не&nbsp;переживают за&nbsp;свои сбережения.
+                p Вся работа нового сервиса производится исключительно по&nbsp;защищённым протоколам передачи информации, которая соответствует международным стандартам кибербезопасности.
+                p
+                  b Несмотря на&nbsp;совершенствование систем безопасности необходимо соблюдать простые правила:
+                +ui-ul('')
+                  li Никому не&nbsp;говорите регистрационные данные для&nbsp;входа в&nbsp;&laquo;АТБ банк&raquo;;
+                  li Устанавливайте приложение &laquo;АТБ банк&raquo; только из&nbsp;официальных источников:
+                      =' '
+                      a.text-orange(href='https://play.google.com/store/apps/details?id=com.isimplelab.ionic.atbnew.prod' target='_blank') Google Play
+                      | ,
+                      =' '
+                      a.text-orange(href='https://apps.apple.com/ru/app/%D0%B0%D1%82%D0%B1-%D0%BC%D0%BE%D0%B1%D0%B0%D0%B9%D0%BB-new/id1545924358' target='_blank') App Store
+                      | ;
+                  li Устанавливайте и&nbsp;обновляйте антивирус на&nbsp;мобильном устройстве. Вредоносные программы могут перехватывать данные, вводимые пользователем мобильного устройства. Регулярное обновление антивирусной базы и&nbsp;поддержка антивирусной программы в&nbsp;актуальном состоянии обезопасят от&nbsp;кражи данных.
+                p Дополнительно советуем ознакомиться с&nbsp;
+                  a.text-orange(href='https://www.atb.su/upload/doc/2019/pamyatka.pdf' target='_blank') Рекомендациями Клиенту по&nbsp;безопасному использованию системы дистанционного банковского обслуживания в&nbsp;&laquo;Азиатско-Тихоокеанском Банке&raquo; (АО)
+                  |  и&nbsp;
+                  a.text-orange(href='https://www.atb.su/upload/doc/mobile/pamyatka-bezopasnost.pdf' target='_blank') Памяткой безопасности
+                  | .
+            +tabs-main__item(false, '--d-bg')
+              +section-head('--mb-size-s')
+                +ui-p1('Лимиты на&nbsp;совершение расходных операций в&nbsp;«АТБ банк» для&nbsp;клиентов&nbsp;— физических лиц (в&nbsp;рублях&nbsp;РФ)')
+              +ui-table(tableItems_1, 'mobile-limits, --v-al-top, --grey-title, --title-border0, --mob-scrollbar')
+              +section-box
+                +ui-table(tableItems_2, 'mobile-limits, --v-al-top, --grey-title, --title-border0, --mob-scrollbar')
+              +section-footnote('', '--mt-l, --grey60, --fw-normal')
+                | * Лимит в&nbsp;сутки/в&nbsp;месяц ограничивает общую сумму расходных операций одного клиента в&nbsp;«АТБ банк» в&nbsp;рублях&nbsp;РФ и&nbsp;иностранной валюте, не&nbsp;зависимо от&nbsp;канала проведения клиентом операции ("АТБ-Онлайн"/"АТБ&nbsp;банк"). При&nbsp;совершении операции по&nbsp;счету в&nbsp;иностранной валюте пересчет суммы операции в&nbsp;рубли&nbsp;РФ осуществляется по&nbsp;курсу Банка на&nbsp;дату операции.<br>Лимит в&nbsp;сутки действует с&nbsp;00.00 до&nbsp;24.00 часов по&nbsp;Московскому времени. Лимит в&nbsp;месяц действует с&nbsp;00.00 часов первого дня месяца по&nbsp;24.00 часа последнего дня текущего месяца по&nbsp;Московскому времени.
+            +tabs-main__item
+              +accordion()
+                +accordion-item('Как получить доступ в&nbsp;личный кабинет?')
+                  +ui-p1
+                    p Любой клиент Банка может самостоятельно пройти регистрацию в&nbsp;приложении «АТБ банк». Для&nbsp;этого необходимо установить приложение и&nbsp;нажать на&nbsp;кнопку «Зарегистрироваться». Для первой авторизации нужен основной номер телефона и&nbsp;один дополнительный реквизит (номер карты или&nbsp;номер счета).
+                +accordion-item('Почему личный кабинет заблокирован?')
+                  +ui-p1
+                    p Причин может быть несколько, но&nbsp;в&nbsp;большинстве случаев это делается ради безопасности ваших средств. Чаще всего доступ блокируется <span class="text-nowrap">из-за</span> неверно введенных регистрационных данных. Для&nbsp;возможности восстановления доступа клиенту необходимо обратиться в&nbsp;колл-центр Банка по&nbsp;телефону
+                      =' '
+                      a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                      |  (звонок по&nbsp;России бесплатный), либо в&nbsp;любое отделение.
+                +accordion-item('В приложении не&nbsp;отражаются счета, что&nbsp;делать?')
+                  +ui-p1
+                    p Если возникли проблемы с&nbsp;отображением продуктов и&nbsp;счетов, то просим вас позвонить по&nbsp;телефону
+                      =' '
+                      a.text-nowrap.text-orange(href='tel:88007758888') 8-800-775-88-88
+                      |  (звонок по&nbsp;России бесплатный).
+                +accordion-item('Что такое Система быстрых платежей (СБП)?')
+                  +ui-p1
+                    p Система Банка России, позволяющая клиентам Банка переводить средства по&nbsp;номеру телефона получателя, счет которого открыт в&nbsp;любом другом банке-участника данной системы. Без комиссии (бесплатно) можно переводить до&nbsp;100&nbsp;тыс. руб.&nbsp;в&nbsp;месяц.
+                    p Подробнее о&nbsp;Системе быстрых платежей можно ознакомиться&nbsp;на
+                      =' '
+                      a.text-orange(href='https://www.atb.su/services/sbp/' target='_blank') отдельной странице сайта
+                      | .
+                +accordion-item('Как воспользоваться системой быстрых платежей?')
+                  +ui-p1
+                    iframe.bvi-no-styles(width='100%', height='415', src='https://www.youtube.com/embed/P7A4cvjg4wk', title='YouTube video player', frameborder='0', allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowfullscreen)
+                +accordion-item('Как найти ближайший офис и банкомат банка?')
+                  +ui-p1
+                    p Проще всего посмотреть в&nbsp;мобильном приложении раздел &laquo;Еще&raquo;&nbsp;&mdash; &laquo;Отделения и&nbsp;банкоматы&raquo;, определить свое местоположение и&nbsp;найти ближайшие офис и&nbsp;банкомат Банка. Также актуальная информация по&nbsp;местонахождению и&nbsp;режиму работы отделений и&nbsp;банкоматов банка доступна&nbsp;на
+                      =' '
+                      a.text-orange(href='https://www.atb.su/atms/moskva/?changingcity=y' target='_blank') официальном сайте
+                      | .
+                +accordion-item('Что делать, если не&nbsp;работает приложение?')
+                  +ui-p1
+                    p Проверьте, пожалуйста, обновления в&nbsp;
+                      =''
+                      a.text-orange.text-nowrap(href='https://play.google.com/store/apps/details?id=su.atb.mobileapp&hl=ru&pli=1' target='_blank') Google Play
+                      | ,
+                      =' '
+                      a.text-orange.text-nowrap(href='https://apps.apple.com/ru/app/%D0%B0%D1%82%D0%B1-%D0%B1%D0%B0%D0%BD%D0%BA/id1604332202' target='_blank') App Store
+                      | . При&nbsp;необходимости клиент может обратиться за&nbsp;помощью, позвонив в&nbsp;колл-центр по&nbsp;телефону
+                      =' '
+                      a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                      |  (звонок по&nbsp;России бесплатный).
+                +accordion-item('Можно ли оформить кредит в&nbsp;приложении?')
+                  +ui-p1
+                    p Да, возможность дистанционной подачи заявки на&nbsp;потребительский кредит доступна в&nbsp;мобильном приложении.
+                +accordion-item('Можно ли стать клиентом без&nbsp;посещения офиса?')
+                  +ui-p1
+                    p Мы&nbsp;работаем над этим. Возможность удаленной регистрации будет доступна в&nbsp;будущем.
+
+      //- +section
+        .inner
+          +mobile-tabs
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для&nbsp;скачивания', 'section-head').text-center
+          +accordion-item('Документы')
+            +documents

@@ -1,0 +1,104 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'coins'
+  -const pageTitle ='Монеты'
+
+  -
+    const coinData = {
+      label: 'new',
+      img: 'img/coin_1.jpg',
+      name: 'Кабардино-Балкарская-22',
+      price: '5 100 ₽',
+      characteristics: [
+        {
+          name: 'Категория ',
+          info: 'Памятные'
+        },
+        {
+          name: 'Страна',
+          info: 'Россия'
+        },
+        {
+          name: 'Номинал',
+          info: '3 рябля'
+        },
+        {
+          name: 'Иеталл, проба',
+          info: 'Серебро 925/1000 пробы'
+        },
+        {
+          name: 'Диаметр, мм',
+          info: '39,00 (± 0,30)'
+        },
+      ]
+    }
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Вклады', '/')
+      +breadcrumbs-item(pageTitle)
+    +banner('--m-vertically')
+      +banner-item('--coins')
+        +banner-wrapper('img/banner_coins.png', true)
+          +banner-h1('Монеты из&nbsp;драгоценных металлов', '--mob-size-l')
+          +banner-descr('Ваши надёжные инвестиции', '--size-xs, --mob-size-l').text-orange
+
+    .page-content.page-content--pt0
+      +section('--mt0, --bg-grey')
+        .inner
+          +coins-slider('Новинки')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+
+      br
+      br
+      br
+      .inner
+        p с графиком
+
+      +section
+        .inner
+          +section-head
+            +switch('', 'Выберите вашу монету', 'График цен на металлы', 'coins', '--mob-vertical')
+          +switch-group('coins')
+            +switch-content(true)
+              +coins-select
+            +switch-content()
+              +metals-chart
+      br
+      br
+      br
+      .inner
+        p без графика
+      +section
+        .inner
+          +section-head
+            +ui-h2('Выберите вашу монету')
+          +coins-select
+
+      +section
+        .inner
+          +seo-menu
+            a(href='#') памятные
+            a(href='#') инвестиционные
+            a(href='#') иностранные
+            a(href='#') золотые
+            a(href='#') серебряные
+      +section
+        .inner
+          +ui-h3('тут будет форма')

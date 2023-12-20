@@ -1,0 +1,43 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'payments-with-children'
+  -const pageTitle ='Выплаты семьям c детьми'
+
+  -
+    const howApplyItems =[
+      { icon: 'img/ic.browser.svg', title: 'Заполните персональные данные <br>одного из родителей', descr: 'Заполните ваши персональные сведения: ФИО, СНИЛС, паспортные данные, адрес места жительства. Если данные были уже внесены в личный кабинет, то графы заполнятся автоматически.' },
+      { icon: 'img/ic.winner.svg', title: 'Внесите сведения о детях и&nbsp;банковские реквизиты для перечисления пособия', descr: 'Вам понадобится свидетельство о рождении ребенка, его СНИЛС. Реквизиты карты АТБ или любого другого счета в АТБ можно посмотреть в Интернет или Мобильном Банке.' },
+      { icon: 'img/ic.file.svg', title: 'Получите пособие', descr: 'Просматривайте уведомления о статусе заявления в личном кабинете на Госуслугах. Пособие начисляется в течение 3 дней после положительного решения. Полученные средства можно тратить на любые цели.' },
+    ]
+
+block content
+  main
+    +banner()
+      +banner-item('--payments-with-children')
+        +banner-wrapper('img/banner_payments_with_children.jpg')
+          +banner-h1('Выплаты семьям c&nbsp;детьми', '')
+          +banner-descr('Новый вид государственной <br>поддержки для&nbsp;семей с&nbsp;детьми до&nbsp;16&nbsp;лет', '--size-xs').banner-item-dn
+        +banner-mobile()
+          p Новый вид государственной поддержки для&nbsp;семей с&nbsp;детьми до&nbsp;16&nbsp;лет
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Выплаты могут получить', 'section-head').text-center
+          +can-get-pays
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Как подать заявление на выплату', 'section-head')
+            .section-head__descr Заявление оформляется в личном кабинете на портале
+              =' '
+              a.text-link-underline.text-orange(href='https://www.gosuslugi.ru/' target='_blank') gosuslugi.ru
+          +how-apply(howApplyItems)

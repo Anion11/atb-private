@@ -1,0 +1,478 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'cards'
+    const pageTitle ='Карта АТБ 2.0'
+
+  -
+    const howGetItems1 =[
+      { title: 'Заполнить заявку',
+        descr: '<a href="#">на сайте</a>, в&nbsp;любом отделении банка или&nbsp;по&nbsp;телефону <a class="text-nowrap" href="tel:+7800758888">8 800 775-88-88</a>'
+      },
+      { title: 'Дождаться СМС',
+        descr: 'о готовности карты'
+      },
+      { title: 'Получить карту',
+        descr: 'в выбранном вами офисе банка'
+      },
+    ]
+
+    const howGetItems2 =[
+      { title: 'Оставьте заявку',
+        descr: 'в любом <a href="/atms/">отделении банка</a>'
+      },
+      { title: 'Дождаться СМС',
+        descr: 'о готовности карты'
+      },
+      { title: 'Получить карту',
+        descr: 'в выбранном вами офисе банка'
+      },
+    ]
+
+  -
+    const benefitsItems =[
+      { icon: 'img/card_2_0_benefit_5.svg',
+        descr: 'Принимают более чем <br>в&nbsp;150 странах',
+        descrTooltip: 'доступно для карт UnionPay'
+      },
+      { icon: 'img/card_2_0_benefit_3.svg',
+        descr: 'Можно открыть в&nbsp;рублях <br>или в&nbsp;юанях',
+        descrTooltip: 'доступно для карт UnionPay'
+      },
+      { icon: 'img/card_2_0_benefit_4.svg',
+        descr: 'Бесплатное <br>обслуживание',
+        descrTooltip: `
+          Для карт Мир — всегда,
+          <br>для UnionPay и Visa –
+          при&nbsp;соблюдении <a class="text-orange">условий</a>`
+      },
+      { icon: 'img/card_2_0_benefit_1.svg',
+        descr: 'Кэшбэк до&nbsp;7% за&nbsp;покупки <br>по&nbsp;всему миру',
+        descrTooltip: `
+          7% — в выбранной категории
+          <br>1% — на все покупки`
+      },
+      { icon: 'img/card_2_0_benefit_2.svg',
+        descr: 'Доход на&nbsp;остаток до&nbsp;5%',
+        descrTooltip: `
+          Только для&nbsp;карт в&nbsp;рублях при&nbsp;соблюдении одного из&nbsp;условий:
+          <ul class="ui-ul ui-ul--mt5 ui-ul--li-mb5">
+            <li>перечисление заработной платы на&nbsp;счет карты;</li>
+            <li>поступление процентов по&nbsp;срочному вкладу АТБ на&nbsp;счет карты;</li>
+            <li>при совершении безналичных покупок в&nbsp;торгово-сервисных предприятиях
+              на&nbsp;сумму от&nbsp;15&nbsp;000&nbsp;₽ в&nbsp;месяц
+              (30&nbsp;000&nbsp;₽ в&nbsp;месяц для&nbsp;карт UnionPay).
+            </li>
+          </ul>
+        `
+      },
+      { icon: 'img/card_2_0_benefit_6.svg',
+        descr: 'Бесплатное снятие наличных в&nbsp;любых банкоматах',
+      },
+    ]
+
+  -
+    const tabs =[
+      { text: 'Условия' },
+      { text: 'Документы и тарифы' },
+    ]
+
+  -
+    const tabsClub = [
+      { text: 'Что предлагаем' },
+      { text: 'Личный кабинет' },
+      { text: 'Инструкция',
+        onclick: "window.slideTo('.tel-instruction__section--right .swiper', 0)",
+      },
+      { text: 'Вопросы и ответы' },
+    ]
+
+  -
+    const telInstruction =[
+      {
+        mods: 'tel-instruction__section--right',
+        img: [
+          { src: 'tel_instruction_sl2_1' },
+          { src: 'tel_instruction_sl2_2' },
+          { src: 'tel_instruction_sl2_3' },
+          { src: 'tel_instruction_sl2_4' },
+        ],
+        steps: [
+          { title: 'Выберите дебетовую карту в&nbsp;<a href="#" class="text-orange">мобильном приложении</a>' },
+          { title: 'На странице карты нажмите кнопку «АТБ&nbsp;Клуб»' },
+          { title: 'Устанавливайте категорию повышенного кэшбэка' },
+          { title: 'Обменивайте баллы на&nbsp;рубли' },
+        ]
+      }
+    ]
+
+  -
+    let mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным <a class="text-orange" href="#">Мобильным банком</a>, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+  //- -
+    const bannerSapid = [
+      {
+        link: '#',
+        img: 'img/ban_sapid_gift.svg',
+        txt: 'Вход в ЛК',
+      },
+    ]
+
+  -
+    const tableData = {
+      names: [
+        { text: 'Тарифные планы', itemBold: true, },
+        { text: 'Программа лояльности', itemBold: true, },
+        { text: 'Формат кэшбэка', itemBold: true, },
+      ],
+      columns: [
+        {
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    '<p>АТБ 2.0 <br> Кошелек <br> Большой кошелек <br> Валютный кошелек <br> КЭШ-БЭК карта',
+                  ],
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<b><a target="_blank" href="#" class="text-orange text-underline">Стандарт-бонус</a></b>',
+                  ],
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    'В баллах',
+                  ],
+                  descr: `Обмен на&nbsp;рубли в&nbsp;мобильном приложении`,
+                }
+              ]
+            },
+          ],
+        },
+        {
+          rows: [
+            {
+              sections: [
+                {
+                  text: [
+                    'Приморец <br> Единая карта сахалинца <br> Особый статус <br> Детская карта <br> Кампус',
+                  ],
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    '<b><a target="_blank" href="#" class="text-orange text-underline">Стандарт-директ</a></b>',
+                  ],
+                },
+              ]
+            },
+            {
+              sections: [
+                {
+                  text: [
+                    'В рублях',
+                  ],
+                  descr: 'Автоматическое зачисление на&nbsp;счет не&nbsp;позднее <span class="text-nowrap">10-го рабочего</span> дня следующего месяца',
+                },
+              ]
+            },
+          ],
+        },
+      ]
+    }
+
+  -
+    const tableItemsMcc ={
+      style: 'min-width: 780px',
+      tbody: [
+        {
+          td: [
+            { text: '<span class="text-bold">Категория</span>', mods: 'ui-table__tr-title' },
+            { text: '<span class="text-bold">МСС коды</span>', mods: 'ui-table__tr-title' },
+            { text: '<span class="text-bold text-nowrap">Лимит баллов в месяц</span>', mods: 'ui-table__tr-title text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Авто' },
+            { text: '3351-3441, 4121, 4789, 5013, 5172, 5271, 5511, 5521, 5532, 5533, 5541, 5542, 5571, 5935, 5983, 7512, 7523, 7531, 7534, 7535, 7538, 7542, 7549' },
+            { text: '3000', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Дом ремонт' },
+            { text: '1520, 1711, 1731, 1740, 1750, 1761, 1771, 1799, 2791, 2842, 5021, 5039, 5046, 5051, 5065, 5072, 5074, 5085, 5198, 5200, 5211, 5231, 5251, 5261, 5712, 5713, 5714, 5718, 5719, 5722, 7622, 7623, 7629, 7641, 7692, 7699' },
+            { text: '3000', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Семья' },
+            { text: '5044, 5045, 5641, 5943, 5945, 5946, 5947, 7333, 7338, 7339, 7395, 8351, 2741, 5111, 5192, 5942, 5994, 5970, 7922, 7998' },
+            { text: '5000', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Шоппинг' },
+            { text: '5094, 5137, 5139, 5611, 5621, 5631, 5651, 5661, 5681, 5691, 5697, 5699, 5931, 5641, 5944, 5949, 5950, 7631' },
+            { text: '3000', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Здоровье' },
+            { text: '5122, 5912, 5975, 5976, 8021, 8043' },
+            { text: '3000', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Красота и спорт' },
+            { text: '5655, 5940, 5941, 5977, 7230, 7297, 7298, 7941, 7992, 7997' },
+            { text: '5000', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: '<span class="text-nowrap">Развлечения и отдых</span>' },
+            { text: '5811, 5812, 5813, 5932, 5937, 5971, 5972, 5973, 7829, 7832, 7841, 7911, 7922, 7929, 7932, 7933, 7991, 7993, 7994, 7996, 7998, 7999' },
+            { text: '5000', mods: 'text-center' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const usefulGoods =[
+      {
+        mod: 'green20',
+        title: 'Текст текст',
+        list: [
+          { title: 'Ставка от 5,5%', descr: 'годовых' },
+          { title: 'До 5 лет', descr: 'срок кредита' },
+          { title: 'До 3 млн рублей', descr: 'сумма кредита' },
+        ],
+        btn: 'Подробнее',
+        img: 'useful_goods_img_uc.png',
+      },
+      {
+        mod: 'green20',
+        title: 'Текст текст',
+        list: [
+          { title: 'Ставка от 5,5%', descr: 'годовых' },
+          { title: 'До 5 лет', descr: 'срок кредита' },
+          { title: 'До 3 млн рублей', descr: 'сумма кредита' },
+        ],
+        btn: 'Подробнее',
+        img: 'useful_goods_img_uc.png',
+      },
+      {
+        mod: 'orange30',
+        title: 'Текст текст',
+        list: [
+          { title: 'Ставка от 5,5%', descr: 'годовых' },
+          { title: 'До 5 лет', descr: 'срок кредита' },
+          { title: 'До 3 млн рублей', descr: 'сумма кредита' },
+        ],
+        btn: 'Подробнее',
+        img: 'useful_goods_img_uc.png',
+      },
+    ]
+
+  -
+    const smallBannerBiometrics  = {
+      title: 'Станьте клиентом без&nbsp;посещения офиса',
+      descr: 'С&nbsp;помощью биометрии на&nbsp;сайте госуслуг',
+      btsMods: 'small-banner__btns--mt-xs',
+      btnLink: 'Подробнее',
+      img: 'img/small_banner_card_2_0_biometrics.png'
+    }
+
+  -
+    const smallBannerClub  = {
+      title: 'АТБ Клуб обновлен и&nbsp;доступен <br>в&nbsp;мобильном приложении',
+      btnLink: 'Подробнее',
+      btsMods: 'small-banner__btns--mt-xs',
+      img: 'img/small_banner_card_2_0_club.png'
+    }
+
+  -
+    const howGetTabs =[
+      { text: 'Union Pay'},
+      { text: 'Мир или Visa' },
+    ]
+
+    const formTabs =[
+      { text: 'Union Pay'},
+      { text: 'Мир или Visa' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--card-2-0-every-occasion')
+        +banner-wrapper('img/banner_atb-2-0-every-occasion.png', true)
+          +banner-h1('Дебетовые карты <br class="banner__br-no-mob"><span class="text-nowrap">АТБ 2.0.</span>', '--mob-size-l')
+          +banner-subtitle('На любой случай жизни!')
+          +banner-foot
+            +ui-button('Оформить карту', 'banner, --m-size-l')(href='#mir-or-visa')
+      +banner-item('--card-2-0')
+        +banner-wrapper('img/banner_atb-2-0.png', true)
+          +banner-h1('Дебетовая карта <span class="text-nowrap">«АТБ 2.0»</span> UnionPay', '--mob-size-l')
+          +banner-text('Безграничная карта <br>для&nbsp;заграничных путешествий')
+          +banner-foot
+            +ui-button('Подробнее', 'banner, --m-size-l').js-open-tab(href='#cards-table')
+        //- +banner-sapid-container(bannerSapid)
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+          +benefits(benefitsItems)
+
+      +section
+        .inner
+          +small-banner-wrapper('--2items')
+            +small-banner(smallBannerBiometrics, '--min-x-xl, --small')
+            +small-banner(smallBannerClub, '--min-x-xl, --small')
+
+      +section
+        +tabs-head(tabs, '', '--no-item-border, --inner-line')
+        +tabs-main
+          +tabs-main__item(true)
+            .inner
+              +cards-table#cards-table
+          +tabs-main__item
+            .inner
+              +documents
+              +accordion
+                +accordion-item('Архив')
+                  +accordion('--inner')
+                    +accordion-item('Архив тарифов')
+                      +documents
+                    +accordion-item('Архив УДБО')
+                      +documents
+
+      +section
+        +section-head
+          .inner
+            +ui-h2('АТБ Клуб&nbsp;&mdash; программа лояльности по&nbsp;дебетовым картам', 'section-head')
+        +tabs-head(tabsClub, '', '--gradient-border')
+        +tabs-main
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +club-offer
+          +tabs-main__item#tab-lk
+            +section('--mt0')
+              .inner
+                +club-offer('lk')
+          +tabs-main__item()
+            +section('--mt0')
+              .inner
+                +tel-instruction(telInstruction, '--img-l, --club-instructions')
+          +tabs-main__item()
+            +section('--mt0')
+              .inner
+                +accordion()
+                  +accordion-item('Как можно проверить сколько баллов начислено?')
+                    +ui-p1('В&nbsp;мобильном приложении в&nbsp;разделе «АТБ Клуб» можно посмотреть количество баллов, накопленных по&nbsp;каждой карте. Там&nbsp;же доступна история начисления баллов по&nbsp;каждой операции.', '--light')
+                  +accordion-item('Что такое баллы программы и&nbsp;как они начисляются?')
+                    +ui-p1('Баллы&nbsp;&mdash; это вознаграждение за&nbsp;оплату покупок картой АТБ. Они начисляются за&nbsp;покупки в&nbsp;магазинах и&nbsp;оплату услуг картой в&nbsp;зависимости от&nbsp;стоимости покупки в&nbsp;выбранных категориях&nbsp;7% от&nbsp;суммы, а&nbsp;за&nbsp;остальные покупки 1%&nbsp;Баллы начисляются при соблюдении условия трат по&nbsp;карте в&nbsp;месяц на&nbsp;сумму не&nbsp;менее 5000&nbsp;рублей.', '--light')
+                  +accordion-item('Как быстро начисляются баллы?')
+                    +ui-p1('Баллы начисляются через 2-3 дня после совершения покупки, но&nbsp;доступными для&nbsp;списания они становятся не&nbsp;позднее 10-ти рабочих дней по&nbsp;окончании месяца.', '--light')
+                  +accordion-item('Что такое «выбранная категория» или «категория повышенного кэшбэка»?')
+                    +ui-p1('Категория определяется кодом МСС, который передается банку при каждой покупке. Данный код присваивается магазину и&nbsp;определяет категорию товаров, которые продает магазин. Мы&nbsp;объединили коды в&nbsp;категории. Вы&nbsp;можете выбрать наиболее подходящую и&nbsp;получать больше баллов за&nbsp;покупки. Полный перечень МСС кодов по&nbsp;категориям доступен в&nbsp;файле <a href="/upload/doc/karty/pasport-bp-standart-bonus.pdf" target="_blank" class="text-orange">Паспорт БП&nbsp;«Стандарт бонус»</a>, пункт 4.2', '--light')
+                  +accordion-item('Как накопить больше баллов?')
+                    +ui-p1('Оплачивайте картой как можно чаще. Для&nbsp;увеличения суммы начисляемых баллов необходимо зайти в&nbsp;мобильное приложение в&nbsp;раздел «АТБ Клуб» и&nbsp;выбрать категорию повышенного начисления. Начисление баллов по&nbsp;выбранной категории происходит с&nbsp;1-го числа следующего месяца. Например, если выбрать категорию в&nbsp;марте, повышенные баллы будут начисляться с&nbsp;1-го апреля.', '--light')
+                  +accordion-item('За какие операции не&nbsp;начисляются баллы?')
+                    +ui-p1('Баллы не&nbsp;начисляются за&nbsp;операции переводов, снятия наличных и&nbsp;за&nbsp;операции с&nbsp;<a class="text-orange" href="/the-most-important/measures-customer-support/mss-kody-isklyucheniy-iz-tranzaktsiy/">МСС-кодами исключениями</a>.', '--light')
+                  +accordion-item('Как можно потратить накопленные баллы?')
+                    +ui-p1('При накоплении баллов их&nbsp;можно перевести на&nbsp;счет карты по&nbsp;курсу 1&nbsp;балл=1&nbsp;рубль. Обмен баллов доступен в&nbsp;мобильном приложении в&nbsp;разделе «АТБ Клуб». Максимальная сумма обмена на&nbsp;рубли&nbsp;— 5&nbsp;000 баллов в&nbsp;месяц.', '--light')
+                  +accordion-item('Каков срок действия баллов?')
+                    +ui-p1('Накопленные баллы доступны для&nbsp;обмена в&nbsp;течение 6&nbsp;месяцев. Затем баллы сгорают.')
+                  +accordion-item('Как определить, какая программа лояльности действует по&nbsp;вашей карте?', '--card-router')
+                    +card-router(tableData, '--without-heads, --2slides')(data-slides-per-view='2')
+
+      +section('--bg-grey')
+        .inner
+          +section-head
+            +ui-h2('Как оформить карту', 'section-head').text-center
+            +tabs-head(howGetTabs, true, '--round, --slides-center')(data-tabs-group='how-get-tabs')
+          +tabs-main(data-tabs-group='how-get-tabs')
+            +tabs-main__item(true)
+              +how-get('', howGetItems2, '', '--static')
+            +tabs-main__item
+              +how-get('', howGetItems1, '', '--static')
+
+      +section#section-form
+        .inner
+          +form-container('--border-t')
+            +section-head.text-center
+              +ui-h2('Оформите заявку на&nbsp;карту', 'section-head')
+            p Форма
+          //- +section-head.text-center
+            +ui-h2('Оформите заявку на карту Мир / Visa', 'section-head')
+          //- +tabs-head(formTabs, true, '--round, --slides-center')(data-tabs-group='form')
+          //- +tabs-main(data-tabs-group='form')
+            +tabs-main__item(true)
+              +ui-h6('Для выпуска карты Union&nbsp;Pay <br> обратитесь <a class="text-orange" href="/atms/">в&nbsp;любое отделение</a>').text-center
+            +tabs-main__item
+              p ФОРМА
+
+      +section
+        .inner
+          +mob-banner(mobBannersData)
+
+      +section('--ov-hidden')
+        .inner
+          +section-head.text-center.text-center--mob-left
+            +ui-h2('Вас также могут заинтересовать', 'section-head')
+          +useful-goods(usefulGoods)
+
+      +section
+        .inner
+          +accordion
+            +accordion-item('Другие банковские продукты')
+              +credits-list
+
+    +popup__wrapper#bonus_operations
+      +p-bonus-operation
+
+    +popup__wrapper('--xxl')#popup-mcc-codes
+      +section-head('--mb-size-s')
+        +ui-h4('MCC коды и&nbsp;лимит кэшбэка для&nbsp;категорий', '--bold')
+      +ui-table(tableItemsMcc, '--v-al-top, --all-border, --grey-title, --auto-scroll')

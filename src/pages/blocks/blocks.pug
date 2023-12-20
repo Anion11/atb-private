@@ -1,0 +1,851 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  //- link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'blocks'
+  -const pageTitle ='Repository blocks'
+
+  -
+    const lisiItems =[
+      { text: 'li 1' },
+      { text: 'li 2' },
+    ]
+
+  -
+    const tabs = [
+      { text: 'Текущая ситуация', isAttention: true },
+      { text: 'Вклады' },
+      { text: 'Кредит наличными' },
+      { text: 'Карты' }
+    ]
+
+  -
+    const howApplyItems =[
+      { icon: 'img/place.png', title: 'title', descr: 'Изучите условия страхования на нашем сайте и выберите сумму страховой защиты, которая подходит именно Вам' },
+      { icon: 'img/place.png', title: 'title', descr: 'Обратитесь в ближайшее отделение «Азиатско-Тихоокеанский Банк» (АО) для консультации или оформления программы "Защита карты" с паспортом' },
+      { icon: 'img/place.png', title: 'title', descr: 'Проведите оплату и начните пользоваться программой "Защита карты"' },
+    ]
+
+  -
+    const howGetItems =[
+      { icon: './img/cash.svg', title: 'Определяете размер взноса (от 25&nbsp;000&nbsp;руб.) и срок программы (от&nbsp;5 до&nbsp;40&nbsp;лет)', descr: 'Вносите средства раз в квартал, полгода, год или единовременно' },
+      { icon: './img/cash.svg', title: 'Вносите средства раз в квартал, полгода, год или единовременно', descr: 'Вносите средства раз в квартал, полгода, год или единовременно' },
+      { icon: './img/cash.svg', title: 'В результате у вас есть накопленная сумма плюс инвестиционный доход', descr: 'Вносите средства раз в квартал, полгода, год или единовременно' },
+    ]
+
+  -
+    const benefitsItems1 =[
+      { gradientTitle: 'до <span class="benefits__text-xl">120</span> дней', title: 'беспроцентный период' },
+      { gradientTitle: 'до <span class="benefits__text-xl">10%</span>', title: 'кэшбэк на покупки' },
+      { icon: 'img/ic.cash.svg', title: 'Бесплатное снятие наличных' },
+    ]
+
+  -
+    const benefitsItems2 =[
+      { icon: 'img/ic.cash.svg', descr: 'Банковская карта для ребенка выпускается детям в&nbsp;возрасте от 7 до 14 лет' },
+      { icon: 'img/ic.cash.svg', descr: 'Вы получаете бесплатный доступ к мобильному банку' },
+      { icon: 'img/ic.cash.svg', descr: 'Детская дебетовая карта привязана к счёту родителя' },
+      { icon: 'img/ic.cash.svg', descr: 'Использование пластикового носителя исключает риск кражи или&nbsp;утраты наличных' },
+      { icon: 'img/ic.cash.svg', descr: 'Можете пополнять первую карту ребенка в любое время на любую сумму' },
+      { icon: 'img/ic.cash.svg', descr: 'Вы сможете контролировать расходы ребенка онлайн с помощью мобильного банка' },
+    ]
+
+  -
+    const benefitsItems3 =[
+      { icon: 'img/ic.cash.svg', modClass: 'benefits__item--row2', title: 'Участвовать в проекте «Сахалинское долголетие»', descr: 'бесплатно посещать культурно-массовые мероприятия и пользоваться услугами общественного транспорта' },
+      { icon: 'img/ic.cash.svg', descr: 'Выгодно покупать со скидками от торговых партнеров' },
+      { icon: 'img/ic.cash.svg', descr: 'Получать субсидии, пособия и пенсии на одну карту' },
+      { icon: 'img/ic.cash.svg', descr: 'Получать дополнительный доход' },
+      { icon: 'img/ic.cash.svg', descr: 'Пользоваться банковской картой бесплатно' },
+    ]
+
+  -
+    const benefitsItems4 =[
+      { icon: 'img/ic.cash.svg', title: 'Сохранность вложенных средств установлена законодательством<sup>1</sup>', descr: 'Вложенные средства при необходимости вы можете забрать, расторгнув договор. Размер выкупной суммы зависит от года действия договора, в котором он расторгается.' },
+      { icon: 'img/ic.cash.svg', title: 'Доходность, начисленная на счета клиентов<sup>2</sup>', descr: 'Среднегодовая доходность счетов за период с 2015 г. по 2019 г. составила <span class="text-orange">9,97%</span>, что выше среднегодовой доходности <span class="text-orange">7,70% </span> по рублевым депозитам крупнейших банков<sup>3</sup> за аналогичный период' },
+      { icon: 'img/ic.cash.svg', title: 'Государственная поддержка –', descr: 'Налоговый вычет в размере <span class="text-orange">13% </span>от внесенных за год средств<sup>4</sup>' },
+      { icon: 'img/ic.cash.svg', title: 'Универсальность продукта<sup>*</sup>', descr: 'Отсутствие обязательных платежей, наследование, защита от действий третьих лиц (накопления не делятся при разводе и не конфискуются <sup>5</sup>)' },
+      { icon: 'img/ic.cash.svg', title: 'Сохранение пенсионного возраста –', descr: 'Начало выплат по вашему договору начнется раньше выплаты государственной пенсии, то есть по старым пенсионным основаниям: для женщин — по достижении <span class="text-orange">55</span> лет, для мужчин — с <span class="text-orange">60</span> лет<sup>6</sup>' },
+    ]
+
+  -
+    const featuresItems =[
+      { icon: 'img/child_features-icon-1.svg', title: 'Бесплатный выпуск и обслуживание карты для детей', descr: 'Никто не подсмотрит ваши реквизиты при оплате' },
+      { icon: 'img/child_features-icon-1.svg', title: 'Встроенная опция бесконтактной оплаты', descr: 'Никто не подсмотрит ваши реквизиты при оплате' },
+      { icon: 'img/child_features-icon-1.svg', title: 'Разумные лимиты совершения операций в день и в месяц', descr: 'Никто не подсмотрит ваши реквизиты при оплате' },
+      { icon: 'img/child_features-icon-1.svg', title: 'Кэшбэк в категории «Счастливое детство»', descr: 'Никто не подсмотрит ваши реквизиты при оплате' },
+      { icon: 'img/child_features-icon-1.svg', title: 'Кэшбэк в категории «Счастливое детство»', descr: 'Никто не подсмотрит ваши реквизиты при оплате' },
+    ]
+
+  -
+    const breedingLinks =[
+      { icon: 'img/ic.cash.svg', title: 'Налогообложение иностранных счетов (FATCA/CRS)', descr: 'Банк прошел процедуру регистрации в IRS в статусе «Участвующий иностранный финансовый институт (Participating FFI)»' },
+      { icon: 'img/ic.cash.svg', title: 'Противодействие коррупции и управление конфликтом интересов', descr: 'Мы придерживаемся принципа непримиримого отношения к любым формам проявления коррупции на всех уровнях.' },
+      { icon: 'img/ic.cash.svg', title: 'Горячая линия комплаенс', descr: 'Вы знаете о нарушениях в нашем Банке? Сообщите нам о них. Мы гарантируем безопасность и конфиденциальность.' },
+    ]
+
+  -
+    const termsTable =[
+      { name: 'Минимальный первоначальный взнос', descr: 'не менее 50 000 руб.' },
+      { name: 'Валюта', descr: 'Рубль РФ' },
+      { name: 'Срок', descr: 'До момента расторжения по инициативе Вкладчика или иным основаниям' },
+    ]
+
+  -
+    const tableItems ={
+      thead: [
+        {
+          th: [
+            { text: 'Компании/организации' },
+            { text: 'Скидки на товары/услуги' },
+            { text: 'th 3' },
+          ]
+        },
+      ],
+      tbody: [
+        {
+          title: true,
+          td: [
+            { colspan: '100%', text: 'Торговые сети' },
+          ]
+        },
+        {
+          td: [
+            { text: 'ООО "Фреш 25"' },
+            { text: '4 % на 6 товаров' },
+            { text: 'text text text text' },
+          ]
+        },
+        {
+          td: [
+            { text: 'ООО "Интекс" (торговая сеть "Реми")' },
+            { text: '3 % на 7 товаров' },
+            { text: 'text text text text' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Сеть магазинов "Помощник"' },
+            { text: '10 % на все виды товаров' },
+            { text: 'text text text text' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItems2 ={
+      thead: [
+        {
+          th: [
+            { text: 'Параметры программы', mods: 'ui-table__tr-title' },
+            { text: 'Страховые суммы, ₽', mods: 'ui-table__tr-title ui-table__th-desktop' },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Страховые суммы, ₽', colspan: '2', mods: 'ui-table__td-mobile' }
+          ]
+        },
+        {
+          td: [
+            { text: 'Конструктивные элементы' },
+            { text: '40&nbsp;000	' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Отделка и инженерное оборудование' },
+            { text: '40&nbsp;000' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Домашнее имущество' },
+            { text: '40&nbsp;000' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Гражданская ответственность' },
+            { text: '45&nbsp;000' },
+          ]
+        },
+        {
+          td: [
+            { text: '<b>Страховая премия</b>' },
+            { text: '<b>1&nbsp;050</b>' },
+          ]
+        },
+      ]
+    }
+
+  -
+    let mobBannersData ={
+      title: 'Встречайте новый <span class="text-orange">Мобильный&nbsp;банк</span> – удобный и&nbsp;безопасный доступ к&nbsp;вашим финансам',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        //- { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+  -
+    const usefulGoods =[
+      {
+        mod: 'orange30',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_you-word.png',
+        p2: 'Расскажите, что&nbsp;понравилось в АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+      {
+        mod: 'orange40',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_you-word.png',
+        p2: 'Расскажите, что&nbsp;понравилось в АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+      {
+        mod: 'orange50',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_you-word.png',
+        p2: 'Расскажите, что&nbsp;понравилось в АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+      {
+        mod: 'grey30',
+        title: 'Кредитная карта «Универсальная»',
+        btn: 'Оставить заявку',
+        img: 'useful_goods_img_uc.png',
+        list: [
+          { title: 'До 120 дней', descr: 'беспроцентный период' },
+          { title: 'Кэшбэк 10&nbsp%', descr: 'в семейных категориях' },
+          { title: '0 рублей', descr: 'обслуживание карты' },
+        ]
+      },
+      {
+        mod: 'grey35',
+        title: 'Кредитная карта «Универсальная»',
+        btn: 'Оставить заявку',
+        img: 'useful_goods_img_uc.png',
+        list: [
+          { title: 'До 120 дней', descr: 'беспроцентный период' },
+          { title: 'Кэшбэк 10&nbsp%', descr: 'в семейных категориях' },
+          { title: '0 рублей', descr: 'обслуживание карты' },
+        ]
+      },
+      {
+        mod: 'green20',
+        title: 'Платежная система Мир',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_sbp.png',
+        list: [
+          { title: '0 рублей', descr: 'обслуживание карты, переводы в любые банки по номеру телефона, выдача наличных в банкоматах любых банков' },
+          { title: 'Скидки и акции', descr: 'от «Привет, Мир»' },
+        ]
+      },
+      {
+        mod: 'green30',
+        title: 'Платежная система Мир',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_sbp.png',
+        list: [
+          { title: '0 рублей', descr: 'обслуживание карты, переводы в любые банки по номеру телефона, выдача наличных в банкоматах любых банков' },
+          { title: 'Скидки и акции', descr: 'от «Привет, Мир»' },
+        ]
+      },
+      {
+        mod: 'blue10',
+        title: 'Цифровая карта',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_sbp.png',
+        list: [
+          { title: '0 рублей', descr: 'оформление и обслуживание карты' },
+          { title: 'Быстро и удобно', descr: 'оформите в Мобильном приложении и&nbsp;сразу пользуйтесь' },
+        ]
+      },
+      {
+        mod: 'blue20',
+        title: 'Цифровая карта',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_sbp.png',
+        list: [
+          { title: '0 рублей', descr: 'оформление и обслуживание карты' },
+          { title: 'Быстро и удобно', descr: 'оформите в Мобильном приложении и&nbsp;сразу пользуйтесь' },
+        ]
+      },
+    ]
+
+  -
+    const mainAttentionData ={
+      title: '<span class="text-orange">Внимание!</span>',
+      descr: 'Информация по текущей ситуации',
+      btn: 'Подробнее'
+    }
+
+  -
+    const promoLoanData = {
+      imgs: [
+        { src: '/img/promo-loan_scene.png', mods: 'promo-loan__img--scene' },
+        { src: '/img/promo-loan_sky1.png', mods: 'promo-loan__img--sky1' },
+        { src: '/img/promo-loan_sky2.png', mods: 'promo-loan__img--sky2' },
+      ],
+      h3: 'Кредит наличными <span class="text-orange">#Ставок.нет!</span>',
+      btn: 'Подробнее',
+    }
+
+  -
+    const promo12MonthsData ={
+      imgs: [
+        { src: '/img/promo-loan_12-month.png', mods: 'promo-loan__img--scene promo-loan__img--m-hidden' },
+        { src: '/img/promo-loan_12-month-mob.png', mods: 'promo-loan__img--scene promo-loan__img--m-block' },
+      ],
+      h3: 'Акция <br class="text-t-inline"><span class="text-orange">«Двенадцать месяцев»</span>',
+      btn: 'Подробнее',
+      btnMods: ', --m-text, --m-orange-underline',
+    }
+
+block beforeHeader
+  +promo
+  +promo-loan(promoLoanData)
+  +promo-loan(promo12MonthsData, '--12-month')
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Main', '/')
+      +breadcrumbs-item('blocks')
+    +banner()
+      +banner-item('--class')
+        +banner-wrapper('/img/banner_gradient.jpg')
+          +banner-h1('h1')
+          +banner-descr('descr mobile none').text-orange.banner-item-dn
+          +banner-descr('descr --fw400 ', '--fw400').banner-item-dn
+          .banner-item-foot.banner-item-foot--mob-stretch
+            .banner-item-foot-item
+              +ui-button('button', 'banner')(href='#')
+            .banner-item-foot-item
+              +ui-button('banner-item-foot--mob-stretch', 'banner')(href='#')
+        +banner-mobile
+          p text
+            span.banner-mobile__text-xxl  text xxl
+      +banner-item
+        +banner-wrapper('/img/banner_gradient.jpg')
+          +banner-subtitle('subtitle')
+          +banner-h1('Заголовок div', '', false)
+          +banner-descr('descr --size-s - 28px', '--size-s').text-orange
+          +banner-descr('descr --size-xs - 24px', '--size-xs').banner-item-dn
+          +banner-descr('descr --size-xxs - 20px', '--size-xxs').banner-item-dn
+        +banner-mobile
+          p text <b> text </b>
+          p text
+      +banner-item
+        +banner-wrapper('/img/banner_gradient.jpg')
+          +banner-h1('h1 --size-s 40px', '--size-s')
+          +ui-ul(lisiItems, 'banner-wrapper').banner-item-dn
+        +banner-mobile
+          +ui-ul(lisiItems, 'banner-mobile')
+
+    .page-content
+      .inner
+        +ui-h1(pageTitle)
+        +section()
+          +section-head
+            +ui-h2('section h2', 'section-head')
+            +ui-h3('section h3', 'section-head')
+            .section-head__descr section descr
+            p
+              +ui-h4('h4')
+            +ui-p1()
+              p
+                b p1 and text classes
+              p
+                a.text-link-underline link-underline inline
+              p
+                span.text-nowrap text-nowrap
+              p
+                .text-center text-center
+              p
+                .text-center.text-center--laptop-left text-center --laptop-left
+              p
+                .text-center.text-center--mob-left text-center --mob-left
+              p
+                .laptop-center text-laptop-center
+              p
+                .text-orange text-orange
+              p
+                .text-grey60 text-grey60
+              p
+                .text-grey80 text-grey80
+              +ui-ul(lisiItems)
+              +ui-ol(lisiItems)
+
+        +section('--mt-xs, --bg-grey')
+          +section-head('--max-w')
+            .section-head__descr
+              p section margin-top: 60px
+              p section --bg-grey  $grey20  #f8f8f8
+              p section-head max-width: 1080px
+
+          div
+            +section-box()
+              .section-box__inner
+                p  section-box__inner max-width: 800px
+            +section-box('--hr')
+              p section-box--hr
+              p section-box margin-top: 40px
+
+          +section-footnote
+            p section-footnote font-size: 14px;
+
+        +section('--mt-s')
+          +section-head('--max-w900, --center')
+            .section-head__descr
+              p section margin-top: 40px;
+              p section-head max-width: 900px center
+          +section-footnote('--fz16')
+            p section-footnote font-size: 16px
+
+        +section()
+          +section-head
+            +ui-h2('documents', 'section-head')
+          +documents
+          +accordion
+            +accordion-item('item 1')
+              +documents
+            +accordion-item('item 2 accordion inner')
+              +accordion('--inner')
+                +accordion-item('inner item 1')
+                  +documents
+                +accordion-item('inner item 2')
+                  +documents
+                .accordion-item
+                  .accordion-item__head.accordion-item__head--link
+                    a(href='#') link
+
+      +section#section-credits-list
+        .inner
+          +accordion
+            +accordion-item('Другие банковские продукты')
+              +credits-list
+      .inner
+        +section()
+          +section-head
+            +ui-h2('UI Tooltip', 'section-head')
+          +ui-p1
+            span.text-nowrap text
+              +ui-tooltip('Tooltip text')
+          br
+          br
+          +ui-h2('tooltip ')
+            span.text-nowrap in ui-h2
+              +ui-tooltip('Tooltip text', '--in-ui-h2')
+
+        +section()
+          +section-head
+            +ui-h2('UI Buttons', 'section-head')
+          +ui-button('Кнопка-ссылка')(href='/')
+          +ui-button('Кнопка-submit', '', true)
+          +ui-button('Кнопка-button')
+          br
+          br
+          +ui-button('button --empty', '--empty')(href='/')
+          +ui-button('button --white', '--white', true)
+          +ui-button('button --outline', '--outline', true)
+          br
+          br
+          +ui-button('button --size-s', '--size-s')(href='/')
+          =' '
+          +ui-button('button --ph-s', '--ph-s')(href='/')
+          br
+          br
+          +ui-button('button --link-next', '--link-next')(href='/')
+        +section()
+          +section-head
+            +ui-h2('UI Checkbox', 'section-head')
+          +ui-checkbox('idCheckbox', 'I love ')
+            a(href='#') semolina
+          br
+          br
+          +ui-checkbox('calcBest', 'Лучшая ставка ', '--switch')
+        +section()
+          +section-head
+            +ui-h2('UI Radio', 'section-head')
+          +ui-radio('idRadio', 'I love ')
+            a(href='#') semolina
+        //- +section()
+          +ui-h2('UI Date single')
+          br
+          +ui-form-name('ui-form-name')
+          +ui-datepicker('--single')
+          br
+          br
+          br
+          +ui-h2('UI Date range')
+          br
+          +ui-form-name('ui-form-name')
+          +ui-datepicker('--range')
+          br
+          br
+          +ui-h2('UI Date time')
+          br
+          +ui-form-name('ui-form-name')
+          +ui-datepicker('--time')
+        +section()
+          +section-head
+            +ui-h2('UI Input', 'section-head')
+          +ui-form-name('ui-form-name')
+          +ui-input('inputID')(placeholder='placeholder')
+        +section()
+          +section-head
+            +ui-h2('UI Range', 'section-head')
+          +ui-range('tet', ' ₽')(data-min='1000000' data-max='60000000')
+        +section()
+          +section-head
+            +ui-h2('UI Select', 'section-head')
+          +ui-form-name('ui-form-name')
+          +ui-select('', 'Option 1', 'Option 2', 'Option 3', 'Option 4')
+        +section()
+          +section-head
+            +ui-h2('UI Select multiple', 'section-head')
+          +ui-form-name('ui-form-name')
+          +ui-select('', '', 'Option 1', 'Option 2', 'Option 3', 'Option 4')(data-placeholder='multiple placeholder' multiple)
+
+        //- +section()
+          +ui-h2('UI Textarea', 'section')
+          +ui-textarea()(maxlength='256')
+
+      +section()
+        .inner
+          +main-attention(mainAttentionData)
+
+      +section
+        .inner
+          +attention
+            +ui-ul('')
+              li block attention
+              li text
+              li text
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('information', 'section-head')
+          +information('Для бесконтактной оплаты покупок вам понадобится <span class="text-nowrap">Android-смартфон</span> с NFC с версией операционной системы Android 5.0 и выше. Приложение «Кошелёк» необходимо скачать из официального магазина мобильной операционной системы или производителя смартфона (Google Play, Huawei AppGallery).')
+
+      +section()
+        .inner
+          +section-head
+            +ui-h2('terms', 'section-head')
+          +terms(termsTable)
+
+      +section()
+        .inner
+          +section-head
+            +ui-h2('ui-table', 'section-head')
+          +ui-table(tableItems)
+
+      +section()
+        .inner
+          +section-head
+            +ui-h2('ui-table --mob-scroll', 'section-head')
+          +ui-table(tableItems, '--mob-scroll')
+
+      +section()
+        .inner
+          +section-head
+            +ui-h2('ui-table --auto-scroll', 'section-head')
+          +ui-table(tableItems, '--auto-scroll')
+
+      +section()
+        .inner
+          +section-head
+            +ui-h2('ui-table --inner-border', 'section-head')
+          +ui-table(tableItems, '--inner-border')
+
+      +section()
+        .inner
+          +section-head
+            +ui-h2('ui-table --all-border ', 'section-head')
+          +ui-table(tableItems, '--all-border ')
+
+      +section()
+        .inner
+          +section-head
+            +ui-h2('ui-table --inner-border, --prop-ins')
+          +ui-table(tableItems2, '--inner-border, --prop-ins')
+
+      +section
+        .inner
+          +ubs-info
+
+      +section#mob-banner
+        .inner
+          +mob-banner(mobBannersData)
+
+      +section
+        .inner
+          +mir-banner
+
+      +section
+        .inner
+          +switch('switch', 'item1', 'item1', 'switch1', '--mb20')
+          +switch-group('switch1')
+            +switch-content(true)
+              p 1
+            +switch-content()
+              p 2
+
+      +section
+        .inner
+          +switch('switch --mob-vertical', 'item1', 'item1', 'switch2', '--mob-vertical')
+          +switch-group('switch2')
+            +switch-content(true)
+              p 1
+            +switch-content()
+              p 2
+
+      +section
+        .inner
+          +switch('switch --center', 'item1', 'item1', 'switch3', '--center')
+          +switch-group('switch3')
+            +switch-content(true)
+              p 1
+            +switch-content()
+              p 2
+
+      .inner
+        +section
+          +section-head
+            +ui-h2('tabs', 'section-head')
+          +tabs-head(tabs, true)
+          +tabs-main
+            +tabs-main__item(true)
+              .inner
+                p text 1
+            +tabs-main__item
+              .inner
+                p text 2
+            +tabs-main__item
+              .inner
+                p text 3
+            +tabs-main__item
+              .inner
+                p text 4
+
+        +section
+          +section-head
+            +ui-h2('tabs --grey', 'section-head')
+          +tabs-head(tabs, true, '--grey')
+          +tabs-main
+            +tabs-main__item(true)
+              .inner
+                p text 1
+            +tabs-main__item
+              .inner
+                p text 2
+            +tabs-main__item
+              .inner
+                p text 3
+            +tabs-main__item
+              .inner
+                p text 4
+
+        +section
+          +section-head
+            +ui-h2('tabs --round', 'section-head')
+          +tabs-head(tabs, true, '--round')
+          +tabs-main
+            +tabs-main__item(true)
+              .inner
+                p text 1
+            +tabs-main__item
+              .inner
+                p text 2
+            +tabs-main__item
+              .inner
+                p text 3
+            +tabs-main__item
+              .inner
+                p text 4
+
+        +section
+          +section-head
+            +ui-h2('tabs --round-d-enable', 'section-head')
+          +tabs-head(tabs, true, '--round-d-enable')
+          +tabs-main
+            +tabs-main__item(true)
+              .inner
+                p text 1
+            +tabs-main__item
+              .inner
+                p text 2
+            +tabs-main__item
+              .inner
+                p text 3
+            +tabs-main__item
+              .inner
+                p text 4
+
+        +section
+          +section-head
+            +ui-h2('tabs --no-item-border', 'section-head')
+          +tabs-head(tabs, true, '--no-item-border')
+          +tabs-main
+            +tabs-main__item(true)
+              .inner
+                p text 1
+            +tabs-main__item
+              .inner
+                p text 2
+            +tabs-main__item
+              .inner
+                p text 3
+            +tabs-main__item
+              .inner
+                p text 4
+
+        +section
+          +section-head
+            +ui-h2('tabs --gradient-border', 'section-head')
+          +tabs-head(tabs, true, '--gradient-border')
+          +tabs-main
+            +tabs-main__item(true)
+              .inner
+                p text 1
+            +tabs-main__item
+              .inner
+                p text 2
+            +tabs-main__item
+              .inner
+                p text 3
+            +tabs-main__item
+              .inner
+                p text 4
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('benefits', 'section-head')
+          +benefits(benefitsItems1)
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('benefits --title-normal', 'section-head')
+          +benefits(benefitsItems1, '--title-normal')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('benefits --mob-items2', 'section-head')
+          +benefits(benefitsItems2, '--mob-items2')
+
+      +section
+        .inner
+          +section-head
+              +ui-h2('benefits align-items --start', 'section-head')
+          +benefits(benefitsItems3, '--ai-start')
+
+      +section
+        .inner
+          +section-head
+              +ui-h2('benefits --items2-default', 'section-head')
+          +benefits(benefitsItems4, '--items2-default')
+
+      +section
+        .inner
+          +section-head
+              +ui-h2('benefits --items2 (big text)', 'section-head')
+          +benefits(benefitsItems4, '--items2')
+
+      +section
+        .inner
+          +section-head().text-center
+            +ui-h3('features', 'section-head')
+          +features(featuresItems)
+
+      +section
+        .inner
+          +section-head().text-center
+            +ui-h3('features --3items, --fz-18', 'section-head')
+          +features(featuresItems, '--3items, --fz-18')
+
+      +section
+        .inner
+          +section-head().text-center
+            +ui-h3('features --5items', 'section-head')
+          +features(featuresItems, '--5items')
+
+      +section
+        .inner
+          +section-head().text-center
+            +ui-h3('breeding-links', 'section-head')
+          +breeding-links(breedingLinks)
+
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Этапы оформления - how-apply')
+          +how-apply(howApplyItems)
+
+      +section
+        .inner
+          +how-get('Как получить денежный бонус?', howGetItems, 'Оформить карту')
+
+      +section('--ov-hidden')
+        .inner
+          +section-head().text-center
+            +ui-h2('Карты, поддерживающие Garmin Pay (select-card)', 'section-head')
+          +select-card
+
+      +section('--ov-hidden')#interesting
+        .inner
+          +section-head
+            +ui-h2('Вас также могут заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('seo-menu', 'section-head')
+          +seo-menu
+            a(href='#') Дебетовая карта МИР
+            a(href='#') Visa Infinite
+
+      .inner
+        +section()
+          +ui-h2('Lazy load test', 'section')
+          img.lazyload(src='img/swim.jpg' data-src='img/fancy_img1.png' alt='')
+        +section()
+          +ui-h2('Lazy load test', 'section')
+          img.lazyload(src='img/swim.jpg' data-src='img/fancy_img2.png' alt='')
+        +section()
+          +ui-h2('Lazy load test', 'section')
+          img.lazyload(src='img/swim.jpg' data-src='img/fancy_img3.png' alt='')
+
+    +seo('Как оформить кредитную карту по паспорту в АТБ')
+      p Вас интересуют кредитные карты по паспорту? Рассмотрите возможность получения подобной в Азиатско-Тихоокеанском банке. На сайте банка есть почти вся нужная информация. Оформить кредитную карту по паспорту в АТБ можно всего в несколько шагов:
+      ul
+        li Рассмотрите варианты, представленные на сайте банка, выбрав наиболее подходящее предложение под Ваши цели.
+        li Заполните анкету за несколько минут.
+        li Дождитесь приглашения из банка для получения продукта.
+        li Приходите в ближайшее отделение с минимальным набором документов и начинайте использовать карту.&nbsp;
+      p Как видите, оформить кредитную карту онлайн по паспорту в АТБ очень просто. Еще проще ее использовать. Механизм бесконтактной оплаты по кредитной карте по паспорту от Азиатско-Тихоокеанского банка делает расчеты по карте АТБ простыми и быстрыми, но при этом, безопасными.
+      +seo-menu('seo')
+        a(href='#') Моментальная кредитная карта
+        a(href='#') Экспресс кредитная карта
+        a(href='#') Кредитная карта без справок и поручителей
+        a(href='#') Кредитная карта с льготным периодом

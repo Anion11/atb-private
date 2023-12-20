@@ -1,0 +1,58 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'service-pages'
+  -const pageTitle ='О cтраховании вкладов'
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item(pageTitle)
+    +banner
+      +banner-item('--text-old, --mb-small-fz')
+        +banner-wrapper('/img/banner_gradient.jpg')
+          +banner-h1('О cтраховании вкладов')
+    .page-content
+      +section('--mt0')
+        .inner
+          +info-block
+            +info-block__line
+              p  «Азиатско-Тихоокеанский Банк» (АО) включен
+                =' '
+                a.text-orange(href='https://www.asv.org.ru/insurance/banks_list/' rel='nofollow' target='_blank') Государственной корпорацией «Агентство по страхованию вкладов»
+                |  в реестр банков-участников системы обязательного страхования вкладов.
+              p(align='center')
+                img(src='img/logo-asv.png' alt='')
+              p Дата включения – 18.11.2004 года № 204.
+                br
+                a.text-orange(href='/upload/doc/deposits/Certificate.pdf' target='_blank') Свидетельство
+              p В соответствии с внесением изменений в статью 11
+                =' '
+                a.text-orange(href='/upload/doc/2019/federalnyi-zakon.pdf' target='_blank') Федерального закона № 177-ФЗ от 28.11.2003
+                |  года «О страховании вкладов физических лиц в банках Российской Федерации» с 30 декабря 2014 года максимальная сумма страхового возмещения по вкладам увеличена с 700 000 рублей до 1 400 000 рублей.
+              p Денежные средства, внесенные по договору банковского вклада или банковского счета&nbsp;Клиентами – индивидуальными предпринимателями или юридическими лицами, отнесенными в&nbsp;соответствии с законодательством Российской Федерации к малым предприятиям, сведения о которых содержатся в едином реестре субъектов малого и среднего предпринимательства, ведение которого осуществляется в соответствии с Федеральным законом от 24 июля 2007 года N 209-ФЗ "О развитии малого и среднего предпринимательства в Российской Федерации", застрахованы в порядке, размерах и на условиях, которые установлены Федеральным законом от 23.12.2003 г. № 177-ФЗ «О страховании вкладов в банках Российской Федерации
+              p Государственная корпорация «Агентство по страхованию вкладов»
+                br
+                | 109240, г. Москва, ул. Высоцкого, д. 4
+                br
+                | Телефон горячей линии: 8 800 200-08-05 (Бесплатный звонок по России)
+                br
+                | Адрес электронной почты:
+                =' '
+                a.text-orange(href='mailto:info@asv.org.ru') info@asv.org.ru
+                br
+                | Адрес официального сайте в сети «Интернет»:
+                =' '
+                a.text-orange(href='https://www.asv.org.ru/' target='_blank' rel='nofollow') www.asv.org.ru
+                br
+                a.text-orange(href='https://www.asv.org.ru/insurance/faq/index.php?question=305653' target='_blank') Страхование вкладов/Вопросы и ответы
+                br
+                a.text-orange(href='/upload/doc/2019/uvwedomlenie.pdf' target='_blank') Уведомление о порядке получения возмещения по вкладам

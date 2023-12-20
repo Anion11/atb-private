@@ -1,0 +1,65 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'coins-inner'
+  -const pageTitle ='Монета'
+
+  -
+    const coinData = {
+      label: 'new',
+      img: 'img/coin_1.jpg',
+      name: 'Кабардино-Балкарская-22',
+      price: '5 100 ₽',
+      characteristics: [
+        {
+          name: 'Категория ',
+          info: 'Памятные'
+        },
+        {
+          name: 'Страна',
+          info: 'Россия'
+        },
+        {
+          name: 'Номинал',
+          info: '3 рябля'
+        },
+        {
+          name: 'Иеталл, проба',
+          info: 'Серебро 925/1000 пробы'
+        },
+        {
+          name: 'Диаметр, мм',
+          info: '39,00 (± 0,30)'
+        },
+      ]
+    }
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Вклады', '#')
+      +breadcrumbs-item('Монеты', '#')
+      +breadcrumbs-item('Инвестиционные', '#')
+      +breadcrumbs-item('Г.Победоносец (СПМД)')
+    .page-content
+      +section('--mt0')
+        .inner
+          +coins-inner
+      +section
+        .inner
+          +coins-slider('Вас может заинтересовать')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')
+            +coins-item(coinData)(href='#')

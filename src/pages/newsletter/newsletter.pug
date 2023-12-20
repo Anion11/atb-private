@@ -1,0 +1,41 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'newsletter'
+    const pageTitle ='Наша рассылка'
+
+    const featuresItems =[
+      { icon: 'img/benefits1.png', title: 'Только важная и&nbsp;нужная информация&nbsp;&mdash; вы&nbsp;сами решаете, какие темы вам интересны' },
+      { icon: 'img/benefits2.png', title: 'Своевременное оповещение о&nbsp;новостях и&nbsp;акциях&nbsp;&mdash; вы&nbsp;точно не&nbsp;упустите выгодные возможности!' },
+      { icon: 'img/benefits3.png', title: 'Никакого спама&nbsp;&mdash; мы&nbsp;ценим ваше доверие!' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --newsletter')
+        +banner-wrapper('img/banner_newsletter.png', true)
+          +banner-h1('Наши рассылки', '--mob-size-l')
+          +banner-text('Дарим книгу в&nbsp;ЛитРес за&nbsp;подписку!')
+          +banner-foot
+            +ui-button('подписаться на рассылку', 'banner, --m-size-l')(href='#section-form')
+    .page-content
+      +section('--mt0')
+        .inner
+          +features(featuresItems, '--3items')
+      +section
+        .inner
+          +news-separated
+      +section('--bg-grey')#section-form
+        .inner
+          +section-head.text-center
+            +ui-h2('Подписаться на рассылку', 'section-head')

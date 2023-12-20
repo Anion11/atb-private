@@ -1,0 +1,139 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'promotion-12-months'
+    const pageTitle ='Акция «Двенадцать месяцев»'
+
+  -
+    const promotionBanData ={
+      img: 'img/promotion_ban_img_12-month.png',
+      h3: 'Условия участия',
+      text: 'Оформите кредитную карту «Универсальная» в&nbsp;период проведения акции и&nbsp;совершите расходную операцию в&nbsp;месяце оформления.',
+      button: 'Условия акции',
+      p1: 'с 1 декабря 2023 по 31&nbsp;января&nbsp;2024'
+    }
+
+  -
+    const promoDaysData =[
+      { mods: 'promo-days__item--blue', day: '17', month: 'января', title: 'Среди клиентов оформивших карту в&nbsp;декабре 2023&nbsp;года', descr: 'После 17&nbsp;января опубликуем запись проведения розыгрыша' },
+      { day: '14', month: 'февраля', title: 'Среди клиентов, оформивших карту в&nbsp;январе 2024&nbsp;года', descr: 'После 14&nbsp;февраля опубликуем запись проведения розыгрыша' },
+    ]
+
+  -
+    const promoHowData = [
+      { img: 'img/promo-how-img1.png',
+        text: `Количество призов определяется как <span class="text-orange promo-how__accent">количество  &nbsp;участников,
+          &nbsp;деленное  &nbsp;на&nbsp;100</span> с&nbsp;округлением в&nbsp;меньшую сторону до&nbsp;целого числа. Например:
+          <br>1015&nbsp;участников <span class="text-orange">→</span> делим на&nbsp;100 <span class="text-orange">→</span> получаем `,
+        textNowrap: '10&nbsp;призов',
+        tooltip: 'text',
+      },
+      { img: 'img/promo-how-img2.png',
+        text: `Победители будут определены с&nbsp;помощью рандомайзера по&nbsp;номеру договора
+          в&nbsp;указанные выше даты. Запись будет опубликована
+          на&nbsp;этой странице после проведения розыгрыша.`,
+      },
+      { img: 'img/promo-how-img3.png',
+        text: `Победителей также проинформируем через email/смс
+        и/или push-уведомления в&nbsp;течение 5&nbsp;рабочих дней после проведения розыгрыша.`,
+      },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--promotion-12-month')
+        +banner-wrapper('img/banner_promotion-12-month.png', true)
+          +banner-h1('Акция <br>«Двенадцать месяцев»', '--mob-size-l')
+          +banner-text('Оформите кредитную карту «Универсальная» и&nbsp;получите шанс не&nbsp;платить проценты до&nbsp;года!')
+          +banner-foot
+            +ui-button('Оформить карту', 'banner, --m-size-l')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +promotion-ban(promotionBanData, '--12-month')
+
+      +section
+        .inner
+          +section-head().text-center.text-center--mob-left
+            +ui-h2('Два розыгрыша призов', 'section-head')
+            .section-head__descr Розыгрыш проводится среди клиентов, выполнивших
+              =' '
+              a.text-orange(href='#') все условия акции
+          +section('--mt0, --pd, --shadow')
+            +calendar
+            +section('--mt-s')
+              +promo-days(promoDaysData)
+
+      +section
+        .inner
+          +section-head().text-center.text-center--mob-left
+            +ui-h2('Как будут проходить розыгрыши', 'section-head')
+            .section-head__descr Победителям увеличим первый беспроцентный период до&nbsp;12&nbsp;месяцев
+          +promo-how(promoHowData)
+      +section
+        .inner
+          +section-head
+            +ui-h2('Ответы на вопросы')
+          +accordion
+            +accordion-item('Кто может стать участником акции? Есть ли&nbsp;ограничения?')
+              +ui-p1('', '--light')
+                p Нужно выполнить все условия:
+                +ui-ul('', '--li-mb10')
+                  li На&nbsp;момент оформления Договора по&nbsp;ТП&nbsp;&laquo;Универсальная карта&raquo; нет действующего Кредитного договора по&nbsp;ТП&nbsp;&laquo;Универсальная карта&raquo; либо ТП&nbsp;&laquo;180&nbsp;дней без&nbsp;%&raquo;;
+                  li Оформите карту &laquo;Универсальная&raquo; с&nbsp;1&nbsp;декабря&nbsp;2023 до&nbsp;31&nbsp;января&nbsp;2024&nbsp;года;
+                  li Совершите любую расходную операцию с&nbsp;использованием счета или&nbsp;Карты:
+                    br
+                    | &mdash;&nbsp;в&nbsp;декабре&nbsp;2023 для&nbsp;Договоров, заключенных в&nbsp;декабре&nbsp;2023
+                    br
+                    | &mdash;&nbsp;в&nbsp;январе&nbsp;2024 для&nbsp;Договоров, заключенных в&nbsp;январе&nbsp;2024;
+                  li У&nbsp;вас нет просроченной задолженности в&nbsp;АТБ в&nbsp;течение всего срока действия Акции и&nbsp;на&nbsp;момент розыгрыша призов;
+                  li Не&nbsp;закрывайте задолженность по&nbsp;карте до&nbsp;проведения розыгрыша.
+                p Сотрудники АТБ не&nbsp;могут принимать участие в&nbsp;акции.
+                p
+                  span.text-bold Условия предоставления кредитной карты «Универсальная»:
+                +ui-ul('', '--li-mb10')
+                  li Вам от&nbsp;21&nbsp;до&nbsp;70&nbsp;лет (на&nbsp;момент окончания кредитного договора);
+                  li Вы&nbsp;проживаете
+                    =' '
+                    a.text-orange(href='#') на&nbsp;территории обслуживания Банка
+                    |  или у&nbsp;вас положительная кредитная история в&nbsp;АТБ или&nbsp;других банках;
+                  li У Вас есть гражданство РФ;
+                  li Для работающих по&nbsp;найму&nbsp;&mdash; стаж на&nbsp;последнем месте работы от&nbsp;3&nbsp;месяцев;
+                  li Для пенсионеров&nbsp;&mdash; регулярное поступление пенсионных или&nbsp;иных социальных выплат;
+                  li Для индивидуальных предпринимателей&nbsp;&mdash; стаж ведения&nbsp;ИП не&nbsp;менее 6&nbsp;месяцев;
+                  li Для самозанятых&nbsp;&mdash; срок регистрации в&nbsp;качестве самозанятых не&nbsp;менее 6&nbsp;месяцев.
+            +accordion-item('Как и когда проходит определение победителей?')
+              +ui-p1('', '--light')
+                p Розыгрыш проходит в 2 этапа:
+                p
+                  span.text-bold  17&nbsp;января
+                  |  среди договоров, заключенных в&nbsp;декабре 2023&nbsp;года
+                p
+                  span.text-bold 14&nbsp;февраля
+                  |  среди договоров заключенных в&nbsp;январе 2024&nbsp;года
+                p Определение победителей производится с&nbsp;помощью генератора случайных чисел.
+                p Количество призов определяется как&nbsp;количество участников&nbsp;/ 100&nbsp;с&nbsp;округлением в&nbsp;меньшую сторону до&nbsp;целого числа.
+            +accordion-item('Как получить беспроцентный период на&nbsp;12&nbsp;месяцев по&nbsp;карте Универсальная, оформленной с&nbsp;1&nbsp;декабря&nbsp;2023 по&nbsp;31&nbsp;января&nbsp;2024?')
+              +ui-p1('', '--light')
+                p Выполните все условия для участия в&nbsp;акции, если вы&nbsp;станете победителей, банк проинформирует вас посредством СМС/e-mail и/или PUSH уведомления в&nbsp;течение 5&nbsp;рабочих дней от&nbsp;даты определения Призеров соответствующего Расчетного периода. Льготный период будет продлен автоматически.
+            +accordion-item('Я&nbsp;оформил кредитную карту &laquo;Универсальная&raquo; до&nbsp;декабря 2023&nbsp;года, я&nbsp;могу участвовать?')
+              +ui-p1('', '--light')
+                p Нет, в&nbsp;акции могут принять участие только клиенты оформившие карту с&nbsp;1&nbsp;декабря&nbsp;2023 до&nbsp;31&nbsp;января 2024&nbsp;года.
+            +accordion-item('Где будет размещена информация о&nbsp;победителях?')
+              +ui-p1('', '--light')
+                p На этой странице после проведения розыгрыша
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы')
+          +documents

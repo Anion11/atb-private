@@ -1,0 +1,47 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'compliance-inner'
+  -const pageTitle ='Противодействие коррупции и управление конфликтом интересов'
+
+  -
+    const list_1 =[
+      { text: 'по телефону <a class="text-orange" href="tel:+74162234944">+7 (4162) 234-944</a>;' },
+      { text: 'на электронный ящик <a class="text-orange" href="mailto:compliance@atb.su">compliance@atb.su</a>;' },
+      { text: 'почтовым отправлением на адрес Банка: 675000, г. Благовещенск, ул. Амурская, 225, «Азиатско-Тихоокеанский Банк» (АО), Дирекция комплаенс.' },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Самое важное сегодня', '#')
+      +breadcrumbs-item('Противодействие коррупции')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Противодействие коррупции и управление конфликтом интересов', 'section-head')
+          +section-box
+            +ui-p1('', '--light')
+              p Банк придерживается принципа непримиримого отношения к любым формам проявления коррупции на всех уровнях. Члены команды Банка поддерживают государственную антикоррупционную политику и принимают комплексные меры по противодействию коррупции и управлению конфликтом интересов.
+              p Банк ожидает соблюдения стандартов в области противодействия коррупции и управления конфликтом интересов от своих клиентов, контрагентов и партнеров.
+          +section-box
+            +ui-h4('Нормативная база', '--mb, --bold')
+            +documents
+          +section-box
+            +ui-p1('', '--light')
+              p Если Вам стало известно о намерениях или фактах совершения работниками «Азиатско-Тихоокеанский Банк» (АО) коррупционных правонарушений, Вы можете обратиться с информацией на Горячую линию комплаенс:
+              +ui-ul(list_1)
+
+      +section
+        .inner
+          +compliance-hotline

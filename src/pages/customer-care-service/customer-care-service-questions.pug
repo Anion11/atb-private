@@ -1,0 +1,42 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'customer-care-service'
+    const pageTitle ='Карты - Вопросы'
+
+    const careInfoData = [
+      {
+        icon: 'img/care-info_chat.svg',
+        title: 'В чате банка',
+        descr: '<a href="#" class="text-orange">В Мобильном приложении</a> или&nbsp;<a href="#" class="text-orange text-nowrap">Интернет-банке</a>',
+      }
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Самое важное сегодня', '#')
+      +breadcrumbs-item('Служба заботы о клиентах', '#')
+      +breadcrumbs-item(pageTitle)
+    .page-content
+      +section('--mt0')
+        .inner
+          +care-inner('Карты', 'img/care-inner_card.svg', 'all-questions')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Вы можете получить информацию следующими способами', 'section-head')
+          +care-info(careInfoData, '--single')
+      +section
+        .inner
+          +ui-p1('Тут будет форма')

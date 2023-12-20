@@ -1,0 +1,142 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'recharge'
+  -const pageTitle ='Как пополнить вклад'
+
+  -
+    const usefulGoods =[
+      {
+        mod: 'orange30',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_uc.png',
+        p2: 'Расскажите, что&nbsp;понравилось в АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+      {
+        mod: 'orange40',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_uc.png',
+        p2: 'Расскажите, что&nbsp;понравилось в АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+      {
+        mod: 'orange50',
+        title: '«АТБ. Ваше слово»',
+        btn: 'Подробнее',
+        img: 'useful_goods_img_uc.png',
+        p2: 'Расскажите, что&nbsp;понравилось в АТБ, и&nbsp;выиграйте набор для&nbsp;путешествий',
+      },
+    ]
+
+  -
+    const tabsHead = [
+      { text: 'В мобильном приложении' },
+      { text: 'В интернет-банке' },
+      { text: 'В отделении банка' },
+    ]
+
+  -
+    const telInstruction =[
+      {
+        mods: 'tel-instruction__section--right',
+        img: [
+          { src: 'tel_instruction_1' },
+          { src: 'tel_instruction_2' },
+          { src: 'tel_instruction_3' },
+          { src: 'tel_instruction_4' },
+        ],
+        steps: [
+          { title: 'Перейдите на&nbsp;экран «Платежи и&nbsp;переводы»' },
+          { title: 'Выберите пункт «Между счетами»' },
+          { title: 'В&nbsp;поле счет зачисления выберите счет вклада' },
+          { title: 'Введите сумму и&nbsp;нажмите перевести' },
+        ]
+      }
+    ]
+
+  -
+    const benefitsItems =[
+      { icon: 'img/icon_calc_card.svg', title: 'Через кассу', descr: 'Возьмите с собой паспорт' },
+      { icon: 'img/icon_terminal.svg', title: 'Через терминал', descr: 'Нужен только номер счета' },
+    ]
+
+  -
+    const smallBannerData ={
+      h3: 'Войдите в&nbsp;<a class="text-nowrap text-orange" href="#">Интернет-банк</a>, выберите вклад и&nbsp;следуйте инструкциям на&nbsp;экране',
+      h3Mods: '--xl',
+      img: 'img/small-banner-img.png'
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --recharge')
+        +banner-wrapper('img/banner_recharge.png', true)
+          +banner-h1('Как пополнить вклад', '--mob-size-l')
+    .page-content
+      +section('--mt0')
+        +tabs-head(tabsHead, '', '--no-item-border, --inner-line')
+        +tabs-main
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +tel-instruction(telInstruction, '--img-l, --recharge')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +small-banner(smallBannerData, '--recharge')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +benefits(benefitsItems, '--items2-default, --icon-xl, --title-mob-l, --descr-xl, --descr-light, --item-bg-gradient')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Часто задаваемые вопросы', 'section-head')
+          +accordion
+            +accordion-item('Какие вклады можно пополнять?')
+              +ui-p1('', '--light').text-inside-d-link
+                p Только вклады с пополнением:
+                +ui-ul('')
+                  li
+                    a(href='#') АТБ Вклад с пополнением
+                  li
+                    a(href='#') Вклад «Добро пожаловать»
+                  li
+                    a(href='#') «АТБ.Счет»
+            +accordion-item('Как проверить, можно пополнять вклад или&nbsp;нет?')
+              +ui-p1('', '--light').text-inside-d-link
+                p В Мобильном приложении откройте <span class="text-nowrap">вклад →</span> нажмите <span class="text-nowrap">«Информация» →</span> «О&nbsp;вкладе»
+                  br
+                  | Там вы найдете всю информацию о&nbsp;вкладе, в&nbsp;том числе и&nbsp;возможность пополнения.
+            +accordion-item('Можно ли изменить тип вклада?')
+              +ui-p1('', '--light').text-inside-d-link
+                p Нет
+            +accordion-item('Что делать если деньги не&nbsp;пришли в&nbsp;указанный срок?')
+              +ui-p1('', '--light').text-inside-d-link
+                p Обратитесь в&nbsp;банк, из&nbsp;которого был осуществлен перевод средств.
+            +accordion-item('Что делать, если обнаружил ошибку в&nbsp;реквизитах после перевода?')
+              +ui-p1('', '--light').text-inside-d-link
+                p Обратитесь в&nbsp;банк, из&nbsp;которого был осуществлен перевод средств.
+
+      +section('--ov-hidden')
+        .inner
+          +section-head
+            +ui-h2('Вас также могут заинтересовать', 'section-head').text-center.text-center--mob-left
+          +useful-goods(usefulGoods)
+
+      +section
+        .inner
+          +accordion
+            +accordion-item('Другие банковские продукты')
+              +credits-list

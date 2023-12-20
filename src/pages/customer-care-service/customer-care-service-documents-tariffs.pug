@@ -1,0 +1,76 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'customer-care-service'
+    const pageTitle ='Кредитные карты'
+
+  -
+    const tabs =[
+      { text: 'Тарифы' },
+      { text: 'Акции' },
+      { text: 'Уведомления' },
+      { text: 'Документы' },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Документы и тарифы', '#')
+      +breadcrumbs-item(pageTitle)
+    .page-content
+      +section('--mt0')
+        .inner
+          +care-inner('Кредитные карты', 'img/care-inner_loans-card.svg', 'documents-tariffs', 'Выберите документы или воспользуйтесь поиском')
+      +section('--mt-s')
+        .inner
+          p.text-red если есть табы ("прочее")
+          br
+        +tabs-head(tabs, '', '--no-item-border, --inner-line')
+        +tabs-main
+          +tabs-main__item(true)
+            +section('--mt0')
+              .inner
+                +documents('', '--mb-xs')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +documents('', '--mb-xs')
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +documents('', '--mb-xs')
+            +section('--mt-xs')
+              .inner
+                +attention
+                  +ui-p1('')
+                    p Ни&nbsp;в&nbsp;коем случае не&nbsp;переходите по&nbsp;ссылкам, содержащимся в&nbsp;незнакомых письмах, отправленных якобы от&nbsp;банка. Внимательно проверяйте адрес отправителя письма. Все письма от&nbsp;Банка направляются с&nbsp;адреса&nbsp;&mdash; atb@atb.su, ask@atb.su
+                    p Банк никогда не&nbsp;запрашивает реквизиты банковской карты для&nbsp;оформления банковских продуктов
+                    p Если у&nbsp;Вас возникли подозрения, обратитесь в&nbsp;Банк по&nbsp;телефону
+                      =' '
+                      a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+          +tabs-main__item
+            +section('--mt0')
+              .inner
+                +documents('', '--mb-xs')
+
+      +section('--mt-xs')
+        .inner
+          p.text-red если нет табов (для кредитных карт)
+          +documents('', '--mb-xs')
+      +section('--mt-xs')
+        .inner
+          +section-head('--mb-size-xs')
+            +ui-h3('Акции', '--xs')
+          +accordion
+            +accordion-item('Архив')
+              +documents

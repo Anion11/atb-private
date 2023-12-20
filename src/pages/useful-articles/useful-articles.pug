@@ -1,0 +1,40 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'useful-articles'
+    const pageTitle ='Полезные статьи'
+
+    const tabs = [
+      { text: 'Кредиты' },
+      { text: 'Карты' },
+      { text: 'Ипотека' },
+      { text: 'Накопления' },
+    ]
+
+block content
+  main
+    +banner
+      +banner-item('--useful-articles')
+        +banner-wrapper('img/banner_useful-articles.jpg')
+          +banner-h1('Полезные <br> статьи')
+    .page-content
+      +section('--mt0')
+        .inner
+          +tabs-head(tabs, true, '--no-item-border')
+          +tabs-main
+            +tabs-main__item(true)
+              +useful-articles('articlesMain')
+            +tabs-main__item
+              p 2
+            +tabs-main__item
+              p 3
+            +tabs-main__item
+              p 4

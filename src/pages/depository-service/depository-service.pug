@@ -1,0 +1,74 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'depository-service'
+  -const pageTitle ='Депозитарное обслуживание'
+
+  -
+    const featuresItems =[
+      {
+        icon: 'img/feature_1.png',
+        title: 'Открытие счетов депо',
+      },
+      {
+        icon: 'img/feature_2.png',
+        title: 'Услуги по учету и удостоверению прав на ценные бумаги и передачи ценных бумаг',
+      },
+      {
+        icon: 'img/feature_3.png',
+        title: 'Отражение в учете обременения ценных бумаг обязательствами',
+      },
+      {
+        icon: 'img/feature_4.png',
+        title: 'Представление интересов депонентов на общих собраниях владельцев ценных бумаг путем голосования',
+      },
+      {
+        icon: 'img/feature_5.png',
+        title: 'Предоставление отчетов по операциям депозитарного обслуживания',
+      },
+      {
+        icon: 'img/feature_6.png',
+        title: 'Содействие в реализации прав, включая право на получение дивидендов, доходов и иных платежей по ценным бумагам',
+      },
+      {
+        icon: 'img/feature_7.png',
+        title: 'Оказание сопутствующих услуг, консультационное и информационное обслуживание',
+      },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Услуги', '#')
+      +breadcrumbs-item(pageTitle)
+    +banner('--m-vertically')
+      +banner-item('--depository-service')
+        +banner-wrapper('img/banner_depository-service.png', true)
+          +banner-h1('Депозитарное обслуживание', '--mob-size-l')
+          +banner-text('Профессиональная поддержка владельцев ценных бумаг')
+          +banner-foot('--buttons')
+            +ui-button('Подробнее', 'banner, --m-size-l')(href='#')
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head.text-center
+            +ui-h2('Депозитарные услуги', 'section-head')
+          +features(featuresItems, '--fz-18')
+      +section
+        .inner
+          +section-head.text-center
+            a.ui-h3(href='#') Документы и раскрытие информации
+          +deposit-serv-info
+      +section
+        .inner
+          +section-head
+            +ui-h2('Заказать обратный звонок', 'section-head').text-center

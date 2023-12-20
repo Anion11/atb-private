@@ -1,0 +1,24 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'the-most-important-txt'
+  -const pageTitle ='Бесплатная горячая линия по вопросам профилактики вирусных заболеваний, в том числе короновируса COVID-19'
+
+block content
+  main
+    +breadcrumbs()
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Самое важное сегодня', '#')
+      +breadcrumbs-item(pageTitle)
+    .page-content
+      +section('--mt0')
+        .inner
+          +most-important-txt('hotline-virus-help')

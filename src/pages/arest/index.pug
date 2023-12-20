@@ -1,0 +1,198 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'arest'
+    const pageTitle ='Аресты и взыскания'
+
+  -
+    const smallBannerDataArest = {
+      img: 'img/small_banner_arest.png',
+      h3: 'Арест счёта',
+      h3Mods: '--xs',
+      descrContentMods: 'small-banner__descr--light small-banner__descr--inner-mb-xs',
+      descrContent: [
+        { type: 'p',
+          text: 'Это блокировка определенной суммы по&nbsp;требованию государственного органа или&nbsp;по&nbsp;решению суда.',
+        },
+        { type: 'p',
+          text: 'Доступ к&nbsp;средствам сверх арестованной суммы не&nbsp;ограничивается. Например:',
+        },
+        { type: 'ol',
+          olMods: ', --li-mb8',
+          ol: [
+            { text: 'На счету 1&nbsp;000&nbsp;₽' },
+            { text: 'Пришло постановление на&nbsp;арест 800&nbsp;₽' },
+            { text: '800&nbsp;₽ будут заблокированы, 200&nbsp;₽&nbsp;будут доступны' },
+          ]
+        }
+      ]
+    }
+
+  -
+    const smallBannerDataArestCollection = {
+      img: 'img/small_banner_collection.png',
+      h3: 'Взыскание',
+      h3Mods: '--xs',
+      descrContentMods: 'small-banner__descr--light small-banner__descr--inner-mb-xs',
+      descrContent: [
+        { type: 'p',
+          text: 'Это принудительное списание суммы в&nbsp;счет долга:',
+        },
+        { type: 'ul',
+          ulMods: ', --li-mb8',
+          ul: [
+            { text: 'по&nbsp;решению суда;' },
+            { text: 'постановлению судебного пристава или&nbsp;иного государственного органа.' },
+          ]
+        },
+        { type: 'p',
+          text: 'Списание может происходить с&nbsp;одного, нескольких или&nbsp;всех ваших счетов, включая валютные.',
+        },
+        { type: 'p',
+          text: 'Также взыскание могут наложить на&nbsp;ценные бумаги.',
+        },
+      ]
+    }
+
+  -
+    const smallBannerDataNotArest = {
+      img: 'img/small_banner_not_arest.png',
+      h3: 'Банк НЕ&nbsp;принимает решение об&nbsp;аресте или&nbsp;взыскании',
+      h3Mods: '--xs',
+      descrContentMods: 'small-banner__descr--light small-banner__descr--inner-mb-xs',
+      descrContent: [
+        { type: 'p',
+          text: 'По 229-ФЗ «Об исполнительном производстве» банк обязан выполнять требования исполнительных документов:',
+        },
+        { type: 'ul',
+          ulMods: ', --li-mb8',
+          ul: [
+            { text: 'о&nbsp;списании денежных средств со&nbsp;счетов и&nbsp;вкладов;' },
+            { text: 'об&nbsp;удержании сумм ценных бумаг и&nbsp;драгоценных металлов, находящихся в&nbsp;банке.' },
+          ]
+        },
+        { type: 'p',
+          text: 'После списания со&nbsp;счета суммы сразу направляются судебному приставу или&nbsp;взыскателю, поэтому банк не&nbsp;может вернуть вам деньги.',
+        },
+      ],
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl, --arest')
+        +banner-wrapper('img/banner_arest.png', true)
+          +banner-h1('Аресты и&nbsp;взыскания', '--mob-size-l')
+          +banner-text('Разъяснения и&nbsp;помощь')
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +small-banner-wrapper('--2items, --m-gap-s')
+            +small-banner(smallBannerDataArest, '--arest-page')
+            +small-banner(smallBannerDataArestCollection, '--arest-page')
+
+      +section('--mt-xs, --l-mt-s, --m-mt-xxs')
+        .inner
+          +small-banner(smallBannerDataNotArest, '--not-arest')
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Часто задаваемые вопросы', 'section-head')
+          +accordion
+            +accordion-item('Можно&nbsp;ли вернуть сумму взыскания, перечисленную банком?')
+              +ui-p1('', '--light')
+                p Если сумма была излишне уплачена, обратитесь к&nbsp;судебным приставам по&nbsp;контактным данным указанным
+                  |  на&nbsp;сайте ФССП или&nbsp;по&nbsp;телефону горячей линии ФССП 8&nbsp;800&nbsp;350&nbsp;34&nbsp;86
+                  |  для&nbsp;уточнения возможности возврата суммы.
+            +accordion-item('Что делать, если приставы ошибочно наложили ограничение?')
+              +ui-p1('', '--light')
+                p Если ограничения были наложены ошибочно, обратитесь к&nbsp;судебным приставам по&nbsp;контактным данным указанным
+                  |  на&nbsp;сайте ФССП или&nbsp;по&nbsp;телефону горячей линии ФССП 8&nbsp;800&nbsp;350&nbsp;34&nbsp;86
+                  |  для&nbsp;уточнения возможности отмены ограничений.
+            +accordion-item('Как отменить арест?')
+              +ui-p1('', '--light')
+                p После полного закрытия исполнительного листа, обратитесь к&nbsp;судебным приставам по&nbsp;контактным данным указанным
+                  |  на&nbsp;сайте ФССП или&nbsp;по&nbsp;телефону горячей линии ФССП 8&nbsp;800&nbsp;350&nbsp;34&nbsp;86.
+                  |  Пристав направляет в&nbsp;банк документы об&nbsp;отмене взыскания.
+            +accordion-item('Как отменить взыскание?')
+              +ui-p1('', '--light')
+                p Если сумма была излишне уплачена, обратитесь к&nbsp;судебным приставам по&nbsp;контактным данным указанным
+                  |  на&nbsp;сайте ФССП или&nbsp;по&nbsp;телефону горячей линии ФССП 8&nbsp;800&nbsp;350&nbsp;34&nbsp;86
+                  |  для&nbsp;уточнения возможности возврата суммы.
+                p После полного закрытия исполнительного листа, обратитесь к&nbsp;судебным приставам.
+                  |  Пристав направляет в&nbsp;банк документы об&nbsp;отмене взыскания.
+            +accordion-item('Как определить, с&nbsp;каких выплат и&nbsp;сколько могут списать?')
+              +ui-p1('', '--light')
+                p Коды вида дохода (КВД) платежного документа на&nbsp;зачисление зарплаты и&nbsp;других выплат физ. лицам:
+                +ui-ol('')
+                  li
+                    p выплаты, из&nbsp;которых можно удерживать долги по&nbsp;исполнительным документам:
+                    +ui-ul('')
+                      li зарплата,
+                      li премии,
+                      li отпускные,
+                      li больничные,
+                      li выплаты по ГПД
+                    p (подлежит взысканию до&nbsp;50&nbsp;%) п.2,3 ст.&nbsp;99 №-229&nbsp;ФЗ.
+                  li
+                    p периодические выплаты, из&nbsp;которых нельзя взыскивать долги:
+                    +ui-ul('')
+                      li алименты,
+                      li компенсация за&nbsp;изнашивание инструмента.
+                  li
+                    p периодические выплаты в&nbsp;возмещение вреда здоровью (не&nbsp;подлежит взысканию, но&nbsp;есть исключения).
+                  li
+                    p единовременные выплаты, из&nbsp;которых нельзя взыскивать долги:
+                    +ui-ul('')
+                      li возмещение командировочных расходов,
+                      li пособие на&nbsp;погребение.
+                  li
+                    p единовременные выплаты в&nbsp;возмещение вреда здоровью (не&nbsp;подлежит взысканию, но&nbsp;есть исключения).
+                p Если цифра отсутствует&nbsp;&mdash; это прочие зачисления, на&nbsp;которые не&nbsp;устанавливаются запреты и&nbsp;ограничения списаний в&nbsp;соответствии с&nbsp;законодательством.
+                p
+                  b Сумму, поступившую с&nbsp;КВД 3&nbsp;или&nbsp;5, взыскивать нельзя, за&nbsp;исключением
+                +ui-ul('')
+                  li Выплаты в&nbsp;связи со&nbsp;смертью кормильца;
+                  li Алименты на&nbsp;содержание детей;
+                  li Алименты на&nbsp;содержание детей, находящихся в&nbsp;детских домах и&nbsp;иных учреждениях.
+            +accordion-item('Могут&nbsp;ли ограничения быть наложены на&nbsp;кредиты и&nbsp;кредитные карты?')
+              +ui-p1('', '--light')
+                p Согласно ФЗ №-229 ограничения накладываются на&nbsp;все счета, открытые в&nbsp;банке, в&nbsp;т.ч.&nbsp;на&nbsp;кредитные.
+            +accordion-item('По&nbsp;каким причинам может быть наложен арест или проведено взыскание?')
+              +ui-p1('', '--light')
+                p Основные причины:
+                +ui-ul('')
+                  li Уклонение от&nbsp;уплаты алиментов
+                  li Неоплаченные штрафы ГИБДД
+                  li Неуплата налогов
+                  li Неуплата коммунальных платежей
+                  li Неуплата задолженности по&nbsp;кредитам
+                  li Судебные споры, решённые не&nbsp;в&nbsp;пользу клиента
+            +accordion-item('Где посмотреть информацию о&nbsp;наложении ареста и&nbsp;взыскания?')
+              +ui-p1('', '--light')
+                +ui-ul('')
+                  li
+                    a.text-orange(href='https://www.nalog.gov.ru/' target='_blank') На сайте федеральной налоговой службы
+                  li
+                    a.text-orange(href='https://stat.gibdd.ru/' target='_blank') На сайте ГИБДД
+                  li
+                    a.text-orange(href='https://www.gosuslugi.ru/' target='_blank') На портале «Госуслуги»
+                  li В&nbsp;любом МФЦ. Найдите свой МФЦ в&nbsp;каталоге на&nbsp;сайте
+                    =' '
+                    a.text-orange(href='https://www.nalog.gov.ru' target='_blank') федеральной налоговой службы
+                  li На&nbsp;сайте суда, вынесшего решение, или
+                    =' '
+                    a.text-orange(href='https://fssprus.net/' target='_blank') на&nbsp;сайте ФССП России

@@ -1,0 +1,113 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'promotion-rabbit'
+    const pageTitle ='Акция «100% кэшбэк от кролика АТБ»'
+    const tableItems = {
+      tbody: [
+        {
+          td: [
+            { text: '<b>Сумма покупок в&nbsp;декабре 2022&nbsp;года</b>' },
+            { text: '<b>Кэшбэк в&nbsp;январе 2023&nbsp;года</b>' },
+          ]
+        },
+        {
+          td: [
+            { text: 'до&nbsp;2&nbsp;023&nbsp;₽' },
+            { text: '1,5&nbsp;%' },
+          ]
+        },
+        {
+          td: [
+            { text: '2&nbsp;023&nbsp;₽ — 75&nbsp;000&nbsp;₽' },
+            { text: '<p>2&nbsp;023&nbsp;₽ (100%)</p> <p>+1,5% на&nbsp;сумму, превышающую 2&nbsp;023&nbsp;₽</p>' },
+          ]
+        },
+        {
+          td: [
+            { text: 'от&nbsp;75&nbsp;000&nbsp;₽' },
+            { text: '5&nbsp;%' },
+          ]
+        },
+      ]
+    }
+
+block content
+  main
+    +banner
+      +banner-item('--promotion-rabbit')
+        +banner-wrapper('img/banner_promotion-rabbit.jpg')
+          +banner-h1('Акция «100%&nbsp;кэшбэк от&nbsp;кролика&nbsp;АТБ»')
+          +banner-descr('Даем кэшбэк 2023&nbsp;₽ в&nbsp;январе за&nbsp;покупки от&nbsp;2023&nbsp;₽ в&nbsp;декабре', '--size-xs').text-orange
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('Получить карту', 'banner')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +promotion-rabbit-ban
+          br
+          br
+          +promotion-rabbit-ban('', 'isEnded')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Часто задаваемые вопросы').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Кто может стать участником акции? Есть&nbsp;ли ограничения?')
+              +ui-p1('', '--light')
+                +ui-ul('')
+                  li Быть гражданином России и&nbsp;проживать на&nbsp;территории РФ
+                  li Не&nbsp;иметь просроченной задолженности по&nbsp;кредитным договорами в&nbsp;АТБ с&nbsp;1&nbsp;декабря 2022 года до&nbsp;выплаты кэшбэка в&nbsp;январе 2023 года
+                  li Не&nbsp;иметь действующей кредитной карты &laquo;Универсальная&raquo; (либо предыдущая карта должна быть закрыта не&nbsp;менее 6&nbsp;месяцев назад)
+                  li Сотрудники АТБ в&nbsp;акции участия не&nbsp;принимают
+              br
+              +ui-p1('С 1 по 31 декабря 2022 года:', '--bold')
+              +ui-p1('', '--light')
+                +ui-ul('', '--li-mb20')
+                  li <span class="text-bold">Заключите договор</span> по&nbsp;ТП&nbsp;&laquo;Универсальная карта&raquo; с&nbsp;1&nbsp;декабря 2022 до&nbsp;31&nbsp;января 2023&nbsp;года.
+                  li <span class="text-bold">Оплатите картой покупки на&nbsp;общую сумму 2023&nbsp;₽:</span>
+                    +ui-ul('', '--mt5, --li-mb5')
+                      li в&nbsp;декабре 2022&nbsp;г. (по&nbsp;картам, полученным в&nbsp;период с&nbsp;1&nbsp;по&nbsp;31&nbsp;декабря 2022&nbsp;г.)
+                      li в&nbsp;январе 2023&nbsp;г. (по&nbsp;картам, полученным в&nbsp;период с&nbsp;1&nbsp;по&nbsp;31&nbsp;января 2023&nbsp;г.)
+                  li <span class="text-bold">Получите 2&nbsp;023&nbsp;р.&nbsp;в&nbsp;качестве Приза:</span>
+                    +ui-ul('', '--mt5, --li-mb5')
+                      li в&nbsp;январе 2023&nbsp;г. (по&nbsp;картам, полученным в&nbsp;период с&nbsp;1&nbsp;по&nbsp;31&nbsp;декабря 2022&nbsp;г.)
+                      li в&nbsp;феврале 2023&nbsp;г. (по&nbsp;картам, полученным в&nbsp;период с&nbsp;1&nbsp;по&nbsp;31&nbsp;января 2023&nbsp;г.)
+              +ui-p1('На&nbsp;остальные покупки будут действовать условия начисления кэшбэка согласно Правилам бонусной программы в&nbsp;рамках заключенного вами кредитного договора.', '--light')
+            +accordion-item('Как получить 100% кэшбэк по карте, оформленной с&nbsp;1 по&nbsp;31&nbsp;декабря 2022&nbsp;года:')
+              +ui-p1('Выполните условия участия в&nbsp;акции (выше), оплачивайте покупки картой "Универсальная" и&nbsp;получайте кэшбэк:')
+              +section-box('--mt30')
+                +ui-table(tableItems, '--all-border, --rabbit-promo')
+              +section-footnote('Общая сумма кэшбэка не&nbsp;может превышать 4&nbsp;000&nbsp;₽','--fw-normal, --grey60')
+              +section-box('--mt30')
+                +ui-p1('')
+                  p Пример:
+                  p В декабре клиент совершил покупку на сумму 50&nbsp;000&nbsp;₽
+                    br
+                    | В январе клиент получит кэшбэк:
+                    br
+                    | 2&nbsp;023&nbsp;₽ (100% на&nbsp;первые 2&nbsp;023&nbsp;₽) +&nbsp;718,5&nbsp;₽ (1%&nbsp;на&nbsp;сумму 47&nbsp;900&nbsp;₽).
+                  p Кэшбэк на сумму свыше 2023&nbsp;₽ начисляется на&nbsp;сумму кратную 100&nbsp;₽.
+            +accordion-item('Как узнать, что я&nbsp;участвую в&nbsp;акции и&nbsp;получу 100% кэшбэк?')
+              +ui-p1('', '--light')
+                p text
+            +accordion-item('Я оформил кредитную карту «Универсальная» до&nbsp;декабря 2022&nbsp;года, я&nbsp;могу участвовать?')
+              +ui-p1('', '--light')
+                p Нет, если у&nbsp;вас есть действующая карта. Эта акция проводится среди новых клиентов.
+                p Да, если со&nbsp;дня закрытия предыдущего договора по&nbsp;ТП&nbsp;&laquo;Универсальная карта&raquo; прошло более 6&nbsp;месяцев.
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Документы')
+              +documents

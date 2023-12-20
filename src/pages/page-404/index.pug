@@ -1,0 +1,16 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'page-404'
+  -const pageTitle ='404'
+
+block content
+  main.main--page-404
+    +page-404

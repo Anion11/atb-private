@@ -1,0 +1,35 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+//- block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'financial-answers-inner'
+    const pageTitle ='Все о финансовой грамотности'
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Всё о финансовой грамотности', '/')
+      +breadcrumbs-item('Ответы на ваши вопросы', '/')
+      +breadcrumbs-item('Перечислил деньги мошенникам')
+    .page-content.page-content--pt-s
+      +section('--mt0')
+        .inner
+          +fin-answers-inner
+      +section('--bg-grey')
+        .inner
+          +section-head
+            +ui-h2('Похожие вопросы', '--bold')
+          +useful-articles('fin-answers')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Последние ответы', '--bold')
+          +useful-articles('fin-answers')

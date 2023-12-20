@@ -1,0 +1,63 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'transfer-requisites'
+  -const pageTitle ='Перевод на счёт банка по реквизитам'
+
+  -
+    const mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным Мобильным банком, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+  -
+    const telInstruction =[
+      {
+        mods: 'tel-instruction__section--left',
+        title: 'Как совершать платежи',
+        img: [
+          { src: 'tel_instruction_sl1_1' },
+          { src: 'tel_instruction_sl1_2' },
+          { src: 'tel_instruction_sl1_3' },
+          { src: 'tel_instruction_sl1_4' },
+        ],
+        steps: [
+          { title: 'Зайдите в&nbsp;приложение АТБ&nbsp;Мобайл' },
+          { title: 'Перейдите в&nbsp;раздел Платежей и&nbsp;выберите Переводы ИП/Организациям' },
+          { title: 'Нажмите Юридическому лицу и&nbsp;введите реквизиты для&nbsp;оплаты' },
+          { title: 'Проверьте введенные реквизиты и&nbsp;подтвердите перевод проверочным кодом' },
+        ]
+      }
+    ]
+
+block content
+  main
+    +banner()
+      +banner-item('--transfer-requisites')
+        +banner-wrapper('img/banner_transfer_requisites.jpg')
+          +banner-h1('Перевод <br>на счёт банка <br>по реквизитам')
+    .page-content
+      +section('--mt0')
+        .inner
+          +money-transfer('transfer-requisites')
+      +section
+        .inner
+          +tel-instruction(telInstruction)
+      +section
+        .inner
+          +mob-banner(mobBannersData)

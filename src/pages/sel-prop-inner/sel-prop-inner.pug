@@ -1,0 +1,23 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'sel-prop-inner'
+  -const pageTitle ='Реализация имущества'
+
+block content
+  main
+    .page-content
+      +section('--mt0')
+        .inner
+          +sel-prop-inner
+    +popup__wrapper('--small')#ask-question
+      +section-head().text-center
+        +ui-h3('Задать вопрос')

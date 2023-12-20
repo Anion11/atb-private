@@ -1,0 +1,126 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'customer-care-service'
+    const pageTitle ='Карты'
+
+    const careInfoData1 = [
+      {
+        icon: 'img/care-info_call.svg',
+        title: 'По&nbsp;телефону 8-800-775-88-88',
+        descr: 'Может потребоваться кодовое слово или&nbsp;T-пин',
+      }
+    ]
+
+    const careInfoData2 = [
+      {
+        icon: 'img/care-info_call.svg',
+        title: 'По&nbsp;телефону <span class="text-nowrap">8-800-775-88-88</span>',
+        descr: 'Может потребоваться кодовое слово или&nbsp;T-пин',
+      },
+      {
+        icon: 'img/care-info_chat.svg',
+        title: 'В чате банка',
+        descr: '<a href="#" class="text-orange">В Мобильном приложении</a> или&nbsp;<a href="#" class="text-orange text-nowrap">Интернет-банке</a>',
+      },
+      {
+        icon: 'img/care-info_bank.svg',
+        title: '<a href="#" class="text-orange">В отделениях банка</a>',
+        descr: 'Возьмите с собой паспорт',
+      }
+    ]
+
+    const careInfoData3 = [
+      {
+        icon: 'img/care-info_call.svg',
+        title: 'По&nbsp;телефону <span class="text-nowrap">8-800-775-88-88</span>',
+        descr: 'Может потребоваться кодовое слово или&nbsp;T-пин',
+      },
+      {
+        icon: 'img/care-info_chat.svg',
+        title: 'В чате банка',
+        descr: '<a href="#" class="text-orange">В Мобильном приложении</a> или&nbsp;<a href="#" class="text-orange text-nowrap">Интернет-банке</a>',
+      },
+      {
+        icon: 'img/care-info_mob.svg',
+        title: '<a href="#" class="text-orange">В Мобильном приложении</a> или&nbsp;<a href="#" class="text-orange text-nowrap">Интернет-банке</a>',
+      },
+      {
+        icon: 'img/care-info_bank.svg',
+        title: '<a href="#" class="text-orange">В отделениях банка</a>',
+        descr: 'Возьмите с собой паспорт',
+      }
+    ]
+
+    const careInfoData4 = [
+      {
+        icon: 'img/care-info_mob.svg',
+        title: '<a href="#" class="text-orange">В Мобильном приложении</a> или&nbsp;<a href="#" class="text-orange text-nowrap">Интернет-банке</a>',
+      }
+    ]
+
+    const careInfoData5 = [
+      {
+        icon: 'img/care-info_call.svg',
+        title: 'По&nbsp;телефону <span class="text-nowrap">8-800-775-88-88</span>',
+      }
+    ]
+
+    const careInfoData6 = [
+      {
+        icon: 'img/care-info_bank.svg',
+        title: '<a href="#" class="text-orange">В отделении банка</a>',
+      }
+    ]
+
+block content
+  main
+    +breadcrumbs('--static')
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Самое важное сегодня', '#')
+      +breadcrumbs-item('Служба заботы о клиентах', '#')
+      +breadcrumbs-item('Карты', '#')
+      +breadcrumbs-item(pageTitle)
+    .page-content
+      +section('--mt0, --ov-hidden')
+        .inner
+          +care-inner('Карты', 'img/care-inner_card.svg', 'cards')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Вы можете получить информацию следующими способами', 'section-head')
+          +care-info(careInfoData1, '--single')
+          +care-info(careInfoData2)
+          +care-info(careInfoData3)
+          +care-info(careInfoData4)
+            +care-info__item.care-info__item--col-span2
+              +care-info__descr
+                .ui-ol.ui-ol--li-mb5
+                  li На главной странице выберите карту
+                  li Затем «заблокировать карту»
+                  li Выберите причину блокировки
+          +care-info(careInfoData5)
+            +care-info__item.care-info__item--col-span2
+              +care-info__descr
+                .ui-ol.ui-ol--li-mb5
+                  li При прослушивании голосового меню нажмите&nbsp;«1»
+                  li Затем еще раз&nbsp;«1»
+                  li Сервис попросит ввести ваш Т-пин. (пароль для подтверждения операций, который вы&nbsp;установили при&nbsp;регистрации в&nbsp;системе).
+                  li Далее последние 4&nbsp;цифры номера карты (если у&nbsp;вас 2 и&nbsp;более карт)
+          +care-info(careInfoData6)
+            +care-info__item.care-info__item--col-span2
+              +care-info__descr('Режим работы отделений найдете')
+                =' '
+                a.text-orange(href='#') здесь
+      +section
+        .inner
+          +ui-p1('Тут будет форма')

@@ -1,0 +1,80 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'financial-answers'
+    const pageTitle ='Все о финансовой грамотности'
+
+  -
+    const tagsItems = [
+      { text: 'Автострахование' },
+      { text: 'Акции' },
+      { text: 'Банки' },
+      { text: 'Банковская карта' },
+      { text: 'Безналичные платежи' },
+      { text: 'Банковские услуги' },
+      { text: 'Валюта' },
+      { text: 'Вклады и счета' },
+      { text: 'Кредиты' },
+      { text: 'Кредитная история' },
+      { text: 'Наличные' },
+      { text: 'Займы' },
+      { text: 'Инвестиции' },
+      { text: 'Ипотека' },
+      { text: 'Защитить права' },
+      { text: 'Инфляция' },
+      { text: 'Кредит на бизнес' },
+      { text: 'Платежи и переводы' },
+      { text: 'Страхование' },
+      { text: 'Налоговый вычет' },
+      { text: 'Налоговый вычет' },
+      { text: 'Льготы для бизнеса' },
+      { text: 'Начать бизнес' },
+    ]
+
+  -
+    const dataAnswersExpert ={
+      avatar: 'img/fin_answers_expert_avatar.png',
+      h3: 'На ваши вопросы отвечает ',
+      name: 'Максим Сёмов',
+      p2: 'Председатель комитета по повышению уровня финансовой грамотности Ассоциации российских банков, эксперт по финансовой грамотности АТБ.'
+    }
+
+  -
+    const financialLiteracyBanData = {
+      img: 'img/financial-literacy-ban.png',
+      h4: 'Не нашли ответ на свой вопрос?',
+      buttons: [
+        { text: 'НАПИШИТЕ НАМ', mods: '--link-next', class: 'text-orange' },
+      ]
+    }
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Всё о финансовой грамотности', '#')
+      +breadcrumbs-item('Ответы на ваши вопросы')
+    .page-content.page-content--pt-s
+      +section('--mt0')
+        .inner
+          +section-box('--max-w-xs, --center')
+            +fin-answers-expert(dataAnswersExpert, '--main')
+          +section-box('--max-w-xs, --center')
+            +search-form
+          +section-box('--mt50')
+            +tags(tagsItems, '', 'checkboxes')(data-mob-short)
+          +section-box('--mt50')
+            +useful-articles('fin-answersMain')
+            +ui-pagination('--mt-xs')
+      +section
+        .inner
+          +financial-literacy-ban(financialLiteracyBanData)

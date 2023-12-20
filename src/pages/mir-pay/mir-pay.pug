@@ -1,0 +1,110 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'mir-pay'
+  -const pageTitle ='Mir Pay'
+
+  -
+    const mirAboutData = [
+      {
+        img: 'img/mir-about_1.png',
+        title: 'Mir Pay — это удобный и безопасный сервис бесконтактных платежей.',
+        desc: 'Достаточно установить приложение и пройти простую процедуру регистрации карты Мир. Теперь, чтобы расплачиваться в&nbsp;магазинах, просто поднесите смартфон к&nbsp;терминалу. Деньги за&nbsp;покупки будут списываться с&nbsp;вашей банковской карты АТБ Мир.'
+      },
+      {
+        img: 'img/mir-about_2.png',
+        title: 'Доступно владельцам устройств на&nbsp;базе ОС&nbsp;Android (от&nbsp;версии 6.0 и&nbsp;выше) и&nbsp;поддерживающих технологию NFC',
+        desc: 'Достаточно просто скачать приложение Mir Pay и&nbsp;добавить карту АТБ Мир.'
+      },
+      {
+        img: 'img/mir-about_3.png',
+        title: 'Mir Pay обеспечивает надежную защиту от&nbsp;мошенничества с&nbsp;банковскими картами',
+        desc: 'Реквизиты карт не хранятся в&nbsp;смартфоне и&nbsp;никогда не раскрываются при совершении платежей.'
+      },
+    ]
+
+  -
+    const mirPayAddData = [
+      {
+        txt: 'Установите и&nbsp;запустите <a class="text-orange" href="#">приложение&nbsp;Mir&nbsp;Pay</a>'
+      },
+      {
+        txt: 'Нажмите на&nbsp;«Добавить карту»'
+      },
+      {
+        txt: 'Отсканируйте карту или&nbsp;введите данные вручную и&nbsp;активируйте карту, следуя подсказкам на&nbsp;экране'
+      },
+      {
+        txt: 'Готово. Изображение карты появится на&nbsp;главном экране приложения Mir&nbsp;Pay'
+      },
+    ]
+
+  -
+    const benefitsItems =[
+      { icon: 'img/benefits1.svg', title: 'Удобно', descr: 'Добавьте карту Мир в приложение, для оплаты поднесите смартфон к терминалу' },
+      { icon: 'img/benefits2.svg', title: 'Безопасно', descr: 'Реквизиты карты не хранятся в смартфоне и не раскрываются при оплате' },
+      { icon: 'img/benefits3.svg', title: 'Для устройств на ОС Android', descr: 'От версии 6.0 и выше, с&nbsp;технологией NFC' },
+      { icon: 'img/benefits4.svg', title: '<a href="#" class="text-orange">Цифровая карта АТБ</a>', descr: 'Выпустите цифровую карту в мобильном приложении АТБ и&nbsp;добавьте ее для оплаты в Mir Pay' },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Банковские карты', '#')
+      +breadcrumbs-item(pageTitle)
+    +banner('--m-vertically')
+      +banner-item('--mir-pay')
+        +banner-wrapper('img/banner_mir-pay.png', true)
+          +banner-h1('Mir Pay <br> бесконтактная оплата смартфоном', '--mob-size-l')
+          +banner-descr('Добавьте карту АТБ Мир в&nbsp;приложение Mir&nbsp;Pay и&nbsp;платите смартфоном на&nbsp;базе ОС&nbsp;Андроид', '--size-xs, --mob-size-l, --mob-mb-l').text-orange
+          .banner-item-foot
+            .banner-item-foot-item
+              a.banner__app(href='#')
+                img(src='img/google-play-badge.svg', alt='')
+            .banner-item-foot-item.banner-item-dn
+              .banner__qr
+                img(src='img/qr-code.png', alt='')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--items2-default')
+
+      +section
+        .inner
+          +mir-pay-add(mirPayAddData)
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Поддержка', 'section-head')
+          +accordion
+            +accordion-item('Доступ к сервису')
+              +ui-p1('Доступно владельцам устройств на базе ОС Android (от версии 6.0 и выше) и поддерживающих технологию NFC. Сервис поддерживает карты Азиатско-Тихоокеанский Банк (АО) Мир «Кошелек», Мир «Особый статус».', '--light')
+            +accordion-item('Оплата покупок')
+              +ui-p1('Для оплаты через Mir Pay достаточно разблокировать смартфон и поднести его задней панелью к терминалу. Оплата произойдет мгновенно. В некоторых случаях может потребоваться ввести пароль (или PIN-код) доступа к смартфону или отпечаток пальца, в этом случае следуйте подсказкам на экране смартфона.', '--light')
+            +accordion-item('Удаление карты')
+              +ui-p1('Удалить карту из Mir Pay можно в разделе «Детальная информация о карте».', '--light')
+            +accordion-item('Карта по умолчанию')
+              +ui-p1('Первая карта, которую вы зарегистрируете в Mir Pay становится картой оплаты «По умолчанию». Это означает, что именно с этой карты спишутся деньги, когда вы оплатите покупку через Mir Pay.', '--light')
+            +accordion-item('Возврат покупок')
+              +ui-p1('Условия и порядок возврата в данном случае ничем не отличаются от возврата покупки, оплаченной обычной банковской картой. В некоторых случаях для зачисления денег на карту кассир может попросить назвать последние 4 цифры карты. Их можно посмотреть в «Деталях карты» в приложении. Цифры на изображении карты соответствуют реальным 4 цифрам этой карты.', '--light')
+            +accordion-item('Поддержка Mir Pay')
+              +ui-p1('На данный момент Mir Pay работает на территории Российской Федерации и Республики Армения. Расплатиться можно везде, где терминал принимает бесконтактную оплату картами «Мир».', '--light')
+            +accordion-item('Отсутствие интернета')
+              +ui-p1('Можно совершать покупки без подключения к Интернету.', '--light')
+          +section('--mt-xs').text-center
+            +ui-button('Ответы на другие вопросы', '--link-next').text-orange(href='#')
+      +section('--ov-hidden')
+        .inner
+          +section-head().text-center
+            +ui-h2('Карты, поддерживающие Mir Pay', 'section-head')
+          +select-card

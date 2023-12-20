@@ -1,0 +1,137 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'great-percentages'
+    const pageTitle ='Акция «Великолепные проценты»'
+
+    const greatPercentagesRaffleData = {
+      title: 'Победители',
+      date: [
+        {
+          dateTop: 'с 12 до 18 сентября',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">24</span> сентября </b>',
+        },
+        {
+          dateTop: 'с 19 до 25 сентября',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">1</span> октября </b>',
+        },
+        {
+          dateTop: 'с 26 сентября по 2 октября',
+          dateBot: 'до <b> <span class="great-percentages-raffle__txt great-percentages-raffle__txt--xl">8</span> октября </b>',
+        },
+      ],
+      firstDate: 'с 1 по 11 сентября',
+      winners: [
+        {
+          name: 'Тамара Киприянова А.',
+          city: 'г. Чита',
+        },
+        {
+          name: 'Екатерина Викторовна И.',
+          city: 'г. Абакан',
+        },
+        {
+          name: 'Сергей Сергеевич М.',
+          city: 'г. Черногорск',
+        },
+        {
+          name: 'Валентин Алексеевич Т.',
+          city: 'г. Усолье-Сибирское',
+        },
+      ],
+    }
+
+    const greatPercentagesBanData ={
+      h4: 'Выполните простые условия&nbsp;акции',
+      descr: `Откройте <a href="#" class="text-orange" target="_blank">«АТБ.Вклад»</a> или <a href="#" class="text-orange" target="_blank">«АТБ.Вклад Онлайн»</a>
+        от&nbsp;50&nbsp;000&nbsp;₽ на&nbsp;182,&nbsp;243 или&nbsp;367 дней и&nbsp;примите участие в&nbsp;розыгрыше <b>+2% к&nbsp;основной ставке на&nbsp;весь период действия вклада</b>`,
+      button: 'Оформить вклад',
+      fn: 'с 12 декабря 2022&nbsp;года по&nbsp;29&nbsp;января 2023&nbsp;года',
+      img: 'img/great-percentages-ban.png',
+    }
+
+block content
+  main
+    +banner
+      +banner-item('--great-percentages')
+        +banner-wrapper('img/banner_great-percentages.jpg')
+          +banner-h1('Вклады. Акция <br> «Великолепные проценты»')
+          +banner-descr('Выигрывайте +2% к&nbsp;основной ставке', '--size-s').text-orange
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('Открыть вклад', 'banner')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +main-attention({ title: 'Акция завершена. Участвуйте в акции октября', btn: 'Подробнее', btnLink: '#'}, '--great-percentages')
+      +section
+        .inner
+          +great-percentages-ban(greatPercentagesBanData)
+      +section
+        .inner
+          +section-head.text-center.text-center--mob-left
+            +ui-h2('7 периодов — 7 розыгрышей по 34 победителя', 'section-head')
+            +ui-h5('По&nbsp;2&nbsp;победителя в&nbsp;каждом ', 'section-head')
+              span.text-nowrap из&nbsp;17&nbsp;регионов
+                +ui-tooltip('')
+                  | Всего 238 победителей за весь период акции. Правила определения победителей указаны <a class="text-orange" href="#discount-terms">в условиях акции</a>.
+                  | <br> <br> <b>Регионы акции</b>
+                  +ui-ul('', '--fz-inherit, --li-mb0')
+                    li Амурская область
+                    li Республика Бурятия
+                    li Забайкальский край
+                    li Иркутская область
+                    li Алтайский край и республика Алтай
+                    li Камчатский край
+                    li Сахалинская область
+                    li Красноярский край
+                    li Республика Хакасия
+                    li Магаданская область (в том числе Чукотский автономный округ)
+                    li г. Москва
+                    li Омская и Новосибирская области
+                    li Приморский край
+                    li Свердловская и Тюменская области
+                    li Хабаровский край (в том числе Еврейская автономная область)
+                    li Республика Саха (Якутия)
+
+          +great-percentages-raffle(greatPercentagesRaffleData)
+      +section
+        .inner
+          +section-head
+            +ui-h2('Часто задаваемые вопросы по&nbsp;условиям акции').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Сколько раз можно участвовать в розыгрыше?')
+              +ui-p1('Только 1&nbsp;раз, в&nbsp;розыгрыше участвует только первый оформленный вклад во&nbsp;время проведения акции. В&nbsp;каждом розыгрыше участвуют все вклады, оформленные за&nbsp;время акции.', '--light')
+            +accordion-item('Бонусные проценты будут действовать на все время действия вклада?')
+              +ui-p1('Да, со&nbsp;дня открытия на&nbsp;все время действия вклада.', '--light')
+            +accordion-item('Вклады в какой валюте участвуют в акции?')
+              +ui-p1('Только в&nbsp;рублях. Сумма вклада от&nbsp;50&nbsp;000 ₽.', '--light')
+            +accordion-item('На какой срок нужно открыть вклад?')
+              +ui-p1('На&nbsp;срок 367&nbsp;дней.', '--light')
+            +accordion-item('Что будет, если я закрою вклад раньше?')
+              +ui-p1('Бонусные проценты аннулируются, основные пересчитываются, согласно условиям вклада.', '--light')
+            +accordion-item('Какие вклады участвуют в акции?')
+              +ui-p1('', '--light')
+                | Только
+                =''
+                a.text-orange(href='#') &laquo;АТБ.Вклад&raquo;
+                |  или
+                =' '
+                a.text-orange(href='#') &laquo;АТБ.Вклад Онлайн&raquo;
+                |  без пополнения и снятия
+      +section#discount-terms
+        .inner
+          +section-head
+            +ui-h2('Дополнительная информация').text-center.text-center--mob-left
+          +accordion
+            +accordion-item('Полные условия акции')
+              +documents

@@ -1,0 +1,57 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'multiservice'
+  -const pageTitle ='Сервис по оказанию юридических услуг | банк АТБ'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/law.svg', title: 'Использование своих правовых возможностей на&nbsp;100%' },
+      { icon: 'img/stopwatch.svg', title: 'Решение любого вопроса здесь и&nbsp;сейчас, без&nbsp;очередей' },
+      { icon: 'img/information.svg', title: 'Возможность получить ответ по телефону, email или в&nbsp;Личном кабинете на&nbsp;сайте' },
+      { icon: 'img/carbon_security.svg', title: 'Круглосуточная защита в течение всего годa без&nbsp;дополнительных расходов' },
+      { icon: 'img/call-center.svg', title: 'Возможность связаться со&nbsp;специалистом в&nbsp;течение 30&nbsp;секунд' },
+      { icon: 'img/health-clinic.svg', title: 'Решение вопроса на стадии возникновения потребности' },
+      { icon: 'img/calendar.svg', title: 'Нет ограничения по&nbsp;времени для решения вопроса' },
+      { icon: 'img/miscellaneous.svg', title: 'Гарантия качества услуг, возможность получить запись консультации' },
+      { icon: 'img/ball.svg', title: 'Квалифицированная помощь по любым правовым вопросам' },
+    ]
+
+block content
+  main
+    +banner()
+      +banner-item('--multiservice')
+        +banner-wrapper('img/banner_multiservice.jpg')
+          +banner-h1('Юрист 24 <br> Налогия <br> Мультисервис <br> Юридическая <br> поддержка')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +multiservice-programm-tabs
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Преимущества').text-center.text-center--laptop-left
+          +benefits(benefitsItems, '--mob-items2, --title-normal')
+      +section('--bg-grey')
+        .inner
+          +section-head().text-center.text-center--laptop-left
+            +ui-h2('Есть вопрос?', 'section-head')
+            .section-head__descr Специалисты помогут разобраться в нем
+          +multiservice-contacts
+
+      +section
+        .inner
+          +section-head().text-center.text-center--laptop-left
+            +ui-h2('Программы', 'section-head')
+            .section-head__descr Выберите подходящий Вам сервис*
+          +multiservice-programms

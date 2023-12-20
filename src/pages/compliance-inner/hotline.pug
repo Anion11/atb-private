@@ -1,0 +1,58 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'compliance-inner'
+  -const pageTitle ='Горячая линия комплаенс'
+
+  -
+    const benefitsItems =[
+      { icon: 'img/hotline_principles_icon1.svg', title: 'Анонимность', descr: 'Имеется возможность сообщения информации без раскрытия данных о заявителе.' },
+      { icon: 'img/hotline_principles_icon2.svg', title: 'Конфиденциальность', descr: 'Сведения из сообщения доступны ограниченному кругу лиц.' },
+      { icon: 'img/hotline_principles_icon3.svg', title: 'Полнота учета и обработки', descr: 'Все сообщения, в том числе анонимные, регистрируются и анализируются.' },
+      { icon: 'img/hotline_principles_icon4.svg', title: 'Установление истины', descr: 'В отношении всей поступившей информации проводится проверка.' },
+    ]
+
+  -
+    const list_1 =[
+      { text: 'по телефону <a class="text-orange" href="tel:+74162234944">+7 (4162) 234-944</a>;' },
+      { text: 'на электронный ящик <a class="text-orange" href="mailto:compliance@atb.su">compliance@atb.su</a>;' },
+      { text: 'почтовым отправлением на адрес Банка: 675000, г. Благовещенск, ул. Амурская, 225, «Азиатско-Тихоокеанский Банк» (АО), Дирекция комплаенс.' },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Самое важное сегодня', '#')
+      +breadcrumbs-item(pageTitle)
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Горячая линия комплаенс')
+          +section-box
+            +ui-p1('', '--light')
+              p Горячая линия комплаенс – это конфиденциальный информационный канал, предназначенный для получения информации о намерениях или фактах совершения неправомерных действий в областях контроля конфликта интересов, противодействия коррупции, защиты инсайдерской информации, манипулирования рынком, этики.
+              p Горячая линия комплаенс предназначена для обращения на нее клиентов, контрагентов, партнеров и сотрудников Банка.
+          +section-box
+            +ui-h4('Принципы Горячей линии комплаенс', '--mb, --bold')
+            +benefits(benefitsItems, '--items2-default, --ai-start')
+
+          +section-box
+            +ui-p1('', '--light')
+              p Способы обращения на Горячую линию комплаенс:
+              +ui-ul(list_1)
+
+      +section
+        .inner
+          +attention('--white')
+            +ui-p1('', '--light')
+              p Пожалуйста, помните, что Горячая линия комплаенс не должна использоваться для распространения заведомо ложных сведений, порочащих честь и достоинство сотрудников Банка, из каких-либо хулиганских побуждений или мести и в иных противоправных целях.

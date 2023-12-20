@@ -1,0 +1,104 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'deposits'
+  -const pageTitle ='Вклады'
+
+  -
+    const mainAttentionData ={
+      title: '<span class="text-orange">Внимание!</span>',
+      descr: 'Информация по текущей ситуации',
+      btn: 'Подробнее'
+    }
+
+  -
+    const bannerSapid = [
+      {
+        img: 'img/star.gif',
+        txt: 'Акции',
+        content: [
+          {
+            img: 'img/ic.percent.svg',
+            txt: 'Акция «Великолепные проценты»',
+            link: '#',
+          },
+          {
+            img: 'img/ic.friends.svg',
+            txt: 'Акция «Приведи друга»',
+            link: '#',
+          },
+          {
+            img: 'img/ic.book.svg',
+            txt: 'Книга в подарок',
+            link: '#',
+          },
+        ]
+      },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--deposits-main')
+        +banner-wrapper('img/banner_deposits_main.png', true)
+          +banner-h1('Вклады и&nbsp;<br class="banner__br-no-mob">накопительные счета', '--mob-size-l')
+          +banner-text('Выбери выгодный вклад с&nbsp;лучшими для&nbsp;вас условиями')
+          +banner-foot
+            +ui-button('Сравнить вклады', 'banner, --m-size-l')(href='#')
+        +banner-sapid-container(bannerSapid)
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +main-attention(mainAttentionData)
+      +section
+        .inner
+          +calc-m-deposits
+
+      +section()#section-deposits
+        .inner
+          +section-head
+            +ui-h2('Вклады и счета', 'section-head')
+          +deposits
+
+      +section
+        .inner
+          p тут форма
+
+      +section
+        .inner
+          +section-head.text-center
+            +ui-h2('Вопросы и ответы', 'section-head')
+          +accordion
+            +accordion-item('Застрахованы ли вклады и накопительные счета в Банке?')
+              +ui-p1('', '--light')
+                p Да, застрахованы на основании ФЗ от 23 декабря 2003 года № 177-ФЗ «О страховании вкладов в банках Российской Федерации», более подробная информация о страховании вкладов доступна на сайте
+                  =' '
+                  a.text-orange(href='https://www.asv.org.ru/' target='_blank') asv.org.ru
+            +accordion-item('Возможно управлять вкладом или накопительным счетом без посещения офиса Банка?')
+              +ui-p1('', '--light')
+                p Да, открывать и&nbsp;управлять вкладами и&nbsp;накопительными счетами можно удалённо&nbsp;&mdash; через интернет-банк и&nbsp;мобильное приложение АТБ.
+            +accordion-item('Может ли банк менять ставку по вкладу и накопительному счету в одностороннем порядке?')
+              +ui-p1('', '--light')
+                p В&nbsp;течение срока действия договора банк не&nbsp;может менять процентную ставку по&nbsp;вкладу. Переоформление вклада на&nbsp;новый срок (пролонгация) осуществляется по&nbsp;ставке в&nbsp;соответствии с&nbsp;условиями договора вклада. По накопительному счету банк может менять процентную ставку в&nbsp;соответствии с&nbsp;условиями договора.
+            +accordion-item('Как оплатить налог с процентов по вкладу?')
+              +ui-p1('', '--light')
+                p Государственная дума Российской Федерации отменила НДФЛ с&nbsp;полученных в&nbsp;2021&ndash;2022 годах процентов по&nbsp;вкладам. Закон освобождает граждан от&nbsp;уплаты НДФЛ с&nbsp;процентных доходов по&nbsp;вкладам в&nbsp;банках за&nbsp;2021&ndash;2022&nbsp;годы, которые подлежали&nbsp;бы уплате в&nbsp;2022&ndash;2023&nbsp;годах. При этом вносятся изменения в&nbsp;правила налогообложения процентных доходов по&nbsp;вкладам, которые распространятся на&nbsp;будущие налоговые периоды после 2022&nbsp;года. Необлагаемый доход будет определяться как произведение 1&nbsp;млн рублей и&nbsp;максимального значения ключевой ставки Банка России в&nbsp;данном году. Таким образом, если ключевая ставка&nbsp;ЦБ в&nbsp;течение года повышалась, а&nbsp;вслед за&nbsp;ней росли и&nbsp;ставки по&nbsp;вкладам, то&nbsp;увеличится и&nbsp;необлагаемый доход.
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Полезная информация о&nbsp;вкладах и&nbsp;счетах', 'section-head')
+          +useful-articles
+
+      +section('--bg-grey')
+        .inner
+          +deposits-ssv

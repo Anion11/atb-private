@@ -1,0 +1,29 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='canonical', href='useful-articles-inner-amp.html')
+  link(rel='stylesheet' href='useful-articles-inner-amp.min.css')
+
+block variables
+  -
+    const fileName = 'useful-articles'
+    const pageTitle ='Кредитный лимит'
+    const isAMP = true
+    const ampScriptLink = 'https://atb.dev.dterra.eu/pages/useful-articles/useful-articles-inner-amp.js'
+
+block content
+  main
+    +banner
+      +banner-item('--useful-articles')
+        +banner-wrapper('img/banner_useful-articles-inner.jpg')
+          +banner-h1('Кредитный <br> лимит')
+          +banner-descr('от чего зависит <br> и как увеличить', '--fw400').text-orange
+    .page-content
+      +section('--mt0')
+        .inner
+          +useful-articles-inner
+      +section
+        .inner
+          +section-head
+            +ui-h2('Другие статьи', 'section-head')
+          +useful-articles('articlesOthers')

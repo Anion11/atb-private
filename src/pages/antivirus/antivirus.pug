@@ -1,0 +1,51 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'antivirus'
+  -const pageTitle ='Страховая программа на случай выявления «Коронавирусной инфекции»'
+
+  -
+    const antivirusBenefits =[
+      { icon: 'img/shield.svg', descr: 'Широкое страховое покрытие, включая риск смерти в результате несчастного случая в т.ч. ДТП' },
+      { icon: 'img/wallet.svg', descr: 'Максимальная сумма выплат до&nbsp;1&nbsp;500&nbsp;000 рублей' },
+      { icon: 'img/group.svg', descr: 'Возраст застрахованного от&nbsp;18&nbsp;лет до&nbsp;65 лет' },
+      { icon: 'img/business.svg', descr: 'Ежедневная выплата при временной утрате трудоспособности' },
+      { icon: 'img/calendar.svg', descr: 'Срок страхования 11&nbsp;год' },
+      { icon: 'img/cash.svg', descr: 'Ежедневная выплата при госпитализации, связанной с коронавирусной инфекцией' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--antivirus')
+        +banner-wrapper('img/banner_antivirus.png', true)
+          +banner-h1('«Антивирус»', '--mob-size-l')
+          +banner-text('Страховая программа на&nbsp;случай выявления «Коронавирусной инфекции»')
+          +banner-foot
+            +ui-button('Оформить онлайн', 'banner, --m-size-l')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            .section-head__descr В&nbsp;непростой для&nbsp;всего мира ситуации дополнительная защита для&nbsp;себя и&nbsp;близких необходима для&nbsp;спокойствия и&nbsp;уверенности. Программа «Антивирус» - это&nbsp;решение, которое может помочь вам или&nbsp;вашим близким в&nbsp;непредвиденной ситуации.
+          +benefits(antivirusBenefits)
+      +section
+        .inner
+          +antivirus-programm
+      +section
+        .inner
+          +antivirus-actions
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания', 'section-head').text-center
+          +accordion
+            +accordion-item('Документы')
+              +documents

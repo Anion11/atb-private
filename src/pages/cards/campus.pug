@@ -1,0 +1,154 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'cards'
+  -const pageTitle ='Дебетовая карта «Кампус»'
+
+  -
+    const bannerSapid = [
+      {
+        class: 'js-popup-open',
+        link: '#ban-video',
+        img: 'img/ic.video.svg',
+        txt: 'Видео',
+      },
+      {
+        img: 'img/ic.servis.svg',
+        txt: 'Сервисы',
+        content: [
+          {
+            img: 'img/ic.credit-card.svg',
+            txt: 'Перевести по номеру карты',
+            link: '#',
+          },
+          {
+            img: 'img/ic.credit-card-plus.svg',
+            txt: 'Как пополнить карту?',
+            link: '#',
+          },
+        ]
+      },
+      {
+        img: 'img/star.gif',
+        txt: 'Акции',
+        content: [
+          {
+            img: 'img/ic.wallet.svg',
+            txt: 'Акция «Приведи друга»',
+            link: '#',
+          },
+          {
+            img: 'img/ic.book.svg',
+            txt: 'Книга в подарок',
+            link: '#',
+          },
+        ]
+      },
+    ]
+
+  -
+    const benefitsItems =[
+      { icon: 'img/benefit_campus-1.svg', title: 'ежемесячное обслуживание карты' },
+      { icon: 'img/benefit_campus-2.svg', title: 'начисление процентов на минимальный остаток по счету - 4% ' },
+      { icon: 'img/benefit_campus-3.svg', title: 'начисление баллов от стоимости совершенных безналичных операций - 5%' },
+    ]
+
+  -
+    const termsTable =[
+      { name: 'Тип банковской карты', descr: 'Мир' },
+      { name: 'Срок действия карты', descr: '3 года' },
+      { name: 'Ежемесячное обслуживание основной и дополнительной карты', descr: 'бесплатно' },
+      { name: 'Количество бесплатных дополнительных карт', descr: 'Без ограничений' },
+      { name: 'Ежемесячное начисление процентов на остаток по счету банковской карты', descr: '4%' },
+      { name: 'Снятие наличных в любых банкоматах России', descr: 'Бесплатно' },
+      { name: 'Кешбек', descr: '	5 % на категорию «Активная жизнь»' },
+    ]
+
+  -
+    const termsList =[
+      { text: 'участие в дисконтных программах банка и платежных систем' },
+      { text: 'бесплатная выписка по счетам <span class="text-nowrap">в «АТБ-Онлайн»</span> /<span class="text-nowrap">«АТБ-Мобайл»</span>' },
+      { text: 'круглосуточная поддержка через Колл-центр АТБ' },
+      { text: 'сообщение в банк о потере или краже карты по единому номеру в любой точке мира' },
+      { text: 'Оплачивайте покупки одним движением руки!' },
+    ]
+
+  -
+    const termsPayment =[
+      { img: 'img/icon-pay-wifi.svg' },
+      { img: 'img/samsung-pay-seeklogo.svg' },
+      { img: 'img/logo-mir-pay.svg' },
+    ]
+
+  -
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Заявка', descr: 'Заполнение анкеты в среднем <br>занимает 5 минут' },
+      { icon: './img/how_get_step2.svg', title: 'Одобрение', descr: 'В течение 3 минут придет вам <br> в смс' },
+      { icon: './img/how_get_step3.svg', title: 'Оформление и подписание договора', descr: 'В ближайшем отделении банка' },
+    ]
+
+  -
+    let mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным Мобильным банком, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+block content
+  main
+    +banner
+      +banner-item('--card-campus')
+        +banner-wrapper('img/banner_campus.jpg')
+          +banner-h1('Дебетовая карта «Кампус»')
+        +banner-sapid-container(bannerSapid)
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--title-normal')
+
+      +section
+        .inner
+          +section-head('--max-w')
+            +ui-h3('Дебетовая <b>Кампус</b>', 'section-head, --normal')
+            .section-head__descr Кампусная карта – это инструмент доступа к информационным, сервисным, административным и платежным услугам в пределах образовательного учреждения.
+      +section
+        .inner
+          +mir-banner
+      +section
+        .inner
+          +switch('', 'Параметры карты', 'Тарифы и документы', 'card-info', '--mb40, --mob-vertical')
+          +switch-group('card-info')
+            +switch-content(true)
+              +card-terms({ termsTable, termsList, termsPayment })
+            +switch-content()
+              +documents
+              +accordion
+                +accordion-item('Архив')
+                  +accordion('--inner')
+                    +accordion-item('Архив тарифов')
+                      +documents
+                    +accordion-item('Архив УДБО')
+                      +documents
+      +section
+        .inner
+          +mob-banner(mobBannersData)
+      +section
+        .inner
+          +how-get('Как получить карту', howGetItems, 'Оформить карту')
+      +popup__wrapper#ban-video
+        +p-video('#form-section')

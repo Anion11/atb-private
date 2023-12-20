@@ -1,0 +1,38 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'refer-a-friend'
+  -const pageTitle ='Приведи друга'
+
+  -
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Оставить заявку', descr: ' Оставьте заявку на потребительский <br> кредит и получите 10 купонов.' },
+      { icon: './img/how_get_step2.svg', title: 'Поделитесь купонами', descr: 'Отправьте купоны вашим друзьям, <br> родным и близким.' },
+      { icon: './img/how_get_step3.svg', title: 'Получите бонус', descr: 'При оформлении кредита по купону <br> вы и ваш друг получите денежный <br> бонус до 4000₽.' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--refer-a-friend')
+        +banner-wrapper('img/banner_refer-a-friend.png', true)
+          +banner-h1('Акция <br> «Приведи друга»', '--mob-size-l')
+          +banner-descr('и получи до&nbsp;', '--fw400, --mob-size-l, --mob-mb-l').text-orange
+            span.banner-descr__num 4000₽
+          +banner-item-foot
+            .banner-item-foot-item
+              +ui-button('оставить заявку на кредит', 'banner, --m-size-l')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +how-get('Как получить денежный бонус?', howGetItems, 'Оформить карту')
+      +section
+        .inner
+          +get-bounty

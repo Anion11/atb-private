@@ -1,0 +1,118 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'cards'
+  -const pageTitle ='Карта «Кошелек»'
+
+  -
+    const howGetItems =[
+      { icon: './img/card_2_0_how_get_step1.svg', title: 'Заполните <a href="#"> анкету </a>', descr: 'или обратитесь в любое отделение банка или позвоните по номеру <br> <a class="text-nowrap" href="tel:88007758888"> 8-800-775-88-88 </a> ' },
+      { icon: './img/card_2_0_how_get_step2.svg', title: 'Получите карту и <a href="#"> заявление </a> ', descr: 'на перечисление заработной платы на карту АТБ' },
+      { icon: './img/card_2_0_how_get_step3.svg', title: 'Отнесите заявление в бухгалтерию предприятия', descr: 'для учета при перечислении зарплаты' },
+    ]
+
+  -
+    const termsTable =[
+      { name: 'Тип банковской карты', descr: 'Visa Gold, Mastercard Gold, МИР' },
+      { name: 'Ежемесячное обслуживание основной карты', descr: 'бесплатно' },
+      { name: 'Количество бесплатных дополнительных карт', descr: '2 шт.' },
+      { name: 'Возврат от суммы покупок', descr: '1% на карты Visa и Mastercard Gold' },
+      { name: 'Ежемесячное начисление процентов на остаток по счету банковской карты', descr: '4%' },
+      { name: 'Ежедневный лимит совершения операций выдачи наличных в банкоматах любых банков, в т.ч. АТБ (от 00 до 24 ч. Московского времени)', descr: '150&nbsp;000 рублей 3&nbsp;000 USD/ EUR' },
+      { name: 'Снятие наличных в любых банкоматах России', descr: 'Бесплатно в пределах установленного лимита на снятие в месяц' },
+    ]
+
+  -
+    const termsList =[
+      { text: 'участие в дисконтных программах банка и платежных систем' },
+      { text: 'бесплатная выписка по счетам <span class="text-nowrap">в «АТБ-Онлайн»</span> /<span class="text-nowrap">«АТБ-Мобайл»</span>' },
+      { text: 'круглосуточная поддержка через Колл-центр АТБ' },
+      { text: 'сообщение в банк о потере или краже карты по единому номеру в любой точке мира' },
+      { text: 'Оплачивайте покупки одним движением руки!' },
+    ]
+
+  -
+    const termsPayment =[
+      { img: 'img/icon-pay-wifi.svg' },
+      { img: 'img/samsung-pay-seeklogo.svg' },
+      { img: 'img/google-pay-seeklogo.svg' },
+      { img: 'img/logo-mir-pay.svg' },
+      { img: 'img/icon-apple-pay.svg' },
+      { img: 'img/logo-garmin_pay.png' },
+    ]
+
+  -
+    const featuresItems =[
+      { icon: './img/icon_window.svg', title: 'Удобно', descr: 'Выпуск карты без визита в банк' },
+      { icon: './img/icon_clock.svg', title: 'Быстро', descr: 'После оформления карта появится в вашем Мобильном приложении — и вы сможете ей пользоваться' },
+      { icon: './img/icon_folder.svg', title: 'Безопасно', descr: 'Никто не подсмотрит ваши реквизиты при оплате' },
+      { icon: './img/icon_phone.svg', title: 'Потеря карты исключена', descr: 'Выпуск в цифровом формате' },
+    ]
+
+  -
+    let mobBannersData ={
+      title: 'Еще больше возможностей в&nbsp;вашем устройстве!',
+      descr: 'Воспользуйтесь безопасным Мобильным банком, который позволит реализовать все функции вашего банковского продукта.',
+      apps: [
+        { icon: 'icon_app_store_white' },
+        { icon: 'icon_google_play_white' },
+        { icon: 'icon_rustore_white' },
+      ],
+      qrSrc: '/img/qr-code.png',
+      img: '/img/mob-banner.png'
+    }
+
+block content
+  main
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head('--max-w')
+            +ui-h3('Дебетовая <b>Карта «Кошелек»</b>', 'section-head, --normal')
+            .section-head__descr Карта «Кошелек» — карта премиальной категории, которая подчеркивает статус ее держателя и предоставляет ряд привилегий по всему миру. Очень удобна для получения зарплаты.
+            +ui-button('Оформить карту')(href='#form-section')
+      +section
+        .inner
+          +mir-banner
+      +section
+        .inner
+          +switch('', 'Параметры карты', 'Тарифы и документы', 'card-purse-info', '--mb40, --mob-vertical')
+          +switch-group('card-purse-info')
+            +switch-content(true)
+              +card-terms({ termsTable, termsList, termsPayment })
+            +switch-content()
+              +documents
+              +accordion
+                +accordion-item('Архив')
+                  +accordion('--inner')
+                    +accordion-item('Архив тарифов')
+                      +documents
+                    +accordion-item('Архив УДБО')
+                      +documents
+      +section('--bg-grey')
+        .inner
+          +instruction
+      +section
+        .inner
+          +ui-h2('Особенности Цифровой карты', '--section').text-center.text-center--mob-left
+          +features(featuresItems)
+      +section
+        .inner
+          +mob-banner(mobBannersData)
+      +section
+        .inner
+          +how-get('Как получить карту', howGetItems)
+      +section('--bg-grey')#form-section
+        .inner
+          +section-head
+            +ui-h2('Оформите заявку на&nbsp;карту', 'section-head').text-center
+      +popup__wrapper#ban-video
+        +p-video('#form-section')

@@ -1,0 +1,266 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -
+    const fileName = 'deposits-inner'
+    const pageTitle ='Вклад'
+
+  -
+    const tableItemsReplenishment ={
+      thead: [
+        {
+          th: [
+            { text: 'Валюта вклада' },
+            { text: 'RUB', },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Ставка годовых&nbsp;до' },
+            { text: '13,840%' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Сумма открытия&nbsp;от' },
+            { text: '7 000 000 ₽' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Срок вклада' },
+            { text: '2, 3, 4, 6 месяцев' },
+          ]
+        },
+        {
+          td: [
+            { text: '*Минимальная гарантированная ставка' },
+            { text: 'Ставка, определяющая минимальный доход, выплачиваемый вкладчику на&nbsp;сумму вклада при&nbsp;условии хранения суммы вклада до&nbsp;конца срока вклада без&nbsp;учета каких-либо других условий. Порядок расчета минимальной гарантированной ставки по&nbsp;вкладу определяется Банком России.' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItemsReplenishmentFull = {
+      thead: [
+        {
+          th: [
+            { text: 'Валюта вклада' },
+            { text: 'RUB', },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Ставка годовых&nbsp;до' },
+            { text: '13,840%' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Минимальная сумму вклада' },
+            { text: '7 000 000 ₽' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Максимальная сумма вклада' },
+            { text: 'Не ограничена' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Срок вклада' },
+            { text: '62&nbsp;дня, 92&nbsp;дня, 122&nbsp;дня, 182&nbsp;дня' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Пополнение' },
+            { text: 'нет' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Пролонгация' },
+            { text: 'да' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Неснижаемый остаток' },
+            { text: 'не предусмотрен' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Выплата процентов и&nbsp;суммы Вклада' },
+            { text: 'в&nbsp;конце срока на&nbsp;счет, открытый в&nbsp;АТБ' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Досрочное расторжение Договора' },
+            { text: 'проценты выплачиваются по&nbsp;ставке Вклада Банка «Личный счет» (до&nbsp;востребования)' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItemsNoReplenishment ={
+     thead: [
+        {
+          th: [
+            { text: 'Валюта вклада' },
+            { text: 'RUB', },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Ставка годовых&nbsp;до' },
+            { text: '14,244%' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Сумма открытия&nbsp;от' },
+            { text: '7 000 000 ₽' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Срок вклада' },
+            { text: '2, 3, 4, 6 месяцев' },
+          ]
+        },
+        {
+          td: [
+            { text: '*Минимальная гарантированная ставка' },
+            { text: 'Ставка, определяющая минимальный доход, выплачиваемый вкладчику на&nbsp;сумму вклада при&nbsp;условии хранения суммы вклада до&nbsp;конца срока вклада без&nbsp;учета каких-либо других условий. Порядок расчета минимальной гарантированной ставки по&nbsp;вкладу определяется Банком России.' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const tableItemsNoReplenishmentFull = {
+      thead: [
+        {
+          th: [
+            { text: 'Валюта вклада' },
+            { text: 'RUB', },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Ставка годовых&nbsp;до' },
+            { text: '14,244%' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Минимальная сумму вклада' },
+            { text: '7 000 000 ₽' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Максимальная сумма вклада' },
+            { text: 'Не ограничена' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Срок вклада' },
+            { text: '62&nbsp;дня, 92&nbsp;дня, 122&nbsp;дня, 182&nbsp;дня' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Пополнение' },
+            { text: 'нет' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Пролонгация' },
+            { text: 'да' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Неснижаемый остаток' },
+            { text: 'не предусмотрен' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Выплата процентов и&nbsp;суммы Вклада' },
+            { text: 'в&nbsp;конце срока на&nbsp;счет, открытый в&nbsp;АТБ' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Досрочное расторжение Договора' },
+            { text: 'проценты выплачиваются по&nbsp;ставке Вклада Банка «Личный счет» (до&nbsp;востребования)' },
+          ]
+        },
+      ]
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--deposit-atb-vip')
+        +banner-wrapper('img/banner_deposit_atb_vip.png', true)
+          +banner-h1('Вклад <br>для ВИП-клиентов', '--mob-size-l')
+          +banner-subtitle('Ставка до ')
+            =' '
+            span.banner-subtitle__accent 14,2%
+          +banner-foot
+            +ui-button('Оформить вклад', 'banner, --m-size-l')(href='#')
+            +banner-slogan('Премиальный вклад для&nbsp;высоких доходов!')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +switch('', 'Без пополнения и снятия', 'С пополнением', 'switch1', '--mb20, --mob-vertical')
+          +calc-i-deposits('deposit-atb-vip')
+      +section('--mt-s')
+        +tabs-head([{ text: 'Без пополнения и снятия'}, { text: 'С пополнением' }], '', '--round')
+        +tabs-main
+          +tabs-main__item(true)
+            .inner
+              +ui-table(tableItemsReplenishment, '--deposit-atb-vip')
+          +tabs-main__item
+            .inner
+              +ui-table(tableItemsNoReplenishment, '--deposit-atb-vip')
+      +section
+        .inner
+          +attention
+            p Вклад распространяется на&nbsp;клиентов, имеющих &laquo;ВИП категорию&raquo; в&nbsp;системе Банка. Открытие вклада доступно только&nbsp;в&nbsp;отделениях Банка.
+      +section
+        .inner
+          +section-head
+            +ui-h2('Документы для скачивания', 'section-head')
+          +accordion
+            +accordion-item('Подробные условия тарифа «АТБ. ВИП.Вклад» (без&nbsp;пополнения и&nbsp;снятия)')
+              +ui-table(tableItemsReplenishmentFull, '--deposit-atb-vip')
+            +accordion-item('Подробные условия тарифа «АТБ. ВИП.Вклад» (с&nbsp;пополнением)')
+              +ui-table(tableItemsNoReplenishmentFull, '--deposit-atb-vip')

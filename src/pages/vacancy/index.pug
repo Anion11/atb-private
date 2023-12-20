@@ -1,0 +1,36 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'vacancy'
+    const pageTitle ='Вакансии в АТБ'
+
+block content
+  main
+    .page-content
+      +section('--mt0')
+        .inner
+          +vacancy
+
+      +section('--bg-grey')
+        .inner
+          +section-head
+            +ui-h2('Оставьте заявку').text-center
+        .bvi-no-styles
+          // тут форма
+
+      +section
+        .inner
+          +section-head
+            +ui-h2('Похожие вакансии')
+          +vacancies-others
+          +section-box.text-center
+            +ui-button('Все вакансии', '--m-w100')(href='#')

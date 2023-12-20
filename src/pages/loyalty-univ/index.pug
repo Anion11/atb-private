@@ -1,0 +1,192 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'loyalty-univ'
+    const pageTitle ='Программы лояльности по кредитной карте «Универсальная»'
+
+    const tabs = [
+      { text: 'С 6 сентября 2021 по 13 июля 2022 (вкл)', id: 'from6' },
+      { text: 'До 5 сентября 2021 (вкл)', id: 'until5' }
+    ]
+
+    const tableItems = {
+      thead: [
+        {
+          title: true,
+          th: [
+            { text: '<b>Категория</b>', rowspan: 2 },
+            { text: 'Сумма покупок по вашей кредитной карте', colspan: 2, mods: 'text-center' },
+          ],
+        },
+        {
+          title: true,
+          th: [
+            { text: 'До 20&nbsp;000&nbsp;₽', mods: 'text-center' },
+            { text: 'Больше 20&nbsp;000&nbsp;₽', mods: 'text-center' },
+          ],
+        },
+      ],
+      tbody: [
+        {
+          td: [
+            { text: '«Семейная» <br> <a class="ui-p2 text-orange js-popup-open" href="#popup-mcc-codes">Подробнее</a>' },
+            { text: '1%', mods: 'text-center text-grey80' },
+            { text: '10%', mods: 'text-center text-grey80' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Прочие операции покупок по карте' },
+            { text: '1%', mods: 'text-center text-grey80', colspan: 2 },
+          ]
+        },
+      ]
+    }
+
+    const tableItems2 = {
+      thead: [
+        {
+          title: true,
+          th: [
+            { text: '<b>Категория</b>', rowspan: 2 },
+            { text: 'Сумма покупок по&nbsp;вашей кредитной карте в&nbsp;категории', colspan: 3, mods: 'text-center' },
+          ],
+        },
+        {
+          title: true,
+          th: [
+            { text: 'До&nbsp;5&nbsp;000&nbsp;₽ (включительно)', mods: 'text-center' },
+            { text: 'От&nbsp;5&nbsp;000&nbsp;₽ до&nbsp;15&nbsp;000&nbsp;₽ (включительно)', mods: 'text-center' },
+            { text: 'От&nbsp;15&nbsp;000&nbsp;₽', mods: 'text-center' },
+          ],
+        },
+      ],
+      tbody: [
+        {
+          td: [
+            { text: '«Авто»', tooltip: '3351-3441 <br> 4121, 4784 <br> 5172, 5271, 5531, 5541, 5542, 5935, 5983 <br> 7512, 7519, 7523, 5532, 5533, 7531, 7534, 7535, 7542, 7549, 7538', botDescr: 'АЗС, автозапчасти, автосервис, оплата такси' },
+            { text: '1%', mods: 'text-center text-grey80', rowspan: 4 },
+            { text: '5%', mods: 'text-center text-grey80', rowspan: 4 },
+            { text: '10%', mods: 'text-center text-grey80', rowspan: 4 },
+          ]
+        },
+        {
+          td: [
+            { text: '«Семья»', tooltip: '4111, 4121, 4131 <br> 5611, 5621, 5641, 5651, 5691, 5699, 5912, 5942, 5943, 5945, 5949, 5995 <br> 7216, 7512 <br> 8011, 8021, 8042, 8062, 8099, 8211, 8249, 8299, 8351', botDescr: 'Одежда, товары для детей, канцтовары, образовательные услуги, зоомагазины, больницы, аптеки' },
+          ]
+        },
+        {
+          td: [
+            { text: '«Развлечения»', tooltip: '4121 <br> 5811, 5812, 5813, 5814, 5947,5971, 5992 <br> 7011, 7832, 7841, 7911, 7922, 7929, 7933, 7991, 7996, 7997, 7998, 7999', botDescr: 'Театры, кинотеатры, музеи, кафе, бары, рестораны' },
+          ]
+        },
+        {
+          td: [
+            { text: '«Дом-ремонт»', tooltip: '0780 <br> 1520, 1711, 1731, 1740, 1750, 1761, 1771 <br> 2842 <br> 5021, 5039, 5046, 5051, 5065, 5072, 5074, 5085, 5198, 5200, 5211, 5231, 5251, 5261, 5712, 5713, 5714, 5718, 5719, 5950, 5996 <br> 7622, 7623, 7629, 7641, 7692, 7349, 7699', botDescr: 'Покупка товаров для дома, ремонта и&nbsp;строительства, садоводства' },
+          ]
+        },
+        {
+          td: [
+            { text: '«Все включено»', botDescr: 'Все Транзакции, проведенные по&nbsp;Банковской карте', tooltipBotDescr: 'За&nbsp;исключением категорий, указанных <a class="text-orange" href="/the-most-important/measures-customer-support/mss-kody-isklyucheniy-iz-tranzaktsiy/">здесь</a>' },
+            { text: '1%', mods: 'text-center text-grey80' },
+            { text: '2%', mods: 'text-center text-grey80', colspan: 2 },
+          ]
+        },
+        {
+          td: [
+            { text: 'Операции, не&nbsp;входящие в&nbsp;Бонусную категорию, установленную по&nbsp;Карте', tooltip: 'За&nbsp;исключением категорий, указанных <a class="text-orange" href="/the-most-important/measures-customer-support/mss-kody-isklyucheniy-iz-tranzaktsiy/">здесь</a>' },
+            { text: '1%', mods: 'text-center text-grey80', colspan: 3 },
+          ]
+        },
+      ]
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--loyalty-univ')
+        +banner-wrapper('img/banner_loyalty_univ.png', true)
+          +banner-h1('Программы <br> лояльности', '--mob-size-l')
+          +banner-subtitle('по кредитной карте <br> «Универсальная»')
+          +banner-text('Для карт оформленных до&nbsp;13&nbsp;октября&nbsp;2023')
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Рассчитайте ваш кэшбэк', 'section-head')
+          +calc-card('loyalty-univ', 'loyalty-univ-calc')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Как начисляется кэшбэк', 'section-head')
+          +cashback-scheme('loyalty-univ')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Для карт оформленных:', 'section-head')
+          +tabs-head(tabs, true, '--no-item-border')
+          +tabs-main
+            +tabs-main__item(true)
+              +section('--mt0')
+                +ui-h4('Процентная ставка, по которой будет начисляться кэшбэк по категориям трат:', '--bold, --mb')
+                +section-box('--mt30')
+                  +ui-table(tableItems, '--all-border, --grey-title, --loyalty-univ-3col')
+                +section-footnote('Максимальная сумма выплаты кэшбэка не&nbsp;более 4&nbsp;000&nbsp;₽ за&nbsp;отчетный период', '--grey60, --fz16, --fw-normal')
+              +section('--mt-s')
+                +accordion
+                  +accordion-item('Пример начисления кэшбэка')
+                    +loyalty-univ-exmpl('1')
+            +tabs-main__item
+              +section('--mt0')
+                +ui-h4('Процентная ставка, по которой будет начисляться кэшбэк по категориям трат:', '--bold, --mb-xs')
+                +ui-p1('Вы можете выбрать любимую категорию, исходя из планируемых трат. <br> Изменить любимую категорию вы можете', '--light')
+                  =' '
+                  a.text-orange.js-popup-open(href='#choose_fav_category') здесь.
+                +section-box('--mt30')
+                  +ui-table(tableItems2, '--mob-scroll, --all-border, --grey-title, --loyalty-univ-4col')
+                +section-footnote('', '--grey60, --fz16, --fw-normal')
+                  p 20&nbsp;000&nbsp;₽ максимальная сумма одной транзакции для расчета кэшбэка.
+                  p Например, если вы&nbsp;оплатите единоразово покупку на&nbsp;сумму 23&nbsp;000&nbsp;₽, то&nbsp;кэшбэк начисляется на&nbsp;сумму 20&nbsp;000&nbsp;₽.
+                  ul.ui-ul.ui-ul--black
+                    li При начислении кэшбэка за&nbsp;покупки Баллы округляются до&nbsp;целого числа в&nbsp;меньшую сторону
+                    li Максимальная сумма выплаты кэшбэка 2&nbsp;000&nbsp;₽ за&nbsp;отчетный период
+              +section('--mt-s')
+                +accordion
+                  +accordion-item('Пример начисления кэшбэка')
+                    +loyalty-univ-exmpl('2')
+    +popup__wrapper#choose_fav_category
+      +p-categories
+
+    +popup__wrapper('--small')#popup-mcc-codes
+      +section-head().text-center
+        +ui-h3('МСС коды')
+      +ui-p1('', '--light')
+        p
+          b Товары для дома
+          br
+          | 5200, 5331, 5712, 5719
+        p
+          b Кафе, бары, рестораны, фаст-фуд, доставка еды
+          br
+          | 5811-5814, 5921
+        p
+          b Игрушки, игры, одежда, детская одежда, покупки в&nbsp;зоомагазинах
+          br
+          | 5311, 5641, 5945, 5995
+        p
+          b Мужская и женская, одежда, аксессуары, обувь
+          br
+          | 5651, 5661, 5691
+        p
+          b Спорттовары, салоны красоты, здоровья, парикмахерские, магазины косметики
+          br
+          | 5941, 5977, 7230, 7298

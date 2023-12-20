@@ -1,0 +1,51 @@
+
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+
+block variables
+  -const fileName = 'garmin-pay'
+  -const pageTitle ='Garmin Pay'
+
+block content
+  main
+    +banner()
+      +banner-item('--garmin-pay')
+        +banner-wrapper('img/banner_garmin-pay.jpg')
+          +banner-h1('Оплачивайте покупки часами Garmin', '--size-s')
+          +banner-descr('Garmin Pay – это быстрый, безопасный и&nbsp;удобный платежный сервис для владельцев спортивных часов Garmin', '--size-xs').banner-item-dn
+        +banner-mobile
+          p Garmin Pay – это быстрый, безопасный и&nbsp;удобный платежный сервис для владельцев спортивных часов Garmin
+    .page-content
+      +section('--mt0')
+        .inner
+          +garmin-pay-info
+
+      +section('--bg-grey')
+        .inner
+          +garmin-pay-add
+
+      +section
+        .inner
+          +section-head().text-center
+            +ui-h2('Как оплачивать покупки часами Garmin', 'section-head')
+          +garmin-pay-how
+
+      +section
+        .inner
+          +section-head().text-center
+            +ui-h2('Устройства с Garmin Pay', 'section-head')
+          +garmin-pay-devices
+          +section-footnote().text-center
+            +ui-button('Подробнее про Garmin Pay', '--link-next').text-orange(href='https://www.garmin.ru/garminpay/' target='_blank')
+
+      +section('--ov-hidden')
+        .inner
+          +section-head().text-center
+            +ui-h2('Карты, поддерживающие Garmin Pay', 'section-head')
+          +select-card

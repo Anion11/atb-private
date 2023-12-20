@@ -1,0 +1,91 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'info-pages'
+  -const pageTitle ='Документы и тарифы'
+
+  -
+    const benefitsItems =[
+      {
+        icon: 'img/documents-tariffs_icon-1.svg',
+        title: 'Кредитные карты',
+      },
+      {
+        icon: 'img/documents-tariffs_icon-2.svg',
+        title: 'Дебетовые карты',
+      },
+      {
+        icon: 'img/documents-tariffs_icon-3.svg',
+        title: 'Программа лояльности и&nbsp;АТБ Клуб',
+      },
+      {
+        icon: 'img/documents-tariffs_icon-4.svg',
+        title: 'Кредиты',
+        descr: 'Наличным, рефинансирование, ипотека, автокредиты'
+      },
+      {
+        icon: 'img/documents-tariffs_icon-5.svg',
+        title: 'Накопления',
+        descr: 'Вклады, счета, слитки, монеты и&nbsp;прочее'
+      },
+      {
+        icon: 'img/documents-tariffs_icon-6.svg',
+        title: 'Дистанционное банковское обслуживание',
+      },
+      {
+        icon: 'img/documents-tariffs_icon-7.svg',
+        title: 'Расчетно-кассовое обслуживание физлиц',
+      },
+      {
+        icon: 'img/documents-tariffs_icon-8.svg',
+        title: 'Кредитование собственников бизнеса как&nbsp;физических лиц',
+      },
+      {
+        icon: 'img/documents-tariffs_icon-9.svg',
+        title: 'Премиальные продукты. <br>Программа «Статус»',
+      },
+      {
+        icon: 'img/documents-tariffs_icon-10.svg',
+        title: 'Клиентам <br>Квант Мобайл Банка',
+      },
+      {
+        icon: 'img/documents-tariffs_icon-11.svg',
+        title: 'Прочее',
+        descr: 'Дополнительные сведения, памятки и другое'
+      },
+      {
+        icon: 'img/documents-tariffs_icon-12.svg',
+        title: 'Банковский надзор',
+        descr: 'за деятельностью кредитной организации'
+      },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item(pageTitle)
+
+    +banner('--m-vertically')
+      +banner-item('--v-inner-pt-xxl')
+        +banner-wrapper('img/banner_documents_and_tariffs.png', true)
+          +banner-h1('Документы <br class="banner__br-no-mob">и&nbsp;тарифы', '--mob-size-l')
+
+    .page-content.page-content--mob-pt-l
+      +section('--mt0')
+        .inner
+          +search-block
+      +section
+        .inner
+          +search-block(false)
+      +section('--mt-s')
+        .inner
+          +benefits(benefitsItems, '--l, --links', 'isLinks')

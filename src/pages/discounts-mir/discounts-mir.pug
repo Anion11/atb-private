@@ -1,0 +1,131 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -
+    const fileName = 'discounts-mir'
+    const pageTitle ='Скидки и акции по карте «Мир»'
+
+    const discountsMirData={
+      checkboxes: [
+        'Mir Supreme',
+        'Автовладельцам',
+        'Аптеки',
+        'Бытовая техника',
+        'Для детей',
+        'Для дома и сада',
+        'Для животных',
+        'Еда на дом',
+        'ЖКХ',
+        'Интернет, ТВ, связь',
+        'Искусство',
+        'Каршеринг',
+        'Кафе и рестораны',
+        'Красота и здоровье',
+        'Обучение и курсы',
+        'Одежда, обувь, аксессуары',
+        'Парковки',
+        'Предметы роскоши',
+        'Продукты питания',
+        'Путешествия и отдых',
+        'Развлечения',
+        'Разное',
+        'Сборная выгодных предложений',
+        'Спорт',
+        'Страхование',
+        'Такси',
+        'Топливо',
+        'Транспорт',
+        'Цветы',
+        'Часы и украшения',
+        'Ювелирные изделия'
+      ],
+      isMobSlider: false,
+      content: [
+        {
+          label: 'спорт',
+          img: 'img/discount_1.jpg',
+          title: 'Увлекательный мир свободного передвижения и активного спорта',
+          logo: 'img/discount-logo_veloshop.png',
+          percent: '5%',
+          desc: 'кешбэк за любую <br> покупку',
+        },
+        {
+          label: 'спорт',
+          img: 'img/discount_1.jpg',
+          title: 'Всё для экстремального спорта с выгодой',
+          logo: 'img/discount-logo_extremeMarket.jpg',
+          percent: '5%',
+          desc: 'кешбэк за любую <br> покупку',
+        },
+        {
+          label: 'для дома и сада',
+          img: 'img/discount_2.jpg',
+          title: 'Стильные обои с доставкой',
+          logo: 'img/discount-logo_fineWall.jpg',
+          percent: '20%',
+          desc: 'кешбэк за любую <br> покупку',
+        },
+        {
+          label: 'путешествия и отдых',
+          img: 'img/discount_3.jpg',
+          title: 'Бронируйте заранее с выгодой',
+          logo: 'img/discount-logo_gosUslugi.svg',
+          percent: '6%',
+          desc: 'комиссии при оплате штрафов на <br> портале госуслуг',
+        },
+        {
+          label: 'разное, автовладельцам',
+          img: 'img/discount_4.jpg',
+          title: 'Госуслуги. Мир без комиссии',
+          logo: 'img/discount-logo_gosUslugi.svg',
+          percent: '0%',
+          desc: 'комиссии при оплате штрафов на <br> портале госуслуг',
+        },
+        {
+          label: 'для животных',
+          img: 'img/discount_5.jpg',
+          title: 'Товары для вашего питомца с выгодой',
+          logo: 'img/discount-logo_gosUslugi.svg',
+          percent: '7%',
+          desc: 'скидка на покупки на сайте по промокоду для новых пользователей Petshop.ru',
+        },
+      ],
+      btn: {
+        text: 'Показать еще'
+      }
+    }
+
+    const benefitsItems =[
+      { icon: 'img/benefit_1.svg', title: 'Совершайте покупки у&nbsp;наших <a href="#" class="text-orange">партнеров</a>' },
+      { icon: 'img/benefit_2.svg', title: 'Получайте кэшбэк деньгами прямо на&nbsp;карту' },
+      { icon: 'img/benefit_3.svg', title: 'Надежная российская <a href="#" class="text-orange">платежная система</a>' },
+    ]
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item('--discounts-mir')
+        +banner-wrapper('img/banner_discounts-mir.png', true)
+          +banner-h1('Скидки и кэшбэк <br class="banner__br-no-mob">по&nbsp;карте Мир', '--mob-size-l')
+          +banner-text('Оплачивайте покупки по&nbsp;карте Мир с&nbsp;выгодой!')
+          +banner-foot
+            +ui-button('Войти', 'banner, --m-size-l')(href='#')
+    .page-content
+      +section('--mt0')
+        .inner
+          +benefits(benefitsItems, '--title-normal')
+      +section
+        .inner
+          +discounts-mir(discountsMirData)
+          +section-box().text-center
+            +ui-button('Показать еще', '--empty')(href=discountsMirData.btn.link)
+          +section-box
+            +ui-pagination()

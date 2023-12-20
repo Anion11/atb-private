@@ -1,0 +1,29 @@
+
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'search'
+  -const pageTitle ='Поиск по сайту'
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item('Поиск')
+    +banner
+      +banner-item('--text-old')
+        +banner-wrapper('/img/banner_gradient.jpg')
+          +banner-h1('Поиск по сайту')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +search
