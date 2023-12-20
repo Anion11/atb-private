@@ -1,0 +1,135 @@
+.vacancies {
+  &__section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+  }
+  &__body {
+    display: grid;
+    grid-template-columns: 31.1% 1fr;
+    gap: 80px 40px;
+    @include media-laptop {
+      grid-template-columns: 30% 1fr;
+      gap: 60px 20px;
+    }
+    @include media-tablet {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 30px;
+    }
+    &--promo-top {
+      gap: 40px;
+      @include media-laptop {
+        gap: 30px 20px;
+      }
+      @include media-tablet {
+        gap: 20px;
+      }
+      .vacancies {
+        &__promo {
+          grid-template-columns: 1fr;
+          grid-column: unset;
+          order: -1;
+          .vacancies__banner {
+            padding: 50px 310px 50px 40px;
+            @include media-laptop {
+              padding: 30px 185px 30px 30px;
+            }
+            @include media-tablet {
+              padding: 30px 95px 30px 20px;
+            }
+          }
+        }
+        &-filter {
+          min-height: auto;
+        }
+      }
+    }
+  }
+  &__promo,
+  &__list {
+    display: grid;
+    gap: 30px;
+    @include media-laptop {
+      gap: 20px;
+    }
+  }
+  &__list {
+    grid-column: 2/-1;
+    @include media-tablet {
+      grid-column: unset;
+    }
+  }
+  &__ui-pagination {
+    margin-top: 10px;
+  }
+  &__promo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    grid-column: 1/-1;
+    @include media-laptop {
+      grid-template-columns: 1fr;
+    }
+    @include media-tablet {
+      gap: 20px;
+    }
+  }
+  &__banner {
+    position: relative;
+    min-height: 210px;
+    padding: 40px 240px 40px 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    @include media-laptop {
+      padding: 30px 185px 30px 30px;
+    }
+    @include media-tablet {
+      padding: 30px 95px 30px 20px;
+    }
+    &--plugin {
+      background: #232622;
+      color: #fff;
+    }
+    &--atb-start {
+      background: linear-gradient(180deg, #cee4f0 0%, #d6eaf5 100%);
+    }
+    > :not(.vacancies__banner-img) {
+      position: relative;
+      z-index: 1;
+    }
+    &-img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      max-width: 380px;
+      @include media-laptop {
+        max-width: 300px;
+      }
+      @include media-tablet {
+        max-width: 270px;
+      }
+    }
+    .vacancies {
+      &__ui-h3 {
+        &:not(:last-child) {
+          margin-bottom: 25px;
+          @include media-laptop {
+            margin-bottom: 15px;
+          }
+        }
+      }
+      &__ui-p2 {
+        max-width: 245px;
+        @include media-laptop {
+          max-width: 235px;
+        }
+        @include media-tablet {
+          max-width: 130px;
+        }
+      }
+    }
+  }
+  &__filter-wrapp {
+    order: -2;
+  }
+}

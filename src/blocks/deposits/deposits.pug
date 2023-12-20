@@ -1,0 +1,129 @@
+mixin deposits(mods)
+  -
+    const baseName = 'deposits'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const depositsItems =[
+      {
+        img: 'atb',
+        title: 'Вклад «АТБ. Вклад»',
+        descr: [
+          'Громкая ставка: до 8,2% годовых',
+          'Повышенная ставка в рублях при открытии в <a class="text-orange" href="#"> интернет-банке</a> и  <a class="text-orange" href="#">мобильном банке</a>',
+        ],
+        features: [
+          { name: 'Ставка', val: '<span class="deposits__features-descr">до</span> 8,2% <span class="deposits__features-descr">годовых</span>' },
+          { name: 'срок', val: '<span class="deposits__features-descr">от</span> 3 мес.' },
+          { name: 'сумма', val: '<span class="deposits__features-descr">от</span> 5 000 ₽' },
+        ],
+        options: [
+          { text: 'возможность пополнения' },
+          { has: false, text: 'частичное снятие' },
+          { text: 'ежемесячная выплата процентов' },
+        ]
+      },
+      {
+        img: 'super_piggy_bank',
+        title: 'Накопительный счет «АТБ. Счет»',
+        descr: [
+          '7,5% на остаток',
+          'Возможно открыть в <a class="text-orange" href="#"> интернет-банке</a> и  <a class="text-orange" href="#">мобильном банке</a>',
+        ],
+        features: [
+          { name: 'Ставка', val: '7,5% <span class="deposits__features-descr">годовых</span>' },
+          { name: 'срок', val: '<span class="deposits__features-descr">не ограничен</span>' },
+          { name: 'сумма', val: '<span class="deposits__features-descr">от</span> 0 ₽' },
+        ],
+        options: [
+          { text: 'возможность пополнения' },
+          { text: 'частичное снятие' },
+          { text: 'ежемесячная выплата процентов' },
+        ]
+      },
+      {
+        img: 'welcome',
+        title: 'Вклад «Добро пожаловать»',
+        descr: [
+          'Дружеский вклад с высоким процентом!',
+        ],
+        features: [
+          { name: 'Ставка', val: '<span class="deposits__features-descr">до</span> 9,1% <span class="deposits__features-descr">годовых</span>' },
+          { name: 'срок', val: '<span class="deposits__features-descr">от</span> 6 мес. ' },
+          { name: 'сумма', val: '<span class="deposits__features-descr">от</span> 50 000 ₽ ' },
+        ],
+        options: [
+          { text: 'возможность пополнения' },
+          { has: false, text: 'частичное снятие' },
+          { has: false, text: 'ежемесячная выплата процентов' },
+        ]
+      },
+      //- {
+      //-   img: 'save_plus',
+      //-   title: 'Вклад «Сохрани+»',
+      //-   descr: [
+      //-     'Сохраним и приумножим ваши деньги',
+      //-     'Повышенная ставка в рублях при открытии в <a class="text-orange" href="#"> интернет-банке</a> и  <a class="text-orange" href="#">мобильном банке</a>',
+      //-   ],
+      //-   features: [
+      //-     { name: 'Ставка', val: '<span class="deposits__features-descr">до</span> 9,5% <span class="deposits__features-descr">годовых</span> ' },
+      //-     { name: 'срок', val: '<span class="deposits__features-descr">от</span>3  мес.' },
+      //-     { name: 'сумма', val: '<span class="deposits__features-descr">от</span> 5 000 ₽' },
+      //-   ],
+      //-   options: [
+      //-     { text: 'возможность пополнения' },
+      //-     { has: false, text: 'частичное снятие' },
+      //-     { text: 'ежемесячная выплата процентов' },
+      //-   ]
+      //- },
+      //- {
+      //-   img: 'control',
+      //-   title: 'Вклад «Управляй»',
+      //-   descr: [
+      //-     'Для тех, кто хочет свободно управлять своими средствами',
+      //-     '<span class="text-orange"> + 0.2 п.п.</span>  к ставке в рублях в <a class="text-orange" href="#"> интернет-банке</a> и  <a class="text-orange" href="#">мобильном банке</a>',
+      //-   ],
+      //-   features: [
+      //-     { name: 'Ставка', val: '<span class="deposits__features-descr">до</span>  8,8% <span class="deposits__features-descr">годовых</span> ' },
+      //-     { name: 'срок', val: '<span class="deposits__features-descr">от </span>3 мес.' },
+      //-     { name: 'сумма', val: '<span class="deposits__features-descr">от </span> 1 000 ₽' },
+      //-   ],
+      //-   options: [
+      //-     { text: 'возможность пополнения' },
+      //-     { text: 'частичное снятие' },
+      //-     { text: 'ежемесячная выплата процентов' },
+      //-   ]
+      //- },
+    ]
+
+  .deposits(class=allMods)&attributes(attributes)
+    each item in depositsItems
+      .deposits__item
+        .deposits__img
+          img(src=`img/deposit_${item.img}.jpg`, alt='')
+        .deposits__content
+          .deposits__head
+            .deposits__title !{item.title}
+            .deposits__descr
+              each itemDesr in item.descr
+                p !{itemDesr}
+          .deposits__main
+            .deposits__features
+              each itemFeature in item.features
+                .deposits__features-item
+                  .deposits__features-name=itemFeature.name
+                  .deposits__features-val !{itemFeature.val}
+            .deposits__options
+              each itemOptions in item.options
+                .deposits__options-item(class=(itemOptions.has === false) ? 'deposits__options-item--no' : '') !{itemOptions.text}
+          .deposits__foot
+            +ui-button('оформить', '--empty')(href='#')
+            +ui-button('Подробнее о вкладе', '--link-next')(href='#')
+    block

@@ -1,0 +1,291 @@
+.calc-card {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    @include media-laptop {
+      display: block;
+    }
+  }
+  &__params {
+    width: 760px;
+    @include media-laptop {
+      width: auto;
+    }
+    @include media-tablet {
+      width: auto;
+    }
+  }
+  &__line {
+    &:not(:last-child) {
+      margin-bottom: 40px;
+      @include media-laptop {
+        margin-bottom: 25px;
+      }
+    }
+    @include media-laptop {
+      padding: 0 10px;
+    }
+  }
+  &__info {
+    width: 380px;
+    @include media-laptop {
+      width: auto;
+    }
+  }
+  &__result {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+    padding: 25px 25px 30px;
+    background: #fff;
+    box-shadow: $lightBigShadow;
+    border-radius: 8px;
+    @include media-laptop {
+      min-height: 320px;
+      margin-top: 40px;
+      padding: 50px 60px 40px;
+    }
+    @include media-tablet {
+      min-height: unset;
+      margin-top: 30px;
+      padding: 30px 20px;
+      overflow: hidden;
+    }
+    &-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    &-top {
+      margin-bottom: 30px;
+      @include media-tablet {
+        margin-bottom: 25px;
+      }
+      .calc-card__result {
+        &-sum {
+          margin-bottom: 5px;
+        }
+        &-descr {
+          margin-bottom: 0;
+        }
+      }
+    }
+    &-title {
+      margin-bottom: 12px;
+      font: 400 20px/1.4 $font;
+      @include media-tablet {
+        font-size: 16px;
+      }
+    }
+    &-sum {
+      margin-bottom: 35px;
+      font: 400 32px/1 $font;
+    }
+    &-descr {
+      max-width: 165px;
+      margin-bottom: 50px;
+      font: 300 16px/1.37 $font;
+      @include media-laptop {
+        max-width: 390px;
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+      @include media-tablet {
+        max-width: 180px;
+        margin-bottom: 25px;
+        font-size: 16px;
+      }
+    }
+    &-img {
+      position: absolute;
+      top: 100px;
+      right: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 135px;
+      height: 135px;
+      border-radius: 50%;
+      overflow: hidden;
+      @include media-laptop {
+        top: 50px;
+        right: 60px;
+      }
+      @include media-tablet {
+        top: 100px;
+        right: 20px;
+        width: 115px;
+        height: 115px;
+      }
+    }
+    .ui-button {
+      width: 100%;
+      margin-top: auto;
+    }
+  }
+  &__total {
+    margin-top: 25px;
+    padding: 15px 20px;
+    box-shadow: $lightBigShadow;
+    border-radius: 8px;
+    font: 400 18px/1.4 $font;
+    @include media-tablet {
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 16px;
+    }
+    &-num {
+      font-weight: 700;
+    }
+  }
+  &__descr {
+    margin-top: 15px;
+    font: 300 16px/1.75 $font;
+  }
+  &__footnote {
+    margin-top: 10px;
+    font: 300 14px/1.2 $font;
+    color: $grey80;
+    @include media-tablet {
+      margin-top: 15px;
+    }
+  }
+  &__terms {
+    position: relative;
+    padding: 20px 45px 20px 60px;
+    box-shadow: 0 3px 30px rgb(135 151 155 / 0.15);
+    border-radius: 8px;
+    &:not(:first-child) {
+      margin-top: 35px;
+      @include media-tablet {
+        margin-top: 30px;
+      }
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_6682_1667)'%3E%3Cpath d='M16.2896 9.23636C17.5987 9.23636 18.6169 8.14545 18.6169 6.90909C18.6169 5.6 17.526 4.58182 16.2896 4.58182C14.9805 4.58182 13.9624 5.67273 13.9624 6.90909C13.9624 8.14545 15.0533 9.23636 16.2896 9.23636ZM16.2896 5.45455C17.0896 5.45455 17.7442 6.10909 17.7442 6.90909C17.7442 7.70909 17.0896 8.36364 16.2896 8.36364C15.4896 8.36364 14.8351 7.70909 14.8351 6.90909C14.9078 6.10909 15.5624 5.45455 16.2896 5.45455ZM7.4169 27.1273C5.59872 25.8182 4.14418 24 3.12599 22.0364C2.03509 19.9273 1.52599 17.6727 1.52599 15.3455C1.59872 11.4909 3.05327 7.85455 5.8169 5.16364C8.58054 2.47273 12.2169 0.945454 16.0714 0.945454C18.3987 0.945454 20.5805 1.45455 22.5442 2.47273L24.4351 3.63636C28.2896 6.47273 30.5442 10.9091 30.5442 15.4909C30.5442 18.8364 29.3805 22.1091 27.1987 24.6545C26.6169 25.3818 26.2533 26.1818 26.1078 27.0545C25.9624 27.7091 25.8169 28.7273 26.1805 29.7455C26.2533 30.0364 26.1805 30.4727 25.9624 30.6909C25.6714 30.9818 25.3805 30.9818 25.0896 30.9818C24.1442 30.6909 23.1987 30.2545 22.2533 29.7455C21.526 29.3091 20.6533 29.2364 19.7805 29.4545C18.5442 29.7455 17.3078 29.9636 15.926 29.9636C13.5987 29.9636 11.4169 29.3818 9.38054 28.2909L7.4169 27.1273ZM8.87145 29.0909C11.0533 30.1818 13.3805 30.8364 15.8533 30.8364C17.2351 30.8364 18.5442 30.6909 19.926 30.3273C20.5078 30.1818 21.1624 30.2545 21.6714 30.5455C22.6169 31.0545 23.7078 31.5636 24.726 31.8545C24.8714 31.9273 25.0896 31.9273 25.2351 31.9273C25.7442 31.9273 26.1805 31.7091 26.5442 31.3455C27.0533 30.8364 27.1987 30.1091 26.9805 29.4545C26.7624 28.8 26.7624 28.1455 26.9078 27.1273C26.9805 26.4 27.4169 25.7455 27.7805 25.1636C30.1078 22.4727 31.2714 18.9091 31.3442 15.3455C31.3442 10.4 28.9442 5.67273 24.8714 2.76364L22.9078 1.6C20.726 0.509091 18.3987 0 15.9987 0C11.926 0 8.07145 1.6 5.08963 4.50909C2.18054 7.41818 0.58054 11.2727 0.507812 15.3455C0.507812 17.8182 1.08963 20.2909 2.18054 22.4727C3.27145 24.5818 4.87145 26.4727 6.83508 27.9273L8.87145 29.0909ZM11.4896 22.6182V23.1273C11.4896 24 12.2169 24.7273 13.0896 24.7273H19.5624C20.4351 24.7273 21.1624 24 21.1624 23.1273V22.6182C21.1624 21.7455 20.4351 21.0182 19.5624 21.0182H18.6896V12C18.6896 11.4909 18.3987 10.9818 17.9624 10.6909C17.526 10.4 16.9442 10.3273 16.4351 10.5455C15.6351 10.8364 14.8351 11.0545 13.9624 11.1273L12.4351 11.2C11.8533 11.2727 11.3442 11.7091 11.3442 12.2909V13.1636C11.3442 13.8182 11.8533 14.2545 12.4351 14.2545H13.7442C13.8169 14.2545 13.8169 14.3273 13.8169 14.3273V20.9455H13.0896C12.2169 20.9455 11.4896 21.6727 11.4896 22.6182ZM14.4714 21.8909C14.7624 21.8909 14.9805 21.6727 14.9805 21.3818V14.3273C14.9805 13.8182 14.5442 13.3091 13.9624 13.3091H12.6533C12.5805 13.3091 12.5078 13.2364 12.5078 13.1636V12.2182C12.5078 12.1455 12.5805 12.0727 12.6533 12.0727L14.1805 12C15.126 11.9273 16.0714 11.7091 16.9442 11.3455C17.1624 11.2727 17.3805 11.2727 17.5987 11.4182C17.8169 11.4909 17.8896 11.7091 17.8896 11.9273V21.4545C17.8896 21.7455 18.1078 21.9636 18.3987 21.9636H19.7078C20.0714 21.9636 20.4351 22.2545 20.4351 22.6909V23.2C20.4351 23.5636 20.1442 23.9273 19.7078 23.9273H13.1624C12.7987 23.9273 12.4351 23.6364 12.4351 23.2V22.6909C12.4351 22.3273 12.726 21.9636 13.1624 21.9636L14.4714 21.8909Z' fill='url(%23paint0_linear_6682_1667)'/%3E%3C/g%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_6682_1667' x1='6.86781' y1='31.9273' x2='34.0762' y2='23.7029' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FE5000'/%3E%3Cstop offset='1' stop-color='%23FCA92A'/%3E%3C/linearGradient%3E%3CclipPath id='clip0_6682_1667'%3E%3Crect width='32' height='32' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+  &--universal {
+    .calc-card-ban {
+      min-height: 155px;
+      margin-bottom: 30px;
+      padding: 30px 430px 30px 45px;
+      overflow: hidden;
+      @include media-tablet {
+        padding: 15px 185px 70px 20px;
+      }
+      &__title {
+        @include media-laptop {
+          max-width: 300px;
+        }
+      }
+      &__img {
+        right: 0;
+        max-width: 315px;
+        @include media-tablet {
+          top: 70%;
+          right: -15px;
+          max-width: 260px;
+        }
+      }
+    }
+    .calc-card {
+      &__result {
+        &-descr {
+          max-width: 180px;
+        }
+      }
+    }
+  }
+  &--loyalty-univ {
+    .calc-card {
+      &__result {
+        &-descr {
+          max-width: 180px;
+        }
+      }
+    }
+  }
+}
+.calc-card-ban {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 130px;
+  margin-bottom: 65px;
+  padding: 25px 275px 25px 45px;
+  background: $greyBlueGradient;
+  border-radius: 8px;
+  overflow: hidden;
+  @include media-tablet {
+    min-height: 18px;
+    margin-bottom: 30px;
+    padding: 15px 135px 15px 20px;
+  }
+  &__title {
+    margin-bottom: 10px;
+    font: 700 20px/1.5 $font;
+    @include media-tablet {
+      font-size: 18px;
+      line-height: 1.3;
+    }
+  }
+  &__descr {
+    font: 300 14px/1.2 $font;
+    color: $grey80;
+    @include media-tablet {
+      max-width: 75%;
+    }
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    &--attention {
+      font-weight: 400;
+      color: $orange;
+    }
+  }
+  &__img {
+    position: absolute;
+    right: -36px;
+    bottom: 0;
+    max-width: 260px;
+    @include media-tablet {
+      top: 50%;
+      right: -25px;
+      bottom: auto;
+      transform: translateY(-50%);
+      max-width: 180px;
+    }
+  }
+}
+body .bvi-body {
+  .calc-card {
+    .calc-card {
+      &__result {
+        &-title,
+        &-top,
+        &-descr,
+        &-sum {
+          width: fit-content;
+        }
+        &-content {
+          background: transparent !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+mixin credits-list(creditsListData, mods)
+  -
+    const baseName = 'credits-list'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const data = [
+      { text: '<a class="text-orange" href="#">Кредит на 100&nbsp;000&nbsp;рублей</a>' },
+      { text: '<a class="text-orange" href="#">Кредит на 150&nbsp;000&nbsp;рублей</a>' },
+      { text: '<a class="text-orange" href="#">Кредит на 300&nbsp;000&nbsp;рублей</a>' },
+      { text: '<a class="text-orange" href="#">Кредит на 500&nbsp;000&nbsp;рублей</a>' },
+      { text: '<a class="text-orange" href="#">Кредит на 1&nbsp;000&nbsp&nbsp;000&nbsp;рублей</a>' },
+      { text: '<a class="text-orange" href="#">Кредит на 1 500&nbsp;000&nbsp;рублей</a>' },
+      { text: '<a class="text-orange" href="#">Кредит за 5 минут</a>' },
+      { text: '<a class="text-orange" href="#">Кредит сроком на 1 год</a>' },
+      { text: '<a class="text-orange" href="#">Кредит сроком на 2 года</a>' },
+      { text: '<a class="text-orange" href="#">Кредит сроком на 3 года</a>' },
+      { text: '<a class="text-orange" href="#">Кредит сроком на 5 лет</a>' },
+      { text: '<a class="text-orange" href="#">Кредит для пенсионеров</a>' },
+    ]
+
+  .credits-list(class=allMods)&attributes(attributes)
+    .credits-list__section
+      .credits-list__main
+        .credits-list__box
+          +ui-ul(creditsListData ? creditsListData : data, 'credits-list')
+    .credits-list__section
+      .credits-list__head
+        +ui-p1('Другие предложения по кредитам наличными').text-bold
+      .credits-list__main
+        .credits-list__box
+          +ui-p2('Кредитный калькулятор', 'credits-list').text-bold
+          +ui-ul(creditsListData ? creditsListData : data, 'credits-list')
+        .credits-list__box
+          +ui-p2('Кредит наличными по сумме', 'credits-list').text-bold
+          +ui-ul(creditsListData ? creditsListData : data, 'credits-list')
+        .credits-list__box
+          +ui-p2('Кредит наличными по срокам', 'credits-list').text-bold
+          +ui-ul(creditsListData ? creditsListData : data, 'credits-list')
+    block

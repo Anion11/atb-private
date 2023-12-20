@@ -1,0 +1,112 @@
+.contact-widget {
+  position: fixed;
+  right: 40px;
+  bottom: 95px;
+  z-index: 90;
+  @include media-tablet {
+    right: 10px;
+  }
+  &__button {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 0.12);
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    transform-origin: center;
+    transition: 0.2s ease;
+    &:hover {
+      transform: scale(1.1);
+      @include media-tablet {
+        transform: none;
+      }
+    }
+    .svg-icon {
+      width: 28px;
+      height: 28px;
+      color: #fff;
+    }
+    &--main {
+      position: relative;
+      z-index: 10;
+      padding: 0;
+      background: $orange;
+      .svg-icon {
+        grid-area: 1/1/2/2;
+        transition: 0.2s ease;
+      }
+      [class*='--icon_close'] {
+        opacity: 0;
+      }
+    }
+    &--orange {
+      background: $orange;
+    }
+    &--tg {
+      background: linear-gradient(180deg, #29aaed 0%, #229eda 100%);
+    }
+    &--wa {
+      background: #25d366;
+    }
+    &--imess {
+      background: linear-gradient(180deg, #5cf776 0%, #0dbd2b 100%);
+    }
+  }
+  &__wrapper {
+    overflow: hidden;
+  }
+  &__list {
+    display: none;
+    position: absolute;
+    bottom: 50%;
+    padding-bottom: calc((48px / 2) + 8px);
+  }
+  &__item {
+    position: relative;
+    &:hover {
+      .contact-widget__text {
+        transform: translateY(-50%) scale(1.1);
+        opacity: 1;
+        visibility: visible;
+        @include media-tablet {
+          transform: translateY(-50%);
+        }
+      }
+    }
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+  &__text {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 12px);
+    transform: translateY(-50%);
+    padding: 0 10px;
+    font: 12px/18px $font;
+    color: #4682b4;
+    background-color: #fff;
+    border-radius: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease;
+  }
+  &--active {
+    .contact-widget {
+      &__button {
+        &--main {
+          [class*='--icon_close'] {
+            opacity: 1;
+          }
+          [class*='--icon_chat'] {
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+}

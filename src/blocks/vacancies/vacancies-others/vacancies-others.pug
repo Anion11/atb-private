@@ -1,0 +1,34 @@
+mixin vacancies-others(mods)
+  -
+    const baseName = 'vacancies-others'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const vacancyPropsItems =[
+      {
+        text: 'Требуемый опыт работы <span class="text-bold">1–3 года</span>',
+      },
+      { icon: 'icon_geo',
+        text: 'Благовещенск, Амурская область',
+      },
+      { icon: 'icon_timer',
+        text: 'Полная занятость',
+      },
+    ]
+
+  .vacancies-others(class=allMods)&attributes(attributes)
+    -for(let i=0; i<3; i++)
+      .vacancies-others__item
+        .vacancies-others__name Ведущий специалист отдела информационной безопасности
+        +vacancy-props(vacancyPropsItems, 'vacancies-others, --gap-s')
+        .vacancies-others__foot
+          +ui-button('Подробнее', '--outline')(href='#')
+          .vacancies-others__salary З/п не указана
+    block

@@ -1,0 +1,75 @@
+mixin most-important(mods)
+  -
+    const baseName = 'most-important'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const menu=[
+      {
+        icon: 'img/most-important_1.svg',
+        title: 'Ответы на часто задаваемые вопросы',
+        desc: 'В данном разделе собраны ответы на самые часто задаваемые вопросы по продуктам и сервисам.',
+        link: '#'
+      },
+      {
+        icon: 'img/most-important_2.svg',
+        title: 'У вас появился вопрос?',
+        desc: 'Здесь вы можете оставить обращение.',
+        link: '#'
+      },
+      {
+        bgImage: 'img/most-important_3.png',
+        title: 'Выплаты семьям c детьми',
+        desc: 'Новый вид государственной <br>поддержки для семей <br>с&nbsp;детьми до 16 лет',
+        link: '#'
+      },
+      {
+        icon: 'img/most-important_4.svg',
+        title: 'Бесплатная <br>горячая линия',
+        desc: 'по вопросам профилактики вирусных заболеваний, в том числе и <b>короновируса COVID-19</b>',
+        link: '#'
+      },
+      {
+        bgImage: 'img/most-important_5.png',
+        title: '«Антивирус»',
+        desc: 'Страховая программа на случай выявления «Коронавирусной инфекции»',
+        link: '#'
+      },
+      {
+        icon: 'img/most-important_6.svg',
+        title: 'Вниманию клиентов',
+        desc: 'Предупреждение о возможности мошенничества с использованием имени и репутации Азиатско-Тихоокеанского Банка',
+        link: '#'
+      },
+      {
+        icon: 'img/most-important_7.svg',
+        title: 'Реструктуризация',
+        desc: 'Реструктуризация в рамках федерального закона 106-ФЗ',
+        link: '#'
+      },
+    ]
+
+  .most-important(class=allMods)&attributes(attributes)
+    each item in menu
+      a.most-important__link(href=item.link class=item.bgImage ? 'most-important__link--bg' : '')
+        if item.icon
+          .most-important__top
+            if item.icon
+              .most-important__icon
+                img(src=item.icon, alt='')
+            .most-important__title !{item.title}
+        else
+          .most-important__title !{item.title}
+        .most-important__desc !{item.desc}
+        span.ui-button.ui-button--link-next.most-important__ui-button подробнее
+        if item.bgImage
+          .most-important__img
+            img(src=item.bgImage, alt='')
+    block

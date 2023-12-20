@@ -1,0 +1,51 @@
+.mortgage-partners {
+  position: relative;
+  padding: 35px 540px 35px 100px;
+  background: linear-gradient(90deg, #fff4ec 0%, #fae8d8 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  @include media-laptop {
+    padding: 30px 200px 30px 30px;
+    padding-right: 200px;
+  }
+  @include media-tablet {
+    padding: 25px 105px 25px 20px;
+  }
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+  &__title {
+    margin-bottom: 20px;
+    font: 700 28px/1.3 $font;
+    @include media-laptop {
+      font-size: 24px;
+    }
+    @include media-tablet {
+      font-size: 22px;
+    }
+  }
+  &__btns {
+    display: flex;
+    gap: 25px;
+    @include media-laptop {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+  &__img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    max-width: 540px;
+    @include media-laptop {
+      right: -100px;
+      max-width: 300px;
+    }
+    @include media-tablet {
+      right: -145px;
+      max-width: 330px;
+    }
+  }
+}

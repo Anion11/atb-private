@@ -1,0 +1,23 @@
+mixin how-apply(howApplyItems, mods)
+  -
+    const baseName = 'how-apply'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .how-apply(class=allMods)&attributes(attributes)
+    each item in howApplyItems
+      .how-apply__box
+        .how-apply__box-img
+          img(src=item.icon, alt='')
+        .how-apply__box-content
+          if item.title
+            .how-apply__box-title !{item.title}
+          if item.descr
+            .how-apply__box-descr !{item.descr}
+    block

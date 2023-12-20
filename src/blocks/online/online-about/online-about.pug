@@ -1,0 +1,144 @@
+mixin online-about(mods)
+  -
+    const baseName = 'online-about'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const onlineNav =[
+      { text: 'Управляйте' },
+      { text: 'Открывайте' },
+      { text: 'Контролируйте' },
+      { text: 'Оплачивайте' },
+    ]
+
+  -
+    const aboutImg =[
+      {
+        class: 'manage',
+        imgMain: 'about_slide-1',
+        imgAnim: [
+          { img: 'about_moneta-1-1', class: 'moneta-1' },
+          { img: 'about_moneta-1-2', class: 'moneta-2' },
+          { img: 'about_chart', class: 'chart' },
+          { img: 'about_card-1', class: 'card-1' },
+        ]
+      },
+      {
+        class: 'open',
+        imgMain: 'about_slide-2',
+        imgAnim: [
+          { img: 'about_moneta-1-2', class: 'moneta-1' },
+          { img: 'about_check', class: 'check' },
+          { img: 'about_arrow', class: 'arrow' },
+        ]
+      },
+      {
+        class: 'control',
+        imgMain: 'about_slide-3',
+        imgAnim: [
+          { img: 'about_grow', class: 'grow' },
+          { img: 'about_moneta-3-1', class: 'moneta-1' },
+        ]
+      },
+      {
+        class: 'pay',
+        imgMain: 'about_slide-4',
+        imgAnim: [
+          { img: 'about_moneta-4-1', class: 'moneta-1' },
+          { img: 'about_moneta-4-2', class: 'moneta-2' },
+          { img: 'about_moneta-4-3', class: 'moneta-3' },
+          { img: 'about_card-4', class: 'card-1' },
+        ]
+      },
+    ]
+
+  -
+    const listOpenOnline =[
+      { text: 'вклад' },
+      { text: 'накопительный счет' },
+      { text: 'цифровую банковскую карту' },
+    ]
+
+  -
+    const listRequest =[
+      { text: 'кредит' },
+      { text: 'кредитную карту' },
+      { text: 'ипотеку' },
+    ]
+
+  -
+    const listHistory =[
+      { text: 'Определите, на чем можно экономить с помощью диаграммы трат' },
+      { text: 'Скачайте историю операций в форматах .pdf, .xls или отправьте на email в формате .xls или .csv' },
+    ]
+
+  -
+    const listPay =[
+      { text: 'Все платежи и переводы разделены на категории, что упрощает поиск' },
+      { text: 'Популярную операцию можно добавить в избранное и совершать повторно в несколько кликов' },
+      { text: 'Новый сервис «Оплата штрафов и счетов» поможет отслеживать государственные начисления и платежи за услуги ЖКХ' },
+    ]
+
+  .online-about(class=allMods)&attributes(attributes)
+    +ui-h2('Возможности АТБ онлайн', 'online-about')
+    .online-about__wrapper
+      .online-about__content
+        .online-about__top
+          .online-about__nav
+              .online-about__nav-slider
+                .swiper-wrapper
+                  each item, index in onlineNav
+                    .online-about__link.swiper-slide(class = (index === 0) ? 'online-about__link--active' : '')=item.text
+
+        .online-about__txt
+          .swiper-container
+            .swiper-wrapper
+              .online-about__txt-item.swiper-slide
+                .online-about__txt-block
+                  .online-about__h5 Банковские карты
+                  .online-about__p просмотр информации, выписки по операциям, платежи и переводы, блокировка карты
+                .online-about__txt-block
+                  .online-about__h5 Кредиты
+                  .online-about__p график платежей, остаток, актуальная сумма платежа и способы погашения
+                .online-about__txt-block
+                  .online-about__h5 Вклады и счета
+                  .online-about__p пополнить, посмотреть историю начисления дохода и другие действия
+
+              .online-about__txt-item.swiper-slide
+                h3.online-about__h3 Новые продукты моментально
+                .online-about__h5 Всего за несколько минут откройте онлайн:
+                +ui-ul(listOpenOnline, 'online-about')
+                .online-about__h5 Оставьте заявку и получите предварительное решение на:
+                +ui-ul(listRequest, 'online-about')
+
+              .online-about__txt-item.swiper-slide
+                h3.online-about__h3 История операций в новом формате
+                +ui-ul(listHistory, 'online-about')
+
+              .online-about__txt-item.swiper-slide
+                h3.online-about__h3 Оплачивайте с АТБ онлайн
+                +ui-ul(listPay, 'online-about')
+
+        .online-about__btns
+          .swiper-button-prev
+          .swiper-button-next
+
+      .online-about__img
+        .swiper-container
+          .swiper-wrapper
+            each item in aboutImg
+              .online-about__img-item.swiper-slide(class = `online-about__img-item--${item.class}`)
+                img(src=`img/${item.imgMain}.png`, alt='')
+                .online-about__img-anim
+                  each itemAnim in item.imgAnim
+                    .online-about__img-anim-item(class = `online-about__img-anim-item--${itemAnim.class}`)
+                      img(src=`img/${itemAnim.img}.png`, alt='')
+
+    block

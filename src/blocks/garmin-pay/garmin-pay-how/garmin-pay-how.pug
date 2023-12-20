@@ -1,0 +1,36 @@
+mixin garmin-pay-how(mods)
+  -
+    const baseName = 'garmin-pay-how'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const garminPayHowItem = [
+      {
+        img: 'img/step1.png',
+        text: 'Разблокируйте часы'
+      },
+      {
+        img: 'img/step2.png',
+        text: 'Выберите карту'
+      },
+      {
+        img: 'img/step3.png',
+        text: 'Поднесите часы <br> дисплеем к терминалу <br> с бесконтактной оплатой'
+      },
+    ]
+
+  .garmin-pay-how(class=allMods)&attributes(attributes)
+    each item, index in garminPayHowItem
+      .garmin-pay-how__item
+        .garmin-pay-how__img
+          img(src=item.img, alt='')
+          span.garmin-pay-how__count=index+1
+        .garmin-pay-how__text !{item.text}
+    block

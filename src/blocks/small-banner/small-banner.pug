@@ -1,0 +1,69 @@
+mixin small-banner(data, mods)
+  -
+    const baseName = 'small-banner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  case mods
+    default
+      .small-banner(class=allMods)&attributes(attributes)
+        if !data.withoutHead
+          .small-banner__head
+            if data.h3
+              +ui-h3(data.h3, `small-banner ${data.h3Mods ? `, ${data.h3Mods}` : ''}`)
+                if data.h3Nowrap
+                  =' '
+                  span.text-nowrap !{data.h3Nowrap}
+                   if data.h3Tooltip
+                    +ui-tooltip(data.h3Tooltip, '--va-baseline')
+            if data.title
+              +ui-h4(data.title, 'small-banner, --bold')
+            if data.descr
+              .small-banner__descr(class = data.descrMods ? `small-banner__descr--${data.descrMods}` : '') !{data.descr}
+            if data.descrContent
+              .small-banner__descr(class = data.descrContentMods ? data.descrContentMods : '')
+                each item in data.descrContent
+                  if item.type === 'p'
+                    p !{item.text}
+                  if item.type === 'ul'
+                    +ui-ul(item.ul, `small-banner ${item.ulMods ? item.ulMods: ''}`)
+                  if item.type === 'ol'
+                    +ui-ol(item.ol, `small-banner ${item.olMods ? item.olMods: ''}`)
+            if data.footnote
+              .small-banner__fn !{data.footnote}
+        if data.btn || data.btnLink
+          .small-banner__btns(class=data.btsMods)
+            if data.btn
+              +ui-button(data.btn, 'small-banner')(href='#')
+            if data.btnLink
+              +ui-button(data.btnLink, 'small-banner, --link-next').text-orange(href='#')
+        if data.imgMob
+          .small-banner__img.small-banner__img--desktop
+            img(src=data.img, alt='')
+          .small-banner__img.small-banner__img--mobile
+            img(src=data.imgMob, alt='')
+        else
+          .small-banner__img
+            img(src=data.img, alt='')
+        block
+
+mixin small-banner-wrapper(mods)
+  -
+    const baseName = 'small-banner-wrapper'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .small-banner-wrapper(class=allMods)&attributes(attributes)
+    block

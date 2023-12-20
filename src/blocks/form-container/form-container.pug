@@ -1,0 +1,29 @@
+mixin form-container(mods)
+  -
+    const baseName = 'form-container'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .form-container(class=allMods)&attributes(attributes)
+    block
+
+mixin form-container__fn(mods)
+  -
+    const baseName = 'form-container__fn'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .form-container__fn(class=allMods)&attributes(attributes)
+    block

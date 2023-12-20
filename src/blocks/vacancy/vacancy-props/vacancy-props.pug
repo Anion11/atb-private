@@ -1,0 +1,20 @@
+mixin vacancy-props(vacancyPropsItems, mods)
+  -
+    const baseName = 'vacancy-props'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .vacancy-props(class=allMods)&attributes(attributes)
+    each item in vacancyPropsItems
+      .vacancy-props__item
+        if item.icon
+          .vacancy-props__icon
+            +icon(item.icon)
+        .vacancy-props__text !{item.text}
+    block

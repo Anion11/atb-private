@@ -1,0 +1,30 @@
+mixin get-bounty(mods)
+  -
+    const baseName = 'get-bounty'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .get-bounty(class=allMods)&attributes(attributes)
+    .get-bounty-inner
+      .get-bounty
+        .get-bounty-block
+          .get-bounty-block-item
+            .get-bounty-block-item-img
+              img(src='img/get_bount_1.svg', alt='')
+            .get-bounty-block-item-txt За каждый вернувшийся купон мы начислим вам бонус в размере 20%* от ежемесячного платежа.
+          .get-bounty-block-item
+            .get-bounty-block-item-img
+              img(src='img/get_bount_2.svg', alt='')
+            .get-bounty-block-item-txt Каждый купон дает возможность вашему другу получить бонус в размере 10%** от суммы ежемесячного платежа.
+        .get-bounty-list
+          .get-bounty-list-item *Бонус используется только для гашения суммы процентов ежемесячного платежа. Бонус распространяется на все виды потребительских кредитов за исключением: ипотечного кредита, кредита с лимитом кредитования, кредита, выданного на рефинансирование задолженности. Бонус не может превышать 4 000 руб. 
+          .get-bounty-list-item **Внимание! Купон действует только 30 дней. 
+        .get-bounty-action
+          +ui-button('правила акции', '--empty')(href='#')
+    block

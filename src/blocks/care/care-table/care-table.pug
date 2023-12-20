@@ -1,0 +1,21 @@
+mixin care-table(mods)
+  -
+    const baseName = 'care-table'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .care-table(class=allMods)
+    table&attributes(attributes)
+      block
+
+mixin care-table__plus
+  .care-table__plus
+
+mixin care-table__minus
+  .care-table__minus

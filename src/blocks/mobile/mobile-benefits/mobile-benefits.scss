@@ -1,0 +1,39 @@
+.mobile-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  @include media-laptop {
+    grid-template-columns: 1fr;
+  }
+  @include media-tablet {
+    gap: 20px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 36px 57px 36px 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 30px 0 rgb(135 151 155 / 0.15);
+    @include media-laptop {
+      padding: 35px 20px;
+      gap: 20px;
+    }
+  }
+  &__img {
+    flex-shrink: 0;
+    width: 148px;
+    @include media-laptop {
+      width: 70px;
+    }
+  }
+  &__ui-h3 {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+      @include media-laptop {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+mixin promotion-ban(data, mods)
+  -
+    const baseName = 'promotion-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .promotion-ban(class=allMods)&attributes(attributes)
+    .promotion-ban__text
+      h3.promotion-ban__h3 !{data.h3}
+      if data.text
+        .promotion-ban__text !{data.text}
+      if data.ul
+        .promotion-ban__ol
+          each itemLi, indexLi in data.ul
+            .promotion-ban__li
+              .promotion-ban__li-count
+                span=(indexLi+1)
+              .promotion-ban__li-text !{itemLi.text}
+                if itemLi.beforeTooltip
+                  =' '
+                  span.text-nowrap !{itemLi.beforeTooltip}
+                    if itemLi.tooltipHref
+                      +ui-tooltip().js-popup-open(href=itemLi.tooltipHref data-tooltip-fake)
+                    else
+                      +ui-tooltip(itemLi.tooltip)
+      .promotion-ban__bottom
+        if data.button
+          +ui-button(data.button, 'promotion-ban, --empty')(href='#')
+          +ui-p1(data.p1, 'promotion-ban')
+    .promotion-ban__img
+      img.lazyload(src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src=data.img alt='')
+    block

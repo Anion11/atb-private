@@ -1,0 +1,199 @@
+.main-info {
+  display: grid;
+  grid-template-columns: 60.5% 1fr;
+  gap: 50px;
+  @include media-laptop {
+    grid-template-columns: 1fr;
+  }
+  @include media-tablet {
+    gap: 30px;
+  }
+  &__currency {
+    flex: auto;
+  }
+  &-atms {
+    position: relative;
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    padding: 40px 40px 45px;
+    text-decoration: none;
+    color: $black;
+    background: $grey30;
+    overflow: hidden;
+    transition: 0.3s;
+    @include media-laptop {
+      padding: 30px 40px;
+    }
+    @include media-tablet {
+      padding: 25px 30px;
+    }
+    &:hover {
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgb(0 0 0 / 0.1);
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 205px;
+      z-index: 5;
+      transform: translateY(-50%);
+      width: 149px;
+      height: 152px;
+      background-image: url("data:image/svg+xml,%3Csvg width='149' height='152' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 48c-6.617 0-12 5.383-12 11.992C5.957 69.66 17.544 77.677 18 78c0 0 12.044-8.34 12-18 0-6.617-5.384-12-12-12Zm0 18c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6ZM131 119c-6.616 0-12 5.383-12 11.993-.043 9.667 11.544 17.683 12 18.007 0 0 12.044-8.34 12-18 0-6.616-5.384-12-12-12Zm0 18c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6ZM113 3c-6.616 0-12 5.383-12 11.992-.043 9.668 11.544 17.684 12 18.008 0 0 12.044-8.34 12-18 0-6.617-5.384-12-12-12Zm0 18c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6Z' fill='%23FE5000'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      @include media-laptop {
+        right: 90px;
+        bottom: 30px;
+      }
+      @include media-tablet {
+        top: unset;
+        right: -5px;
+        bottom: -98px;
+        width: 130px;
+        height: 130px;
+      }
+    }
+    &__title {
+      z-index: 1;
+      margin-bottom: 10px;
+      font: 700 36px/1.1 $font;
+      @include media-tablet {
+        font-size: 22px;
+      }
+    }
+    &__desc {
+      z-index: 1;
+      margin-bottom: 30px;
+      font: 18px/1.5 $font;
+      @include media-laptop {
+        margin-bottom: 25px;
+      }
+      @include media-tablet {
+        margin-bottom: 50px;
+        font-size: 16px;
+      }
+    }
+    &__ui-button {
+      z-index: 1;
+      margin-top: auto;
+    }
+    &__img {
+      position: absolute;
+      top: 33%;
+      right: 0;
+      z-index: 0;
+      transform: translateY(-50%);
+      max-width: 730px;
+      max-height: 475px;
+      @include media-tablet {
+        top: 58%;
+        max-width: 100%;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  &-coins {
+    padding: 40px 30px;
+    background: $grey20;
+    @include media-tablet {
+      padding: 30px 20px 35px;
+    }
+    &__head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 40px;
+      @include media-tablet {
+        margin-bottom: 35px;
+      }
+    }
+    &__title {
+      margin: 0;
+      font: 700 36px/1.2 $font;
+      @include media-tablet {
+        font-size: 22px;
+      }
+    }
+    &__item {
+      display: flex;
+      &:not(:last-child) {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $grey40;
+        @include media-tablet {
+          margin-bottom: 25px;
+          padding-bottom: 25px;
+        }
+      }
+    }
+    &__img {
+      width: 74px;
+      height: 74px;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    &__info {
+      flex: 1;
+    }
+    &__name {
+      margin-bottom: 15px;
+      font: 700 18px/1.4 $font;
+      @include media-tablet {
+        margin-bottom: 10px;
+      }
+    }
+    &__props {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+      @include media-laptop {
+        gap: 30px;
+      }
+      @include media-tablet {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    &__prop {
+      @include media-tablet {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        gap: 15px;
+        align-items: center;
+      }
+      &-name {
+        font: 11px/1.6 $font;
+        text-transform: uppercase;
+        color: $grey80;
+      }
+      &-val {
+        font: 16px/1.5 $font;
+      }
+    }
+  }
+}
+.bvi-body {
+  .main-info {
+    grid-template-columns: 1fr;
+    &__currency {
+      .currency-main {
+        min-height: auto;
+      }
+    }
+    &-atms {
+      width: auto;
+      min-height: auto;
+    }
+  }
+}
+

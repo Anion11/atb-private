@@ -1,0 +1,70 @@
+.get-bounty {
+  &-inner {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  &-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    @include media-tablet {
+      display: block;
+    }
+    &-item {
+      width: calc((100% - 40px) / 2);
+      padding: 27px 30px;
+      min-height: 120px;
+      display: flex;
+      align-items: flex-start;
+      background: $grey20;
+      border-radius: 8px;
+      @include media-laptop {
+        width: calc((100% - 20px) / 2);
+      }
+      @include media-tablet {
+        width: 100%;
+        padding: 15px 30px;
+        min-height: auto;
+      }
+      &-img {
+        width: 44px;
+        height: 44px;
+      }
+      &-txt {
+        width: calc(100% - 44px);
+        margin-left: 20px;
+        font: 16px/1.4 $font;
+        @include media-tablet {
+          font-size: 14px;
+        }
+      }
+      &:not(:first-child) {
+        @include media-tablet {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+  &-list {
+    margin-top: 30px;
+    &-item {
+      font: 300 14px/1.5 $font;
+      color: $grey80;
+      @include media-tablet {
+        font-size: 12px;
+      }
+    }
+  }
+  &-action {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    @include media-laptop {
+      margin-top: 40px;
+    }
+    @include media-tablet {
+      margin-top: 30px;
+    }
+  }
+}

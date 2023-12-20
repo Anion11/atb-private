@@ -1,0 +1,29 @@
+mixin transfer-inner-bank(mods)
+  -
+    const baseName = 'transfer-inner-bank'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .transfer-inner-bank(class=allMods)&attributes(attributes)
+    .transfer-inner-bank__content
+      .transfer-inner-bank__top
+        .transfer-inner-bank__title Доступные переводы
+        .transfer-inner-bank__currency
+          .transfer-inner-bank__currency-item ₽
+          .transfer-inner-bank__currency-item $
+          .transfer-inner-bank__currency-item ₸
+          .transfer-inner-bank__currency-item ¥
+          .transfer-inner-bank__currency-item Ұ
+      .transfer-inner-bank__txt Переводы со&nbsp;счёта и&nbsp;наличными в&nbsp;рублях, долларах США, японских йенах, китайских юанях, казахстанских тенге и&nbsp;других
+        span.text-nowrap валютах
+          +ui-tooltip('Для переводов денежных средств в&nbsp;иностранные банки используется система SWIFT')
+      .transfer-inner-bank__notice Заранее уточняйте доступные на&nbsp;дату перевода валюты и&nbsp;направления отправки переводов в&nbsp;иностранной валюте, а&nbsp;также действующие ограничения, установленные федеральными законами и&nbsp;иными нормативными правовыми актами
+    .transfer-inner-bank__img
+      img(src='img/transfer-inner-bank.png', alt='')
+    block

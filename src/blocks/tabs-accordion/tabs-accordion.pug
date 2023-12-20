@@ -1,0 +1,52 @@
+mixin tabs-accordion(mods)
+  -
+    const baseName = 'tabs-accordion'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .tabs-accordion(class=allMods)&attributes(attributes)
+    block
+
+mixin tabs-accordion-head(tabsAccordionHeadItems, mods)
+  -
+    const baseName = 'tabs-accordion-head'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .tabs-accordion-head(class=allMods)&attributes(attributes)
+    each item in tabsAccordionHeadItems
+      button.tabs-accordion-head__item(class=item.mods) !{item.text}
+    block
+
+mixin tabs-accordion-main(mods)
+  -
+    const baseName = 'tabs-accordion-main'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .tabs-accordion-main(class=allMods)&attributes(attributes)
+    block
+
+mixin tabs-accordion-main__item(button)
+  .tabs-accordion-main__item&attributes(attributes)
+    .tabs-accordion-main__button !{button}
+    .tabs-accordion-main__content
+      block

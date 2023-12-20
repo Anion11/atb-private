@@ -1,0 +1,29 @@
+mixin metals-chart(mods)
+  -
+    const baseName = 'metals-chart'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .metals-chart(class=allMods)&attributes(attributes)
+    .metals-chart__filter
+      .metals-chart__periods
+        .metals-chart__period
+          +ui-radio('metals-chart-period-1year', 'За год', 'metals-chart')(name='metals-chart-period')
+        .metals-chart__period
+          +ui-radio('metals-chart-period-3years', 'За 3 года', 'metals-chart')(name='metals-chart-period')
+        .metals-chart__period
+          +ui-radio('metals-chart-period-5years', 'За 5 лет', 'metals-chart')(name='metals-chart-period')
+        .metals-chart__period
+          +ui-radio('metals-chart-period-range', 'Период', 'metals-chart')(checked name='metals-chart-period')
+          +ui-datepicker('metals-chart, --range')
+      +switch('', 'Золото', 'Серебро', '', 'metals-chart').js-chart-test-update
+    .metals-chart__main
+      canvas#metalsChartMain.js-test-data
+    +section-footnote('Данные получены с сайта ЦБ РФ').text-grey60
+    block

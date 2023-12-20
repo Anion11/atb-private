@@ -1,0 +1,36 @@
+mixin news-separated(mods)
+  -
+    const baseName = 'news-separated'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const data = [
+      {
+        title: 'Розница',
+        date: '01.08.2022',
+        name: 'Минимальная ставка по ипотеке с господдержкой от АТБ снизилась до 4,99%',
+      },
+      {
+        title: 'Бизнес',
+        date: '30.05.2022',
+        name: 'Мобильное приложение АТБ вошло в рейтинг «Лучшие мобильные банки для бизнеса середины 2022 года»',
+        text: 'Аналитики портала Бробанк.ру распределили места в рейтинге лучших мобильных банков для Android и iOS на основе оценок пользователей приложений',
+      },
+    ]
+
+  .news-separated(class=allMods)&attributes(attributes)
+    each item in data
+      .news-separated__section
+        .news-separated__title !{item.title}
+        a.news-separated__item(href='#')
+          .news-separated__date !{item.date}
+          .news-separated__name !{item.name}
+          if item.text
+            .news-separated__text !{item.text}
+    block

@@ -1,0 +1,191 @@
+.investment-insurance-programs {
+  &__box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: hidden;
+    border: 2px solid #ecedee;
+    border-radius: 10px;
+    text-align: left;
+    transition: all 0.3s ease-in;
+    @include media-laptop {
+      width: 380px;
+    }
+    @include media-tablet {
+      width: 300px;
+    }
+    &.active {
+      border-color: #479098;
+      background: #479098;
+      .investment-insurance-programs {
+        &__front {
+          opacity: 0;
+          transition: 0.3s linear;
+        }
+        &__back {
+          z-index: 5;
+          opacity: 1;
+          transition: 0.3s linear 0.3s;
+        }
+      }
+    }
+    &:hover {
+      border-color: #479098;
+      background: #479098;
+      .investment-insurance-programs {
+        &__top {
+          transition: 0.3s ease-in;
+          background: #479098;
+          color: #fff;
+        }
+        &__to-docs {
+          color: #479098;
+        }
+      }
+    }
+  }
+  &__front {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: 0.3s linear 0.3s;
+  }
+  &__top {
+    height: 128px;
+    padding: 30px 23px 0 30px;
+    font: 400 26px/1.4 $font;
+    background: #ecedee;
+    transition: 0.3s ease-in;
+    @include media-tablet {
+      height: 120px;
+      padding: 20px 0 25px 15px;
+      font-size: 22px;
+    }
+  }
+  &__bot {
+    flex: auto;
+    padding: 30px;
+    background: #fff;
+    @include media-tablet {
+      padding: 30px 20px 25px;
+    }
+  }
+  &__to-docs {
+    float: right;
+    position: relative;
+    top: -9px;
+    font: 400 16px/1 $font;
+    color: #dedfe0;
+    text-decoration: underline;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+      color: #479098;
+      transition: all 0.2s ease-in;
+    }
+  }
+  &__docs-wrapper {
+    margin-top: 40px;
+    height: 365px;
+    padding-right: 15px;
+    overflow-y: scroll;
+    @include media-tablet {
+      margin-top: 30px;
+    }
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #479098;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(255 255 255 / 0.75);
+      border-radius: 2px;
+    }
+  }
+  &__documents {
+    .documents-item {
+      &:hover {
+        .documents-item__name {
+          text-decoration: none;
+        }
+      }
+      &__icon {
+        color: #fff;
+      }
+      &__name {
+        color: #fff;
+      }
+    }
+  }
+  &__row {
+    padding-top: 25px;
+    &:nth-child(1) {
+      padding-top: 0;
+    }
+  }
+  &__prop {
+    font: 700 13px/1 $font;
+    color: #818181;
+    text-transform: uppercase;
+  }
+  &__val {
+    margin-top: 14px;
+    font: 400 26px/1 $font;
+  }
+  &__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -5;
+    width: 100%;
+    height: 100%;
+    padding: 30px 24px 30px 30px;
+    background: #479098;
+    color: #fff;
+    opacity: 0;
+    transition: 0.5s linear;
+    @include media-tablet {
+      padding: 20px 10px 20px 20px;
+    }
+  }
+  &__title {
+    font: 400 28px/1 $font;
+  }
+  &__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    background: url('img/close_icon.png') no-repeat center;
+    background-size: 14px auto;
+    cursor: pointer;
+  }
+  &__ui-swiper-pagination {
+    margin-top: 20px;
+  }
+}
+.bvi-body {
+  .investment-insurance-programs {
+    &__top {
+      height: auto;
+    }
+    &__close {
+      filter: invert(1);
+    }
+    &__docs {
+      &-wrapper {
+        height: 90%;
+        &::-webkit-scrollbar-track {
+          background: lightgrey;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: grey;
+        }
+      }
+    }
+  }
+}

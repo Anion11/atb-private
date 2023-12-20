@@ -1,0 +1,26 @@
+mixin sbp-links(mods)
+  -
+    const baseName = 'sbp-links'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const sbpLinksItems =[
+      { icon: 'doc', text: 'Условия по&nbsp;переводам в&nbsp;Системе быстрых платежей ' },
+      { icon: 'pdf', text: 'Тарифы по&nbsp;переводам в&nbsp;Системе быстрых платежей' },
+      { icon: 'bank', text: 'Банки-участники Системы быстрых <span class="text-nowrap">платежей<span class="sbp-links__blank"></span></span>' },
+    ]
+
+  .sbp-links(class=allMods)&attributes(attributes)
+    each item in sbpLinksItems
+      a.sbp-links__box(href='#' target='_blank')
+        .sbp-links__icon
+          img(src=`img/${item.icon}.svg` alt='')
+        .sbp-links__txt !{item.text}
+    block

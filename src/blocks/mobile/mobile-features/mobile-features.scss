@@ -1,0 +1,112 @@
+.mobile-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  @include media-laptop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  &__item {
+    position: relative;
+    min-height: 340px;
+    padding: 40px 30px 170px;
+    background: $grey20;
+    border-radius: 8px;
+    @include media-tablet {
+      min-height: unset;
+      padding: 30px 20px 160px;
+    }
+    &--span2 {
+      grid-column: span 2;
+      padding-bottom: 40px;
+      @include media-tablet {
+        grid-column: unset;
+        padding-bottom: 180px;
+      }
+      .mobile-features {
+        &__img {
+          max-width: 420px;
+          @include media-tablet {
+            max-width: 250px;
+          }
+        }
+        &__content {
+          max-width: 435px;
+          @include media-laptop {
+            max-width: 390px;
+          }
+          @include media-tablet {
+            max-width: unset;
+          }
+        }
+      }
+    }
+    &--img-w540 {
+      .mobile-features {
+        &__img {
+          max-width: 540px;
+          @include media-laptop {
+            max-width: 400px;
+          }
+          @include media-tablet {
+            max-width: 322px;
+          }
+        }
+      }
+    }
+  }
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+  &__ui-h5 {
+    max-width: 275px;
+    @include media-tablet {
+      max-width: unset;
+    }
+    &:not(:last-child) {
+      margin-bottom: 10px;
+      @include media-tablet {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  &__ui-p2 {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+      @include media-tablet {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  &__ui-ul {
+    max-width: 280px;
+    @include media-laptop {
+      max-width: 390px;
+    }
+    @include media-tablet {
+      max-width: 295px;
+    }
+  }
+  &__img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-width: 300px;
+    @include media-tablet {
+      max-width: 250px;
+    }
+  }
+}
+.bvi-body {
+  .mobile-features {
+    display: flex;
+    flex-direction: column;
+    &__content {
+      max-width: unset;
+    }
+  }
+}

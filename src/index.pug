@@ -1,0 +1,564 @@
+extends layouts/layout
+
+block styles
+  link(rel='stylesheet' href='styles/style.min.css')
+
+block scripts
+  script(src='js/index.js')
+
+block variables
+  -const pageTitle ='Index'
+
+block content
+  main
+    .page-content
+      .inner
+        +ui-h1(pageTitle)
+        a(href='pages/blocks/blocks.html') Repository blocks
+        br
+        br
+        a(href='pages/service-pages/text-page.html') Текстовая страница
+        br
+        br
+        br
+        a(href='pages/main/main.html') Main
+        br
+        br
+        br
+        a(href='pages/cards/cards-all.html')
+          b Все карты
+        br
+        br
+        br
+        a(href='pages/cards/credit.html')
+          b Кредитные карты
+        br
+        br
+        a(href='pages/cards/card-atb-2-0.html') Карта АТБ 2.0
+        br
+        br
+        a(href='pages/cards/universal-card.html') Универсальная карта
+        br
+        br
+        a(href='pages/cards/cards-by-passport.html') Кредитные карты по паспорту
+        br
+        br
+        a(href='pages/cards/grace-period-card.html') Карта с льготным периодом
+        br
+        br
+        a(href='pages/cards/express.html') Экспресс-заявка на кредитную карту
+        br
+        br
+        a(href='pages/cards/instant-credit-card.html') Моментальная кредитная карта
+        br
+        br
+        a(href='pages/cards/without-certificates-and-guarantors.html') Кредитные карты без справок SEO
+        br
+        br
+        a(href='pages/useful-articles/useful-articles.html') Полезные статьи: Всё о кредитных картах
+        br
+        br
+        a(href='pages/useful-articles/useful-articles-inner.html') Полезные статьи: Всё о кредитных картах - внутренняя
+        br
+        br
+        a(href='pages/useful-articles/useful-articles-inner-amp.html') Полезные статьи: Всё о кредитных картах - внутренняя <b>AMP</b>
+        br
+        br
+        a(href='pages/financial-literacy-main/') Всё о финансовой грамотности
+        br
+        br
+        a(href='pages/financial-literacy-inner/') Всё о финансовой грамотности - детальная
+        br
+        br
+        a(href='pages/financial-answers/') Ответы на вопросы
+        br
+        br
+        a(href='pages/financial-answers-inner/') Ответы на вопросы - детальная
+        br
+        br
+        a(href='pages/cards/180-days.html') Кредитная карта «180 дней без %»
+        br
+        br
+        br
+        a(href='pages/cards/debit.html')
+          b Дебетовые карты
+        br
+        br
+        a(href='pages/cards/purse.html') Карта «Кошелек»
+        br
+        br
+        a(href='pages/cards/campus.html') Дебетовая карта «Кампус»
+        br
+        br
+        a(href='pages/cards/social.html') Карта «Особый статус»
+        br
+        br
+        a(href='pages/cards/unified-card-of-sakhalints.html') Единая карта сахалинца
+        br
+        br
+        a(href='pages/cards/mir-primorets.html') Карта Мир «Приморец»
+        br
+        br
+        a(href='pages/service-pages/mir.html') Дебетовая карта «Мир»
+        br
+        br
+        a(href='pages/service-pages/payment-system.html') Платежные системы карт
+        br
+        br
+        a(href='pages/payment-system-mir/payment-system-mir.html') Платежная система «Мир»
+        br
+        br
+        br
+        a(href='pages/cards/cards-social.html')
+          b Социальные карты
+        br
+        br
+        br
+        a(href='pages/credits/credits.html')
+          b Кредиты
+        br
+        br
+        br
+        a(href='pages/credit/cash-loans.html') Кредиты наличными
+        br
+        br
+        a(href='pages/credit/car-loan.html') Кредит на автомобиль
+        br
+        br
+        a(href='pages/credit/car-loan-c2c.html') Кредит на автомобиль - c2c
+        br
+        br
+        a(href='pages/mortgage/loan-any-purpose.html') Кредит на любые цели
+        br
+        br
+        a(href='pages/credit/no-bets.html') Кредит #Ставок.нет!
+        br
+        br
+        a(href='pages/credit/seo-loan.html') Кредиты SEO
+        br
+        br
+        a(href='pages/credit/refinancing.html') Рефинансирование кредитов
+        br
+        br
+        a(href='pages/repayment-methods/repayment-methods.html') Способы погашения кредита
+        br
+        br
+        a(href='pages/confirm-income/') Способы подтверждения доходов
+        br
+        br
+        a(href='pages/service-pages/loan-with-bad-history.html') Можно ли взять кредит с плохой кредитной историей
+        br
+        br
+        a(href='pages/after-repayment-loan/') Что делать после погашения кредита
+        br
+        br
+        br
+        a(href='pages/mortgage/mortgage.html')
+          b Ипотека
+        br
+        br
+        a(href='pages/mortgage/finished-housing.html') Приобретение готового жилья
+        br
+        br
+        a(href='pages/mortgage/under-construction.html') Приобретение квартиры на этапе строительства
+        br
+        br
+        a(href='pages/mortgage/state-support.html') Ипотека с господдержкой
+        br
+        br
+        a(href='pages/mortgage/far-eastern-mortgage.html') Ипотека для Дальнего Востока
+        br
+        br
+        a(href='pages/all-about-mortgages/all-about-mortgages.html') Все об ипотеке в АТБ
+        br
+        br
+        a(href='pages/service-pages/mortgage-second-home.html') Ипотека на вторичное жилье
+        br
+        br
+        a(href='pages/service-pages/mortgage-private-house.html') Ипотека на частный дом
+        br
+        br
+        a(href='pages/service-pages/loan-for-apartment.html') Кредит на квартиру
+        br
+        br
+        a(href='pages/service-pages/mortgage-calculator.html') Калькулятор ипотеки
+        br
+        br
+        a(href='pages/mortgage-partners/') Ипотека: информация для партнеров
+        br
+        br
+        a(href='pages/mortgage-refinancing/') Рефинансирование ипотеки
+        br
+        br
+        br
+        a(href='pages/rest/rest.html') Реструктуризация
+        br
+        br
+        br
+        a(href='pages/refer-a-friend/refer-a-friend.html') АКЦИЯ «Приведи друга»
+        br
+        br
+        br
+        a(href='pages/the-most-important/the-most-important.html')
+          b Самое важное сегодня
+        br
+        br
+        a(href='pages/the-most-important-txt/measures-customer-support.html') Ответы на часто задаваемые вопросы
+        br
+        br
+        a(href='pages/the-most-important-txt/hotline-virus-help.html') Бесплатная горячая линия по вопросам профилактики вирусных заболеваний, в том числе короновируса COVID-19
+        br
+        br
+        a(href='pages/the-most-important-txt/restructuring.html') Реструктуризация в рамках федерального закона 106-ФЗ
+        br
+        br
+        a(href='pages/customer-care-service/customer-care-service.html') Служба заботы о клиентах
+        br
+        br
+        a(href='pages/customer-care-service/customer-care-service-questions.html') &nbsp;&nbsp;&nbsp;Служба заботы о клиентах: Карты - выбор вопроса
+        br
+        br
+        a(href='pages/customer-care-service/customer-care-service-cards.html') &nbsp;&nbsp;&nbsp;Служба заботы о клиентах: Карты
+        br
+        br
+        a(href='pages/customer-care-service/customer-care-service-loans.html') &nbsp;&nbsp;&nbsp;Служба заботы о клиентах: Кредиты
+        br
+        br
+        a(href='pages/arest/') Аресты и взыскания
+        br
+        br
+        a(href='pages/the-most-important-txt/cheaters.html') Вниманию клиентов
+        br
+        br
+        a(href='pages/payments-with-children/payments-with-children.html') Выплаты семьям c детьми
+        br
+        br
+        a(href='pages/antivirus/antivirus.html') «Антивирус»
+        br
+        br
+        a(href='pages/service-pages/multiply-and-save.html') Приумножить и сохранить
+        br
+        br
+        a(href='pages/service-pages/about-deposit-insurance.html') О cтраховании вкладов
+        br
+        br
+        a(href='pages/mss-transaction/mss-transaction.html') МСС-коды исключений из Транзакций
+        br
+        br
+        a(href='pages/ssi/ssi.html') Информация по текущей ситуации для физических лиц и корпоративных клиентов
+        br
+        br
+        br
+        b Вклады и счета
+        br
+        br
+        br
+        a(href='pages/deposits/deposits.html') Вклады разводящая
+        br
+        br
+        a(href='pages/deposits-inner/deposit-atb.html') АТБ Вклад
+        br
+        br
+        a(href='pages/deposits-inner/deposit-atb-vip.html') Вклад «АТБ. ВИП»
+        br
+        br
+        a(href='pages/deposits-inner/deposit-welcome.html') Вклад «Добро пожаловать»
+        br
+        br
+        a(href='pages/service-pages/eskrou.html') Счета эскроу
+        br
+        br
+        a(href='pages/recharge/recharge.html') Пополнить счет вклада
+        br
+        br
+        a(href='pages/savings-accounts/savings-accounts.html') Накопительный счет (Суперкопилка)
+        br
+        br
+        a(href='pages/coins/') Монеты
+        br
+        br
+        a(href='pages/coins-inner/coins-inner.html') Монеты детальная
+        br
+        br
+        a(href='pages/ingots/ingots.html') Слитки
+        br
+        br
+        a(href='pages/ingots-inner/ingots-inner.html') Слитки детальная
+        br
+        br
+        a(href='pages/precious-metals/precious-metals.html') Инвестируйте в драгоценные металлы
+        br
+        br
+        a(href='pages/accounts-pr-metals/accounts-pr-metals.html') Банковские счета в драгоценных металлах
+        br
+        br
+        br
+        a(href='pages/service-pages/banking-services.html')
+          b Банковские услуги для физических лиц
+        br
+        br
+        a(href='pages/service-pages/public-utilities.html') Оплата коммунальных услуг через банк
+        br
+        br
+        a(href='pages/service-pages/card-transfer.html') Перевод денег с карты на карту через интернет
+        br
+        br
+        a(href='pages/replenish/replenish.html') Как пополнить карту
+        br
+        br
+        a(href='pages/exchange/exchange.html') Обмен валюты
+        br
+        br
+        a(href='pages/transfer/transfer.html') Переводы по всему миру
+        br
+        br
+        a(href='pages/transfer-inner-bank/transfer-inner-bank.html') Переводы по реквизитам в отделениях банка
+        br
+        br
+        a(href='pages/transfer-inner/transfer-contact.html') CONTACT
+        br
+        br
+        a(href='pages/transfer-inner/transfer-golden-crown.html') Золотая Корона
+        br
+        br
+        a(href='pages/transfer-requisites/') Перевод на счёт банка по реквизитам
+        br
+        br
+        a(href='pages/depository-service/depository-service.html') Депозитарное обслуживание
+        br
+        br
+        a(href='pages/rent-safe-box/') Аренда ячейки в банке
+        br
+        br
+        a(href='pages/pension-plans/pension-plans.html') Индивидуальные пенсионные планы
+        br
+        br
+        a(href='pages/ubs/') Единая биометрическая система
+        br
+        br
+        a(href='pages/become-with-ubs/') Станьте клиентом с помощью биометрии
+        br
+        br
+        a(href='pages/service-pages/biometric-registration.html') Регистрация клиентов в единой биометрической системе
+        br
+        br
+        br
+        a(href='pages/insurance/')
+          b Страхование в АТБ
+        br
+        br
+        a(href='pages/multi-insurance/multi-insurance.html') Комплексное страхование
+        br
+        br
+        a(href='pages/property-insurance/property-insurance.html') Страхование имущества
+        br
+        br
+        a(href='pages/health-insurance/health-insurance.html') Страхование жизни и здоровья
+        br
+        br
+        a(href='pages/cumulative-insurance/cumulative-insurance.html') Накопительное страхование жизни
+        br
+        br
+        a(href='pages/investment-insurance/investment-insurance.html') Инвестиционное страхование жизни
+        br
+        br
+        a(href='pages/surgery-insurance/') Хирургия (страхование)
+        br
+        br
+        a(href='pages/service-pages/mortgage-insurance.html') Страховка при ипотеке
+        br
+        br
+        a(href='pages/service-pages/memo-insurance.html') Памятка по порядку уплаты страховых взносов
+        br
+        br
+        a(href='pages/online/online.html') АТБ Онлайн
+        br
+        br
+        br
+        b Прочие услуги
+        br
+        br
+        a(href='pages/family-concierge/family-concierge.html') Семейный Консьерж
+        br
+        br
+        a(href='pages/smart-medicine/smart-medicine.html') Умная медицина
+        br
+        br
+        a(href='pages/multiservice/multiservice.html') Мультисервис
+        br
+        br
+        a(href='pages/mobile/mobile.html') Мобильный банк
+        br
+        br
+        a(href='pages/notifications/notifications.html') Оповещения об операциях по картам
+        br
+        br
+        a(href='pages/sbp/sbp.html') Система быстрых платежей
+        br
+        br
+        a(href='pages/sbp/sbp-pay.html') СБПэй от Системы быстрых платежей
+        br
+        br
+        a(href='pages/digital-card/digital-card.html') Цифровая карта
+        br
+        br
+        a(href='pages/wallet-pay/wallet-pay.html') Кошелёк Pay
+        br
+        br
+        a(href='pages/samsung-pay/samsung-pay.html') Samsung Pay
+        br
+        br
+        a(href='pages/garmin-pay/garmin-pay.html') Garmin Pay
+        br
+        br
+        a(href='pages/mir-pay/mir-pay.html') Mir Pay
+        br
+        br
+        br
+        a(href='pages/discounts-and-promotions/discounts-and-promotions.html')
+          b Скидки и акции
+        br
+        br
+        a(href='pages/discounts-mir/discounts-mir.html') Скидки и акции по карте «Мир»
+        br
+        br
+        a(href='pages/loyalty-program/loyalty-program.html') Программа лояльности с картой «Универсальная»
+        br
+        br
+        a(href='pages/loyalty-univ/') Программы лояльности по кредитной карте «Универсальная» (Для карт оформленных до 13 октября  2023)
+        br
+        br
+        a(href='pages/great-percentages/') Вклады. Акция «Великолепные проценты»
+        br
+        br
+        a(href='pages/you-word/') Акция «АТБ. Ваше слово»
+        br
+        br
+        a(href='pages/promotion-cash-loan/') Акция Кредиты наличными
+        br
+        br
+        a(href='pages/promotion-rabbit/') Акция «100% кэшбэк от кролика АТБ»
+        br
+        br
+        a(href='pages/promotion-fast-rabbit/') Акция «Будь быстрее Кролика!»
+        br
+        br
+        a(href='pages/promotion-12-months/') Акция «Двенадцать месяцев»
+        br
+        br
+        br
+        a(href='pages/compliance/compliance.html')
+          b Комплаенс
+        br
+        br
+        br
+        a(href='pages/service-pages/fatca.html') О налогообложении иностранных счетов (FATCA/CRS)
+        br
+        br
+        a(href='pages/compliance-inner/anti-corruption.html') Противодействие коррупции и управление конфликтом интересов
+        br
+        br
+        a(href='pages/compliance-inner/hotline.html') Горячая линия комплаенс
+        br
+        br
+        br
+        a(href='pages/atms/atms.html')
+          b Отделения и банкоматы
+        br
+        br
+        br
+        a(href='pages/money-transfer/money-transfer.html') Денежные переводы в АТБ Мобайл NEW и АТБ Онлайн
+        br
+        br
+        br
+        a(href='pages/sel-prop/sel-prop.html') Реализация имущества
+        br
+        br
+        a(href='pages/sel-prop-inner/sel-prop-inner.html') Реализация имущества - детальная
+        br
+        br
+        br
+        a(href='pages/news/news.html')
+          b Новости
+        br
+        br
+        a(href='pages/news-inner/news-inner.html') Новости - детальная
+        br
+        br
+        br
+        a(href='pages/installment/installment.html') АТБ Рассрочка
+        br
+        br
+        br
+        //- (потом удалить, documents-tariffs новее)
+        a(href='pages/info-pages/additional-information.html') Дополнительные сведения, Документы и тарифы
+        br
+        br
+        a(href='pages/info-pages/documents-tariffs.html') Документы и тарифы
+        br
+        br
+        a(href='pages/customer-care-service/customer-care-service-documents-tariffs.html') Документы и тарифы: детальная
+        br
+        br
+        a(href='pages/info-pages/banking-supervision.html') Банковский надзор за деятельностью кредитной организации
+        br
+        br
+        a(href='pages/info-pages/financial-statements.html') Финансовая отчетность
+        br
+        br
+        a(href='pages/info-pages/affiliates.html') Аффилированные лица
+        br
+        br
+        a(href='pages/info-pages/annual-reports.html') Раскрытие информации АТБ: годовые отчеты
+        br
+        br
+        a(href='pages/info-pages/disclosure-information-stabilization.html') Раскрытие информации об обязательной оценке Банка на предмет соответствия требований положения №382-П
+        br
+        br
+        a(href='pages/info-pages/disclosure-information-ibs.html') Раскрытие информации в соответствии с Указанием Банка России от 28.12.2015 г. №3921-У
+        br
+        br
+        a(href='pages/service-pages/insider.html') Инсайдерам
+        br
+        br
+        a(href='pages/service-pages/tenders.html') Тендеры
+        br
+        br
+        a(href='pages/vacancies/') Вакансии в АТБ
+        br
+        br
+        a(href='pages/vacancy/') Вакансии детальная
+        br
+        br
+        a(href='pages/service-pages/cookie-policy.html') Согласие на обработку персональных данных для посетителей сайта
+        br
+        br
+        a(href='pages/newsletter/newsletter.html') Наша рассылка
+        br
+        br
+        a(href='pages/mortgage-insurance/') Страхование при ипотеке
+        br
+        br
+        a(href='pages/ownership-registration/') Оформление права собственности
+        br
+        br
+        a(href='/pages/quant-mobile-bank/') Информация для клиентов Квантмобайл банка
+        br
+        br
+        a(href='pages/service-pages/litres.html') ЛитРес
+        br
+        br
+        a(href='pages/sitemap/') Карта сайта
+        br
+        br
+        a(href='pages/search/') Поиск по сайту
+        br
+        br
+        a(href='pages/page-404/') 404
+        br
+        br
+        br
+        b Файлы
+        br
+        br
+        a(href='pages/files/user-agreement.html') Пользовательское соглашаение

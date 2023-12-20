@@ -1,0 +1,39 @@
+mixin ingots-inner(mods)
+  -
+    const baseName = 'ingots-inner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .ingots-inner(class=allMods)&attributes(attributes)
+    .ingots-inner__img
+      img(src='img/ignot.jpg', alt='')
+    .ingots-inner__info
+      .ingots-inner__head
+        h1.ingots-inner__name Мерный слиток 10 г.
+        .ingots-inner__price 6 200,00 ₽
+      .ingots-inner__details
+        .ingots-inner__txt Мерный слиток изготовлен на Российском аффинажном заводе в соответствии с действующими в Российской Федерации государственными и отраслевыми стандартами.
+        .ingots-inner__line
+          .ingots-inner__descr.ingots-inner__descr--name Категория
+          .ingots-inner__descr Мерный слиток
+        .ingots-inner__line
+          .ingots-inner__descr.ingots-inner__descr--name Масса металла, г.
+          .ingots-inner__descr 100 г.
+        .ingots-inner__line
+          .ingots-inner__descr.ingots-inner__descr--name Металл
+          .ingots-inner__descr Золото
+        .ingots-inner__line
+          .ingots-inner__descr.ingots-inner__descr--name Проба
+          .ingots-inner__descr 999
+      +ui-button('где купить', 'ingots-inner')(href='#')
+      .ingots-inner__address Адрес: г. Москва, пер. Вознесенский, д. 11, стр. 1
+      .ingots-inner__contact
+        .ingots-inner__contact-txt Узнать о наличии по телефону
+        a.ingots-inner__contact-tel(href='tel:88007758888') 8-800-775-88-88
+    block

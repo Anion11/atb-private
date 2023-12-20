@@ -1,0 +1,18 @@
+mixin info-partners(mods)
+  -
+    const baseName = 'info-partners'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .info-partners(class=allMods)&attributes(attributes)
+    .info-partners__img
+      img(src='/img/info-partners.png', alt='')
+    .info-partners__title Информация для&nbsp;партнеров
+    +ui-button('ПОДРОБНЕЕ', 'info-partners')(href='#')
+    block

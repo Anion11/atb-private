@@ -1,0 +1,33 @@
+mixin mobile-benefits(mods)
+  -
+    const baseName = 'mobile-benefits'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const data = [
+      {
+        img: 'img/mobile-benefit_1.png',
+        title: 'Быстро и&nbsp;безопасно',
+        descr: 'Приложение стало быстрее, стабильнее, удобнее и&nbsp;безопаснее'
+      },
+      {
+        img: 'img/mobile-benefit_2.png',
+        title: 'Новый дизайн',
+        descr: 'Привычная информация в&nbsp;современном визуальном оформлении'
+      },
+    ]
+
+  .mobile-benefits(class=allMods)&attributes(attributes)
+    each item in data
+      .mobile-benefits__item
+        .mobile-benefits__img: img(src=item.img alt='')
+        .mobile-benefits__content
+          +ui-h3(item.title, 'mobile-benefits, --xs')
+          +ui-p2(item.descr, '--light')
+    block

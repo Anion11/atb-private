@@ -1,0 +1,18 @@
+mixin financial-literacy-more(mods)
+  -
+    const baseName = 'financial-literacy-more'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .financial-literacy-more(class=allMods)&attributes(attributes)
+    .financial-literacy-more__img: img(src='img/financial-literacy-more.png' alt='')
+    +ui-h3('Всё о&nbsp;финансовой грамотности', 'financial-literacy-more, --xl')
+    +ui-p1('Статьи, видео, события и&nbsp;возможность задать вопрос', 'financial-literacy-more')
+    +ui-button('Подробнее', 'financial-literacy-more')(href='#')
+    block

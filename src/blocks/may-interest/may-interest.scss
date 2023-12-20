@@ -1,0 +1,33 @@
+.may-interest {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 115px;
+  @include media-laptop {
+    gap: 60px;
+  }
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  &__title {
+    margin-bottom: 10px;
+    font: 24px/1.2 $font;
+    @include media-laptop {
+      font-size: 18px;
+    }
+    @include media-tablet {
+      font-size: 20px;
+    }
+  }
+  &__descr {
+    margin-bottom: 15px;
+    font: 18px/1.4 $font;
+    @include media-laptop {
+      font-size: 13px;
+    }
+    @include media-tablet {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  }
+}

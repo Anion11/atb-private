@@ -1,0 +1,121 @@
+.ui-h1 {
+  font: 700 56px/1.2 $font;
+  @include media-laptop {
+    font-size: 38px;
+  }
+  @include media-tablet {
+    font-size: 26px;
+  }
+}
+.ui-h2 {
+  font: 700 40px/1.3 $font;
+  @include media-laptop {
+    font-size: 34px;
+  }
+  @include media-tablet {
+    font-size: 26px;
+  }
+  &--section {
+    margin-bottom: 40px;
+    @include media-tablet {
+      margin-bottom: 30px;
+    }
+  }
+  &--centered {
+    text-align: center;
+  }
+  &--mw80 {
+    max-width: 80%;
+  }
+}
+.ui-h3 {
+  font: 700 30px/1.3 $font;
+  @include media-laptop {
+    font-size: 24px;
+  }
+  @include media-tablet {
+    font-size: 22px;
+  }
+  &--normal {
+    font-weight: 400;
+  }
+  &--bold {
+    font-weight: 700;
+  }
+  &--xl {
+    font-size: 36px;
+    @include media-laptop {
+      font-size: 28px;
+    }
+    @include media-tablet {
+      font-size: 22px;
+    }
+  }
+  &--xs {
+    font-size: 28px;
+    @include media-laptop {
+      font-size: 26px;
+    }
+    @include media-tablet {
+      font-size: 22px;
+    }
+  }
+}
+.ui-h4 {
+  font: 24px/1.3 $font;
+  @include media-laptop {
+    font-size: 22px;
+  }
+  @include media-tablet {
+    font-size: 20px;
+  }
+  &--bold {
+    font-weight: 700;
+  }
+  &--light {
+    font-weight: 300;
+  }
+  &--mb {
+    margin-bottom: 25px;
+    @include media-laptop {
+      margin-bottom: 20px;
+    }
+    &-xs {
+      margin-bottom: 15px;
+    }
+  }
+  &--mob-fz16 {
+    @include media-tablet {
+      font-size: 16px;
+    }
+  }
+}
+.ui-h5 {
+  font: 22px/1.3 $font;
+  @include media-laptop {
+    font-size: 18px;
+  }
+  @include media-tablet {
+    font-size: 16px;
+  }
+  &--mob-fz18 {
+    @include media-tablet {
+      font-size: 18px;
+    }
+  }
+  &--bold {
+    font-weight: 700;
+  }
+}
+.ui-h6 {
+  font: 20px/1.3 $font;
+  @include media-tablet {
+    font-size: 18px;
+  }
+  &--light {
+    font-weight: 300;
+  }
+  &--bold {
+    font-weight: 700;
+  }
+}

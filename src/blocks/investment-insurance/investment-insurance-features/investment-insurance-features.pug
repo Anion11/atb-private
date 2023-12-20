@@ -1,0 +1,35 @@
+mixin investment-insurance-features(mods)
+  -
+    const baseName = 'investment-insurance-features'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const features = [
+      {
+        img: 'img/shield.png',
+        txt: 'Страховая <br>и юридическая защита, <br>налоговые льготы',
+      },
+      {
+        img: 'img/graphic.png',
+        txt: 'Высокая <br>потенциальная <br>доходность',
+      },
+      {
+        img: 'img/wallet.png',
+        txt: 'Возврат взносов<br>при наступлении рисков,<br> указанных в договоре',
+      },
+    ]
+
+  .investment-insurance-features(class=allMods)&attributes(attributes)
+    each item in features
+      .investment-insurance-features__item
+        .investment-insurance-features__img
+          img(src=item.img alt='')
+        .investment-insurance-features__text !{item.txt}
+    block

@@ -1,0 +1,58 @@
+.calc-m-deposits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px 80px;
+  @include media-laptop {
+    display: block;
+  }
+  &__ui {
+    &-range {
+      @include media-laptop {
+        padding: 0 10px;
+      }
+      &:not(:first-child) {
+        @include media-laptop {
+          margin-top: 35px;
+        }
+      }
+      .ui-range__inp {
+        max-width: 230px;
+        @include media-tablet {
+          max-width: 225px;
+        }
+      }
+    }
+    &-button {
+      margin-top: 35px;
+      @include media-laptop {
+        margin-top: 25px;
+      }
+      @include media-tablet {
+        width: 100%;
+      }
+    }
+  }
+  &__col {
+    &:not(:first-child) {
+      @include media-laptop {
+        margin-top: 30px;
+      }
+    }
+  }
+  &__facilities {
+    .ui-checkbox {
+      &:not(:last-child) {
+        margin-bottom: 20px;
+        @include media-laptop {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+  &__best {
+    margin-top: 35px;
+    @include media-laptop {
+      margin-top: 25px;
+    }
+  }
+}

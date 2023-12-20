@@ -1,0 +1,108 @@
+-
+  const defaultData = [
+    {
+      title: 'Бесплатные опции',
+      list: [
+        {
+          name: 'до <span class="card-benefits__name-xl">120</span> дней',
+          descr: [
+            {
+              txt: 'беспроцентный период',
+              tooltip: 'Льготный период кредитования без уплаты %&nbsp;при своевременном внесении обязательного минимального ежемесячного платежа и&nbsp;полного погашения ссудной задолженности до&nbsp;окончания этого периода.'
+            },
+          ],
+        },
+        {
+          name: 'Снятие наличных',
+          descr: [
+            {
+              txt: 'бесплатно',
+              tooltip: 'в&nbsp;первые 15&nbsp;дней; <br> далее &mdash;до 30&nbsp;000&nbsp;₽ в&nbsp;месяц'
+            },
+          ],
+        },
+        {
+          name: 'Обслуживание карты',
+          descr: [
+            {
+              txt: 'на весь срок использования',
+            },
+          ],
+        },
+      ]
+    },
+    {
+      title: 'Кэшбэк',
+      listMod: 'card-benefits__list--full-h',
+      list: [
+        {
+          name: '<span class="card-benefits__name-xl">1,5</span> %',
+          nameTxt: '&nbsp;на всё',
+          tooltip: 'За&nbsp;исключением категорий, указанных <a href="#" class="text-orange">здесь</a>',
+          descr: [
+            {
+              txt: 'без ограничения по&nbsp;максимальной сумме выплаты',
+            },
+          ],
+        },
+      ]
+    },
+    {
+      title: 'Дополнительные опции',
+      list: [
+        {
+          name: 'От <span class="card-benefits__name-xl">0</span> % годовых',
+          descr: [
+            {
+              txt: 'процентная ставка',
+            },
+          ],
+        },
+        {
+          name: 'Дополнительные карты-бесплатно',
+          descr: [
+            {
+              txt: 'единый счет, для всей семьи',
+            },
+          ],
+
+        },
+        { name: 'Онлайн - оформление заявки' },
+      ]
+    },
+  ]
+
+mixin card-benefits(mods, cardBenefits = defaultData)
+  -
+    const baseName = 'card-benefits'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-benefits(class=allMods)&attributes(attributes)
+    each item in cardBenefits
+      .card-benefits__box
+        .card-benefits__title !{item.title}
+          if item.subtitle
+            .card-benefits__subtitle !{item.subtitle}
+        .card-benefits__list(class=item.listMod)
+          each itemList in item.list
+            .card-benefits__item
+              if itemList.name
+                .card-benefits__top
+                  .card-benefits__name !{itemList.name}
+                  if itemList.nameTxt
+                    =' '
+                    span.card-benefits__txt !{itemList.nameTxt}
+                  if itemList.tooltip
+                    +ui-tooltip(itemList.tooltip)
+              if itemList.descr
+                each itemdescr in itemList.descr
+                  .card-benefits__txt !{itemdescr.txt}
+                    if itemdescr.tooltip
+                      +ui-tooltip(itemdescr.tooltip)

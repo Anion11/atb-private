@@ -1,0 +1,23 @@
+.vacancies-filter {
+  position: sticky;
+  top: 30px;
+  display: grid;
+  align-content: start;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: 30px;
+  @include media-laptop {
+    gap: 25px;
+  }
+  @include media-tablet {
+    position: static;
+    top: unset;
+  }
+  &__checkboxes {
+    display: grid;
+    gap: 15px;
+  }
+  &__ui-input {
+    width: 100%;
+  }
+}

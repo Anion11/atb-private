@@ -1,0 +1,28 @@
+mixin club-connect(clubConnectItems, mods)
+  -
+    const baseName = 'club-connect'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .club-connect(class=allMods)&attributes(attributes)
+    each item, index in clubConnectItems
+      .club-connect__item
+        .club-connect__head
+          .club-connect__icon
+            img(src=`img/club_connect_icon${index}.svg` alt='')
+          .club-connect__name=item.name
+        .club-connect__main
+          +ui-p1(item.p1, 'club-connect')
+          .club-connect__foot
+            if item.linkNext
+              +ui-button(item.linkNext, '--link-next').text-orange(href='#')
+            if item.phone
+              a.club-connect__phone(href=`tel:${item.phoneHref}`)=item.phone
+
+    block

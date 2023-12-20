@@ -1,0 +1,19 @@
+mixin info-page-sort(mods)
+  -
+    const baseName = 'info-page-sort'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .info-page-sort(class=allMods)&attributes(attributes)
+    span.info-page-sort__text Показать по
+    a.info-page-sort__link.info-page-sort__link--active(href='#') 20
+    a.info-page-sort__link(href='#') 40
+    a.info-page-sort__link(href='#') 80
+    a.info-page-sort__link(href='#') показать всё
+    block

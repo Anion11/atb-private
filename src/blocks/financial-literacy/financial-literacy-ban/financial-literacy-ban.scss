@@ -1,0 +1,83 @@
+.financial-literacy-ban {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 185px;
+  padding: 30px 290px 30px 40px;
+  background: $grey20;
+  border-radius: 8px;
+  @include media-laptop {
+    min-height: 120px;
+    padding: 20px 120px 20px 25px;
+  }
+  @include media-tablet {
+    display: block;
+    min-height: unset;
+    padding: 20px 15px 25px;
+    text-align: center;
+  }
+  &__img {
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    transform: translateY(-50%);
+    max-width: 150px;
+    max-height: 122px;
+    @include media-laptop {
+      max-width: 100px;
+      max-height: 80px;
+      right: 20px;
+    }
+    @include media-tablet {
+      position: relative;
+      top: unset;
+      right: unset;
+      transform: unset;
+      max-width: 66px;
+      max-height: 54px;
+      margin: 0 auto 5px;
+    }
+    img {
+      max-height: inherit;
+    }
+  }
+  &__ui-h4 {
+    max-width: 375px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+      @include media-tablet {
+        margin: 0 auto 15px;
+      }
+    }
+  }
+  &__btns {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    @include media-laptop {
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    @include media-tablet {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 20px 25px;
+    }
+  }
+  &--ask-question {
+    .financial-literacy-ban {
+      &__ui-h4 {
+        max-width: unset;
+      }
+      &__ui-p2 {
+        max-width: 396px;
+        @include media-tablet {
+          max-width: unset;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+mixin discounts-mir(discountsMirData, mods)
+  -
+    const baseName = 'discounts-mir'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    function rndId() {
+      return Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 7)
+    }
+
+  .discounts-mir(class=allMods)&attributes(attributes)
+    if discountsMirData.checkboxes
+      .discounts-mir__top
+        .discounts-mir__heading
+          +ui-h2('Лучшие предложения в', 'discounts-mir')
+          +ui-select('discounts-mir', 'Москва и МО', 'Алтайский край', 'Амурская область')
+        .discounts-mir__btn
+          .discounts-mir__open
+            +icon('icon_filter')
+          .discounts-mir__close
+            +icon('icon_close')
+      .discounts-mir__settings
+        .discounts-mir__checkboxes
+          each checkbox in discountsMirData.checkboxes
+            +ui-checkbox(rndId(), checkbox)
+        .discounts-mir__bot
+          .discounts-mir__sort
+            .discounts-mir__label Сотрировка
+            .discounts-mir__radios
+              +ui-radio('sort_profitable', 'Самое выгодное', 'discounts-mir')(name='discounts')
+              +ui-radio('sort_new', 'Новое', 'discounts-mir')(name='discounts')
+          form.discounts-mir__search
+            .discounts-mir__label Название
+            .discounts-mir__input
+              +ui-input('discounts_search', '', 'discounts-mir', 'text')(placeholder='Поиск')
+              +ui-button('', 'discounts-mir')
+                +icon('icon_search')
+    .discounts-mir__content
+      if discountsMirData.isMobSlider
+        .discounts-mir__grid.swiper-wrapper
+          each item in discountsMirData.content
+            +discounts-mir__item(item).swiper-slide
+        +ui-swiper-pagination('discounts-mir')
+      else
+        .discounts-mir__grid
+          each item in discountsMirData.content
+            +discounts-mir__item(item)
+    block
+
+mixin discounts-mir__item(itemData, mods)
+  -
+    const baseName = 'discounts-mir__item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .discounts-mir__item(class=allMods)&attributes(attributes)
+    .discounts-mir__pic
+      .discounts-mir__tag
+        span !{itemData.label}
+      .discounts-mir__img
+        img(src=itemData.img, alt='')
+      .discounts-mir__logo
+        img(src=itemData.logo, alt='')
+    .discounts-mir__info
+      .discounts-mir__name !{itemData.title}
+      .discounts-mir__foot
+        .discounts-mir__percent !{itemData.percent}
+        .discounts-mir__desc !{itemData.desc}

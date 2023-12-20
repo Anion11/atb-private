@@ -1,0 +1,48 @@
+mixin search-suggestions(hasResult, mods)
+  -
+    const baseName = 'search-suggestions'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const documentsItems = [
+      { name: 'Потребительские кредиты (с лимитом кредитования) до 01.09.2021', info: 'pdf, 740 KB', mods: '--mb-xxs, --simple', hasIcon: false },
+      { name: 'Потребительские кредиты (с лимитом кредитования) до 01.09.2021', info: 'pdf, 740 KB', mods: '--mb-xxs, --simple', hasIcon: false },
+      { name: 'Потребительские кредиты (с лимитом кредитования) до 01.09.2021', info: 'pdf, 740 KB', mods: '--mb-xxs, --simple', hasIcon: false },
+      { name: 'Потребительские кредиты (с лимитом кредитования) до 01.09.2021', info: 'pdf, 740 KB', mods: '--mb-xxs, --simple', hasIcon: false },
+    ]
+
+  -
+    const documentsItems2 = [
+      { name: 'Потребительские кредиты (с лимитом кредитования) до 01.09.2021', info: 'pdf, 740 KB', mods: '--mb-xxs, --simple-archive', hasIcon: false },
+      { name: 'Потребительские кредиты (с лимитом кредитования) до 01.09.2021', info: 'pdf, 740 KB', mods: '--mb-xxs, --simple-archive', hasIcon: false },
+    ]
+
+  .search-suggestions(class=allMods)&attributes(attributes)
+    if hasResult === false
+      .search-suggestions__section
+        .text-center
+          +ui-p1('Ничего не найдено, попробуйте переформулировать запрос')
+    else
+      -for(let i=0; i<5; i++)
+        .search-suggestions__section
+          .search-suggestions__head
+            span.search-suggestions__name Кредитные карты
+            span.search-suggestions__count 4 документа
+          .search-suggestions__main
+            +documents(documentsItems, '--mb-xxs')
+            .search-suggestions__accordion
+              button.search-suggestions__head.search-suggestions__head--archive
+                .search-suggestions__arrow
+                  +icon('search_result_arrow')
+                span.search-suggestions__name.search-suggestions__name--archive Архив
+                span.search-suggestions__count 4 документа
+              .search-suggestions__main.search-suggestions__main--archive
+                +documents(documentsItems2, '--mb-xxs')
+    block

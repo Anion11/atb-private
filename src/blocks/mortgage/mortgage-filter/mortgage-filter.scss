@@ -1,0 +1,79 @@
+.mortgage-filter {
+  display: grid;
+  grid-template-columns: 36% minmax(0, 1fr);
+  gap: 10px;
+  padding: 50px 50px 50px 170px;
+  background: $grey20;
+  border-radius: 8px;
+  @include media-laptop {
+    padding: 40px 50px;
+  }
+  @include media-tablet {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 30px 20px 35px;
+    gap: 30px;
+  }
+  &__title {
+    margin-bottom: 20px;
+    font: 700 24px/1.25 $font;
+    @include media-laptop {
+      font-size: 22px;
+    }
+    @include media-tablet {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+  }
+  &__radios {
+    display: flex;
+    column-gap: 25px;
+    @include media-tablet {
+      flex-direction: column;
+    }
+  }
+  &__subtitle {
+    margin-bottom: 10px;
+    font: 700 18px/1.5 $font;
+    @include media-tablet {
+      font-size: 16px;
+    }
+    &:not(:first-child) {
+      margin-top: 25px;
+      @include media-tablet {
+        margin-top: 20px;
+      }
+    }
+  }
+  &__type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px 10px;
+    @include media-laptop {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  &__ui {
+    &-checkbox {
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+    }
+    &-radio {
+      &:not(:last-child) {
+        @include media-tablet {
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+}
+body .bvi-body {
+  .mortgage-filter {
+    padding: 0;
+    &__type {
+      flex-direction: column;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+.smart-medicine-psychologist {
+  position: relative;
+  min-height: 230px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 40px 445px 40px 40px;
+  background: $greyBlueGradient;
+  border-radius: 8px;
+  overflow: hidden;
+  @include media-laptop {
+    padding: 40px 350px 40px 40px;
+  }
+  @include media-tablet {
+    margin: 40px 0;
+    padding: 25px 25px 115px;
+  }
+  &__title {
+    margin-bottom: 25px;
+    font: 700 22px/1.2 $font;
+    @include media-laptop {
+      font-size: 20px;
+    }
+    @include media-tablet {
+      font-size: 18px;
+    }
+  }
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    @include media-laptop {
+      flex-direction: column;
+    }
+  }
+  &__item {
+    position: relative;
+    width: calc((100% - 100px) / 3);
+    padding-left: 50px;
+    font: 400 18px/1.4 $font;
+    @include media-laptop {
+      display: flex;
+      width: 100%;
+      min-height: 32px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    @include media-tablet {
+      font-size: 16px;
+    }
+    &:last-child {
+      @include media-laptop {
+        margin-bottom: 0;
+      }
+      @include media-tablet {
+        padding-right: 90px;
+      }
+    }
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M27.314 4.686A15.895 15.895 0 0 0 16 0 15.895 15.895 0 0 0 4.686 4.686 15.895 15.895 0 0 0 0 16c0 4.274 1.664 8.292 4.686 11.314A15.895 15.895 0 0 0 16 32c4.274 0 8.292-1.664 11.314-4.686A15.895 15.895 0 0 0 32 16c0-4.274-1.664-8.292-4.686-11.314ZM16 30.125C8.211 30.125 1.875 23.789 1.875 16S8.211 1.875 16 1.875 30.125 8.211 30.125 16 23.789 30.125 16 30.125Z' fill='%23FE5000'/%3E%3Cpath d='M23.644 10.866a.938.938 0 0 0-1.326 0l-8.279 8.279-4.358-4.358a.938.938 0 0 0-1.325 1.326l5.02 5.02a.934.934 0 0 0 1.326 0l8.942-8.941a.937.937 0 0 0 0-1.326Z' fill='%23FE5000'/%3E%3C/svg%3E");
+      content: '';
+    }
+  }
+  &__img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    height: 230px;
+    @include media-laptop {
+      right: -50px;
+    }
+    @include media-tablet {
+      width: 260px;
+      height: 150px;
+    }
+  }
+}

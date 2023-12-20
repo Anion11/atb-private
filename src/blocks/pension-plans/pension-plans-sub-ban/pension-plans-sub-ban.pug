@@ -1,0 +1,26 @@
+mixin pension-plans-sub-ban(mods)
+  -
+    const baseName = 'pension-plans-sub-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .pension-plans-sub-ban(class=allMods)&attributes(attributes)
+    .pension-plans-sub-ban__item
+      +ui-p1
+        ul.ui-ul
+          li Это ваш инструмент для формирования дополнительной пенсии, например,
+            =' '
+            span.text-nowrap 15 000-30 000 ₽/мес.
+            |  и выше, в зависимости от вашего образа жизни
+          li Это ваши накопления, которые могут стать капиталом  к определенным жизненным событиям (обучение ребенка, крупная покупка и т.п.).
+    .pension-plans-sub-ban__item.pension-plans-sub-ban__item--right
+      .pension-plans-sub-ban__item-text Пенсионный план вы создаёте за счет своих взносов, полученного инвестиционного дохода и поддержки государства. Периодичностью внесения взносов управляете вы сами.
+      .pension-plans-sub-ban__item-img
+        img(src='img/sub_ban-2.png' alt='')
+    block

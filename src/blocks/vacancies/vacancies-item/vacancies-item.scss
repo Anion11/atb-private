@@ -1,0 +1,29 @@
+.vacancies-item {
+  display: block;
+  padding: 40px;
+  background: #fff;
+  box-shadow: 0 3px 30px rgb(135 151 155 / 0.15);
+  border-radius: 8px;
+  @include media-laptop {
+    padding: 30px 20px;
+  }
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0 5px 35px rgb(135 151 155 / 0.25);
+  }
+  &__ui-h4 {
+    margin-bottom: 20px;
+    @include media-tablet {
+      margin-bottom: 15px;
+    }
+  }
+  &__foot {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    @include media-laptop {
+      gap: 25px;
+    }
+  }
+}

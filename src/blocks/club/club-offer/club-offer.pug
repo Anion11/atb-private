@@ -1,0 +1,75 @@
+mixin club-offer(type, mods)
+  -
+    const baseName = 'club-offer'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const clubOfferListDefault =[
+      { href: '#popup-mcc-codes-auto', text: '<span class="text-bold">Авто</span> (АЗС и&nbsp;автосервисы)' },
+      { href: '#popup-mcc-codes-home', text: '<span class="text-bold">Дом и&nbsp;ремонт</span>' },
+      { href: '#popup-mcc-codes-family', text: '<span class="text-bold">Семья</span> (товары для&nbsp;семьи и&nbsp;творчества)' },
+      { href: '#popup-mcc-codes-shopping', text: '<span class="text-bold">Шоппинг</span> (Одежда и&nbsp;аксессуары)' },
+      { href: '#popup-mcc-codes-health', text: '<span class="text-bold">Здоровье</span> (аптеки и&nbsp;медицинские центры)' },
+      { href: '#popup-mcc-codes-beauty-sports', text: '<span class="text-bold">Красота и&nbsp;спорт</span> (спорттовары и&nbsp;SPA)' },
+      { href: '#popup-mcc-codes-recreation', text: '<span class="text-bold">Развлечение и&nbsp;отдых</span> (рестораны и&nbsp;кинотеатры)' },
+    ]
+
+  -
+    const clubOfferListLk =[
+      { text: `История
+        <span class="text-nowrap">операций
+          <span class="club-offer__tag">new</span>
+        </span>` },
+      { text: 'Накопление баллов' },
+      { text: 'Информация по&nbsp;начислению баллов' },
+      { text: 'Обмен баллов на&nbsp;рубли' },
+      { text: 'Изменение категории повышенного кэшбэка онлайн',
+      },
+    ]
+
+  case type
+    when 'lk'
+      .club-offer(class=allMods)&attributes(attributes)
+        .club-offer__content
+          .club-offer__text
+            p Личный кабинет программы лояльности
+              =' '
+              span.text-nowrap по&nbsp;дебетовым
+                +ui-tooltip('для карт с тарифными планами: <a class="text-orange" href="#" target="_blank">АТБ 2.0</a> (в том числе цифровая карта), Кошелек, Большой Кошелек и Кэшбэк')
+              =' '
+              span.text-nowrap и&nbsp;кредитным
+                +ui-tooltip('С 1 ноября 2023&nbsp;года с&nbsp;тарифными планами: Абсолютный ноль, Мои правила, Ставка&nbsp;19, Фреш, 90&nbsp;даром')
+              |  &nbsp;картам для&nbsp;контроля и&nbsp;управления баллами
+            +ui-ul(clubOfferListLk, 'club-offer')
+          .club-offer__actions
+            +ui-button('Вход в личный кабинет', 'club-offer')(href='#')
+            +ui-button('Подробнее', 'club-offer, --link-next')(href='#')
+        .club-offer__img
+          img(src='img/club_offer_img.png' alt='')
+        block
+
+    default
+      .club-offer(class=allMods)&attributes(attributes)
+        .club-offer__content
+          .club-offer__text
+            p Получайте повышенный кэшбэк 7% в&nbsp;одной из&nbsp;предложенных категорий:
+            .club-offer__categories
+              each item in clubOfferListDefault
+                a.club-offer__category.js-popup-open(href=item.href) !{item.text}
+            p Выбрать категорию повышенного кэшбэка можно
+              |  в&nbsp;мобильном приложении в&nbsp;течение месяца.
+            +ui-p3('').text-grey60
+              | Категория повышенного кэшбэка начнет действовать с&nbsp;1&nbsp;числа следующего месяца.
+              br
+              | Кэшбэк 7% начисляется за&nbsp;покупки в&nbsp;выбранной категории. За&nbsp;остальные покупки — 1%.
+          .club-offer__actions.club-offer__actions--mt-xs
+            +ui-button('Личный кабинет', 'club-offer').js-open-tab(href='#tab-lk')
+        .club-offer__img
+          img(src='img/club_offer_img_default.png' alt='')

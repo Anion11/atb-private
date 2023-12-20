@@ -1,0 +1,199 @@
+mixin loyalty-univ-exmpl(type, mods)
+  -
+    const baseName = 'loyalty-univ-exmpl'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const tableItems1 = {
+      thead: [
+        {
+          th: [
+            { text: 'Описание покупки' },
+            { text: 'Сумма покупки' },
+            { text: 'Кэшбэк на сумму покупки кратной 100 ₽' },
+          ],
+        },
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Новые ботики папе' },
+            { text: '4 220 ₽' },
+            { text: '420 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Товары для дома' },
+            { text: '5 248 ₽' },
+            { text: '520 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Кукла в магазине игрушек' },
+            { text: '1 300 ₽' },
+            { text: '130 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Корм и игрушки для кота в зоомагазине' },
+            { text: '3 240 ₽' },
+            { text: '320 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Продукты' },
+            { text: '4 120 ₽ <br> 3 268 ₽ <br> 2 534 ₽ <br> 128 ₽ <br> 5 123 ₽ <br> 237 ₽' },
+            { text: '41 ₽ (1%) <br> 32 ₽ (1%) <br> 25 ₽ (1%) <br> 1 ₽ (1%) <br> 51 ₽ (1%) <br> 20 ₽ (1%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Поход в парикмахерскую' },
+            { text: '3 000 ₽' },
+            { text: '300 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Оплата автобусов' },
+            { text: '30 ₽ × 3 раза' },
+            { text: '0 ₽' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Оплата такси' },
+            { text: '220 ₽ × 20 раз' },
+            { text: '2 ₽ × 20 = 40 ₽ (1%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Ужин в ресторане' },
+            { text: '5 210 ₽' },
+            { text: '52 ₽ (1%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Итого:', mods: 'text-orange text-bold' },
+            { text: '42 928 ₽', mods: 'text-orange text-bold' },
+            { text: '2 402 ₽', mods: 'text-orange text-bold' },
+          ]
+        },
+      ]
+    }
+
+    const tableItems2 = {
+      thead: [
+        {
+          th: [
+            { text: 'Описание покупки' },
+            { text: 'Сумма покупки' },
+            { text: 'Кэшбэк на сумму покупки кратной 100 ₽' },
+          ],
+        },
+      ],
+      tbody: [
+        {
+          td: [
+            { text: 'Новые ботики папе' },
+            { text: '4 220 ₽' },
+            { text: '420 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Товары для дома' },
+            { text: '5 248 ₽' },
+            { text: '52 ₽ (1%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Кукла в магазине игрушек' },
+            { text: '1 300 ₽' },
+            { text: '130 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Корм и игрушки для кота в зоомагазине' },
+            { text: '3 240 ₽' },
+            { text: '320 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Оплата секций для ребенка' },
+            { text: '4 120 ₽' },
+            { text: '410 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Продукты' },
+            { text: '3 268 ₽ <br> 2 534 ₽ <br> 128 ₽ <br> 5 123 ₽ <br> 237 ₽' },
+            { text: '32 ₽ (1%) <br> 25 ₽ (1%) <br> 1 ₽ (1%) <br> 51 ₽ (1%) <br> 2 ₽ (1%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Покупка пуховика ребенку' },
+            { text: '4 200 ₽' },
+            { text: '420 ₽ (10%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Заправка автомобиля' },
+            { text: '2 000 ₽ × 3 раза' },
+            { text: '20 ₽ × 3 = 60 ₽ (1%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Ужин в ресторане' },
+            { text: '5 210 ₽' },
+            { text: '52 ₽ (1%)' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Итого:', mods: 'text-orange text-bold' },
+            { text: '44 828 ₽', mods: 'text-orange text-bold' },
+            { text: '1 975 ₽', mods: 'text-orange text-bold' },
+          ]
+        },
+      ]
+    }
+
+  .loyalty-univ-exmpl(class=allMods)&attributes(attributes)
+    case type
+      when '1'
+        +ui-table(tableItems1, 'loyalty-univ-exmpl')
+        +ui-p1('Сумма составила 42&nbsp;928&nbsp;₽, что превысило заявленный правилами лимит 20&nbsp;000&nbsp;₽ и&nbsp;позволило получить повышенный кэшбэк&nbsp;10% по&nbsp;категории &laquo;Семейная&raquo; и&nbsp;1% по&nbsp;остальным покупкам.', 'loyalty-univ-exmpl')
+        block
+      when '2'
+        +ui-table(tableItems2, 'loyalty-univ-exmpl')
+        +ui-h4('В качестве любимой категории была выбрана «Семья»', 'loyalty-univ-exmpl, --bold')
+        +ui-p1('Сумма в&nbsp;категории &laquo;Семья&raquo; составила 17&nbsp;080&nbsp;₽, что превысило лимит 16&nbsp;000&nbsp;₽ и&nbsp;позволило получить повышенный кэшбэк&nbsp;10% в&nbsp;категории &laquo;Семья&raquo; и&nbsp;1% за&nbsp;остальные покупки.', 'loyalty-univ-exmpl')
+        .loyalty-univ-exmpl__cashback Кэшбэк
+        +ui-p1('')
+          +ui-ul('', 'loyalty-univ-exmpl, --li-mb10')
+            li В&nbsp;любимой категории 1&nbsp;700&nbsp;₽
+            li За&nbsp;остальные покупки 293&nbsp;₽
+        .loyalty-univ-exmpl__total
+          +ui-p1('Общая сумма кэшбэка')
+          +ui-p1('1 993 ₽', '--bold').text-orange
+        block

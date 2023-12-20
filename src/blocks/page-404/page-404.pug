@@ -1,0 +1,35 @@
+mixin page-404(mods)
+  -
+    const baseName = 'page-404'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const page404Links =[
+      { mods: 'heart', text: 'Кредитные карты' },
+      { mods: 'ok', text: 'Кредиты наличными' },
+      { mods: 'house', text: 'Ипотека' },
+      { mods: 'leaf', text: 'Вклады' },
+    ]
+
+  .page-404(class=allMods)&attributes(attributes)
+    .page-404__inner
+      .page-404__banner
+        .page-404__img
+          img(src='img/page_404_img.png' alt='')
+        .page-404__text
+          h2.page-404__h2 Страница не найдена
+          .page-404__descr Извините, такой страницы не существует или неправильно набран адрес. Вернитесь
+            =' '
+            a.text-orange(href='#') на главную
+            | .
+      .page-404__links
+        each item in page404Links
+          a.page-404__item(class=`page-404__item--${item.mods}` href='#')=item.text
+    block

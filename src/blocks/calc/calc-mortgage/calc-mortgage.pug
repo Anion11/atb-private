@@ -1,0 +1,224 @@
+mixin calc-mortgage(type, mods)
+  -
+    const baseName = 'calc-mortgage'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const dataCalcName = `data-mortgage_${type}`
+
+    const dataByType = {
+      'state-support': {
+        selectObjType: [
+          'Квартира',
+          'Таунхаус',
+        ],
+        optionsBlock: {
+          title: 'Надбавки:',
+          increase: [
+            { text: 'Отсутствие личного страхования заемщика', },
+          ]
+        },
+      },
+      'non-targeted': {
+        optionsBlock: {
+          discount: [
+            { text: 'Подтвержден доход выпиской из ПФР', },
+          ],
+          increase: [
+            { text: 'Отсутствие личного/титульного страхования заемщика', },
+            { text: 'Опция Заемщик ИП / Владелец бизнеса ', tooltip: 'Если при определении платежеспособности учитывается доход от&nbsp;предпринимательской деятельности и/или доход Заемщика-собственника бизнеса (полученный от&nbsp;этого бизнеса) в&nbsp;сумме&nbsp;50% и&nbsp;более от&nbsp;совокупного дохода' },
+            { text: 'Отказ от электронной регистрации' },
+          ]
+        },
+      },
+      'complete': {
+        selectObjType: [
+          'Квартира',
+          'Апартаменты',
+          'Жилой дом с зем.участком',
+          'Таунхаус',
+        ],
+        optionsBlock: {
+          discount: [
+            { text: 'Зарплатный счет в&nbsp;АТБ (АО)&nbsp;/ Сотрудник бюджетной сферы&nbsp;/ Пользователь &laquo;Программы Статус&raquo;', },
+            { text: 'Сумма больше - ставки меньше ', tooltip: 'При сумме кредита свыше: <br> &mdash;&nbsp;Москва и&nbsp;Московская область&nbsp;&mdash; 4&nbsp;000&nbsp;000&nbsp;рублей, <br> &mdash;&nbsp;Иные регионы&nbsp;&mdash; 2&nbsp;000&nbsp;000&nbsp;рублей.' },
+            { text: 'Заявка он-лайн', },
+            { text: 'Заемщик приобретает квартиру у&nbsp;партнеров Банка', tooltip: 'Заемщик приобретает квартиру у&nbsp;партнеров Банка или является клиентом партнеров Банка, оказывающих риэлтерские услуги' },
+            { text: 'Быстрый выход на сделку', tooltip: 'В&nbsp;случае заключения кредитного договора в&nbsp;течение 30&nbsp;календарных дней с&nbsp;даты принятия Банком решения о&nbsp;предоставлении заемщику кредита' },
+            { text: 'Максимум', tooltip: 'Одновременно применение факторов: <br> &bull; Сумма кредита вне зависимости от&nbsp;региона 20&nbsp;млн. рублей и&nbsp;более <br> &bull; Заемщик является участником зарплатного проекта &laquo;Азиатско-Тихоокеанский Банк&raquo; (АО) <br> &bull; В&nbsp;случае заключения кредитного договора в&nbsp;течение 30&nbsp;календарных дней с&nbsp;даты принятия Банком решения о&nbsp;предоставлении заемщику кредита <br> &bull; Первоначальный взнос&nbsp;20% и&nbsp;более от&nbsp;стоимости при-обретаемого объекта недвижимости.'},
+            { text: 'Первый взнос от&nbsp;30% и&nbsp;подтверждение дохода выпиской из&nbsp;ПФР', },
+            { text: 'Клиент – сотрудник Банка', },
+          ],
+          increase: [
+            { text: 'Отсутствие личного/титульного страхования заемщика', },
+            { text: 'Опция Заемщик ИП / Владелец бизнеса ', tooltip: 'Если при определении платежеспособности учитывается доход от&nbsp;предпринимательской деятельности и/или доход Заемщика-собственника бизнеса (полученный от&nbsp;этого бизнеса) в&nbsp;сумме&nbsp;50% и&nbsp;более от&nbsp;совокупного дохода' },
+            { text: 'Первоначальный взнос менее&nbsp;20% от&nbsp;стоимости приобретаемого объекта недвижимости', tooltip: 'В&nbsp;случае превышения суммы кредита от&nbsp;стоимости залог более чем на&nbsp;80%, плюс 0,75% к&nbsp;ставке.' },
+            { text: 'Простая ипотека', tooltip: 'Требования к&nbsp;трудовому стажу/ к&nbsp;деятельности индивидуальных предпринимателей отсутствуют.'},
+          ]
+        },
+        checkboxUseMomCapitall: true
+      },
+      'new_building': {
+        selectObjType: [
+          'Квартира',
+          'Апартаменты',
+          'Таунхаус',
+        ],
+        optionsBlock: {
+          discount: [
+            { text: 'Зарплатный счет в&nbsp;АТБ (АО)&nbsp;/ Сотрудник бюджетной сферы&nbsp;/ Пользователь &laquo;Программы Статус&raquo;', },
+            { text: 'Сотрудник бюджетной сферы ', tooltip: 'Заемщик получающий выплаты за&nbsp;счет средств бюджетов бюджетной системы РФ' },
+            { text: 'Пользователь «Программы Статус» ', tooltip: 'Бонусная программа премиального банковского обслуживания, которая включает: <br> - Выгодные финансовые решения <br> - Повышенный уровень сервиса <br> - Привилегии ' },
+            { text: 'Быстрый выход на сделку', tooltip: 'В&nbsp;случае заключения кредитного договора в&nbsp;течение 30&nbsp;календарных дней с&nbsp;даты принятия Банком решения о&nbsp;предоставлении заемщику кредита' },
+            { text: 'Акция "Бери больше - плати меньше" ', tooltip: 'При сумме кредита свыше: <br> &middot; Москва и&nbsp;Московская область&nbsp;&mdash; 4&nbsp;000&nbsp;000&nbsp;рублей, <br> &middot; Иные регионы&nbsp;&mdash; 2&nbsp;000&nbsp;000&nbsp;рублей.' },
+            { text: 'Первый взнос от&nbsp;30% и&nbsp;подтверждение дохода выпиской из&nbsp;ПФР', },
+            { text: 'Заявка онлайн' },
+            { text: 'Максимум', tooltip: 'Одновременно применение факторов: <br> &bull; Сумма кредита вне зависимости от&nbsp;региона 20&nbsp;млн. рублей и&nbsp;более <br> &bull; Заемщик является участником зарплатного проекта &laquo;Азиатско-Тихоокеанский Банк&raquo; (АО) <br> &bull; В&nbsp;случае заключения кредитного договора в&nbsp;течение 30&nbsp;календарных дней с&nbsp;даты принятия Банком решения о&nbsp;предоставлении заемщику кредита <br> &bull; Первоначальный взнос&nbsp;20% и&nbsp;более от&nbsp;стоимости при-обретаемого объекта недвижимости.'},
+          ],
+          increase: [
+            { text: 'Отсутствие личного/титульного страхования заемщика', },
+            { text: 'Опция Заемщик ИП / Владелец бизнеса ', tooltip: 'Если при определении платежеспособности учитывается доход от&nbsp;предпринимательской деятельности и/или доход Заемщика-собственника бизнеса (полученный от&nbsp;этого бизнеса) в&nbsp;сумме&nbsp;50% и&nbsp;более от&nbsp;совокупного дохода' },
+            { text: 'Первоначальный взнос менее&nbsp;20% от&nbsp;стоимости приобретаемого объекта недвижимости', tooltip: 'В&nbsp;случае превышения суммы кредита от&nbsp;стоимости залог более чем на&nbsp;80%, плюс 0,75% к&nbsp;ставке.' },
+            { text: 'Простая ипотека', tooltip: 'Требования к&nbsp;трудовому стажу/ к&nbsp;деятельности индивидуальных предпринимателей отсутствуют.'},
+          ]
+        },
+        checkboxUseMomCapitall: true
+      },
+      'dfo': {
+        selectObjType: [
+          'Квартира',
+          'Жилой дом с зем.участком',
+          'Таунхаус',
+        ],
+        checkboxWithoutInsurance: true
+      },
+      'refinancing': {
+        selectObjType: [
+          'Квартира',
+          'Апартаменты'
+        ],
+        optionsBlock: {
+          discount: [
+            { text: 'Зарплатный клиент в&nbsp;АТБ' },
+            { text: 'Сотрудник АТБ' },
+            { text: 'Заемщик&nbsp;&mdash; клиент партнеров АТБ, оказывающих риэлторские услуги' },
+            { text: 'Проведение сделки с&nbsp;услугой электронной регистрации' },
+          ],
+          increase: [
+            { text: 'Доход и&nbsp;занятость Заемщика не&nbsp;подтверждены', nowrap: 'официально', tooltip: 'Не&nbsp;распространяется на&nbsp;категорию клиентов Зарплатный клиент Банка/ Сотрудник банка' },
+            { text: 'Сумма TOP&nbsp;UP превышает&nbsp;50% остатка задолженности по&nbsp;рефинансируемому ипотечному', nowrap: 'кредиту', tooltip: 'TOP UP&nbsp;&mdash; это дополнительная сумма на&nbsp;потребительские цели (не&nbsp;связанные с&nbsp;предпринимательской деятельностью) и/или&nbsp;улучшение жилищных условий (в&nbsp;т.ч. оплата неотделимых улучшений, и/или&nbsp;оплата ремонта Предмета ипотеки)' },
+            { text: 'Отказ от&nbsp;Личного и/или&nbsp;Титульного страхования' },
+            { text: 'До&nbsp;момента регистрации ипотеки в&nbsp;пользу АТБ и&nbsp;погашение Рефинансируемого потребительского кредита' },
+          ]
+        }
+      },
+    }
+
+    let currentData =  {}
+
+    if (type) {
+      currentData = dataByType[`${type}`]
+    }
+
+  .calc-mortgage(class=allMods)&attributes(attributes)
+    .calc-mortgage__left
+      .calc-mortgage__params
+        if currentData.selectObjType
+          .calc-mortgage__line
+            +ui-form-name('Объект недвижимости')
+            +ui-select('', ...currentData.selectObjType)&attributes({[`${dataCalcName}-select-obj_type`]: ''})
+        .calc-mortgage__line
+          +ui-range('Стоимость недвижимости', ' ₽')(data-min='1000000' data-max='60000000')&attributes({[`${dataCalcName}-range-cost`]: ''})
+        if type === 'refinancing'
+          .calc-mortgage__line
+            +ui-range('Сумма кредита', ' ₽')(data-min='500000' data-max='15000000')&attributes({[`${dataCalcName}-range-summ`]: ''})
+          .calc-mortgage__line
+            +ui-range('Срок кредита, мес.', ' мес')(data-min='36' data-max='360')&attributes({[`${dataCalcName}-range-period`]: ''})
+        else
+          .calc-mortgage__line
+            +ui-range(' Первоначальный взнос', ' ₽')(data-min='1000000' data-max='60000000')&attributes({[`${dataCalcName}-range-first_pay`]: ''})
+          if currentData.checkboxUseMomCapitall
+            .calc-mortgage__line.calc-mortgage__line--option
+              +ui-checkbox('increase1', 'Использовать материнский ', 'calc-mortgage')&attributes({[`${dataCalcName}-checkbox-first_pay_mom_capitall`]: ''})
+                span.text-nowrap капитал
+                  +ui-tooltip('Размер первоначального взноса снижается до&nbsp;10%. В&nbsp;случае непогашения средствами МСК части кредита (при&nbsp;ПВ менее&nbsp;20%) применяется надбавка к&nbsp;ставке в&nbsp;размере&nbsp;0,75%')
+          .calc-mortgage__line
+            +ui-range('Срок кредита', ' лет', ' года', ' лет')(data-min='3' data-max='20')&attributes({[`${dataCalcName}-range-year`]: ''})
+        if currentData.checkboxWithoutInsurance
+          .calc-mortgage__line.calc-mortgage__line--option
+            +ui-checkbox('without_insurance', 'Без личного страхования заемщика', 'calc-mortgage')&attributes({[`${dataCalcName}-checkbox-without_insurance`]: ''})
+        if currentData.datePickerBDay
+          .calc-mortgage__line
+            +ui-form-name('Дата рождения ')
+            +ui-datepicker('--single')&attributes({[`${dataCalcName}-datepicker-bday`]: ''})
+      if currentData.optionsBlock
+        .calc-mortgage__options
+          if currentData.optionsBlock.title
+            .calc-mortgage__options-head !{currentData.optionsBlock.title}
+          else
+            .calc-mortgage__options-head Скидки / Надбавки
+          .calc-mortgage__options-main
+            if currentData.optionsBlock.discount
+              .calc-mortgage__line.calc-mortgage__line--option
+                +ui-form-name('Скидки:', 'calc-mortgage')
+                each item, index in currentData.optionsBlock.discount
+                  +ui-checkbox(`discount${index+1}`, item.text, 'calc-mortgage')&attributes({[`${dataCalcName}-checkbox-discount`]: ''})
+                    if item.tooltip
+                      +ui-tooltip(item.tooltip)
+            if currentData.optionsBlock.increase
+              .calc-mortgage__line.calc-mortgage__line--option
+                +ui-form-name('Надбавки:', 'calc-mortgage')
+                each item, index in currentData.optionsBlock.increase
+                  +ui-checkbox(`increase${index+1}`, item.text, 'calc-mortgage')&attributes({[`${dataCalcName}-checkbox-increase`]: ''})
+                    if item.nowrap
+                      =' '
+                      span.text-nowrap !{item.nowrap}
+                        if item.tooltip
+                          +ui-tooltip(item.tooltip)
+                    else if item.tooltip
+                      +ui-tooltip(item.tooltip)
+    .calc-mortgage__right
+      .calc-mortgage__result
+        .calc-mortgage__result-main
+          .calc-mortgage__result-line
+            .calc-mortgage__result-box
+              .calc-mortgage__result-name Ежемесячный платеж
+              .calc-mortgage__result-num.calc-mortgage__result-num--big.calc-mortgage__result-num--accent 45 580 ₽
+            .calc-mortgage__result-box
+              .calc-mortgage__result-name ставка
+              .calc-mortgage__result-num.calc-mortgage__result-num--big 1,75%
+          .calc-mortgage__result-line(class=(type === 'refinancing' ? '' : 'calc-mortgage__result-line--row-m'))
+            if type !== 'refinancing'
+              .calc-mortgage__result-box
+                .calc-mortgage__result-name
+                  span Сумма кредита
+                .calc-mortgage__result-num 1 500 000 ₽
+            .calc-mortgage__result-box
+              .calc-mortgage__result-name
+                span НЕОБХОДИМЫЙ ДОХОД
+              .calc-mortgage__result-num от 66 820 ₽
+        .calc-mortgage__result-btns
+          if type === 'refinancing'
+            +ui-button('оставить заявку', '--m-w100')(href='#')
+          else
+            +ui-button('оставить заявку')(href='#')
+            +ui-button('подробнее', '--link-next')(href='#')
+        .calc-mortgage__result-foot(class=(type === 'refinancing' ? 'calc-mortgage__result-foot--m-text-start' : ''))
+          if type === 'refinancing'
+            p *Расчет платежа произведен в&nbsp;качестве примера, итоговая сумма может отличаться в&nbsp;зависимости от&nbsp;параметров сделки.
+          p Информация носит справочный характер и&nbsp;не&nbsp;является публичной офертой
+      .calc-mortgage__adv
+        .calc-mortgage__adv-content
+          +ui-h6('Оформи ипотеку и&nbsp;получи кредитную карту в&nbsp;подарок', 'calc-mortgage')
+          +ui-ul('', 'calc-mortgage')
+            li До&nbsp;120 дней без&nbsp;процентов
+            li 1,5% кэшбэк на&nbsp;все покупки
+          +ui-button('подробнее', '--link-next').text-orange(href='#')
+        .calc-mortgage__adv-img
+          img(src='/img/calc_mortgage_adv.png' alt='')

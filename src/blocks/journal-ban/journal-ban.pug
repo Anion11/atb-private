@@ -1,0 +1,23 @@
+mixin journal-ban(mods)
+  -
+    const baseName = 'journal-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  a.journal-ban(class=allMods href='#' target='_blank')&attributes(attributes)
+    .journal-ban__text
+      .journal-ban__title Онлайн-журнал
+      .journal-ban__logo
+        img.bvi-not-hide(src='./img/journal_logo.svg', alt)
+      .journal-ban__desc
+        span всё о деньгах
+        |  и не только
+    .journal-ban__bg
+      img(src='./img/journal_ban.jpg', alt)
+    block

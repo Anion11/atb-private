@@ -1,0 +1,33 @@
+mixin loyalty-program-advt(mods)
+  -
+    const baseName = 'loyalty-program-advt'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .loyalty-program-advt(class=allMods)&attributes(attributes)
+    .loyalty-program-advt__text
+      h4.loyalty-program-advt__title Мы усовершенствовали программу
+        span.text-nowrap лояльности
+          =' '
+          +ui-tooltip('Действует для договоров, оформленных с 06.09.2021')
+          |  –
+        br
+        |  её преимущества уже оценили те, кто оформил карту после
+        =' '
+        span.text-orange 06.09.2021!
+      .loyalty-program-advt__desc Предлагаем нашим старым
+        span.text-nowrap друзьям
+          =' '
+          +ui-tooltip('Владельцы договоров, оформленных до 06.09.2021')
+        |  испытать новые возможности!
+        br
+        | Оставьте заявку и получайте повышенный кэшбэк по расширенному списку категорий!
+    .loyalty-program-advt__img
+      img(src='img/loyalty-program-advt.png' alt='')
+    block

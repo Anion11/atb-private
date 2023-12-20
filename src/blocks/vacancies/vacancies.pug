@@ -1,0 +1,34 @@
+mixin vacancies(mods)
+  -
+    const baseName = 'vacancies'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .vacancies(class=allMods)&attributes(attributes)
+    +section-head('vacancies')
+      +ui-h2('Найдено вакансий')
+      +ui-h3('57', '--xs').text-orange
+    .vacancies__body
+      .vacancies__filter-wrapp
+        +vacancies-filter
+      .vacancies__list
+        -for(let i=0; i<4; i++)
+          +vacancies-item
+        +ui-pagination('vacancies')
+      .vacancies__promo
+        .vacancies__banner.vacancies__banner--plugin
+          +ui-h3('Центр IT-обучения АТБ&nbsp;PLUG-IN', 'vacancies, --xs')
+          +ui-p2('', 'vacancies').text-orange.text-underline
+            a(href='#') Пройдите обучение и&nbsp;постройте карьеру в&nbsp;ИТ с&nbsp;нуля!
+          .vacancies__banner-img: img(src='img/vacancies-banner-1.png' alt='')
+        .vacancies__banner.vacancies__banner--atb-start
+          +ui-h3('Программа стажировки АТБ СТАРТ', 'vacancies, --xs')
+          +ui-button('Подробнее', '--link-next').text-orange
+          .vacancies__banner-img: img(src='img/vacancies-banner-2.png' alt='')
+    block

@@ -1,0 +1,45 @@
+mixin card-list(cardListData, mods)
+  -
+    const baseName = 'card-list'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-list(class=allMods)&attributes(attributes)
+    each cardData in cardListData
+      .card-list__item(class=cardData.mod)
+        .card-list__img(class=cardData.imgs.length > 1 ? 'card-list__img--anim' : '')
+          each imgSrc in cardData.imgs
+            img(src=`img/${imgSrc}`, alt='')
+        .card-list__content
+          .card-list__top
+            if cardData.label
+              a.card-list__label(href='#' target='_blank') !{cardData.label}
+            .card-list__head
+              .card-list__title !{cardData.title}
+              if cardData.desc
+                .card-list__desc !{cardData.desc}
+          .card-list__benefits
+            each benefit in cardData.benefits
+              .card-list__benefits-item
+                if benefit.title
+                  .card-list__benefits-title !{benefit.title}
+                .card-list__benefits-name !{benefit.name}
+                .card-list__benefits-desc !{benefit.desc}
+          .card-list__foot
+            .card-list__btns
+              each btn, index in cardData.btns
+                if index === 0
+                  +ui-button(btn.txt, `card-list, --ph-s, --empty`)(class=btn.isScrollTo ? 'js-scroll-to' : '' href=btn.link)
+                else
+                  +ui-button(btn.txt, `card-list, --link-next`)(class=btn.isScrollTo ? 'js-scroll-to' : '' href=btn.link)
+            .card-list__icon
+              each iconSrc in cardData.icons
+                a.card-list__icon-item(href='#' target='_blank')
+                  img.bvi-not-hide(src=`img/${iconSrc}`, alt='')
+    block

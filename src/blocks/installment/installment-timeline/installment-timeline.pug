@@ -1,0 +1,23 @@
+mixin installment-timeline(installmentTimelineData, mods)
+  -
+    const baseName = 'installment-timeline'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .installment-timeline(class=allMods)&attributes(attributes)
+    .installment-timeline__title Расчет общей суммы платежа в каждом месяце
+    .installment-timeline__main
+      each item in installmentTimelineData
+        .installment-timeline__item
+          .installment-timeline__mounth !{item.mounth}
+          .installment-timeline__money
+            if item.txt
+              | !{item.txt}
+            .installment-timeline__total !{item.total}
+    block

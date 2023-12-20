@@ -1,0 +1,21 @@
+mixin order-call(text, request, mods)
+  -
+    const baseName = 'order-call'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .order-call(class=allMods)&attributes(attributes)
+    .order-call__wrapper
+      .order-call__text !{text}
+      .order-call__links
+        .order-call__phone
+          a(href='tel:88007758888') 8 (800) 775-88-88
+        if request === true
+          .order-call__request Бесплатный звонок по России
+    block

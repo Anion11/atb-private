@@ -1,0 +1,113 @@
+mixin property-insurance-table(mods)
+  -
+    const baseName = 'property-insurance-table'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const tableData ={
+      thead: [
+        {
+          th: [
+            { text: 'Параметры программы', mods: 'ui-table__tr-title' },
+            { text: 'Программа 1', mods: 'ui-table__tr-title' },
+            { text: 'Программа 2', mods: 'ui-table__tr-title' },
+            { text: 'Программа 3', mods: 'ui-table__tr-title' },
+            { text: 'Программа 4', mods: 'ui-table__tr-title' },
+            { text: 'Программа 5', mods: 'ui-table__tr-title' },
+          ]
+        }
+      ],
+      tbody: [
+        {
+          td: [
+            { text: '' },
+            { text: 'Страховые суммы, ₽', colspan: '5' }
+          ]
+        },
+        {
+          td: [
+            { text: 'Внутренняя отделка и инженерное оборудование' },
+            { text: '50&nbsp;000' },
+            { text: '75&nbsp;000' },
+            { text: '100&nbsp;000' },
+            { text: '200&nbsp;000' },
+            { text: '300&nbsp;000' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Движимое имущество' },
+            { text: '50&nbsp;000' },
+            { text: '75&nbsp;000' },
+            { text: '100&nbsp;000' },
+            { text: '150&nbsp;000' },
+            { text: '200&nbsp;000' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Гражданская ответственность' },
+            { text: '75&nbsp;000' },
+            { text: '100&nbsp;000' },
+            { text: '200&nbsp;000' },
+            { text: '300&nbsp;000' },
+            { text: '400&nbsp;000' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Конструктивные элементы' },
+            { text: '200&nbsp;000' },
+            { text: '300&nbsp;000' },
+            { text: '500&nbsp;000' },
+            { text: '700&nbsp;000' },
+            { text: '1&nbsp;000&nbsp;000' },
+          ]
+        },
+        {
+          td: [
+            { text: 'Фин.риск' },
+            { text: '5&nbsp;000' },
+            { text: '10&nbsp;000' },
+            { text: '15&nbsp;000' },
+            { text: '20&nbsp;000' },
+            { text: '25&nbsp;000' },
+          ]
+        },
+        {
+          td: [
+            { text: '<b>Страховая премия, ₽</b>' },
+            { text: '<b>2&nbsp;900</b>' },
+            { text: '<b>3&nbsp;900</b>' },
+            { text: '<b>4&nbsp;900</b>' },
+            { text: '<b>6&nbsp;900</b>' },
+            { text: '<b>9&nbsp;900</b>' },
+          ]
+        },
+      ]
+    }
+
+  .property-insurance-table(class=allMods)&attributes(attributes)
+    +ui-table(tableData, 'property-insurance-table, --inner-border')
+    +accordion('property-insurance-table')
+      each head, index in tableData.thead[0].th
+        if index !== 0
+          +accordion-item(head.text, '--mob-green')
+            .ui-table
+              table
+                tbody
+                  tr
+                    td(colspan='2') !{tableData.tbody[0].td[1].text}
+
+                  each row, rowIndex in tableData.tbody
+                    if rowIndex !== 0
+                      tr
+                        td !{row.td[0].text}
+                        td !{tableData.tbody[rowIndex].td[index].text}
+    block

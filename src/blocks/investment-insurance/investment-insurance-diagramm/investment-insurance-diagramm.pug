@@ -1,0 +1,48 @@
+mixin investment-insurance-diagramm(mods)
+  -
+    const baseName = 'investment-insurance-diagramm'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .investment-insurance-diagramm(class=allMods)&attributes(attributes)
+    .investment-insurance-diagramm__box
+      .investment-insurance-diagramm__top
+        ol
+          li Выберите одну из программ инвестирования от наших партнеров
+      .investment-insurance-diagramm__bot.investment-insurance-diagramm__bot--text1
+        .investment-insurance-diagramm__rectangle
+          .investment-insurance-diagramm__turquoise
+        .investment-insurance-diagramm__title
+          .investment-insurance-diagramm__title-bottom Минимальный взнос <br>50 000 ₽
+      .investment-insurance-diagramm__box-title Начало инвестирования
+    .investment-insurance-diagramm__box
+      .investment-insurance-diagramm__top
+        ol
+          li(value='2') Ваши вложения инвестируются <br>в доходные инструменты
+      .investment-insurance-diagramm__bot.investment-insurance-diagramm__bot--text2
+        .investment-insurance-diagramm__rectangle
+          .investment-insurance-diagramm__turquoise-blue
+          .investment-insurance-diagramm__turquoise
+        .investment-insurance-diagramm__title
+          .investment-insurance-diagramm__title-top инструменты <br> с плавающим доходом
+          .investment-insurance-diagramm__title-bottom инструменты <br> с фиксированным доходом
+      .investment-insurance-diagramm__box-title Распределение средств
+    .investment-insurance-diagramm__box
+      .investment-insurance-diagramm__top
+        ol
+          li(value='3') По окончании программы возврат взноса. <br>Возможен потенциально дополнительный инвестиционный доход
+      .investment-insurance-diagramm__bot.investment-insurance-diagramm__bot--text3
+        .investment-insurance-diagramm__rectangle
+          .investment-insurance-diagramm__orange
+          .investment-insurance-diagramm__turquoise
+        .investment-insurance-diagramm__title
+          .investment-insurance-diagramm__title-top дополнительный <br>инвестиционный доход
+          .investment-insurance-diagramm__title-bottom Окончание <br>программы
+      .investment-insurance-diagramm__box-title Окончание программы
+    block

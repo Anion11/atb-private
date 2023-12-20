@@ -1,0 +1,39 @@
+mixin garmin-pay-add(mods)
+  -
+    const baseName = 'garmin-pay-add'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const garminStepsItem = [
+      {
+        txt: 'Установите бесплатное приложение Garmin Connect на свой смартфон;'
+      },
+      {
+        txt: 'Привяжите часы к вашему смартфону;'
+      },
+      {
+        txt: 'Создайте кошелек и придумайте пин-код для оплаты;'
+      },
+      {
+        txt: 'Добавьте карту АТБ в Garmin Connect, следуя инструкции.'
+      },
+    ]
+
+  .garmin-pay-add(class=allMods)&attributes(attributes)
+    .garmin-pay-add__img
+      img(src='img/garmin-pay_add-card_img.png' alt='')
+    .garmin-pay-add__wrapper
+      +ui-h2('Как добавить карту в Garmin Pay', 'garmin-pay-add')
+      .garmin-pay-add__steps
+        each item, index in garminStepsItem
+          .garmin-pay-add__step
+            .garmin-pay-add__step-count=index+1
+            .garmin-pay-add__step-text !{item.txt}
+    block

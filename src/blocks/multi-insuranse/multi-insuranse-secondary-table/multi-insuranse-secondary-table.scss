@@ -1,0 +1,48 @@
+.multi-insuranse-secondary-table {
+  &__desc {
+    font-size: 20px;
+    @include media-tablet {
+      display: none;
+    }
+  }
+  &__ui-table {
+    @include media-tablet {
+      display: none;
+    }
+    .ui-table {
+      &__tr-title {
+        background: $grey20;
+        color: $black;
+      }
+    }
+    table {
+      td {
+        vertical-align: top;
+        border-width: 1px;
+        @include media-laptop {
+          padding: 15px 10px;
+          font-size: 16px;
+        }
+        &:first-child {
+          width: 27%;
+          @include media-laptop {
+            width: 24%;
+          }
+        }
+        &:not(:first-child) {
+          width: calc((100% - 27%) / 5);
+          text-align: center;
+          @include media-laptop {
+            width: calc((100% - 24%) / 5);
+          }
+        }
+      }
+    }
+  }
+  .documents-item {
+    display: none;
+    @include media-tablet {
+      display: flex;
+    }
+  }
+}

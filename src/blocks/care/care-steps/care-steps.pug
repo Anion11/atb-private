@@ -1,0 +1,59 @@
+mixin care-steps(mods)
+  -
+    const baseName = 'care-steps'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const dataMobApp = [
+      {
+        text: 'Перейдите в&nbsp;раздел «Операции»'
+      },
+      {
+        text: 'Воспользуйтесь фильтрами по&nbsp;дате и&nbsp;типу операции и&nbsp;сортировкой, чтобы сформировать нужный отчет'
+      },
+      {
+        text: 'Сохраните отчет в&nbsp;формате .xls или .pdf при необходимости'
+      },
+    ]
+
+    const dataInternet = [
+      {
+        text: 'Выберите карту'
+      },
+      {
+        text: 'На&nbsp;экране вы&nbsp;сразу увидите историю операций'
+      },
+      {
+        text: 'Воспользуйтесь при необходимости фильтрами'
+      },
+      {
+        text: 'Сохраните отчет в&nbsp;формате .xls или .pdf при необходимости или&nbsp;отправьте на&nbsp;email в&nbsp;формате .xls или .csv'
+      },
+    ]
+
+  .care-steps(class=allMods)&attributes(attributes)
+    .care-steps__section
+      .care-steps__img.care-steps__img--vertical: img(src='img/care-steps_phone.png' alt='')
+      +ui-h3('В мобильном приложении', 'care-steps, --xs')
+      .care-steps__list
+        each item, index in dataMobApp
+          .care-steps__step
+            .care-steps__num
+              span !{index+1}
+            +ui-h6(item.text, 'care-steps')
+    .care-steps__section.care-steps__section--reverse
+      .care-steps__img: img(src='img/care-steps_tablet.png' alt='')
+      +ui-h3('В Интернет-банке', 'care-steps, --xs')
+      .care-steps__list
+        each item, index in dataInternet
+          .care-steps__step
+            .care-steps__num
+              span !{index+1}
+            +ui-h6(item.text, 'care-steps')
+    block

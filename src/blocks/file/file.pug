@@ -1,0 +1,100 @@
+mixin file(mods)
+  -
+    const baseName = 'file'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .file(class=allMods)&attributes(attributes)
+    block
+
+mixin file-head(mods)
+  -
+    const baseName = 'file-head'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .file-head(class=allMods)&attributes(attributes)
+    a.file-head__logo(href='/' target='_blank'): img(src='img/icon_logo.svg' alt='')
+    block
+
+mixin file-head__requisites
+  .file-head__requisites&attributes(attributes)
+    .file-head__requisites-item
+      p Приложение
+      p к Приказу № 2022083006-П от «30» августа 2022 г.:
+    .file-head__requisites-item.file-head__requisites-item--xs
+      p
+        b «АЗИАТСКО-ТИХООКЕАНСКИЙ БАНК» (АО)
+      p Универсальная лицензия от 02.12.2020 № 1810 Банка России
+      p 8-800-775-8888
+      p
+        a(href='https://www.atb.su/' target='_blank') www.atb.su
+    .file-head__requisites-item.file-head__requisites-item--xs
+      p УТВЕРЖДЕНО
+      p ПРИКАЗОМ № 2022083006-П от 30.08.2022
+    block
+
+mixin file-content(mods)
+  -
+    const baseName = 'file-content'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .file-content(class=allMods)&attributes(attributes)
+    block
+
+mixin file-footnote(data, mods)
+  -
+    const baseName = 'file-footnote'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .file-footnote(class=allMods)&attributes(attributes)
+    .file-footnote__name !{data.name}
+    .file-footnote__list
+      each item in data.list
+        .file-footnote__item
+          sup(id=item.id) !{item.sup}
+          |  !{item.text}
+    block
+
+mixin file-footer(mods)
+  -
+    const baseName = 'file-footer'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .file-footer(class=allMods)&attributes(attributes)
+    a.file-footer__link(href='#' target='_blank') Политика обработки и обеспечения безопасности персональных данных в «Азиатско-тихоокеанский банк» (АО)
+    .file-footer__content Реквизиты Банка: &laquo;Азиатско-Тихоокеанский Банк&raquo; (АО): <br> Универсальная лицензия &#8470;&nbsp;1810&nbsp;ЦБ РФ, ИНН/КПП: 2801023444/280101001, БИК: 041012765, ОГРН: 1022800000079 <br> Местонахождение: 675004, Россия, Амурская область, г.&nbsp;Благовещенск, ул.&nbsp;Амурская, дом&nbsp;225
+    block

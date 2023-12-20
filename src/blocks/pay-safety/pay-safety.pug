@@ -1,0 +1,21 @@
+mixin pay-safety(paySafetyItems, mods)
+  -
+    const baseName = 'pay-safety'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .pay-safety(class=allMods)&attributes(attributes)
+    each item in paySafetyItems
+      .pay-safety__item
+        .pay-safety__head
+          .pay-safety__img
+            img(src=item.img, alt='')
+          +ui-h4(item.h4, '--bold')
+        +ui-p2(item.p2).text-grey90
+    block

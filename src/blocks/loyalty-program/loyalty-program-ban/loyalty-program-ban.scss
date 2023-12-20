@@ -1,0 +1,122 @@
+.loyalty-program-ban {
+  min-height: 175px;
+  transition: transform 0.4s ease-in-out;
+  transform-style: preserve-3d;
+  &--flip {
+    transform: rotateY(180deg);
+  }
+  &__item {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px 10px 410px;
+    background: #ada399;
+    border-radius: 8px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    @include media-laptop {
+      padding-left: 250px;
+    }
+    @include media-tablet {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 30px 30px 30px 110px;
+    }
+    &--front {
+      .loyalty-program-ban__txt {
+        max-width: 380px;
+      }
+      @include media-laptop {
+        padding-left: 220px;
+      }
+      @include media-tablet {
+        padding-left: 110px;
+      }
+    }
+    &--back {
+      transform: rotateY(180deg);
+      @include media-tablet {
+        justify-content: center;
+      }
+      .loyalty-program-ban {
+        &__txt {
+          max-width: 505px;
+          @include media-tablet {
+            margin-bottom: 0;
+          }
+        }
+        &__img {
+          @include media-tablet {
+            left: -120px;
+            max-width: 265px;
+          }
+        }
+      }
+    }
+  }
+  &__txt {
+    margin-right: 10px;
+    font: 800 24px/1.4 $font;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    @include media-laptop {
+      font-weight: 700;
+      letter-spacing: unset;
+      font-size: 18px;
+    }
+    @include media-tablet {
+      margin-right: 0;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  }
+  &__ui-button {
+    margin-left: auto;
+    @include media-tablet {
+      margin-top: auto;
+      margin-left: 0;
+    }
+  }
+  &__img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: -1;
+    max-width: 410px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    user-select: none;
+    @include media-laptop {
+      left: -50px;
+      max-width: 300px;
+    }
+    @include media-tablet {
+      left: -80px;
+      max-width: 345px;
+    }
+  }
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M14.7847 4.28564L15.7137 5.2153L5.21421 15.7142L4.28516 14.7852L14.7847 4.28564Z' fill='%23373A36'/%3E%3Cpath d='M5.21421 4.28564L15.7137 14.7846L14.7847 15.7142L4.28516 5.2153L5.21421 4.28564Z' fill='%23373A36'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+  }
+}
+.bvi-body {
+  .loyalty-program-ban {
+    &__item {
+      min-height: 210px;
+    }
+    &__img {
+      max-width: 375px;
+    }
+  }
+}

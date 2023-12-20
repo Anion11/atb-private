@@ -1,0 +1,32 @@
+mixin mortgage-filter(mods)
+  -
+    const baseName = 'mortgage-filter'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  form.mortgage-filter(class=allMods)&attributes(attributes)
+    .mortgage-filter__yourself
+      .mortgage-filter__title Расскажите о себе
+      .mortgage-filter__checkboxes
+        +ui-checkbox('worker', 'Работаю', 'mortgage-filter')
+        +ui-checkbox('businessman', 'ИП/учредитель', 'mortgage-filter')
+        +ui-checkbox('self-employed', 'Самозанятый', 'mortgage-filter')
+        +ui-checkbox('pensioner', 'Пенсионер', 'mortgage-filter')
+    .mortgage-filter__why
+      .mortgage-filter__title Зачем вам нужен кредит
+      +ui-select('mortgage-filter', '', 'На покупку на этапе строительства', 'На покупку на этапе строительства 2')(data-placeholder='Выберите вариант')
+      .mortgage-filter__subtitle Тип недвижимости
+      .mortgage-filter__type
+        .mortgage-filter__radios
+          +ui-radio('flat', 'Квартира', 'mortgage-filter')(name='property-type')
+          +ui-radio('apartments', 'Апартаменты', 'mortgage-filter')(name='property-type')
+          +ui-radio('townhouse', 'Таунхаус', 'mortgage-filter')(name='property-type')
+        +ui-button('Сбросить', '--text').text-orange
+          +icon('icon_cross')
+    block

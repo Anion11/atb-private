@@ -1,0 +1,26 @@
+mixin health-insurance-info(infoData, mods)
+  -
+    const baseName = 'health-insurance-info'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .health-insurance-info(class=allMods)&attributes(attributes)
+    +ui-p1('', 'health-insurance-info')
+      each txt in infoData.text
+        p !{txt}
+    .health-insurance-info__title Страховые риски, включенные в программы:
+    +ui-ul(infoData.listItems, 'health-insurance-info')
+    .health-insurance-info__companies
+      each item in infoData.companies
+        a.health-insurance-info__company(href='#' target='_blank')
+          img.lazyload(src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src=item.img, alt='')
+    .health-insurance-info__footnote
+      .health-insurance-info__footnote-txt Закажите обратный звонок или заполните заявку, с вами свяжутся в течении одного дня.
+      a.health-insurance-info__tel(href='tel:88007758888') 8-800-775-88-88
+    block

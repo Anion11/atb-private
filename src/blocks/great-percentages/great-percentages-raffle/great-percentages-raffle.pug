@@ -1,0 +1,35 @@
+mixin great-percentages-raffle(data, mods)
+  -
+    const baseName = 'great-percentages-raffle'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .great-percentages-raffle(class=allMods)&attributes(attributes)
+    .great-percentages-raffle__win(class = (data.titleMods ? `great-percentages-raffle__win--${data.titleMods}` : ''))
+      span !{data.title}
+    .great-percentages-raffle__wrapper
+      .great-percentages-raffle__item.great-percentages-raffle__item--winners
+          .great-percentages-raffle__range !{data.firstDate}
+          ul.great-percentages-raffle__winners
+            each item in data.winners
+              li.great-percentages-raffle__winner
+                .great-percentages-raffle__name !{item.name}
+                .great-percentages-raffle__city !{item.city}
+          button.great-percentages-raffle__more еще 10 человек
+          ul.great-percentages-raffle__winners.great-percentages-raffle__winners--more
+            each item in data.winners
+              li.great-percentages-raffle__winner
+                .great-percentages-raffle__name !{item.name}
+                .great-percentages-raffle__city !{item.city}
+      each item in data.date
+        .great-percentages-raffle__item
+          .great-percentages-raffle__range !{item.dateTop}
+          .great-percentages-raffle__txt Объявим
+          .great-percentages-raffle__txt.text-orange !{item.dateBot}
+    block

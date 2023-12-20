@@ -1,0 +1,43 @@
+mixin promotion-rabbit-ban(mods, isEnded)
+  -
+    const baseName = 'promotion-rabbit-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .promotion-rabbit-ban(class=allMods)&attributes(attributes)
+    .promotion-rabbit-ban__img: img(src='img/promotion-rabbit_ban.png' alt='')
+    h3.promotion-rabbit-ban__title
+      if isEnded
+       span.text-orange Набор в акцию закрыт.
+       =' '
+      | Условия&nbsp;участия
+    .promotion-rabbit-ban__text
+      if isEnded
+        | Если вы&nbsp;участник акции, то
+        =' '
+      else
+        | Оформите кредитную карту &laquo;Универсальная&raquo;,
+        =' '
+      | оплатите покупки на&nbsp;сумму 2023&nbsp;₽ в&nbsp;декабре и&nbsp;получите 100% кэшбэк в&nbsp;январе
+      span.text-nowrap  2023&nbsp;года.
+        +ui-tooltip(`Кэшбэк в&nbsp;размере 100% начисляется однократно на&nbsp;первые 2&nbsp;023&nbsp;₽ покупок (при этом сумма трат должна быть не&nbsp;менее 2&nbsp;023&nbsp;₽).
+          <br> На&nbsp;сумму покупок от&nbsp;2&nbsp;023&nbsp;₽ до&nbsp;75&nbsp;000&nbsp;₽ —&nbsp;кэшбэк 1,5%.
+          <br> На&nbsp;сумму покупок от&nbsp;75&nbsp;000&nbsp;₽&nbsp;— кэшбэк 5%.
+          Общая сумма кэшбэка не&nbsp;более 4&nbsp;000&nbsp;₽ в&nbsp;месяц.Кэшбэк в&nbsp;размере 100% начисляется однократно на&nbsp;первые 2&nbsp;023&nbsp;₽ покупок (при&nbsp;этом сумма трат должна быть не&nbsp;менее 2&nbsp;023&nbsp;₽).
+          <br> На&nbsp;сумму покупок от&nbsp;2&nbsp;023&nbsp;₽ до&nbsp;75&nbsp;000&nbsp;₽ —&nbsp;кэшбэк 1,5%.
+          <br> На&nbsp;сумму покупок от&nbsp;75&nbsp;000&nbsp;₽&nbsp;— кэшбэк 5%.
+          <br> Общая сумма кэшбэка не&nbsp;более 4&nbsp;000&nbsp;₽ в&nbsp;месяц.`)
+    .promotion-rabbit-ban__fn В&nbsp;акции принимают участие первые 2023&nbsp;участника, оформленные с&nbsp;1&nbsp;по&nbsp;31&nbsp;декабря 2022&nbsp;года.
+      =' '
+      a.text-orange(href='#') Подробные условия
+    .promotion-rabbit-ban__bottom
+      if !isEnded
+        +ui-button('Участвовать', 'promotion-rabbit-ban, --empty')(href='#')
+      +ui-p1('с 1 по 31 декабря 2022 года', 'promotion-rabbit-ban')
+    block

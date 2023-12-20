@@ -1,0 +1,36 @@
+mixin club-promotions(clubPromotionsItems, mods)
+  -
+    const baseName = 'club-promotions'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .club-promotions(class=allMods)&attributes(attributes)
+    .swiper
+      .swiper-wrapper
+        each item in clubPromotionsItems
+          a.club-promotions__item.swiper-slide(href='#')
+            .club-promotions__img
+              img(src=`img/${item.img}.jpg` alt='')
+            .club-promotions__content
+              .club-promotions__name !{item.name}
+              +ui-h6(item.title, 'club-promotions, --bold')
+              +ui-p2(item.p2, 'club-promotions, --light')
+              .club-promotions__foot
+                .club-promotions__period
+                  if item.period
+                    | !{item.period}
+                  else
+                    | Акция действует до 31.08.2022
+                +ui-button('Подробнее', 'club-promotions, --empty')
+
+      +ui-swiper-button(true, 'club-promotions')
+      +ui-swiper-button('', 'club-promotions')
+      +ui-swiper-pagination('club-promotions, --scale')
+
+    block

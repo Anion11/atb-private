@@ -1,0 +1,24 @@
+mixin installment-notice(mods)
+  -
+    const baseName = 'installment-notice'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .installment-notice(class=allMods)&attributes(attributes)
+    h4.installment-notice__title Новые заявки не&nbsp;принимаем
+    .installment-notice__descr Мы приостанавливаем сервис «АТБ&nbsp;Рассрочка».
+      br
+      | Информация актуальна только для&nbsp;клиентов, уже&nbsp;оформивших рассрочку до&nbsp;[дата публикации]
+    .installment-notice__fn Если нужны деньги на&nbsp;крупную покупку, оставьте
+      =' '
+      a.text-orange(href='#') заявку
+      |  на&nbsp;кредит наличными
+    .installment-notice__img
+      img(src='img/installment-notice.png', alt='')
+    block

@@ -1,0 +1,428 @@
+mixin installment-info(mods)
+  -
+    const baseName = 'installment-info'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const installmentInfo = {
+      select: [
+        { txt: '45 000 ₽' },
+        { txt: '30 000 ₽' },
+        { txt: '15 000 ₽' },
+      ],
+      options: [
+        {
+          purchases: [
+            {
+              top: {
+                icon: 'img/installment-purchases_1-1.svg',
+                number: 'Первая покупка',
+                date: '15 марта 2022',
+                price: '20 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 апреля 2022',
+                    price: '5 000 ₽',
+                  },
+                  {
+                    date: '15 мая 2022',
+                    price: '5 000 ₽',
+                  },
+                  {
+                    date: '15 июня 2022',
+                    price: '5 000 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '5 000 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+            {
+              top: {
+                icon: 'img/installment-purchases_1-2.svg',
+                number: 'Вторая покупка',
+                date: '15 апреля 2022',
+                price: '15 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 мая 2022',
+                    price: '3 750 ₽',
+                  },
+                  {
+                    date: '15 июня 2022',
+                    price: '3 750 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '3 750 ₽',
+                  },
+                  {
+                    date: '15 августа 2022',
+                    price: '3 750 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+            {
+              top: {
+                icon: 'img/installment-purchases_1-3.svg',
+                number: 'Третья покупка',
+                date: '15 мая 2022',
+                price: '10 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 июня 2022',
+                    price: '2 500 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '2 500 ₽',
+                  },
+                  {
+                    date: '15 августа 2022',
+                    price: '2 500 ₽',
+                  },
+                  {
+                    date: '15 сентября 2022',
+                    price: '2 500 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+          ],
+          timeline: [
+            {
+              mounth: 'Апрель',
+              total: '5 000 ₽',
+            },
+            {
+              mounth: 'Май',
+              txt: '5 000 + 3 750',
+              total: '= 8 750 ₽',
+            },
+            {
+              mounth: 'Июнь',
+              txt: '5 000 + 3 750 + 2 500',
+              total: '= 11 250 ₽',
+            },
+            {
+              mounth: 'Июль',
+              txt: '5 000 + 3 750 + 2 500',
+              total: '= 11 250 ₽',
+            },
+            {
+              mounth: 'Август',
+              txt: '3 750 + 2 500',
+              total: '= 6 250 ₽',
+            },
+            {
+              mounth: 'Сентябрь',
+              total: '2 500 ₽',
+            },
+          ],
+        },
+        {
+          purchases: [
+            {
+              top: {
+                icon: 'img/installment-purchases_2-1.svg',
+                number: 'Первая покупка',
+                date: '15 марта 2022',
+                price: '15 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 апреля 2022',
+                    price: '3 750 ₽',
+                  },
+                  {
+                    date: '15 мая 2022',
+                    price: '3 750 ₽',
+                  },
+                  {
+                    date: '15 июня 2022',
+                    price: '3 750 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '3 750 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+            {
+              top: {
+                icon: 'img/installment-purchases_2-2.svg',
+                number: 'Вторая покупка',
+                date: '15 апреля 2022',
+                price: '10 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 мая 2022',
+                    price: '2 500 ₽',
+                  },
+                  {
+                    date: '15 июня 2022',
+                    price: '2 500 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '2 500 ₽',
+                  },
+                  {
+                    date: '15 августа 2022',
+                    price: '2 500 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+            {
+              top: {
+                icon: 'img/installment-purchases_2-3.svg',
+                number: 'Третья покупка',
+                date: '15 мая 2022',
+                price: '5 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 июня 2022',
+                    price: '1 250 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '1 250 ₽',
+                  },
+                  {
+                    date: '15 августа 2022',
+                    price: '1 250 ₽',
+                  },
+                  {
+                    date: '15 сентября 2022',
+                    price: '1 250 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+          ],
+          timeline: [
+            {
+              mounth: 'Апрель',
+              total: '3 750 ₽',
+            },
+            {
+              mounth: 'Май',
+              txt: '3 750 + 2 500',
+              total: '= 6 250 ₽',
+            },
+            {
+              mounth: 'Июнь',
+              txt: '3 750 + 2 500 + 1 250',
+              total: '= 7 500 ₽',
+            },
+            {
+              mounth: 'Июль',
+              txt: '3 750 + 2 500 + 1 250',
+              total: '= 7 500 ₽',
+            },
+            {
+              mounth: 'Август',
+              txt: '2 500 + 1 250',
+              total: '= 3 750 ₽',
+            },
+            {
+              mounth: 'Сентябрь',
+              total: '1 250 ₽',
+            },
+          ],
+        },
+        {
+          purchases: [
+            {
+              top: {
+                icon: 'img/installment-purchases_3-1.svg',
+                number: 'Первая покупка',
+                date: '15 марта 2022',
+                price: '8 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 апреля 2022',
+                    price: '2 000 ₽',
+                  },
+                  {
+                    date: '15 мая 2022',
+                    price: '2 000 ₽',
+                  },
+                  {
+                    date: '15 июня 2022',
+                    price: '2 000 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '2 000 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+            {
+              top: {
+                icon: 'img/installment-purchases_3-2.svg',
+                number: 'Вторая покупка',
+                date: '15 апреля 2022',
+                price: '4 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 мая 2022',
+                    price: '1 000 ₽',
+                  },
+                  {
+                    date: '15 июня 2022',
+                    price: '1 000 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '1 000 ₽',
+                  },
+                  {
+                    date: '15 августа 2022',
+                    price: '1 000 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+            {
+              top: {
+                icon: 'img/installment-purchases_3-3.svg',
+                number: 'Третья покупка',
+                date: '15 мая 2022',
+                price: '3 000 ₽',
+              },
+              main: {
+                topTxt: 'Сумма и дата ежемесячного платежа**',
+                timeline: [
+                  {
+                    date: '15 июня 2022',
+                    price: '750 ₽',
+                  },
+                  {
+                    date: '15 июля 2022',
+                    price: '750 ₽',
+                  },
+                  {
+                    date: '15 августа 2022',
+                    price: '750 ₽',
+                  },
+                  {
+                    date: '15 сентября 2022',
+                    price: '750 ₽',
+                  },
+                ],
+                conclusion: {
+                  txt: 'Полное погашение покупки четвертым платежем'
+                }
+              }
+            },
+          ],
+          timeline: [
+            {
+              mounth: 'Апрель',
+              total: '2 000 ₽',
+            },
+            {
+              mounth: 'Май',
+              txt: '2 000 + 1 000',
+              total: '= 3 000 ₽',
+            },
+            {
+              mounth: 'Июнь',
+              txt: '2 000 + 1 000 + 750',
+              total: '= 3 750 ₽',
+            },
+            {
+              mounth: 'Июль',
+              txt: '2 000 + 1 000 + 750',
+              total: '= 3 750 ₽',
+            },
+            {
+              mounth: 'Август',
+              txt: '1 000 + 750',
+              total: '= 1 750 ₽',
+            },
+            {
+              mounth: 'Сентябрь',
+              total: '750 ₽',
+            },
+          ],
+        },
+      ]
+    }
+
+  .installment-info(class=allMods)&attributes(attributes)
+    .installment-info__select
+      .installment-info__left
+        .installment-select-txt Выберите лимит рассрочки*
+        .installment-info__footnote *Размер лимита рассрочки определяется Банком для клиента индивидуально
+      .installment-info__right
+        each item, index in installmentInfo.select
+          .installment-info__select-item(class=index===0 ? 'installment-info__select-item--active' : '') !{item.txt}
+    .installment-info__content
+      each option in installmentInfo.options
+        .installment-info__option
+          +installment-purchases(option.purchases)
+          +installment-timeline(option.timeline)
+    .installment-info__footnote **Сумма платежа – рассчитывается как сумма долей (1/4) от всех активных покупок. Дата платежа – 15 число следующего календарного месяца за месяцем покупки.
+    block

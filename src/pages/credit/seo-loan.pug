@@ -1,0 +1,266 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  //- script(src=fileName + '.js')
+
+block variables
+  -const fileName = 'credit'
+  -const pageTitle ='Кредиты SEO'
+
+  -
+    const bannerSapid = [
+      {
+        img: 'img/star.gif',
+        txt: 'Акции',
+        content: [
+          {
+            img: 'img/ic.friends.svg',
+            txt: 'Акция «Приведи друга»',
+            link: '#',
+          },
+          {
+            img: 'img/ic.book.svg',
+            txt: 'Книга в подарок',
+            link: '#',
+          },
+        ]
+      },
+    ]
+
+  -
+    const howGetItems =[
+      { icon: './img/how_get_step1.svg', title: 'Заявка', descr: 'Заполнение анкеты в среднем занимает 5&nbsp;минут' },
+      { icon: './img/how_get_step2.svg', title: 'Одобрение', descr: 'В течение 3 минут придет вам в&nbsp;смс' },
+      { icon: './img/how_get_step3.svg', title: 'Оформление и подписание договора', descr: 'В ближайшем отделении банка' },
+    ]
+
+  -
+    const tableItems ={
+      tbody: [
+        {
+          td: [
+            { colspan: '2', text: 'Минимальная сумма кредита, руб.' },
+            { text: '<b>Свыше <span class="text-nowrap">30 000,00 </span></b>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Максимальная сумма кредита, руб.' },
+            { text: '<b><span class="text-nowrap">1 000 000</span></b>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Диапазон процентных ставок (в процентах годовых) Процентная ставка определяется <span class="text-nowrap"> индивидуально</span>' },
+            { text: '16,5% - <span class="text-nowrap">29,9%</span>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { rowspan: '2', text: 'Срок возврата кредита с шагом в 1 (один) месяц' },
+            { text: 'минимальный' },
+            { text: 'от <b>13</b> (тринадцати) месяцев', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { text: 'максимальный' },
+            { text: 'до <b>60</b> (шестидесяти) месяцев', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Диапазон полной стоимости Кредита в процентном (% годовых) и&nbsp;в&nbsp;денежном выражении (в рублях)' },
+            { text: '22,409% - <span class="text-nowrap">39,663%</span> <br><span class="text-nowrap">3957,22 руб.</span> - <span class="text-nowrap">1 103 343,92 руб.</span>', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Срок действия решения о предоставлении Кредита' },
+            { text: '<b>30</b> календарных дней', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Пеня при образовании просроченной задолженности' },
+            { text: '<b>3%</b> в день', mods: 'text-center' },
+          ]
+        },
+        {
+          td: [
+            { colspan: '2', text: 'Обеспечение' },
+            { text: 'Не предусмотрено', mods: 'text-center' },
+          ]
+        },
+      ]
+    }
+
+  -
+    const benefitsItems =[
+       { icon: 'img/icon_benefits1.svg', title: 'Оформление по&nbsp;паспорту ' },
+       { icon: 'img/icon_benefits2.svg', title: 'Фиксированная процентная ставка на весь срок кредита' },
+       { icon: 'img/icon_benefits3.svg', title: 'Удобство и скорость оформления' },
+    ]
+
+  -
+    const calcCreditData ={
+      ranges: [
+        { title: 'Сумма кpедита', inpDescr: ' ₽', min: '30000', max: '1000000', dataName: 'amount' },
+        { title: 'Срок кредита, мес', inpDescr: ' мес', min: '13', max: '60', dataName: 'term' },
+      ],
+      resultLine2: [
+        { name: 'СУММА КРЕДИТА ', num: '2 600 000 ₽', data: 'text-total_amount' },
+      ],
+      psText: [
+        `* Расчет платежа произведен в качестве примера с учетом оформления личного страхования**, ставка подбирается индивидуально.`,
+        `** Без оформления Личного страхования ставка увеличивается на 8 п.п.`,
+      ],
+      foot: [
+        `Увеличьте вероятность одобрения заявки на кредит,&nbsp;подтвердив доход. <a class="text-link-underline text-orange" target="_blank" href="#">Подробнее</a>`,
+        `<a class="text-link-underline text-orange" target="_blank" href="#">Узнайте свой кредитный рейтинг бесплатно</a>`,
+      ]
+    }
+
+  -
+    const smallBannerData ={
+      withoutHead: true,
+      btn: 'Оставить заявку',
+      img: 'img/small_banner_salary_card_discount.png'
+    }
+
+block content
+  main
+    +banner('--m-vertically')
+      +banner-item()
+        +banner-wrapper('img/banner_loans_pensioners.png', true)
+          +banner-h1('Кредиты <br class="banner__br-no-mob">пенсионерам', '--mob-size-l')
+          +banner-text('Наличными по&nbsp;паспорту')
+          +banner-foot
+            +ui-button('оформить кредит', 'banner, --m-size-l')(href='#')
+    br
+    +banner('--m-vertically')
+      +banner-item()
+        +banner-wrapper('img/banner_loan_wedding.png', true)
+          +banner-h1('Кредит <br class="banner__br-no-mob">на&nbsp;свадьбу', '--mob-size-l')
+          +banner-subtitle('Сумма до ')
+            span.banner-subtitle__accent 5&nbsp;
+            | млн&nbsp;₽
+          +banner-foot
+            +ui-button('Оставить заявку', 'banner, --m-size-l')(href='#')
+    br
+    +banner('--m-vertically')
+      +banner-item()
+        +banner-wrapper('img/banner_loan_education.png', true)
+          +banner-h1('Кредит <br class="banner__br-no-mob">на&nbsp;образование', '--mob-size-l')
+          +banner-text('Для студентов и&nbsp;абитуриентов')
+          +banner-foot
+            +ui-button('оформить кредит', 'banner, --m-size-l')(href='#')
+    br
+    +banner
+      +banner-item('--credit-seo')
+        +banner-wrapper('img/banner_credit_seo.jpg')
+          +banner-h1('Кредит <br> за 5 минут')
+          +banner-descr('Быстро и без дополнительных справок', '--fw400').banner-item-dn
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('оформить кредит', 'banner')(href='#')
+        +banner-sapid-container(bannerSapid)
+    +banner
+      +banner-item('--credit-seo')
+        +banner-wrapper('img/banner_credit_seo-card.jpg')
+          +banner-h1('Кредит <br> на карту')
+          +banner-descr('На любые цели').text-orange.banner-item-dn
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('оформить кредит', 'banner')(href='#')
+        +banner-sapid-container(bannerSapid)
+    +banner
+      +banner-item('--credit-seo')
+        +banner-wrapper('img/banner_credit_seo-cash.jpg')
+          +banner-h1('Кредит без <br> справок о доходах <br> и поручителей')
+          +banner-descr('Наличными на любые цели').text-orange.banner-item-dn
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('оформить кредит', 'banner')(href='#')
+        +banner-sapid-container(bannerSapid)
+    +banner
+      +banner-item('--credit-calc-loan')
+        +banner-wrapper('img/banner_credit_calc_loan.jpg')
+          +banner-h1('Калькулятор кредита наличными')
+          .banner-item-foot
+            .banner-item-foot-item
+              +ui-button('Рассчитать кредит', 'banner')(href='#')
+
+    .page-content
+      +section('--mt0')
+        .inner
+          +section-head
+            +ui-h2('Преимущества кредита от АТБ')
+          +benefits(benefitsItems, '--title-normal')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Рассчитайте свой кредит', 'section-head')
+          +calc-credit('seo', calcCreditData)
+      +section
+        .inner
+          +small-banner(smallBannerData, '--salary-card-discount')
+      +section
+        .inner
+          +how-get('Три простых шага', howGetItems, 'оформить заявку')
+      +section
+        .inner
+          +section-head
+            +ui-h2('Условия предоставления кредита')
+          +accordion
+            +accordion-item('Условия предоставления кредита:')
+              +ui-p1
+                +ui-ul('')
+                  li Являетесь гражданином РФ;
+                  li Ваш возраст до 70 лет (на момент окончания срока возврата Кредита) включительно
+                  li Официально трудоустроены и есть постоянный источник дохода
+                  li Стаж на последнем месте работы не менее 3 мес. (на Клиентов, являющихся пенсионерами данное требование не распространяется)
+                  li Регистрация и фактическое место жительства Заёмщика находится на территории обслуживания Банка
+                    +ui-ul('', '--child')
+                      li Документы:
+                      li Паспорт гражданина РФ
+                p
+                  small Полная версия тарифов, условий предоставления, использования и возврата потребительского кредита представлены в Книге тарифов
+            +accordion-item('Краткие условия ТП «Кредит наличными» с 09.03.2022:')
+              +ui-table(tableItems, '--mob-scroll, --inner-border')
+              +section-footnote
+                p Полная версия тарифов, условий предоставления, использования и возврата потребительского кредита представлены в
+                  =' '
+                  a.text-orange(href='#' target='_blank') Книге тарифов
+            +accordion-item('Документы')
+              +documents
+            +accordion-item('Территория обслуживания Банка')
+              +documents
+      +section
+        .inner
+          +accordion
+            +accordion-item('Другие предложения по кредитам наличными')
+              +credits-list
+    +seo('Преимущества быстрого займа в АТБ')
+      p Воспользуйтесь выгодным предложением от Азиатско-Тихоокеанского банка — оформите онлайн-заявку на сайте за 5 минут и получите предварительное одобрение кредита на сумму от 30 000 рублей.
+      p Заявления физических лиц рассматриваются в срочном порядке. В течение 3 минут с момента подачи заявки на ваш мобильный телефон придет СМС о предварительно принятом решении по займу. После этого с вами свяжется сотрудник банка и назначит встречу в отделении АТБ для продолжения оформления.
+      p АТБ предлагает взять потребительский экспресс-кредит на любые цели: лечение, ремонт квартиры, отпуск и др. Займы до 100 000 рублей можно получить без залога и поручителей. Для рассмотрения кредитов выше этой суммы потребуется
+        =' '
+        a(href='#') подтвердить доход
+        | . А если вы получаете заработную плату на карту АТБ или предоставите согласие на запрос выписки ПФР, то достаточно только паспорта.
+      +seo-accordion
+        +seo-accordion-item('Как за 5 минут получить одобрение по заявке на кредит')
+          p Если вам срочно потребовались деньги на неотложные нужды, достаточно отправить
+            =' '
+            a(href='#') онлайн-заявку
+            |  с сайта АТБ, указав сумму и срок кредитования, место получения займа, ФИО и контактные данные. После этого следует использовать четырехзначный код, который система вышлет на указанный номер телефона. В завершение останется ввести паспортные данные, СНИЛС и другую личную информацию. Процедура подачи заявления на кредит займет у вас не более 5 минут.
+          p Также существует альтернативный способ — авторизоваться при оформлении заявки через учетную запись портала «Госуслуги», чтобы автоматически выгрузить необходимые персональные данные. Таким образом вы сможете не только упростить процедуру, но и подтвердить свою личность, повысив тем самым шансы на одобрение на 30 %.
+      p Прием анкет с сайта Азиатско-Тихоокеанского банка осуществляется круглосуточно. Оформите
+        =' '
+        a(href='#') заявку
+        |  на кредит за 5 минут и после предварительного одобрения займа с вами свяжется сотрудник АТБ, который назначит встречу в удобном для вас отделении. Там вы сможете заключить договор с банком и моментально получить необходимую сумму наличными (сняв со счета) или на карту.

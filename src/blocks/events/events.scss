@@ -1,0 +1,84 @@
+.events {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  @include media-laptop {
+    grid-template-columns: 1fr;
+  }
+  @include media-tablet {
+    gap: 15px;
+  }
+  &__item {
+    padding: 25px 30px 45px;
+    border-radius: 8px;
+    @include media-laptop {
+      padding: 20px 20px 35px;
+    }
+    &--blue {
+      background: #d8e2fa;
+    }
+    &--purple {
+      background: #e9e2fa;
+    }
+    &--green {
+      background: #d7eceb;
+    }
+    &--carried-out {
+      background: #fff;
+      box-shadow: 0 3px 30px 0 rgb(135 151 155 / 0.15);
+      .events__head {
+        color: $grey50;
+      }
+    }
+  }
+  &__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 120px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #bfc6d7;
+    @include media-laptop {
+      min-height: 110px;
+    }
+  }
+  &__img {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    @include media-laptop {
+      width: 90px;
+      height: 90px;
+    }
+  }
+  &__date {
+    font-weight: 700;
+  }
+  &__day {
+    margin-right: 6px;
+    font-size: 68px;
+    @include media-laptop {
+      font-size: 48px;
+    }
+  }
+  &__m-y {
+    font-size: 18px;
+    @include media-laptop {
+      font-size: 16px;
+    }
+  }
+  &__ui-h4 {
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+}
+.bvi-body {
+  .events {
+    grid-template-columns: 1fr;
+  }
+}

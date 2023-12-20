@@ -1,0 +1,25 @@
+mixin mir-pay-add(mirPayAddData, mods)
+  -
+    const baseName = 'mir-pay-add'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .mir-pay-add(class=allMods)&attributes(attributes)
+    +section-head('mir-pay-add')
+      +ui-h2('Как добавить карту', 'section-head, --bold')
+      .section-head__descr Пройдите простую регистрацию карты Мир, чтобы оплачивать покупки с&nbsp;мобильного устройства на&nbsp;Android
+    .mir-pay-add__img
+      img.lazyload(src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src='img/mir-pay-mob.png', alt='')
+    .mir-pay-add__steps
+      each step, index in mirPayAddData
+        .mir-pay-add__step
+          .mir-pay-add__num
+            span=index+1
+          .mir-pay-add__txt !{step.txt}
+    block

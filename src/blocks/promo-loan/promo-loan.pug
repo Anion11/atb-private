@@ -1,0 +1,23 @@
+mixin promo-loan(data, mods)
+  -
+    const baseName = 'promo-loan'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .promo-loan(class=allMods)&attributes(attributes)
+    .promo-loan__inner
+      each img in data.imgs
+        .promo-loan__img(class=img.mods)
+          img.lazyload(src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src=img.src alt='')
+      .promo-loan__content
+        +ui-h3(data.h3, 'promo-loan, --xl')
+        +ui-button(data.btn, `promo-loan, --size-s ${data.btnMods ? data.btnMods : ''}`)(href='#')
+      button.promo-loan__close
+        +icon('icon_close')
+    block

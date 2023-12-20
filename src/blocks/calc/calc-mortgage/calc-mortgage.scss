@@ -1,0 +1,313 @@
+.calc-mortgage {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include media-laptop {
+    display: block;
+  }
+  &__line {
+    margin-top: 40px;
+    @include media-tablet {
+      margin-top: 30px;
+    }
+    &--option {
+      margin-top: 20px;
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  &__section {
+    margin-bottom: 20px;
+    @include media-tablet {
+      margin-bottom: 15px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &-title {
+      margin-bottom: 12px;
+      font: 400 15px/1.46 $font;
+      color: $blue;
+      @include media-tablet {
+        padding: 7px 15px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+    &-box {
+      margin-bottom: 15px;
+      font: 400 16px/1.56 $font;
+      @include media-tablet {
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__options {
+    margin-top: 40px;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    border-radius: 6px;
+    overflow: hidden;
+    @include media-tablet {
+      margin-top: 20px;
+    }
+    &-head {
+      position: relative;
+      padding: 11px 40px 11px 20px;
+      font: 300 18px/1.5 $font;
+      cursor: pointer;
+      @include media-tablet {
+        padding: 13px 40px 13px 10px;
+        font-size: 16px;
+      }
+      &::after {
+        position: absolute;
+        content: '';
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%) rotate(-45deg);
+        width: 9px;
+        height: 9px;
+        border: 2px solid;
+        color: var(--bvi-contrast-color, $orange);
+        border-top-width: 0;
+        border-right-width: 0;
+      }
+    }
+    &-main {
+      display: none;
+      padding: 15px 20px 25px;
+      @include media-tablet {
+        padding: 15px 10px;
+      }
+    }
+  }
+  &__left {
+    width: 570px;
+    margin-right: 40px;
+    @include media-laptop {
+      width: auto;
+      padding: 0 25px;
+      margin-right: 0;
+      margin-bottom: 40px;
+    }
+    @include media-tablet {
+      padding: 0 15px;
+    }
+  }
+  &__right {
+    width: 520px;
+    @include media-laptop {
+      width: auto;
+    }
+  }
+  &__result {
+    padding: 40px 40px 40px 50px;
+    background: #fff;
+    box-shadow: 10px 15px 60px rgb(0 0 0 / 0.08);
+    border-radius: 7px;
+    @include media-laptop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @include media-tablet {
+      padding: 20px 25px 30px;
+    }
+    &-main {
+      @include media-tablet {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+    &-line {
+      display: flex;
+      margin-bottom: 35px;
+      @include media-tablet {
+        margin-bottom: 30px;
+        justify-content: space-between;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &--row-m {
+        @include media-tablet {
+          display: block;
+        }
+        .calc-mortgage__result {
+          &-box {
+            @include media-tablet {
+              display: flex;
+              align-items: flex-end;
+              justify-content: space-between;
+              width: 100%;
+              margin: 0 0 15px;
+            }
+            &:nth-child(1) {
+              @include media-tablet {
+                width: 100%;
+              }
+            }
+            &:last-child {
+              @include media-tablet {
+                margin-bottom: 0;
+              }
+            }
+          }
+          &-name {
+            @include media-tablet {
+              margin: 0 20px 0 0;
+            }
+          }
+        }
+      }
+    }
+    &-box {
+      &:nth-child(1) {
+        width: 260px;
+        @include media-tablet {
+          width: auto;
+          margin-right: 20px;
+        }
+      }
+    }
+    &-name {
+      margin-bottom: 20px;
+      font: 300 12px/1 $font;
+      text-transform: uppercase;
+      color: $grey80;
+    }
+    &-num {
+      font: 400 24px/1 $font;
+      color: $black;
+      @include media-tablet {
+        font-size: 18px;
+      }
+      &--big {
+        font-weight: 300;
+        font-size: 48px;
+        @include media-tablet {
+          font-size: 36px;
+        }
+      }
+      &--accent {
+        font-weight: 400;
+        color: $orange;
+      }
+    }
+    &-btns {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 45px;
+      column-gap: 30px;
+      row-gap: 20px;
+      @include media-tablet {
+        width: 100%;
+        flex-direction: column;
+        margin-top: 25px;
+      }
+    }
+    &-foot {
+      margin-top: 20px;
+      font: 300 12px/1.4 $font;
+      color: #999;
+      @include media-tablet {
+        margin-top: 13px;
+        text-align: center;
+      }
+      &--m-text-start {
+        @include media-tablet {
+          text-align: start;
+        }
+      }
+    }
+  }
+  &__adv {
+    position: relative;
+    min-height: 195px;
+    margin-top: 40px;
+    padding: 22px 25px;
+    background: linear-gradient(98deg, #caeaf9 0%, #d0ecf8 100%);
+    border-radius: 8px;
+    overflow: hidden;
+    @include media-laptop {
+      padding: 25px 80px;
+    }
+    @include media-tablet {
+      padding: 23px 115px 23px 20px;
+    }
+    &-content {
+      position: relative;
+      z-index: 1;
+      max-width: 250px;
+      @include media-tablet {
+        max-width: unset;
+      }
+    }
+    &-img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      max-width: 250px;
+      @include media-tablet {
+        right: -15px;
+        max-width: 180px;
+      }
+    }
+  }
+  &__ui {
+    &-h6 {
+      margin-bottom: 12px;
+    }
+    &-ul {
+      font: 300 16px/1.38 $font;
+      &:not(:last-child) {
+        margin-bottom: 15px;
+        @include media-tablet {
+          margin-bottom: 50px;
+        }
+      }
+    }
+    &-form-name {
+      font-weight: 400;
+      font-size: 15px;
+      color: $green;
+      @include media-tablet {
+        font-size: 14px;
+      }
+    }
+    &-checkbox {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+        @include media-tablet {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+body .bvi-body {
+  .calc-mortgage {
+    &__result {
+      &-line {
+        display: block;
+      }
+      &-box {
+        &:nth-child(1) {
+          width: auto;
+          margin: 0 0 30px;
+        }
+      }
+    }
+  }
+}

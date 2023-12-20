@@ -1,0 +1,58 @@
+.precious-metals-ban {
+  position: relative;
+  z-index: 1;
+  min-height: 240px;
+  padding: 50px 485px 50px 80px;
+  background: linear-gradient(271.7deg, #f6e2b4 0.45%, #f8eacc 99.79%);
+  border-radius: 8px;
+  overflow: hidden;
+  @include media-laptop {
+    padding: 40px 40px 150px;
+  }
+  @include media-tablet {
+    padding: 25px 20px 120px;
+  }
+  &__title {
+    font: 700 28px/1.3 $font;
+    @include media-tablet {
+      font-size: 22px;
+    }
+  }
+  &__txt {
+    margin-top: 15px;
+    font: 400 20px/1.3 $font;
+    @include media-tablet {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  }
+  &__img {
+    position: absolute;
+    right: 75px;
+    bottom: -45px;
+    z-index: -1;
+    max-width: 294px;
+    pointer-events: none;
+    user-select: none;
+    @include media-laptop {
+      right: 36px;
+      bottom: -40px;
+      max-width: 245px;
+    }
+    @include media-tablet {
+      right: 10px;
+      bottom: -25px;
+      max-width: 181px;
+    }
+  }
+  &--ingots {
+    min-height: auto;
+    padding: 50px 80px;
+    @include media-laptop {
+      padding: 40px;
+    }
+    @include media-tablet {
+      padding: 25px 20px;
+    }
+  }
+}

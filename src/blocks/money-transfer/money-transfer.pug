@@ -1,0 +1,107 @@
+mixin money-transfer(type, mods)
+  -
+    const baseName = 'money-transfer'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const moneyTransferRequisites =[
+      { name: 'БИК банка получателя', value: '041012765' },
+      { name: 'Счёт получателя', value: '60323810600009901255' },
+      { name: 'ИНН получателя', value: '2801023444' },
+      { name: 'Наименование получателя', value: 'АО Азиатско-тихоокеанский банк' },
+      { name: 'КПП получаетеля', value: '280101001' },
+      { name: 'Назначение перевода', value: 'Погашение задолженности перед банком' },
+    ]
+
+  .money-transfer(class=allMods)&attributes(attributes)
+    case type
+      when 'transfer-requisites'
+        .money-transfer__block.money-transfer__block--transfer-requisites
+          .money-transfer__txt
+            .money-transfer__title Оплата по реквизитам
+            .money-transfer__desc Внести средства вы можете по следующим реквизитам
+            .money-transfer__details
+              .money-transfer__content
+                .money-transfer__requisites
+                  each item in moneyTransferRequisites
+                    .money-transfer__requisites-tr
+                      .money-transfer__requisites-name=item.name
+                      .money-transfer__requisites-value=item.value
+              .money-transfer__btn Показать реквизиты
+          .money-transfer__img
+            img(src='img/transfer_1.png' alt='')
+
+      when 'money-transfer'
+        .money-transfer__block.money-transfer__block--self
+          .money-transfer__txt
+            .money-transfer__title Перевод с собственных счетов, кредитных и&nbsp;дебетовых карт, открытые в АТБ
+            .money-transfer__desc До момента осуществления перевода ознакомьтесь с информацией:
+            .money-transfer__details
+              .money-transfer__content
+                ul.ui-ul.money-transfer__ui-ul
+                  li
+                    p При осуществлении перевода с кредитной карты рекомендуем ознакомиться с описанием расчета комиссии. Размер комиссии может отличаться в зависимости от тарифного плана кредитной карты.
+                    +documents-item('Тарифы по переводам кредитных денежных средств (за счет Лимита кредитования) в ДБО', '', 'money-transfer')
+                    p Уточнить детали по действующему продукту возможно в чате
+                      a.text-orange(href='#') АТБ Мобайл NEW
+                      | и
+                      a.text-orange(href='#') АТБ-Онлайн
+                      | , а также по телефону
+                      =' '
+                      a.text-orange.text-nowrap(href='tel:88007758888') 8-800-775-88-88
+                      |  (бесплатный звонок по России).
+                  li
+                    p Списание комиссии производится единовременно с общей суммой перевода. Если денежных средств, с учетом комиссии недостаточно на балансе банковской карты, то перевод будет отклонен.
+                    br
+                    | Статус перевода доступен в истории операций
+                    a.text-orange(href='#') АТБ Мобайл NEW
+                    | и
+                    a.text-orange(href='#') АТБ-Онлайн
+                    | .
+              .money-transfer__btn Подробная информация
+          .money-transfer__img
+            img(src='img/transfer_1.png' alt='')
+        .money-transfer__block.money-transfer__block--another
+          .money-transfer__txt
+            .money-transfer__title Перевод с банковских карт АТБ на карту другого клиента или стороннего банка
+            .money-transfer__desc До момента осуществления перевода ознакомьтесь с Тарифами по переводам с банковской (платежной) карты на другую банковскую (платежную карту по номеру телефона (перевод P2P)).
+            .money-transfer__details
+              .money-transfer__content
+                ul.ui-ul.money-transfer__ui-ul
+                  li
+                    p Списание комиссии производится единовременно с общей суммой перевода. Если денежных средств, с учетом комиссии недостаточно на балансе банковской карты, то перевод будет отклонен.
+                +documents-item('Тарифы по переводам', '', 'money-transfer')
+              .money-transfer__btn Подробная информация
+          .money-transfer__img
+            img(src='img/transfer_2.png' alt='')
+        .money-transfer__block.money-transfer__block--sbp
+          .money-transfer__txt
+            .money-transfer__title Перевод через систему быстрых платежей
+            .money-transfer__desc Ознакомьтесь с информацией по комиссии за использование системы СБП до момента осуществления операции.
+            .money-transfer__details
+              .money-transfer__content
+                +documents-item('Тарифы по переводам в Системе быстрых платежей', '', 'money-transfer')
+                ul.ui-ul.money-transfer__ui-ul
+                  li
+                    p Списание комиссии производится единовременно с общей суммой перевода. Если денежных средств, с учетом комиссии недостаточно на балансе банковской карты, то перевод будет отклонен.
+                .money-transfer__desc Система быстрых платежей (СБП) - это сервис переводов, созданный Центральным банком РФ (Банком России), который позволяет в любое время суток переводить деньги получателю в другой банк по номеру мобильного телефона.
+              .money-transfer__btn Подробная информация
+          .money-transfer__img
+            img(src='img/transfer_3.svg' alt='')
+        .money-transfer__block.money-transfer__block--info
+          .money-transfer__txt
+            .money-transfer__desc Клиент вправе обратиться в Банк в письменном виде или через Контактный центр Банка по операциям, проведенным по счету, не позднее дня, следующего за днем получения от Банка уведомления о совершении операции. Не позднее следующего рабочего дня после уведомления Банка о совершении несанкционированной операции по телефону, подать письменное заявление о претензии. В случае не предъявления Банку в указанный срок письменной претензии или претензии через Контактный центр Банка по операциям, последние считаются подтвержденными и в дальнейшем обжалованию не подлежат.
+            .money-transfer__footnote п. 5.4.2 Универсального договора банковского обслуживания физических лиц «
+              span.text-nowrap Азиатско-Тихоокеанский
+              | Банк» (АО)
+            +documents-item('УДБО', '', 'money-transfer')
+          .money-transfer__img
+            img(src='img/transfer_4.svg' alt='')
+        block

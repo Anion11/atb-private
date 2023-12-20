@@ -1,0 +1,33 @@
+.exchange-ban {
+  display: flex;
+  align-items: center;
+  padding-right: 85px;
+  background: linear-gradient(90deg, #fff8f2 0%, #ffeedb 100%);
+  border-radius: 8px;
+  @include media-laptop {
+    padding-right: 0;
+  }
+  @include media-tablet {
+    flex-direction: column;
+  }
+  &__text {
+    padding: 64px 130px 64px 64px;
+    @include media-laptop {
+      padding: 40px 50px 40px 40px;
+    }
+    @include media-tablet {
+      padding: 30px 20px 5px;
+    }
+  }
+  &__img {
+    max-width: 325px;
+    flex-shrink: 0;
+    align-self: flex-end;
+    @include media-laptop {
+      max-width: 280px;
+    }
+    @include media-tablet {
+      max-width: 240px;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+.property-insurance-table {
+  &__ui-table {
+    @include media-tablet {
+      display: none;
+    }
+    table {
+      td,
+      th {
+        @include media-laptop {
+          padding: 15px 5px;
+          font-size: 16px;
+        }
+        &:first-child {
+          width: 29%;
+        }
+        &:not(:first-child) {
+          text-align: center;
+        }
+      }
+      td {
+        &:not(:first-child) {
+          color: $grey80;
+        }
+      }
+    }
+  }
+  &__accordion {
+    display: none;
+    @include media-tablet {
+      display: block;
+    }
+    .ui-table {
+      table {
+        background: transparent;
+        td {
+          &:not(:first-child) {
+            text-align: center;
+          }
+        }
+        tr {
+          &:first-child {
+            td {
+              border-top: 0;
+            }
+          }
+          &:last-child {
+            td {
+              border-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__title {
+    margin-bottom: 10px;
+    font: 14px/1.2 $font;
+    color: $grey60;
+    text-transform: uppercase;
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+}

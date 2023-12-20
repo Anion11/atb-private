@@ -1,0 +1,63 @@
+mixin card-router(tableData, mods)
+  -
+    const baseName = 'card-router'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .card-router.js-table(class=allMods data-media='0')&attributes(attributes)
+    .card-router__names.js-column
+      each item in tableData.names
+        .card-router__names-ceil.js-ceil
+          +card-router-name(item)
+    .card-router__columns.swiper
+      .swiper-wrapper
+        each col in tableData.columns
+          .card-router__col.swiper-slide.js-column(class=col.isActive ? 'card-router__col--active' : '')
+            if col.img
+              .card-router__head.js-ceil
+                .card-router__title
+                  +card-router-name(tableData.names[0])
+                .card-router__img
+                  img(src=col.img, alt='')
+            .card-router__main
+              each row, index in col.rows
+                .card-router__ceil.js-ceil
+                  .card-router__title
+                    +card-router-name(tableData.names[(col.img ? index+1 : index)])
+
+                  if row.sections
+                    each section in row.sections
+                      .card-router__section
+                        if section.subtitle
+                          .card-router__subtitle !{section.subtitle}
+                        if section.text
+                          .card-router__text(class=section.textClass ? section.textClass: '')
+                            each itemText, textIndex in section.text
+                              p !{itemText}
+                                if section.textTooltips
+                                  if section.textTooltips[textIndex]
+                                    +ui-tooltip(section.textTooltips[textIndex])
+                        if section.label
+                          a.card-router__label(href='#')=section.label
+                        if section.descr
+                          .card-router__descr(class=section.descrClass ? section.descrClass: '') !{section.descr}
+      +ui-swiper-pagination('card-router, --scale')
+    block
+
+mixin card-router-name(item)
+  if item.itemBold
+    b !{item.text}
+      if item.tooltip
+        span.text-nowrap !{item.textNowrap}
+          +ui-tooltip(item.tooltip)
+  else
+    | !{item.text}
+    if item.tooltip
+      span.text-nowrap !{item.textNowrap}
+        +ui-tooltip(item.tooltip)

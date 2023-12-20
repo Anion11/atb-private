@@ -1,0 +1,21 @@
+mixin coins-slider(title, mods)
+  -
+    const baseName = 'coins-slider'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .coins-slider(class=allMods)&attributes(attributes)
+    .coins-slider__title !{title}
+    .coins-slider__wrapper
+      .swiper-wrapper
+        block
+    .coins-slider__pagination
+    .coins-slider__nav
+      .coins-slider__btn.coins-slider__btn--prev
+      .coins-slider__btn.coins-slider__btn--next

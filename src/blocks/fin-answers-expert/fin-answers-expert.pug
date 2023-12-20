@@ -1,0 +1,30 @@
+mixin fin-answers-expert(data, mods)
+  -
+    const baseName = 'fin-answers-expert'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .fin-answers-expert(class=allMods)&attributes(attributes)
+    .fin-answers-expert__person
+      .fin-answers-expert__avatar
+        img(src=data.avatar, alt='')
+      .fin-answers-expert__content
+        if data.h3
+          +ui-h3(data.h3, 'fin-answers-expert, --xl')
+            if data.name
+              span.fin-answers-expert__name !{data.name}
+        if data.h6
+          +ui-h6(data.h6, 'fin-answers-expert, --bold')
+            if data.name
+              span.fin-answers-expert__name !{data.name}
+        if data.p2
+          +ui-p2(data.p2, 'fin-answers-expert, --light').text-grey80
+    if data.button
+      +ui-button(data.button, 'fin-answers-expert')(href='#')
+    block

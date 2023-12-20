@@ -1,0 +1,176 @@
+//- mixin useful-articles(isMainPage, isInnerPage, mods)
+mixin useful-articles(pageType, mods)
+  -
+    const baseName = 'useful-articles'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .useful-articles(class=allMods)&attributes(attributes)
+    case pageType
+      when 'articlesMain'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 5; i++)
+            +useful-articles__item('withImg')
+          .useful-articles__item.useful-articles__item--notice
+            .useful-articles__notice Скоро здесь будет больше информации
+        .useful-articles__bot
+          +ui-pagination('useful-articles')
+          +ui-button('оформить карту', '--m-w100')(href='#')
+
+      when 'articlesOthers'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 5; i++)
+            +useful-articles__item
+        .useful-articles__bot
+          +ui-button('Все статьи')(href='#')
+
+      when 'articlesFinancial'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 9; i++)
+            +useful-articles__item('financial')
+        .useful-articles__bot
+          +ui-pagination('useful-articles')
+
+      when 'articlesFinancialOthers'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 3; i++)
+            +useful-articles__item('financial')
+
+      when 'latesNews'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 3; i++)
+            +useful-articles__item('latesNews')
+
+      when 'mainPage'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 3; i++)
+            +useful-articles__item('newsMainPage', '--min-h-s')
+
+      when 'news'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 3; i++)
+            +useful-articles__item('newsWithImg', '--news-img')
+          -for(let i = 0; i < 2; i++)
+            +useful-articles__item('news', '--news')
+        .useful-articles__bot
+          +ui-button('показать еще')
+        .useful-articles__bot
+          +ui-pagination('useful-articles')
+
+      when 'fin-answers'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 3; i++)
+            +useful-articles__item('fin-answers')
+
+      when 'fin-answersMain'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 8; i++)
+            +useful-articles__item('fin-answers')
+
+      when 'fin-answers-aside'
+        .useful-articles__wrapper
+          -for(let i = 0; i < 2; i++)
+            +useful-articles__item('fin-answers-aside')
+
+    block
+
+mixin useful-articles__item(type, mods)
+  -
+    const baseName = 'useful-articles__item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  case type
+    when 'financial'
+      a.useful-articles__item.useful-articles__item--financial(class=allMods href='/pages/financial-literacy-inner/')&attributes(attributes)
+        .useful-articles__top
+          .useful-articles__date 01 декабря 2021
+          .useful-articles__time Читать 10 мин
+        .useful-articles__title Можно ли погасить кредитную карту другой кредитной картой
+        .useful-articles__tags
+          .useful-articles__tag Банки
+          .useful-articles__tag Безналичные платежи
+        .useful-articles__foot
+          +ui-button('Читать', 'useful-articles, --empty')
+          .useful-articles__img
+            img(src='img/financial-article.png', alt='')
+
+    when 'newsMainPage'
+      .useful-articles__item(class=allMods)&attributes(attributes)
+        .useful-articles__top
+          .useful-articles__date 01 декабря 2021
+        .useful-articles__title: +ui-p1('АТБ запустил акцию «Развивая бизнес» в&nbsp;Магадане и&nbsp;на&nbsp;Чукотке')
+        +ui-button('Подробнее', 'useful-articles, --link-next').text-orange(href='#')
+
+    when 'withImg'
+      .useful-articles__item(class=allMods)&attributes(attributes)
+        .useful-articles__top
+          .useful-articles__date 01 декабря 2021
+          .useful-articles__time Читать 10 мин
+        .useful-articles__title Можно ли погасить кредитную карту другой кредитной картой
+        .useful-articles__foot
+          +ui-button('Читать', 'useful-articles, --empty')
+          .useful-articles__img
+            img(src='/img/default.jpg', alt='')
+
+    when 'latesNews'
+      a.useful-articles__item.useful-articles__item--latest-news(class=allMods href='#')&attributes(attributes)
+        .useful-articles__title: +ui-p1('АТБ запустил акцию «Развивая бизнес» в&nbsp;Магадане и&nbsp;на&nbsp;Чукотке')
+        .useful-articles__foot
+          .useful-articles__date 01 декабря
+
+    when 'newsWithImg'
+      a.useful-articles__item(class=allMods href='#')&attributes(attributes)
+        .useful-articles__title: +ui-h4('Можно ли погасить кредитную карту другой кредитной картой', '--bold')
+        .useful-articles__date 01 декабря 2021
+        +ui-button('Подробнее', 'useful-articles, --link-next')
+        .useful-articles__img
+          img(src='/img/default.jpg', alt='')
+
+    when 'news'
+      a.useful-articles__item(class=allMods href='#')&attributes(attributes)
+        .useful-articles__title: +ui-h4('Можно ли погасить кредитную карту другой кредитной картой', '--bold')
+        .useful-articles__date 01 декабря 2021
+        +ui-button('Подробнее', 'useful-articles, --link-next')
+
+    when 'fin-answers'
+      .useful-articles__item.useful-articles__item--fin-answers(class=allMods)&attributes(attributes)
+        .useful-articles__tags
+          .useful-articles__tag Банки
+          .useful-articles__tag Безналичные платежи
+        .useful-articles__title А если и правда, звонок из банка? А если и правда, звонок из банка?
+        .useful-articles__top
+          .useful-articles__date 01 декабря 2021
+          .useful-articles__author Александр
+        +ui-button('Подробнее', 'useful-articles, --link-next').text-orange(href='#')
+
+    when 'fin-answers-aside'
+      .useful-articles__item.useful-articles__item--fin-answers-aside
+        .useful-articles__top
+          .useful-articles__date 01 декабря 2021
+        .useful-articles__title
+          +ui-p1('А если и правда, звонок из банка? А если и правда, звонок из банка?')
+        .useful-articles__foot
+          +ui-button('Подробнее', 'useful-articles, --link-next')(href='#')
+          .useful-articles__img
+            img(src='/img/default.jpg', alt='')
+
+    default
+      .useful-articles__item(class=allMods)&attributes(attributes)
+        .useful-articles__top
+          .useful-articles__date 01 декабря 2021
+          .useful-articles__time Читать 10 мин
+        .useful-articles__title Можно ли погасить кредитную карту другой кредитной картой
+        +ui-button('Читать', 'useful-articles, --empty')(href='#')

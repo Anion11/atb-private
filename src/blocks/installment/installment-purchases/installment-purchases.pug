@@ -1,0 +1,32 @@
+mixin installment-purchases(installmentPurchasesData, mods)
+  -
+    const baseName = 'installment-purchases'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .installment-purchases(class=allMods)&attributes(attributes)
+    each item in installmentPurchasesData
+      .installment-purchases__item
+        .installment-purchases__top
+          .installment-purchases__icon
+            img(src=item.top.icon, alt='')
+          .installment-purchases__about
+            .installment-purchases__number !{item.top.number}
+            .installment-purchases__txt !{item.top.date}
+          .installment-purchases__total !{item.top.price}
+        .installment-purchases__main
+          .installment-purchases__footnote !{item.main.topTxt}
+          .installment-purchases__timeline
+            each point in item.main.timeline
+              .installment-purchases__payment
+                .installment-purchases__txt !{point.date}
+                .installment-purchases__sum !{point.price}
+          .installment-purchases__conclusion
+            .installment-purchases__txt !{item.main.conclusion.txt}
+    block

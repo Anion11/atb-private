@@ -1,0 +1,22 @@
+mixin promo-days(data, mods)
+  -
+    const baseName = 'promo-days'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .promo-days(class=allMods)&attributes(attributes)
+    each item in data
+      .promo-days__item(class=item.mods)
+        .promo-days__head
+          .promo-days__day !{item.day}
+          .promo-days__month !{item.month}
+        .promo-days__main
+          .promo-days__title !{item.title}
+          .promo-days__descr !{item.descr}
+    block

@@ -1,0 +1,20 @@
+mixin smart-medicine-psychologist(smartMedPsychologistItems, mods)
+  -
+    const baseName = 'smart-medicine-psychologist'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .smart-medicine-psychologist(class=allMods)&attributes(attributes)
+    .smart-medicine-psychologist__title Консультации психолога
+    .smart-medicine-psychologist__container
+      each item in smartMedPsychologistItems
+        .smart-medicine-psychologist__item !{item.txt} 
+    .smart-medicine-psychologist__img
+      img(src='img/psych.png' alt='')
+    block

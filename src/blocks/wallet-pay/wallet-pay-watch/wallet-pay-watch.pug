@@ -1,0 +1,14 @@
+mixin wallet-pay-watch(link, mods)
+  -
+    const baseName = 'wallet-pay-watch'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  a.wallet-pay-watch(class=allMods href=link  target='_blank')&attributes(attributes) смотреть видео
+    block

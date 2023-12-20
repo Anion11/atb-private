@@ -1,0 +1,34 @@
+mixin pension-plans-gazfond(mods)
+  -
+    const baseName = 'pension-plans-gazfond'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .pension-plans-gazfond(class=allMods)&attributes(attributes)
+    .pension-plans-gazfond__text
+      p Получить подробную информацию об
+        =' '
+        span.text-nowrap АО «НПФ ГАЗФОНД пенсионные накопления»
+        | , ознакомиться с его Уставом, Пенсионными правилами, а также иными документами, регламентирующими деятельность, предусмотренными для раскрытия Федеральным законом от 07.05.1998 No 75-ФЗ «О негосударственных пенсионных фондах» и нормативными актами Банка России, вы можете на сайте
+        a.text-orange(href='http://gazfond-pn.ru/') gazfond-pn.ru
+        | .
+      p Обращаем внимание, что доход от размещения средств пенсионных резервов может увеличиваться или уменьшаться, результаты инвестирования в прошлом не определяют доходы в будущем. Государство не гарантирует доходности размещения средств пенсионных резервов. Перед заключением договора необходимо внимательно ознакомиться с уставом фонда и его пенсионными правилами.
+      p Фонд является участником системы гарантирования прав застрахованных лиц.
+    .pension-plans-gazfond__content
+      .pension-plans-gazfond__content-logo
+        img(src='img/Gazfond_PN_logo_ru1.png' alt='')
+      .pension-plans-gazfond__content-adress
+        span.pension-plans-gazfond__content-title Адрес фонда
+        |  123022, г. Москва,
+        span.text-nowrap  ул. Сергея Макеева, д.13
+      .pension-plans-gazfond__content-phone
+        span.pension-plans-gazfond__content-title Контакт-центр
+        |  8 (800) 700-85-85
+      .pension-plans-gazfond__content-license Лицензия Банка России No 430 от 30 апреля 2014 г., бессрочная
+    block

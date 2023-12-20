@@ -1,0 +1,139 @@
+.rest-table {
+  display: flex;
+  @include media-tablet {
+    display: block;
+  }
+  &__names {
+    flex-shrink: 0;
+    width: 376px;
+    font: 700 18px/1.44 $font;
+    border: 1px solid $grey40;
+    border-width: 1px 0;
+    @include media-laptop {
+      width: 240px;
+      font-size: 16px;
+    }
+    @include media-tablet {
+      display: none;
+    }
+    &-ceil {
+      padding: 20px;
+      border: 1px solid $grey40;
+      border-width: 1px 0 0 1px;
+      &:first-child {
+        border-top-color: transparent;
+      }
+    }
+  }
+  &__head {
+    padding: 20px;
+    background: #edf4f5;
+    @include media-tablet {
+      position: relative;
+      padding: 14px 46px 14px 15px;
+    }
+    &::before {
+      @include media-tablet {
+        content: '';
+        position: absolute;
+        top: 45%;
+        right: 25px;
+        transform: translateY(-50%) rotate(-45deg) skew(5deg, 5deg);
+        width: 9px;
+        height: 9px;
+        border: solid;
+        border-width: 0 0 2px 2px;
+        transition: 0.3s;
+      }
+    }
+    &-name {
+      font: 700 18px/1.44 $font;
+      @include media-laptop {
+        font-size: 16px;
+      }
+    }
+    &--assistance {
+      background: #fff3ee;
+    }
+    &.active {
+      @include media-tablet {
+        &::before {
+          transform: translateY(-50%) rotate(135deg) skew(5deg, 5deg);
+        }
+      }
+    }
+  }
+  &__columns {
+    display: flex;
+    @include media-tablet {
+      display: block;
+    }
+  }
+  &__col {
+    flex: 1;
+    border: 1px solid $grey40;
+    &:not(:last-child) {
+      border-right-width: 0;
+      @include media-tablet {
+        margin-bottom: 15px;
+        border-right-width: 1px;
+      }
+    }
+  }
+  &__main {
+    @include media-tablet {
+      display: none;
+    }
+  }
+  &__ceil {
+    padding: 22px 20px;
+    border-top: 1px solid $grey40;
+    @include media-tablet {
+      padding: 14px 15px;
+    }
+    &:last-child {
+      border-bottom-width: 1px;
+    }
+  }
+  &__title {
+    display: none;
+    margin-bottom: 6px;
+    font: 700 16px/1.38 $font;
+    @include media-tablet {
+      display: block;
+    }
+  }
+  &__ui-p2 {
+    @include media-tablet {
+      color: $grey80;
+    }
+  }
+  &__icon {
+    width: 28px;
+    height: 28px;
+    margin: 0 auto;
+    color: #fff;
+    border-radius: 50%;
+    @include media-tablet {
+      display: none;
+    }
+    &--yes {
+      background: $orangeYellowGradient;
+    }
+    &--no {
+      background: $grey40;
+    }
+  }
+  &__expand {
+    &:not(:first-child) {
+      margin-top: 15px;
+    }
+    &-hidden {
+      display: none;
+      padding-top: 20px;
+    }
+  }
+  &__documents-item {
+    font-size: inherit;
+  }
+}

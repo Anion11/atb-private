@@ -1,0 +1,24 @@
+mixin steps-cards(stepsItems, mods)
+  -
+    const baseName = 'steps-cards'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .steps-cards(class=allMods)&attributes(attributes)
+    each item, index in stepsItems
+      .steps-cards__item
+        if item.img
+          .steps-cards__decor
+            .steps-cards__img
+              img(src=item.img, alt='')
+            .steps-cards__count
+              span=(index+1)
+        .steps-cards__text
+          +ui-h6(item.title, 'steps-cards')
+    block

@@ -1,0 +1,19 @@
+mixin smart-medicine-how(smartMedHowItems, mods)
+  -
+    const baseName = 'smart-medicine-how'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .smart-medicine-how(class=allMods)&attributes(attributes)
+    each item in smartMedHowItems
+      .smart-medicine-how__box
+        .smart-medicine-how__box-num
+          img(src=item.icon alt='')
+        .smart-medicine-how__box-txt !{item.txt} 
+    block

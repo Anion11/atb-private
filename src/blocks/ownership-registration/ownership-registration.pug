@@ -1,0 +1,51 @@
+mixin ownership-registration(mods)
+  -
+    const baseName = 'ownership-registration'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const data = [
+      {
+        text: 'Подписать с застройщиком акт приема-передачи',
+      },
+      {
+        text: 'Зарегистрировать право',
+        nowrap: 'собственности',
+        tooltip: 'Оформить право собственности можно в&nbsp;МФЦ'
+      },
+      {
+        text: 'Оформить отчет об&nbsp;оценке',
+      },
+      {
+        text: 'Оформить страховой полис',
+      },
+      {
+        text: 'Предоставить документы для&nbsp;оформления закладной в&nbsp;Банк',
+      },
+      {
+        text: 'Подать закладную на&nbsp;регистрацию совместно с&nbsp;представителем Банка',
+      }
+    ]
+
+  .ownership-registration(class=allMods)&attributes(attributes)
+    .ownership-registration__info
+      +ui-h3('Для оформления права собственности и&nbsp;закладной вам необходимо:', 'ownership-registration, --xs')
+      +ui-p1('')
+        .ownership-registration__list
+          each item, index in data
+            .ownership-registration__item
+              .ownership-registration__num
+                span !{index+1}
+              .ownership-registration__text !{item.text}
+                if item.nowrap
+                  =' '
+                  span.text-nowrap !{item.nowrap}
+                    +ui-tooltip(item.tooltip)
+    .ownership-registration__img: img(src='img/ownership-registration.png' alt='')
+    block

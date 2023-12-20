@@ -1,0 +1,96 @@
+.breeding-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  @include media-laptop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  &__item {
+    position: relative;
+    display: block;
+    background: $grey20;
+    border-radius: 8px;
+    overflow: hidden;
+    &:hover {
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgb(0 0 0 / 0.1);
+    }
+  }
+  &__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 40px 35px 30px;
+    @include media-laptop {
+      padding: 30px;
+      min-height: 300px;
+    }
+    @include media-tablet {
+      min-height: 260px;
+      padding: 30px 20px;
+    }
+  }
+  &__top {
+    display: flex;
+    min-height: 84px;
+    margin-bottom: 20px;
+    @include media-laptop {
+      min-height: 78px;
+    }
+    @include media-tablet {
+      min-height: unset;
+    }
+  }
+  &__icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    margin-right: 25px;
+    @include media-laptop {
+      margin-right: 20px;
+    }
+    @include media-tablet {
+      width: 45px;
+      height: 45px;
+      margin-right: 15px;
+    }
+  }
+  &__title {
+    font: 700 24px/1.16 $font;
+    @include media-laptop {
+      font-size: 20px;
+      line-height: 1.3;
+    }
+    @include media-tablet {
+      align-self: center;
+      font-size: 18px;
+    }
+  }
+  &__descr {
+    max-width: 300px;
+    margin-bottom: 25px;
+    font: 400 16px/1.5 $font;
+    @include media-tablet {
+      max-width: none;
+    }
+  }
+  &__ui-button {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+}
+.bvi-body {
+  .breeding-links {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    &__descr {
+      max-width: unset;
+    }
+  }
+}

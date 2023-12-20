@@ -1,0 +1,28 @@
+mixin wallet-pay-app(mods)
+  -
+    const baseName = 'wallet-pay-app'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const walletPayAppItems =[
+      { text: 'Откройте приложение «Кошелёк»' },
+      { text: 'Откройте каталог предложений Кошелька и выберите интересующий вас купон или сертификат' },
+      { text: 'Выберите Кошелёк Pay в качестве способа оплаты' },
+    ]
+
+  .wallet-pay-app(class=allMods)&attributes(attributes)
+    .swiper
+      .swiper-wrapper
+        each item, index in walletPayAppItems
+          .wallet-pay-app__box.swiper-slide
+            .wallet-pay-app__box-img
+              img(src='img/in_app'+(index+1)+'.png' alt='')
+            .wallet-pay-app__box-txt !{item.text}
+    block

@@ -1,0 +1,35 @@
+.most-important-txt {
+  &__head {
+    margin-bottom: 40px;
+    @include media-tablet {
+      margin-bottom: 30px;
+    }
+  }
+  &__attention {
+    &:not(:last-child) {
+      margin-bottom: 40px;
+      @include media-tablet {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  &__subtitle {
+    max-width: 800px;
+    margin-top: 20px;
+    font: 700 18px/1.3 $font;
+    @include media-tablet {
+      font-size: 16px;
+    }
+  }
+  &__qr {
+    max-width: 150px;
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+  &__ui-p1 {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+}

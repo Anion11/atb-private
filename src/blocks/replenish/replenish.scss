@@ -1,0 +1,123 @@
+.replenish {
+  &__box {
+    display: flex;
+    height: 250px;
+    margin-bottom: 30px;
+    background: #fff;
+    box-shadow: $lightBigShadow;
+    border-radius: 8px;
+    overflow: hidden;
+    @include media-tablet {
+      flex-direction: column;
+      height: auto;
+      min-height: 495px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &-img {
+      flex-shrink: 0;
+      width: 450px;
+      @include media-laptop {
+        width: 250px;
+        overflow: hidden;
+      }
+      @include media-tablet {
+        width: 100%;
+        height: 250px;
+      }
+      img {
+        @include media-laptop {
+          position: relative;
+          left: 50%;
+          transform: translateX(-50%);
+          max-width: none;
+          height: 100%;
+        }
+        @include media-tablet {
+          left: 0;
+          width: 100%;
+          transform: none;
+          object-fit: cover;
+        }
+      }
+    }
+    &-content {
+      width: calc(100% - 450px);
+      display: flex;
+      flex-direction: column;
+      padding: 30px 90px 30px 60px;
+      @include media-laptop {
+        width: calc(100% - 250px);
+        padding: 30px 25px;
+      }
+      @include media-tablet {
+        width: 100%;
+        flex: auto;
+        padding: 25px 20px 30px;
+      }
+    }
+    &-title {
+      margin-bottom: 15px;
+      font: 700 28px/1.29 $font;
+      @include media-laptop {
+        font-size: 24px;
+      }
+      @include media-tablet {
+        font-size: 20px;
+      }
+      sup {
+        font-weight: 300;
+        font-size: 18px;
+        @include media-laptop {
+          font-size: 16px;
+        }
+        @include media-tablet {
+          font-size: 14px;
+        }
+      }
+    }
+    &-desc {
+      margin-bottom: 15px;
+      font: 400 18px/1.44 $font;
+      @include media-laptop {
+        margin-bottom: 15px;
+      }
+      @include media-tablet {
+        margin-bottom: 25px;
+        font-size: 16px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &-btn {
+      margin-top: auto;
+    }
+    &-apps {
+      display: flex;
+      align-items: center;
+      margin-top: auto;
+      &-item {
+        width: 51px;
+        height: 51px;
+        &:not(:first-child) {
+          margin-left: 15px;
+        }
+      }
+      &-qr {
+        width: 70px;
+        &:not(:first-child) {
+          margin-left: 20px;
+        }
+        @include media-laptop {
+          display: none;
+        }
+        img {
+          border-radius: 8px;
+          box-shadow: 0 3.5px 15.75px 0 rgb(135 151 155 / 0.3);
+        }
+      }
+    }
+  }
+}

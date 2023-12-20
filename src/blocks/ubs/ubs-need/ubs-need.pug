@@ -1,0 +1,19 @@
+mixin ubs-need(ubsNeedItems, mods)
+  -
+    const baseName = 'ubs-need'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .ubs-need(class=allMods)&attributes(attributes)
+    each item in ubsNeedItems
+      .ubs-need__item
+        +ui-h4(item.h4, 'ubs-need, --bold')
+        .ubs-need__img
+          img(src=item.img, alt='')
+    block

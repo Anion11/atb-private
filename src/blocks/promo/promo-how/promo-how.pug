@@ -1,0 +1,26 @@
+mixin promo-how(data, mods)
+  -
+    const baseName = 'promo-how'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .promo-how(class=allMods)&attributes(attributes)
+    each item, index in data
+      .promo-how__item
+        .promo-how__content
+          .promo-how__count 0
+            =(index+1)
+          .promo-how__text !{item.text}
+            if item.tooltip
+              span.text-nowrap
+                | !{item.textNowrap}
+                +ui-tooltip(item.tooltip, '--l-va-baseline')
+        .promo-how__img
+          img.lazyload(src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src=item.img alt='')
+    block

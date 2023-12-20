@@ -1,0 +1,16 @@
+mixin mortgage-widget(mods)
+  -
+    const baseName = 'mortgage-widget'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .mortgage-widget(class=allMods)&attributes(attributes)
+    .mortgage-widget__form
+      #app.lk-borrower-bank-widget
+    block

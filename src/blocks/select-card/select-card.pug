@@ -1,0 +1,27 @@
+mixin select-card(mods)
+  -
+    const baseName = 'select-card'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .select-card(class=allMods)&attributes(attributes)
+    .swiper
+      .swiper-wrapper
+        -for (selectCardItems = 0; selectCardItems < 4; selectCardItems++)
+          .select-card__item.swiper-slide
+            .select-card__img
+              img(src='img/viza_card_classik.png' alt='')
+            .select-card__name Цифровая карта «Кошелек»
+            .select-card__btns
+              +ui-button('оформить карту', '--empty')(href='#')
+              +ui-button('Подробнее о карте', '--link-next')(href='#')
+      +ui-swiper-button(true, 'select-card')
+      +ui-swiper-button('', 'select-card')
+      +ui-swiper-pagination('select-card')
+    block

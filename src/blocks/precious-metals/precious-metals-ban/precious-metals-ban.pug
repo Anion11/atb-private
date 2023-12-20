@@ -1,0 +1,22 @@
+mixin precious-metals-ban(bansData, mods)
+  -
+    const baseName = 'precious-metals-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .precious-metals-ban(class=allMods)&attributes(attributes)
+    h3.precious-metals-ban__title !{bansData.title}
+    .precious-metals-ban__txt !{bansData.descr}
+      if bansData.descrTooltip
+        =' '
+        +ui-tooltip(bansData.descrTooltip)
+    if bansData.img
+      .precious-metals-ban__img
+        img(src=bansData.img alt='')
+    block

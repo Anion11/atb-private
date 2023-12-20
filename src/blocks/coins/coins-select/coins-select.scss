@@ -1,0 +1,214 @@
+.coins-select {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    @include media-tablet {
+      flex-wrap: wrap;
+    }
+    .ui-select {
+      width: calc(100% - 235px - 55px - 30px);
+      @include media-tablet {
+        margin-top: 15px;
+        width: 100%;
+        order: 1;
+      }
+    }
+  }
+  &__btns {
+    display: flex;
+    width: 235px;
+    @include media-tablet {
+      width: calc(100% - 43px - 10px);
+    }
+  }
+  &__button {
+    display: block;
+    width: 50%;
+    height: 100%;
+    padding: 5px;
+    font: 16px/1.5 $font;
+    background-color: #fff;
+    border: 1px solid $grey40;
+    cursor: pointer;
+    &:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+    &:last-child {
+      border-radius: 0 6px 6px 0;
+      border-left: none;
+    }
+    &--active {
+      color: $orange;
+      background-color: $grey20;
+    }
+  }
+  &__open {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $grey40;
+    border-radius: 6px;
+    cursor: pointer;
+    @include media-tablet {
+      width: 43px;
+      height: 43px;
+    }
+    .svg-icon {
+      width: 24px;
+      height: 24px;
+      &--icon_filter {
+        display: block;
+      }
+      &--icon_close {
+        display: none;
+      }
+    }
+    &--active {
+      .svg-icon {
+        &--icon_filter {
+          display: none;
+        }
+        &--icon_close {
+          display: block;
+        }
+      }
+    }
+  }
+  &__drop {
+    display: none;
+    margin-top: 20px;
+    padding: 30px 40px 35px;
+    background: $grey20;
+    border-radius: 10px;
+    @include media-tablet {
+      margin: 20px -10px 0;
+      padding: 25px 10px;
+    }
+    &--visible {
+      display: block;
+    }
+  }
+  &__params {
+    display: grid;
+    grid-template-columns: 22% 16% 16% 26% 14%;
+    margin-top: 25px;
+    gap: 15px;
+    justify-content: space-between;
+    @include media-tablet {
+      grid-template-columns: 1fr;
+      margin-top: 15px;
+    }
+  }
+  &__bot {
+    display: flex;
+    align-items: baseline;
+    margin-top: 45px;
+  }
+  &__ui-select {
+    width: auto;
+    .select2-container {
+      display: block;
+      .select2 {
+        &-selection {
+          height: auto;
+          background: transparent;
+          border: none;
+          border-bottom: 1px dashed;
+          border-radius: 0;
+          &__rendered {
+            padding: 0 15px 0 0;
+            font: 400 15px/1.3 $font;
+          }
+          &__arrow {
+            right: 0;
+            width: auto;
+            height: auto;
+            border: 4px solid transparent;
+            border-top: 4px solid;
+            color: inherit;
+            transform: translateY(-50%) rotate(0);
+          }
+        }
+        &-dropdown {
+          white-space: nowrap;
+        }
+      }
+      &.select2-container--open {
+        .select2 {
+          &-selection {
+            border-radius: 0;
+            border-color: $black;
+            &__arrow {
+              right: 0;
+              width: auto;
+              height: auto;
+              border: 4px solid transparent;
+              border-top: 4px solid;
+              color: inherit;
+              transform: translateY(-100%) rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+  &__show {
+    margin-right: 10px;
+    font: 400 16px/1.4 $font;
+    color: $grey60;
+  }
+  &__result {
+    margin-top: 60px;
+    @include media-tablet {
+      margin-top: 35px;
+    }
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
+    @include media-laptop {
+      grid-template-columns: 1fr;
+    }
+    @include media-tablet {
+      gap: 40px;
+    }
+  }
+  &__more {
+    margin-top: 70px;
+    text-align: center;
+    @include media-tablet {
+      margin-top: 50px;
+    }
+  }
+  &__no-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    min-height: 180px;
+    font: 22px/1.2 $font;
+    @include media-tablet {
+      font-size: 18px;
+    }
+  }
+}
+body.bvi-active {
+  .bvi-body {
+    .coins-select {
+      .coins-select__top {
+        .coins-select__button {
+          background: transparent !important;
+          color: var(--bvi-contrast-color) !important;
+          &.coins-select__button--active {
+            color: var(--bvi-bg-color) !important;
+            background-color: var(--bvi-contrast-color) !important;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+mixin p-video(scrollBlockId, mods)
+  -
+    const baseName = 'p-video'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .p-video(class=allMods)&attributes(attributes)
+    .p-video__frame
+      iframe#player1(src='https://player.vimeo.com/video/177535587?autoplay=0' width='100%' height='auto' frameborder='0' webkitallowfullscreen='mozallowfullscreen=' allowfullscreen data-ready='true')
+    .p-video__bottom
+      a.p-video__back.js-close-popup(href='#') Вернуться на страницу
+      .p-video__views 9698
+    .p-video__ban
+      if scrollBlockId
+        +ui-button('Отправить заявку на карту').js-scroll-to(href=scrollBlockId)
+      else
+        +ui-button('Отправить заявку на карту', '--empty, --size-s')(href='#')
+      .p-video__info
+        .p-video__ban-txt Если у вас остались вопросы, наши специалисты проконсультируют вас или помогут заполнить заявку по бесплатному телефону:
+        a.p-video__ban-tel(href='tel:88007758888') 8-800-775-88-88
+    block

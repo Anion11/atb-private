@@ -1,0 +1,47 @@
+mixin loyalty-program-cashback(mods)
+  -
+    const baseName = 'loyalty-program-cashback'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const cashbackItems=[
+      {
+        icon: 'img/family_1.png',
+        title: 'У Семьи Ивановых подключена старая программа в категории «Семья» до 06.09.2021',
+        desc1: 'Состав семьи:',
+        desc2: 'мама, папа, 2 детей и кот',
+        catIcon: 'img/cat_1.png'
+      },
+      {
+        icon: 'img/family_2.png',
+        modClass: 'loyalty-program-cashback__title--short',
+        title: 'Семья Сидоровых перешла на новую программу',
+        desc1: 'Состав семьи:',
+        desc2: 'мама, папа, 2 детей и кот',
+        catIcon: 'img/cat_2.png'
+      },
+    ]
+
+  .loyalty-program-cashback(class=allMods)&attributes(attributes)
+    .loyalty-program-cashback__top
+      each item in cashbackItems
+        .loyalty-program-cashback__item
+          .loyalty-program-cashback__img
+            img(src=item.icon, alt='')
+          .loyalty-program-cashback__text
+            .loyalty-program-cashback__title(class=item.modClass) !{item.title}
+            .loyalty-program-cashback__cattainer
+              .loyalty-program-cashback__desc
+                span.loyalty-program-cashback__desc-iten.text-orange !{item.desc1}
+                span.loyalty-program-cashback__desc-item !{item.desc2}
+              .loyalty-program-cashback__desc-img
+                img(src=item.catIcon, alt='')
+    +loyalty-program-calc
+    block

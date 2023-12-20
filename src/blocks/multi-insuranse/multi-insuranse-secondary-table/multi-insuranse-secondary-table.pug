@@ -1,0 +1,17 @@
+mixin multi-insuranse-secondary-table(tableData, mobileFile, tableDescr, mods)
+  -
+    const baseName = 'multi-insuranse-secondary-table'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .multi-insuranse-secondary-table(class=allMods)&attributes(attributes)
+    p.multi-insuranse-secondary-table__desc !{tableDescr}
+    +ui-table(tableData, 'multi-insuranse-secondary-table')
+    +documents-item(mobileFile)(href='#')
+    block

@@ -1,0 +1,89 @@
+mixin main-info(mods)
+  -
+    const baseName = 'main-info'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .main-info(class=allMods)&attributes(attributes)
+    +currency('main-info')
+    +main-info-coins
+    +main-info-atms
+    block
+
+mixin main-info-atms(mods)
+  -
+    const baseName = 'main-info-atms'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  a.main-info-atms(class=allMods href='#')&attributes(attributes)
+    .main-info-atms__title Офисы и банкоматы
+    .main-info-atms__desc адреса, график работы и телефоны
+    +ui-button('перейти', 'main-info-atms')
+    .main-info-atms__img
+      img(src='./img/map.png', alt)
+    block
+
+mixin main-info-coins(mods)
+  -
+    const baseName = 'main-info-coins'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+    const data = [
+      {
+        img: 'img/main-info-coins_1.png',
+        name: 'Георгий Победоносец (СПМД)',
+        props: [
+          { name: 'Цена', value: '36 500 ₽' },
+          { name: 'Номинал', value: '50' },
+          { name: 'вес', value: '7,78 г' },
+          { name: 'Металл', value: 'золото' },
+        ]
+      },
+      {
+        img: 'img/main-info-coins_2.png',
+        name: 'Георгий Победоносец (серебро)',
+        props: [
+          { name: 'Цена', value: '2 950 ₽' },
+          { name: 'Номинал', value: '3' },
+          { name: 'вес', value: '31,1 г' },
+          { name: 'Металл', value: 'серебро' },
+        ]
+      },
+    ]
+
+  .main-info-coins(class=allMods)&attributes(attributes)
+    .main-info-coins__head
+      h3.main-info-coins__title Монеты
+      +ui-button('посмотреть все', '--link-next').text-orange(href='#')
+    .main-info-coins__main
+      each item in data
+        .main-info-coins__item
+          .main-info-coins__img: img(src=item.img alt='')
+          .main-info-coins__info
+            .main-info-coins__name !{item.name}
+            .main-info-coins__props
+              each prop in item.props
+                .main-info-coins__prop
+                  .main-info-coins__prop-name !{prop.name}
+                  .main-info-coins__prop-val !{prop.value}
+            +ui-button('подробнее', '--link-next').text-orange(href='#')

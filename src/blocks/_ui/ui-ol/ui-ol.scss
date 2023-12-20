@@ -1,0 +1,55 @@
+.ui-ol {
+  padding: 0;
+  counter-reset: num;
+  list-style-type: none;
+  li {
+    position: relative;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: counter(num) '.';
+      counter-increment: num;
+      color: $orange;
+    }
+  }
+  &--li-mb25 {
+    li {
+      margin-bottom: 25px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &--li-mb10 {
+    li {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &--li-mb8 {
+    > li {
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  &--li-mb5 {
+    li {
+      margin-bottom: 5px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &--child {
+    margin-top: 0.5em;
+  }
+}

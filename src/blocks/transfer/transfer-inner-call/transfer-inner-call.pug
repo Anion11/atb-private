@@ -1,0 +1,21 @@
+mixin transfer-inner-call(transferInnerCallData, mods)
+  -
+    const baseName = 'transfer-inner-call'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .transfer-inner-call(class=allMods)&attributes(attributes)
+    .transfer-inner-call__content
+      h3.transfer-inner-call__title !{transferInnerCallData.title}
+      .transfer-inner-call__txt !{transferInnerCallData.text}
+      if transferInnerCallData.phoneText
+        a.transfer-inner-call__tel(href=`tel:${transferInnerCallData.phoneLink}`) !{transferInnerCallData.phoneText}
+    .transfer-inner-call__img
+      img(src=transferInnerCallData.img, alt='')
+    block

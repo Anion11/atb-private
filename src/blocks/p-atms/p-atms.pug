@@ -1,0 +1,49 @@
+mixin p-atms(mods)
+  -
+    const baseName = 'p-atms'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .p-atms(class=allMods)&attributes(attributes)
+    .p-atms__title Отделение АТБ (АО) г Москва
+    .p-atms__text
+      .p-atms__text-box
+        p г Москва, ул Александра Солженицына, д 8 стр 1
+        p
+      .p-atms__text-box
+        p Тел (физ. лица):
+          b  8-800-775-88-88
+        p Тел (юр. лица):
+          b  8-800-775-80-80
+      .p-atms__text-box
+        p
+          b Режим работы:
+          |  Пн-Пт: 09:00-18:00
+        p
+          b Для физ. лиц:
+          |  без кассового обслуживания
+    .p-atms__services
+      .p-atms__services-head
+        .p-atms__services-name Операции:
+        .p-atms__services-error
+          a.text-orange(href='#' target='_blank') Нашли ошибку?
+      ul.p-atms__services-list
+        li Погашение кредитов/пополнение кредитных карт
+        li Пополнение карт
+        li Пополнение вкладов
+        li МТС
+        li Билайн
+        li Мегафон
+        li Переводы
+    .p-atms__biometrika
+      .p-atms__biometrika-text В данном отделении у Вас есть возможность сдать биометрические данные для их регистрации в Единой биометрической системе (ЕБС)
+      .p-atms__biometrika-btn
+        a.text-orange(href='#' target='_blank') Подробнее...
+
+    block

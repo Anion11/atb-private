@@ -1,0 +1,21 @@
+mixin deposit-serv-info(mods)
+  -
+    const baseName = 'deposit-serv-info'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .deposit-serv-info(class=allMods)&attributes(attributes)
+    .deposit-serv-info__contact
+      .deposit-serv-info__title Есть вопросы?
+      .deposit-serv-info__desc Наши специалисты помогут вам по бесплатному телефону
+      a.deposit-serv-info__tel(href='tel:88007758888') 8-800-775-88-88
+    +section-footnote('Азиатско-Тихоокеанский Банк стабильно работает в 19 регионах Сибири и Дальнего Востока уже более 25 лет, постоянно входя в топ-100 лучших банков страны по различным показателям. Объем собственного капитала составляет 12,5 млрд рублей. По оценкам международных и российских рейтинговых агентств, банк демонстрирует уверенную стабильность. У АТБ 136,5 млрд рублей собственных активов, что позволяет качественно предоставлять услуги физическим лицам и корпоративным клиентам.', '--fz16')
+      br
+      | Наши 213 отделений функционируют в 108 населенных пунктах.
+    block

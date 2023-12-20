@@ -1,0 +1,239 @@
+mixin banner(mods)
+  -
+    const baseName = 'banner'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner(class=allMods)&attributes(attributes)
+    .swiper
+      .swiper-wrapper
+        block
+    if isAMP !== true
+      +banner-nav
+
+mixin banner-nav(mods)
+  -
+    const baseName = 'banner-nav'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-nav(class=allMods)&attributes(attributes)
+    .banner-nav-btn-prev
+    .banner-nav-pagination
+      .banner-nav-pagination-num
+      svg.banner-nav-pagination-progress.bvi-no-styles(width='50' height='50' viewbox='0 0 50 50')
+        circle.bvi-no-styles(cx='25' cy='25' r='24' fill='none' stroke='#fe5000' stroke-width='2')
+    .banner-nav-btn-next
+
+mixin banner-item(mods)
+  -
+    const baseName = 'banner-item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-item.swiper-slide(class=allMods)&attributes(attributes)
+    block
+
+mixin banner-wrapper(img, imgSmall, mods)
+  -
+    const baseName = 'banner-wrapper'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-wrapper(class=allMods)&attributes(attributes)
+    .inner
+      block
+    .banner-item-img(class = (imgSmall ? 'banner-item-img--s' : ''))
+      if isAMP === true
+        amp-img(src=img alt='' layout='fill')
+      else
+        img.lazyload(src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src=img alt='')
+
+mixin banner-h1(text, mods, h1)
+  -
+    const baseName = 'banner-h1'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  if h1 === false
+    .banner-h1(class=allMods)&attributes(attributes) !{text}
+      block
+  else
+    h1.banner-h1(class=allMods)&attributes(attributes) !{text}
+      block
+
+mixin banner-subtitle(text, mods)
+  -
+    const baseName = 'banner-subtitle'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-subtitle(class=allMods)&attributes(attributes) !{text}
+    block
+
+mixin banner-descr(text, mods)
+  -
+    const baseName = 'banner-descr'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-descr(class=allMods)&attributes(attributes) !{text}
+    block
+
+mixin banner-text(text, mods)
+  -
+    const baseName = 'banner-text'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-text(class=allMods)&attributes(attributes) !{text}
+    block
+
+mixin banner-slogan(text, mods)
+  -
+    const baseName = 'banner-slogan'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-slogan(class=allMods)&attributes(attributes) !{text}
+    block
+
+mixin banner-foot(mods)
+  -
+    const baseName = 'banner-foot'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-foot(class=allMods)&attributes(attributes)
+    block
+
+mixin banner-item-foot(mods)
+  -
+    const baseName = 'banner-item-foot'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-item-foot(class=allMods)&attributes(attributes)
+    block
+
+mixin banner-mobile(text, mods)
+  -
+    const baseName = 'banner-mobile'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-mobile(class=allMods)&attributes(attributes) !{text}
+    .inner
+      block
+
+mixin banner-sapid-container(sapidData, mods)
+  -
+    const baseName = 'banner-sapid-container'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .banner-sapid-container(class=allMods)&attributes(attributes)
+    each box in sapidData
+      .banner-sapid-box
+        +banner-sapid-box-btn()(href=box.link class=box.class class=box.content ? 'js-open-content' : '')
+          .banner-sapid-box-btn-img
+            img(src=box.img alt='')
+          .banner-sapid-box-btn-txt !{box.txt}
+        if box.content
+          .banner-sapid-box-main
+            .banner-sapid-box-main-btn_close
+            .banner-sapid-box-main-content
+              each item in box.content
+                a.banner-sapid-box-main-content-item(href=item.link target='_blank' class=item.mods)
+                  .banner-sapid-box-main-content-item-icon
+                    img(src=item.img alt='')
+                  .banner-sapid-box-main-content-item-txt !{item.txt}
+    block
+
+mixin banner-sapid-box-btn()
+
+  if (attributes.href)
+    a.banner-sapid-box-btn&attributes(attributes)
+      block
+
+  else
+    .banner-sapid-box-btn&attributes(attributes)
+      block

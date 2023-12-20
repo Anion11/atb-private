@@ -1,0 +1,34 @@
+mixin vacancies-item(mods)
+  -
+    const baseName = 'vacancies-item'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const vacancyPropsItems =[
+      {
+        text: 'Требуемый опыт работы <span class="text-bold">1–3 года</span>',
+      },
+      { icon: 'icon_geo',
+        text: 'Благовещенск, Амурская область',
+      },
+      { icon: 'icon_timer',
+        text: 'Полная занятость',
+      },
+    ]
+
+  a.vacancies-item(class=allMods href='#')&attributes(attributes)
+    +ui-h4('Ведущий специалист отдела информационной безопасности', 'vacancies-item, --bold')
+    +ui-p1
+      +vacancy-props(vacancyPropsItems, 'vacancies-item, --gap-s')
+    +ui-p1('Высшее или средне-специальное образование (в&nbsp;области&nbsp;ИБ или информационных технологий). Опыт разработки ВНД по&nbsp;информационной безопасности (от&nbsp;1&nbsp;года)', 'vacancies-item')
+    .vacancies-item__foot
+      +ui-button('Подробнее', '--empty')
+      +ui-p1('З/п не указана').text-grey60
+    block

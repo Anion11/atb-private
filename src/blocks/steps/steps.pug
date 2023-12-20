@@ -1,0 +1,25 @@
+mixin steps(stepsData, mods)
+  -
+    const baseName = 'steps'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .steps(class=allMods)&attributes(attributes)
+    .steps__decor
+      img(src=stepsData.decor, alt='')
+    .steps__wrapper
+      each item, index in stepsData.items
+        .steps__item
+          .steps__count
+            .steps__count-inn
+              span=(index+1)
+          .steps__text
+            .steps__title !{item.title}
+            .steps__descr !{item.descr}
+    block

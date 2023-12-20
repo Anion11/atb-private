@@ -1,0 +1,108 @@
+.popup {
+  --fancybox-content-color: #{$black};
+  &__wrapper {
+    position: relative;
+    padding: 40px;
+    max-width: 95vw;
+    background: #fff;
+    border-radius: 10px;
+    @include media-tablet {
+      width: 100%;
+      padding: 30px;
+    }
+    &--small {
+      width: 95vw;
+      max-width: 550px;
+    }
+    &--size-xs {
+      width: 95vw;
+      max-width: 620px;
+    }
+    &--size-s {
+      width: 95vw;
+      max-width: 670px;
+    }
+    &--size-l {
+      width: 95vw;
+      max-width: 846px;
+    }
+    &--xl {
+      width: 95vw;
+      max-width: 960px;
+    }
+    &--xxl {
+      width: 95vw;
+      max-width: 1100px;
+    }
+    &--mob-w100 {
+      @include media-tablet {
+        width: 100vw;
+      }
+    }
+    &--mob-px-xs {
+      @include media-tablet {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+    }
+    &--mob-px-xxs {
+      @include media-tablet {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+    &--mob-px-xxxs {
+      @include media-tablet {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+    }
+  }
+  *:focus {
+    outline: none !important;
+  }
+  .fancybox {
+    &__slide {
+      padding: 0;
+    }
+    &__backdrop {
+      background: rgb(0 0 0 / 0.2);
+      opacity: 1;
+    }
+  }
+  .carousel__button.is-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.7856 4.28571L15.7147 5.21536L5.21519 15.7143L4.28613 14.7853L14.7856 4.28571Z' fill='%23373A36'/%3E%3Cpath d='M5.21519 4.28571L15.7147 14.7846L14.7856 15.7143L4.28613 5.21536L5.21519 4.28571Z' fill='%23373A36'/%3E%3C/svg%3E%0A");
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: none;
+    svg {
+      display: none;
+    }
+  }
+  &--mob-bottom {
+    .fancybox {
+      &__slide {
+        @include media-tablet {
+          margin-top: auto;
+          padding: 0;
+          overflow: visible;
+        }
+      }
+      &__content {
+        @include media-tablet {
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+  }
+}
+body:not(.is-using-mouse) .fancybox__container :focus {
+  box-shadow: none;
+}

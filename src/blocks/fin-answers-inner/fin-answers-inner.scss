@@ -1,0 +1,107 @@
+.fin-answers-inner {
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 390px;
+    gap: 70px;
+    align-items: start;
+    @include media-laptop {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+    }
+    @include media-tablet {
+      gap: 60px;
+    }
+    &:not(:first-child) {
+      margin-top: 40px;
+      @include media-laptop {
+        margin-top: 30px;
+      }
+      @include media-tablet {
+        margin-top: 25px;
+      }
+    }
+  }
+  &__head {
+    margin-bottom: 35px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid $grey40;
+    @include media-tablet {
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+    }
+  }
+  &__ui-h3 {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+      @include media-tablet {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  &__info {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 20px 10px;
+  }
+  &__share {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 60px;
+    @include media-laptop {
+      margin-top: 40px;
+    }
+    @include media-tablet {
+      margin-top: 35px;
+    }
+  }
+  &__social {
+    display: flex;
+    gap: inherit;
+  }
+  &__soc-item {
+    width: 24px;
+    height: 24px;
+    &:hover {
+      box-shadow: 0 4px 10px rgb(135 151 155 / 0.6);
+    }
+  }
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  &__tag {
+    padding: 3px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: $grey80;
+    background: $grey20;
+    border-radius: 50px;
+  }
+  &__aside {
+    position: sticky;
+    top: calc(40px + var(--bvi-panel-height, 0px));
+    @include media-laptop {
+      position: static;
+    }
+    &-head {
+      margin-bottom: 20px;
+    }
+    &-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      @include media-tablet {
+        font-size: 26px;
+      }
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  &__fin-answers-expert {
+    max-width: 670px;
+  }
+}

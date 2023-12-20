@@ -1,0 +1,22 @@
+mixin financial-literacy-ban(data, mods)
+  -
+    const baseName = 'financial-literacy-ban'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .financial-literacy-ban(class=allMods)&attributes(attributes)
+    .financial-literacy-ban__img: img(src=data.img alt='')
+    +ui-h4(data.h4, 'financial-literacy-ban, --bold')
+    if data.p2
+      +ui-p2(data.p2, 'financial-literacy-ban')
+    if data.buttons
+      .financial-literacy-ban__btns
+        each button in data.buttons
+          +ui-button(button.text, button.mods)(class=button.class href=`${button.href ? button.href : '#'}`)
+    block

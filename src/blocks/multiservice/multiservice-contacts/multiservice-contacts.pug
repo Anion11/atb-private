@@ -1,0 +1,57 @@
+mixin multiservice-contacts(mods)
+  -
+    const baseName = 'multiservice-contacts'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -
+    const multiserviceContacts =[
+      {
+        title: 'Сервисы «Юрист 24» и «Мультисервис»',
+        list: [
+          { text: 'Позвоните по многоканальному номеру<br><a class="text-orange" href="tel:88005559766">8-800-555-97-66</a>' },
+          { text: 'Воспользуйтесь мобильным <br>приложением ЕЮС на платформе IOS и Android', mobile: true },
+          { text: 'Задайте вопрос специалистам службы в личном кабинете на сайте <a class="text-link-underline text-orange" href="https://юрист24.онлайн/" target="_blank">юрист24.онлайн</a>' },
+        ]
+      },
+      {
+        title: 'Сервис «Налогия»',
+        list: [
+          { text: 'Позвоните по многоканальному номеру<br><a class="text-orange" href="tel:88007757585">8-800-775-75-85</a>' },
+          { text: 'Воспользуйтесь мобильным <br>приложением Налогия на платформе IOS и Android', mobile: true },
+          { text: 'Задайте вопрос специалистам службы в личном  кабинете на сайте <a class="text-link-underline text-orange" href="https://lk.nalogia.ru/" target="_blank">lk.nalogia.ru</a>' },
+        ]
+      },
+      {
+        title: 'ООО «Юридические решения»',
+        list: [
+          { text: 'Позвоните по многоканальному номеру <a class="text-orange" href="tel:88005559437">8-800-555-94-37</a>' },
+          { text: 'Воспользуйтесь мобильным <br>приложением Правокард Консультации на платформе IOS и Android', mobile: true },
+          { text: 'Задайте вопрос специалистам службы в личном кабинете на сайте <br><a class="text-orange" href="https://www.pravocard.ru/" target="_blank">www.pravocard.ru</a>' },
+        ]
+      },
+    ]
+
+  .multiservice-contacts(class=allMods)&attributes(attributes)
+    each item in multiserviceContacts
+      .multiservice-contacts__box
+        .multiservice-contacts__box-title !{item.title}
+        ul.multiservice-contacts__box-list
+          each itemLi in item.list
+            li !{itemLi.text}
+              if itemLi.mobile === true
+                .multiservice-contacts__box-mobile
+                  .multiservice-contacts__box-mobile-item.bvi-no-styles
+                    a.text-orange(target='_blank' href='https://apps.apple.com/ru/app/%D0%B5%D1%8E%D1%81/id1434424801')
+                      img(src='img/apps.apple.svg' alt='')
+                  .multiservice-contacts__box-mobile-item.bvi-no-styles
+                    a.text-orange(target='_blank' href='https://play.google.com/store/apps/details?id=com.els&hl=ru')
+                      img(src='img/play.google.svg' alt='')
+
+    block

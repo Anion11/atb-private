@@ -1,0 +1,18 @@
+mixin mortgage-evaluation(mods)
+  -
+    const baseName = 'mortgage-evaluation'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .mortgage-evaluation(class=allMods)&attributes(attributes)
+    .mortgage-evaluation__txt Закажите отчет об оценке без выезда оценочной компании
+    .mortgage-evaluation__btns
+      +ui-button('Новый запрос на оценку', 'mortgage-evaluation')(href='#')
+      +ui-button('Авторизация / история запросов', 'mortgage-evaluation, --empty')(href='#')
+    block

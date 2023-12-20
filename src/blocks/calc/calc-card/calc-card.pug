@@ -1,0 +1,166 @@
+mixin calc-card(type, mods)
+  -
+    const baseName = 'calc-card'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  -const dataCalcName = `data-card_${type}`
+
+  case type
+    when 'universal'
+      .calc-card.calc-card--universal(class=allMods)&attributes(attributes)
+        .calc-card__wrapper
+          .calc-card__params
+            .calc-card-ban
+              .calc-card-ban__title Кэшбэк до 5% со всех покупок
+                =' '
+                span.text-nowrap по карте
+                  +ui-tooltip('Тултип')
+              .calc-card-ban__img
+                img(src='img/cashback.png' alt='')
+            .calc-card__inputs
+              //- .calc-card__line
+                +ui-form-name('Категория')
+                +ui-select('', '«Все включено»', '«Дом-ремонт»', '«Развлечения»', '«Семья»', '«Авто»')&attributes({[`${dataCalcName}-select-category`]: ''})
+              .calc-card__line
+                +ui-range('Покупки по карте ', ' ₽')(data-min='0' data-max='500000')&attributes({[`${dataCalcName}-range-amount`]: ''})
+                  span.text-nowrap за месяц
+                    +ui-tooltip('Оборот по карте за месяц')
+              block
+          .calc-card__info
+            +calc-card__result('universal', dataCalcName)
+
+    when 'loyalty-univ'
+      .calc-card.calc-card--loyalty-univ(class=allMods)&attributes(attributes)
+        +section-head
+          .calc-card__params
+            .calc-card__line
+              +ui-form-name('Когда была оформлена карта')
+              +ui-select('loyalty-univ-calc')&attributes({[`${dataCalcName}-select-reg-date`]: ''})
+                option(data-open-tab='from6' data-show-target='calc' data-hide-target='category calc-uc') 6 сентября 2021 — 13 июля 2022
+                option(data-open-tab='until5' data-show-target='calc category' data-hide-target='calc-uc') до 5 сентября 2021 (включительно)
+                option(data-hide-target='calc category' data-show-target='calc-uc') с 14 июля 2022
+        .calc-card__wrapper
+          .calc-card__params
+            .calc-card__inputs
+              //- .calc-card__line(style='display: none' data-toggle-element='terms')
+                .calc-card__terms Условия программы лояльности по&nbsp;вашей карте
+                  =' '
+                  span.text-nowrap
+                    a.text-orange(href='#') здесь
+                    +ui-tooltip('')
+                      p Дату оформления вы можете посмотреть:
+                      +ui-ul('', '--li-mb0')
+                        li
+                          a.text-orange(href='#') в мобильном приложении
+                        li в кредитном договоре
+                        li в колл-центре
+                          =' '
+                          a.text-nowrap.text-orange(href='tel:88007758888') 8-800-775-88-88
+              .calc-card__line(data-toggle-element='category' style='display: none;')
+                +ui-form-name('Категория')
+                +ui-select('', '«Все включено»', '«Дом-ремонт»', '«Развлечения»', '«Семья»', '«Авто»')&attributes({[`${dataCalcName}-select-category`]: ''})
+              .calc-card__line(data-toggle-element='calc')
+                +ui-range('Покупки по карте за месяц в любимой ', ' ₽')(data-min='0' data-max='500000')&attributes({[`${dataCalcName}-range-amount`]: ''})
+                  span.text-nowrap категории
+                    +ui-tooltip('Оборот по карте за месяц в любимой категории')
+              .calc-card__line(data-toggle-element='calc')
+                +ui-range('Сумма остальных покупок по&nbsp;карте за&nbsp;месяц', ' ₽')(data-min='0' data-max='500000')&attributes({[`${dataCalcName}-range-another`]: ''})
+              block
+          .calc-card__info(data-toggle-element='calc')
+            +calc-card__result('universal', dataCalcName)
+        +calc-card('universal')(style='display: none' data-toggle-element='calc-uc')
+
+    //- when 'card-2-0'
+      .calc-card.calc-card--card-2-0(class=allMods)&attributes(attributes)
+        +ui-h2('Рассчитайте вашу выгоду', '--section')
+        .calc-card__wrapper
+          .calc-card__params
+            //- .calc-card-ban
+              .calc-card-ban__img
+                img(src='img/card_2_0_cashback.png' alt='')
+              .calc-card-ban__title Зарабатывайте баллы за покупки по вашей карте
+              .calc-card-ban__descr 7% за покупки в выбранной категории и 1% за остальные покупки
+              .calc-card-ban__descr.calc-card-ban__descr--attention 1 балл = 1 рубль
+            .calc-card-category
+              .swiper
+                .swiper-wrapper
+                  .swiper-slide.calc-card-category__item.calc-card-category__item--active
+                    .calc-card-category__circle
+                      img(src='img/calc-category_1.png', alt='')
+                    .calc-card-category__name Развлечения и отдых
+                  .swiper-slide.calc-card-category__item
+                    .calc-card-category__circle
+                      img(src='img/calc-category_2.png', alt='')
+                    .calc-card-category__name Семья
+                  .swiper-slide.calc-card-category__item
+                    .calc-card-category__circle
+                      img(src='img/calc-category_3.png', alt='')
+                    .calc-card-category__name Красота и спорт
+                  .swiper-slide.calc-card-category__item
+                    .calc-card-category__circle
+                      img(src='img/calc-category_4.png', alt='')
+                    .calc-card-category__name Дом и ремонт
+                  .swiper-slide.calc-card-category__item
+                    .calc-card-category__circle
+                      img(src='img/calc-category_5.png', alt='')
+                    .calc-card-category__name Шопинг
+            .calc-card__inputs
+              .calc-card__line
+                +ui-range('Покупки в выбранной категории ', ' ₽')(data-min='5000' data-max='100000')&attributes({[`${dataCalcName}-range-in_selected_category`]: ''})
+                  span.text-nowrap за месяц
+                    +ui-tooltip('Сумма покупок в выбранной категории 7 %')
+              .calc-card__line
+                +ui-range('Остальные покупки ', ' ₽')(data-min='5000' data-max='300000')&attributes({[`${dataCalcName}-range-others_category`]: ''})
+                  span.text-nowrap по карте
+                    +ui-tooltip('Сумма покупок в стандартной  категории 1 %')
+            .calc-card__total  Кэшбэк составит
+              =' '
+              span.calc-card__total-num.text-nowrap.text-orange&attributes({[`${dataCalcName}-text-scores`]: ''}) 1&nbsp;787
+              |  баллов за месяц.
+            .calc-card__descr Накопленные баллы действуют 6 мес.
+            .calc-card__footnote *Условия начисления и выплаты Бонусных баллов см. в «Программе лояльности для держателей банковских карт»
+          .calc-card__info
+            +calc-card__result('', dataCalcName)
+
+mixin calc-card__result(type, dataCalcName, mods)
+  -
+    const baseName = 'calc-card'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .calc-card__result&attributes(attributes)
+    .calc-card__result-content
+      .calc-card__result-title За год вы получите
+        =' '
+        span.text-nowrap до
+          +ui-tooltip('Возврат от суммы покупок за год')
+      if type === 'universal'
+        .calc-card__result-top
+          .calc-card__result-sum&attributes({[`${dataCalcName}-text-income`]: ''}) 90 000 Баллов
+          .calc-card__result-descr Ваш кэшбэк составил
+            =' '
+            span&attributes({[`${dataCalcName}-text-cashback_percent`]: ''}) 5%
+        .calc-card__result-descr На этот доход вы&nbsp;сможете купить
+          =' '
+          span&attributes({[`${dataCalcName}-text-cashback_descr`]: ''}) домашний кинотеатр
+      else
+        .calc-card__result-sum&attributes({[`${dataCalcName}-text-income`]: ''}) 48 000 ₽
+        .calc-card__result-descr На этот доход вы сможете купить
+          =' '
+          span&attributes({[`${dataCalcName}-text-cashback_descr`]: ''}) домашний кинотеатр
+      +ui-button('оформить карту')(href='#')
+    .calc-card__result-img
+      img(src='img/calc-res.png' alt='')

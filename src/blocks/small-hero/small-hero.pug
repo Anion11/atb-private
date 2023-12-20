@@ -1,0 +1,18 @@
+mixin small-hero(mods)
+  -
+    const baseName = 'small-hero'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .small-hero(class=allMods)&attributes(attributes)
+    .small-hero__wrapper
+      .small-hero__img
+        img(src='./img/small_hero.png', alt='')
+      .small-hero__text Обратитесь с заявлением о переводе денежных средств на счет карты в бухгалтерию по месту работы, в ваш пенсионный фонд или фонд социальной защиты.
+    block

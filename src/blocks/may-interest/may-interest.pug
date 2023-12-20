@@ -1,0 +1,20 @@
+mixin may-interest(mods)
+  -
+    const baseName = 'may-interest'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .may-interest(class=allMods)&attributes(attributes)
+    -for (newsItems = 0; newsItems < 3; newsItems++)
+      .may-interest__item
+        .may-interest__title Кредиты наличными
+        .may-interest__descr Подайте заявку прямо сейчас и получите кредит наличными на индивидуальных условиях.
+        .may-interest__more
+          +ui-button('Узнать больше', '--link-next').text-orange(href='#')
+    block

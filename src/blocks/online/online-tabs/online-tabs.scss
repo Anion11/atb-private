@@ -1,0 +1,210 @@
+.online-tabs {
+  &__wrapper {
+    box-shadow: $lightBigShadow;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    @include media-laptop {
+      box-shadow: none;
+      border-radius: 0;
+      overflow: visible;
+    }
+  }
+  &__head {
+    display: flex;
+    @include media-laptop {
+      display: none;
+    }
+    &-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      margin-right: 2px;
+      padding: 18px 22px;
+      font: 400 18px/1.44 $font;
+      text-align: center;
+      color: $grey60;
+      background: $grey20;
+      transition: 0.3s;
+      cursor: pointer;
+      &:last-child {
+        margin-right: 0;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0;
+        transition: 0.3s;
+      }
+      &--connection {
+        &::before {
+          background-image: url('img/online-tabs_connection.jpg');
+        }
+      }
+      &--q_a {
+        &::before {
+          background-image: url('img/online-tabs_vpr.jpg');
+        }
+      }
+      &--safety {
+        &::before {
+          background-image: url('img/online-tabs_safety.jpg');
+        }
+      }
+      &.active {
+        color: #fff;
+        background: rgb(254 80 0 / 0.9);
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__main {
+    &-item {
+      display: none;
+      @include media-laptop {
+        display: block;
+        margin-bottom: 20px;
+      }
+      &:last-child {
+        @include media-laptop {
+          margin-bottom: 0;
+        }
+      }
+      &.active {
+        display: block;
+      }
+      &--connection {
+        .online-tabs-main-item-btn {
+          &::before {
+            background-image: url('img/online-tabs_connection.jpg');
+          }
+        }
+      }
+      &--limits {
+        .online-tabs-main-item-btn {
+          &::before {
+            background-image: url('img/online-tabs_limits.jpg');
+          }
+        }
+      }
+      &--safety {
+        .online-tabs-main-item-btn {
+          &::before {
+            background-image: url('img/online-tabs_safety.jpg');
+          }
+        }
+      }
+      &--q_a {
+        .online-tabs-main-item-btn {
+          &::before {
+            background-image: url('img/online-tabs_vpr.jpg');
+          }
+        }
+      }
+      &-btn {
+        position: relative;
+        display: none;
+        padding: 17px 80px 17px 35px;
+        font: 700 20px/1.3 $font;
+        color: #fff;
+        background: rgb(254 80 0 / 0.9);
+        cursor: pointer;
+        @include media-laptop {
+          display: block;
+        }
+        @include media-tablet {
+          padding: 13px 60px 13px 20px;
+          font-size: 18px;
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          transition: 0.3s;
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 25px;
+          width: 18px;
+          height: 8px;
+          background-image: url("data:image/svg+xml,%3Csvg width='20' height='11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l9 8 9-8' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E");
+          background-size: contain;
+          background-repeat: no-repeat;
+          transition: 0.3s;
+          @include media-tablet {
+            right: 20px;
+          }
+        }
+        &.active {
+          &::after {
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+      }
+      &-content {
+        padding: 40px 60px 60px;
+        @include media-laptop {
+          display: none;
+          padding: 30px 0 20px;
+        }
+        @include media-tablet {
+          padding: 20px 0;
+        }
+      }
+      .benefits {
+        margin-bottom: 20px;
+      }
+    }
+    &-text {
+      margin-bottom: 20px;
+      font: 300 18px/1.4 $font;
+      @include media-tablet {
+        font-size: 16px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      p {
+        margin-bottom: 15px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    &-safety-img {
+      max-width: 280px;
+    }
+  }
+}
+.bvi-body {
+  .online-tabs {
+    &__head {
+      &-item {
+        &.active {
+          border: 1px solid;
+        }
+      }
+    }
+  }
+}
