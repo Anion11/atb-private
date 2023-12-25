@@ -187,4 +187,28 @@
       }
     }
   }
+  &--disclosure-information {
+    background: linear-gradient(90deg, #FFF8F2 0%, #FFEEDB 100%);
+    .main-attention {
+      &__text {
+        min-height: 80px;
+        padding-left: 100px;
+        @include media-laptop {
+          padding-left: 90px;
+        }
+        @include media-tablet {
+          padding-left: 63px;
+        }
+      }
+      &__ui-p2 {
+        font-size: 18px;
+        @include media-laptop {
+          font-size: 16px;
+        }
+        @include media-tablet {
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }

@@ -1,0 +1,170 @@
+extends ../../layouts/layout
+
+block styles
+  link(rel='stylesheet' href='../../styles/style.min.css')
+  link(rel='stylesheet' href=fileName + '.min.css')
+
+block scripts
+  script(src='../../js/index.js')
+  script(src=fileName + '.js')
+block variables
+  -const fileName = 'info-pages'
+  -const pageTitle ='Раскрытие информации'
+
+  -
+    const infoPageAsideList = [
+      { isActive: true, text: 'Устав и иные внутренние документы' },
+      { text: 'Лицензии' },
+      { text: 'Финансовая отчетность' },
+      { text: 'Ежеквартальные отчеты' },
+      { text: 'Годовые отчеты' },
+      { text: 'Сообщения о существенных фактах' },
+      { text: 'Аффилированные лица' },
+      { text: 'Эмиссия ценных бумаг' },
+      { text: 'Реорганизация' },
+      { text: 'Раскрытие информации для регулятивных целей' },
+      { text: 'Раскрытие информации об обязательной оценке Банка на предмет соответствия требований положения №382-П' },
+      { text: 'Раскрытие информации в соответствии с Указанием Банка России от 28.12.2015 г. №3921-У' },
+      { text: 'Документы для ознакомления' },
+      { text: 'Архив документов' },
+    ]
+
+block content
+  main
+    +breadcrumbs
+      +breadcrumbs-item('Главная', '/')
+      +breadcrumbs-item(pageTitle)
+      
+    .page-content
+      +section('--mt0')
+        +section-head.text-center.text-center--laptop-left 
+          .inner
+            +ui-h2('Раскрытие информации', 'section-head')
+            +ui-p1('«Азиатско-Тихоокеанский Банк» (АО)', 'section-head')
+      +section('--mt-s')
+        +section-head
+          .inner
+            +main-attention({ p2: 'До&nbsp;30&nbsp;ноября 2020 года &laquo;Азиатско-Тихоокеанский Банк&raquo; (АО) являлся ПАО и&nbsp;осуществлял раскрытие <span class="text-orange">на&nbsp;странице информационного агентства ООО &laquo;Интерфакс-ЦРКИ&raquo;</span>'}, '--disclosure-information')
+            
+      +section('--mt-s')
+        .inner
+          +info-page(infoPageAsideList)
+            +section-box
+              +info-page-nav
+            +section-box
+              +info-page-section
+                +ui-p1()
+                  p
+                    a(href='#') Годовой отчет за 2019 год
+                      span.text-grey60  (pdf 970.41 KB)
+              +info-page-section
+                +ui-p1()
+                  p
+                    a(href='#') Годовой отчёт за 2012 год (English)
+                      span.text-grey60  (pdf 3.25 MB)
+            +section-box('--mt50').text-center
+              +ui-button('Показать еще')(href='#')
+            +ui-pagination()
+           
+    //-       +tabs-head(tabsHead2, '', '--gradient-border')
+    //-       +tabs-main
+    //-         +tabs-main__item(true)
+    //-           +section('--mt0')
+    //-             .inner
+    //-               +club-offer
+    //-         +tabs-main__item#tab-lk
+    //-           +section('--mt0')
+    //-             .inner
+    //-               +club-offer('lk')
+    //-         +tabs-main__item()
+    //-           +section('--mt0')
+    //-             .inner
+    //-               +tel-instruction(telInstruction2, '--img-l, --club-instructions')
+    //-         +tabs-main__item()
+    //-           +section('--mt0')
+    //-             .inner
+    //-               +accordion()
+    //-                 +accordion-item('Как определить, какая программа лояльности действует по&nbsp;вашей карте?', '--card-router')
+    //-                   +card-router(tableData, '--without-heads, --2slides')(data-slides-per-view='2')
+
+    //-   +section('--bg-grey')
+    //-     .inner
+    //-       +tel-instruction(telInstruction, '--img-l, --grey-bg')
+
+    //-   +section
+    //-     +section-head
+    //-       .inner
+    //-         +ui-h2('Акции по продуктам банка', 'section-head')
+    //-     +tabs-head(tabsHead1, '', '--gradient-border')
+    //-     +tabs-main('--pt0')
+    //-       +tabs-main__item(true)
+    //-         +section('--mt0, --ov-hidden')
+    //-           .inner
+    //-             +club-promotions(clubPromotionsItems1)
+    //-       +tabs-main__item()
+    //-         +section('--mt0, --ov-hidden')
+    //-           .inner
+    //-             +club-promotions(clubPromotionsItems2)
+
+    //-   +section
+    //-     .inner
+    //-       +mob-banner(mobBannersData, '--card-mir ')
+
+    //-   +section
+    //-     .inner
+    //-       +section-head.text-center
+    //-         +ui-h2('Документы для скачивания', 'section-head')
+    //-       +accordion
+    //-         +accordion-item('Правила и условия по акциям')
+    //-           +documents
+    //-         +accordion-item('Архив')
+    //-           +documents
+
+    //- +popup__wrapper('--xl, --mob-w100, --mob-px-xs')#popup-mcc-codes-auto(data-container-mods='popup--mob-bottom')
+    //-   +section-head('--mb-size-xs')
+    //-     +ui-h4('Категория «Авто»', 'section-head, --bold')
+    //-     +ui-p1('Лимит баллов до&nbsp;3&nbsp;000&nbsp;₽', '--mob-xs')
+    //-   +ui-table-wrapper('--border-y')
+    //-     +ui-table(tableItemsMccCar, '--v-al-top, --all-border, --grey-title, --max-h, --scrollbar')
+
+    //- +popup__wrapper('--xl, --mob-w100, --mob-px-xs')#popup-mcc-codes-home(data-container-mods='popup--mob-bottom')
+    //-   +section-head('--mb-size-xs')
+    //-     +ui-h4('Дом и ремонт', 'section-head, --bold')
+    //-     +ui-p1('Лимит баллов до&nbsp;3&nbsp;000&nbsp;₽', '--mob-xs')
+    //-   +ui-table-wrapper('--border-y')
+    //-     +ui-table(tableItemsMccHome, '--v-al-top, --all-border, --grey-title, --max-h, --scrollbar')
+
+    //- +popup__wrapper('--xl, --mob-w100, --mob-px-xs')#popup-mcc-codes-family(data-container-mods='popup--mob-bottom')
+    //-   +section-head('--mb-size-xs')
+    //-     +ui-h4('Семья', 'section-head, --bold')
+    //-     +ui-p1('Лимит баллов до&nbsp;5&nbsp;000&nbsp;₽', '--mob-xs')
+    //-   +ui-table-wrapper('--border-y')
+    //-     +ui-table(tableItemsMccFamily, '--v-al-top, --all-border, --grey-title, --max-h, --scrollbar')
+
+    //- +popup__wrapper('--xl, --mob-w100, --mob-px-xs')#popup-mcc-codes-shopping(data-container-mods='popup--mob-bottom')
+    //-   +section-head('--mb-size-xs')
+    //-     +ui-h4('Шоппинг', 'section-head, --bold')
+    //-     +ui-p1('Лимит баллов до&nbsp;3&nbsp;000&nbsp;₽', '--mob-xs')
+    //-   +ui-table-wrapper('--border-y')
+    //-     +ui-table(tableItemsMccShopping, '--v-al-top, --all-border, --grey-title, --max-h, --scrollbar')
+
+    //- +popup__wrapper('--xl, --mob-w100, --mob-px-xs')#popup-mcc-codes-health(data-container-mods='popup--mob-bottom')
+    //-   +section-head('--mb-size-xs')
+    //-     +ui-h4('Здоровье', 'section-head, --bold')
+    //-     +ui-p1('Лимит баллов до&nbsp;3&nbsp;000&nbsp;₽', '--mob-xs')
+    //-   +ui-table-wrapper('--border-y')
+    //-     +ui-table(tableItemsMccHealth, '--v-al-top, --all-border, --grey-title, --max-h, --scrollbar')
+
+    //- +popup__wrapper('--xl, --mob-w100, --mob-px-xs')#popup-mcc-codes-beauty-sports(data-container-mods='popup--mob-bottom')
+    //-   +section-head('--mb-size-xs')
+    //-     +ui-h4('Красота и&nbsp;спорт', 'section-head, --bold')
+    //-     +ui-p1('Лимит баллов до&nbsp;5&nbsp;000&nbsp;₽', '--mob-xs')
+    //-   +ui-table-wrapper('--border-y')
+    //-     +ui-table(tableItemsMccBeautySports, '--v-al-top, --all-border, --grey-title, --max-h, --scrollbar')
+
+    //- +popup__wrapper('--xl, --mob-w100, --mob-px-xs')#popup-mcc-codes-recreation(data-container-mods='popup--mob-bottom')
+    //-   +section-head('--mb-size-xs')
+    //-     +ui-h4('Развлечения и&nbsp;отдых', 'section-head, --bold')
+    //-     +ui-p1('Лимит баллов до&nbsp;5&nbsp;000&nbsp;₽', '--mob-xs')
+    //-   +ui-table-wrapper('--border-y')
+    //-     +ui-table(tableItemsMccRecreation, '--v-al-top, --all-border, --grey-title, --max-h, --scrollbar')
