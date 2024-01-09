@@ -1,0 +1,16 @@
+mixin info-page-search(mods)
+  -
+    const baseName = 'info-page-search'
+    let allMods = ''
+    if (typeof mods !== 'undefined' && mods) {
+      const modsList = mods.split(',')
+      for (const element of modsList) {
+        allMods += element.trim()[0] === '-' ? ' ' + baseName + element.trim() : ' ' + element.trim() + '__' + baseName
+      }
+      allMods = allMods.trim()
+    }
+
+  .info-page-search(class=allMods)&attributes(attributes)
+    +ui-input('search', '', '--grey, --search-icon')(placeholder='Что вы ищете?')
+    +ui-select('', 'За все время', 'За последний месяц', 'За последний год')
+    block
