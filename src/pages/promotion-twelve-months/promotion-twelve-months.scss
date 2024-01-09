@@ -4,14 +4,3 @@
 @import '../../blocks/small-banner/small-banner';
 @import '../../blocks/calendar/calendar';
 @import '../../blocks/card/card-day/card-day';
-
-.promotion-twelwe-months {
-  &__section-head {
-    .ui-h2 {
-      margin-bottom: 15px;
-      @include media-tablet {
-        margin-bottom: 10px;
-      }
-    }
-  }
-}

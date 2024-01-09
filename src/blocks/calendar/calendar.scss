@@ -6,7 +6,7 @@
   border-radius: 8px;
   box-shadow: 0 3px 30px 0 rgb(135 151 15 / 0.15);
   @include media-laptop {
-    padding: 45px 70px;
+    padding: 45px 25px;
   }
   @include media-tablet {
     gap: 41px;
@@ -14,48 +14,52 @@
   }
 }
 .calendar {
-  display: grid;
+  display: flex;
   justify-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
-  @include media-laptop {
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    gap: 37px;
-  }
+  align-items: center;
+  justify-content: space-between;
   @include media-tablet {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
-  &-item {
+  &__item {
+    @include media-tablet {
+      margin-bottom: 40px;
+    }
     &--filled-flesh {
       .calendar__body-day {
-        background-color: #fff4e1;
         &--promotion {
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Ccircle cx='14' cy='14' r='14' fill='%23FFE5C7'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: center;
+          &-day {
+            background-color: #fff4e1;
+          }
         }
       }
     }
     &--filled-light-blue {
       .calendar__body-day {
-        background-color: #eff7f9;
         &--promotion {
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='28' viewBox='0 0 29 28' fill='none'%3E%3Ccircle cx='14.5' cy='14' r='14' fill='%23CDE8EF'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: center;
+          &-day {
+            background-color: #eff7f9;
+          }
         }
       }
     }
   }
   &__head {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 14px;
-    padding: 9px 7px 6px 9px;
+    display: flex;
+    padding: 9px 0 6px 0;
     margin-bottom: 9px;
     background: #f8f8f8;
     border-radius: 6px;
     &-day {
+      display: flex;
+      justify-content: center;
+      width: 31.4px;
       font-size: 14px;
     }
   }
@@ -64,13 +68,13 @@
     gap: 2px;
     padding-left: 5px;
     &-row {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      display: flex;
     }
     &-day {
       position: relative;
       display: flex;
       justify-content: center;
+      width: 30.8px;
       padding: 9px 0 7px;
       font-size: 12px;
       &:first-child {
@@ -90,6 +94,9 @@
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Ccircle cx='14' cy='14' r='14' fill='url(%23paint0_linear_219_438)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_219_438' x1='5.775' y1='28' x2='30.3327' y2='20.3143' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FE5000'/%3E%3Cstop offset='1' stop-color='%23FCA92A'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: center;
+      }
+      &--hidden {
+        background-color: #fff;
       }
     }
   }

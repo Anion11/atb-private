@@ -15,7 +15,7 @@ mixin calendar(mods)
 
 mixin calendar-item(data, mods)
   -
-    const baseName = 'calendar-item'
+    const baseName = 'calendar__item'
     let allMods = ''
     if (typeof mods !== 'undefined' && mods) {
       const modsList = mods.split(',')
@@ -27,8 +27,18 @@ mixin calendar-item(data, mods)
     const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     var day = 1
     var dayStr = data.startDay
+    var dayEnd = data.promotionEnd
+    var dayStart = data.promotionStart
+    if (data.promotionEnd === undefined && data.promotionStart !== undefined) {
+      dayEnd = 32
+      dayStart = data.promotionStart
+    }
+    if (data.promotionStart === undefined && data.promotionEnd !== undefined) {
+      dayStart = 0
+      dayEnd = data.promotionEnd
+    }
 
-  .calendar-item(class=allMods)&attributes(attributes)
+  .calendar__item(class=allMods)&attributes(attributes)
     .calendar__date.text-center !{data.date}
     .calendar__wrapper
       .calendar__head
@@ -41,7 +51,7 @@ mixin calendar-item(data, mods)
               -for (var x = 1; x < 8; x++)
                 if day <= data.endDay
                   if x >= dayStr
-                    .calendar__body-day(class= `${day === 1 ? 'calendar__body-day--first' : ''} ${day === data.prizeDay ? 'calendar__body-day--prize' : ''} ${(day === data.promotionStart || day === data.promotionEnd) ? 'calendar__body-day--promotion' : ''}`) !{day++}
+                    .calendar__body-day(class= `${day === 1 ? 'calendar__body-day--first' : ''} ${day === data.prizeDay ? 'calendar__body-day--prize' : ''} ${(day === data.promotionStart || day === data.promotionEnd) ? 'calendar__body-day--promotion' : ''} ${(day >= dayStart && day <= dayEnd) ? 'calendar__body-day--promotion-day' : ''}`) !{day++}
                       if day === data.promotionStart + 1
                         .calendar__promotion-start
                           +ui-p3('Начало акции', '--light').text-orange
@@ -59,7 +69,7 @@ mixin calendar-item(data, mods)
                     else
                       -dayStr = 1
                   else 
-                    .calendar__body-day--hidden
+                    .calendar__body-day.calendar__body-day--hidden
                 else 
                   -break
           else

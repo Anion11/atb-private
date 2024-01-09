@@ -26,11 +26,8 @@ mixin sweepstakes-item(data, mods)
     }
 
   .sweepstakes-item(class=allMods)&attributes(attributes)
-    .sweepstakes-item__top-content
-      .sweepstakes-item__label.text-mob-only !{data.count}
-      .sweepstakes-item__image
-        img(src=data.img, alt='sweepstakes-image')
-    .sweepstakes-item__bot-content
-      .sweepstakes-item__label.text-mob-none !{data.count}
-      +ui-h4(data.text, 'sweepstakes-item')
+    .sweepstakes-item__image
+      img(src=data.img, alt='sweepstakes-image')
+    .sweepstakes-item__label !{data.count}
+    +ui-h4(data.text, 'sweepstakes-item')
     block
